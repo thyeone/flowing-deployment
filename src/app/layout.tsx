@@ -9,9 +9,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: PropsWithStrictChildren) {
   return (
+    <Layout>
+      <Providers>{children}</Providers>
+    </Layout>
+  );
+}
+
+function Layout({ children }: PropsWithStrictChildren) {
+  return (
     <html lang="ko">
-      <body>
-        <Providers>{children}</Providers>
+      <body className="body-layout">
+        <main className="main-layout">{children}</main>
       </body>
     </html>
   );
