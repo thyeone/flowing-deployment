@@ -40,11 +40,11 @@ export default function Input({
           {...register}
           id={id}
           className={cn(
-            `focus:border-brand h-[52px] w-full rounded-lg border-[1px] border-[#EAEAEA] bg-transparent px-4 text-sm outline-none transition duration-500`,
-            className,
+            `h-[52px] w-full rounded-lg border-[1px] border-[#EAEAEA] bg-transparent  px-4 text-sm outline-none transition duration-500 focus:border-brand`,
             {
               'dark:border-[#292929] dark:text-white': isDark,
             },
+            className,
           )}
         />
       ) : (
@@ -53,11 +53,11 @@ export default function Input({
           {...register}
           id={id}
           className={cn(
-            `focus:border-brand h-[108px] w-full resize-none rounded-lg border-[1px] border-[#EAEAEA] bg-transparent px-4 pt-4 text-sm outline-none transition duration-500`,
-            className,
+            `h-[108px] w-full resize-none rounded-lg border-[1px] border-[#EAEAEA] bg-transparent px-4 pt-4 text-sm outline-none transition duration-500 focus:border-brand`,
             {
               'dark:border-[#292929] dark:text-white': isDark,
             },
+            className,
           )}
         />
       )}
