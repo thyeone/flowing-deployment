@@ -25,7 +25,7 @@ export default function Input({
   ...rest
 }: InputProps) {
   return (
-    <div className="mx-10">
+    <>
       {label && (
         <div className="mb-4 flex items-center gap-x-1">
           <label htmlFor={id} className={`font-bold text-[#050505] ${isDark && 'dark:text-white'}`}>
@@ -61,6 +61,6 @@ export default function Input({
           )}
         />
       )}
-    </div>
+    </>
   );
 }
