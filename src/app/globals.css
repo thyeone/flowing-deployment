@@ -14,11 +14,11 @@
   }
 
   .body-layout {
-    @apply flex min-h-[var(--layout-min-h)] w-screen justify-center overflow-x-hidden overflow-y-scroll;
+    @apply flex min-h-[var(--layout-min-h)] w-screen justify-center overflow-x-hidden overflow-y-scroll bg-white;
   }
 
   .main-layout {
-    @apply relative w-full max-w-[var(--layout-max-w)] bg-white;
+    @apply relative w-full max-w-[var(--layout-max-w)] bg-white text-black dark:bg-black dark:text-white;
   }
 }
 
