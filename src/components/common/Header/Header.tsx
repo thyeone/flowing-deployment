@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils/cn';
 import type { PropsWithChildren } from 'react';
-import Spacing from '../Spacing/Spacing';
+import Spacing from '@/components/common/Spacing';
 
 type HeaderProps = React.HtmlHTMLAttributes<HTMLHeadElement>;
 
