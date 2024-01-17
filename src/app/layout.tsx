@@ -18,9 +18,7 @@ export default function RootLayout({ children }: PropsWithStrictChildren) {
 function Layout({ children }: PropsWithStrictChildren) {
   return (
     <html lang="ko">
-      <body className="body-layout">
-        <main className="main-layout">{children}</main>
-      </body>
+      <body className="body-layout">{children}</body>
     </html>
   );
 }
