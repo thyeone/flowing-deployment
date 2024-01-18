@@ -18,7 +18,7 @@
   }
 
   .main-layout {
-    @apply relative w-full max-w-[var(--layout-max-w)] bg-white text-black dark:bg-black dark:text-white;
+    @apply relative w-full max-w-[var(--layout-max-w)] bg-white text-black;
   }
 }
 
@@ -43,4 +43,11 @@
 
 html {
   font-size: 16px;
+}
+
+/*
+ * svg를 button으로 감쌌을 때 button 요소를 인식하지 못하여 z-index: 1 설정
+*/
+button {
+  z-index: 1;
 }
