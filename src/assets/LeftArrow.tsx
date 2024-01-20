@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react';
 
-const LeftArrow = (props: SVGProps<SVGSVGElement>) => {
+export default function LeftArrow(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +14,4 @@ const LeftArrow = (props: SVGProps<SVGSVGElement>) => {
       <path d="M8 5L1 12L8 19" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
   );
-};
-
-export default LeftArrow;
+}
