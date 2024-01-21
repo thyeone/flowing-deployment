@@ -46,9 +46,9 @@ export default function DarkBoard(props: AnimationProps) {
           width="321.911"
           height="318.195"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_63_73" />
         </filter>
@@ -59,9 +59,9 @@ export default function DarkBoard(props: AnimationProps) {
           width="438.62"
           height="431.917"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feGaussianBlur stdDeviation="70" result="effect1_foregroundBlur_63_73" />
         </filter>
@@ -73,8 +73,8 @@ export default function DarkBoard(props: AnimationProps) {
           y2="140.524"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#202020" />
-          <stop offset="1" stop-opacity="0" />
+          <stop stopColor="#202020" />
+          <stop offset="1" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_63_73"
@@ -84,8 +84,8 @@ export default function DarkBoard(props: AnimationProps) {
           y2="140.524"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#E9EDF5" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="#E9EDF5" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
       </defs>
     </motion.svg>
