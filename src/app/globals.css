@@ -18,7 +18,7 @@
   }
 
   .main-layout {
-    @apply relative h-full w-full max-w-[var(--layout-max-w)] bg-white text-black;
+    @apply relative w-full max-w-[var(--layout-max-w)] bg-white text-black;
   }
 }
 

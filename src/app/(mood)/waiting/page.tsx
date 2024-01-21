@@ -11,9 +11,11 @@ export default function Waiting() {
   if (!isMounted) return null;
 
   return (
-    <div className="mx-5">
+    <>
       <WaitingHeader text="자기소개 작성" />
-      <MoodBoard />
-    </div>
+      <div className="mx-5">
+        <MoodBoard />
+      </div>
+    </>
   );
 }
