@@ -28,7 +28,7 @@ export default function Input({
     <>
       {label && (
         <div className="mb-4 flex items-center gap-x-1">
-          <label htmlFor={id} className={`font-bold text-[#050505] ${isDark && 'dark:text-white'}`}>
+          <label htmlFor={id} className={`font-bold text-gray-900 ${isDark && 'dark:text-white'}`}>
             {label}
           </label>
           {required && <CheckIcon />}
@@ -40,9 +40,9 @@ export default function Input({
           {...register}
           id={id}
           className={cn(
-            `h-[52px] w-full rounded-lg border-[1px] border-[#EAEAEA] bg-transparent  px-4 text-sm outline-none transition duration-500 focus:border-brand`,
+            `h-[52px] w-full rounded-lg border-[1px] border-gray-100 bg-transparent px-4 text-sm outline-none transition duration-500 focus:border-brand`,
             {
-              'dark:border-[#292929] dark:text-white': isDark,
+              'dark:border-gray-800 dark:text-white': isDark,
             },
             className,
           )}
@@ -53,9 +53,9 @@ export default function Input({
           {...register}
           id={id}
           className={cn(
-            `h-[108px] w-full resize-none rounded-lg border-[1px] border-[#EAEAEA] bg-transparent px-4 pt-4 text-sm outline-none transition duration-500 focus:border-brand`,
+            `h-[108px] w-full resize-none rounded-lg border-[1px] border-gray-100 bg-transparent px-4 pt-4 text-sm outline-none transition duration-500 focus:border-brand`,
             {
-              'dark:border-[#292929] dark:text-white': isDark,
+              'dark:border-gray-800 dark:text-white': isDark,
             },
             className,
           )}

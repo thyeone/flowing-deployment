@@ -17,7 +17,7 @@ export default function RootLayout({ children }: PropsWithStrictChildren) {
 
 function Layout({ children }: PropsWithStrictChildren) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body className="body-layout">{children}</body>
     </html>
   );
