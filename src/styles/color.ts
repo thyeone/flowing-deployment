@@ -3,6 +3,7 @@ export const colors = {
   black: '#000000',
   transparent: '#00000000',
   brand: '#EC76AB',
+  error: '#FF1010',
   primary: {
     50: '#FFE5ED',
     100: '#FFBCD3',
