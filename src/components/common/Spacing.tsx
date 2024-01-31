@@ -7,10 +7,18 @@ type SpacingProps = React.HTMLAttributes<HTMLDivElement> & {
   size: number;
 };
 
-const Spacing = memo(function Spacing({ direction = 'vertical', size, ...props }: SpacingProps) {
+const Spacing = memo(function Spacing({
+  direction = 'vertical',
+  size,
+  className,
+  ...props
+}: SpacingProps) {
   return (
     <div
-      className={cn('flex-none', direction === 'vertical' ? `h-${size}` : `w-${size}`)}
+      className={cn('w-full flex-none', className)}
+      style={{
+        [direction === 'vertical' ? 'height' : 'width']: size + 'px',
+      }}
       {...props}
     />
   );
