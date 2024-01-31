@@ -11,4 +11,6 @@ export const KEYWORD_LIST = [
   '키워드6',
   '키워드7',
   '키워드8',
+  '키워드9',
+  '키워드10',
 ] as const;

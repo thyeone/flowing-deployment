@@ -2,10 +2,14 @@
 
 import Input from '@/components/common/Input';
 import { type SubmitHandler, useWatch } from 'react-hook-form';
-import Mykeyword from './MyKeyword';
 import { type MoodContextValue, useMoodContext } from './MoodContext';
-import GenderField from './GenderField';
-import Button from '@/components/common/Button';
+import Button from '@/components/common/Button/Button';
+import BodyTypeSection from './BodyTypeSection';
+import BirthdaySection from './BirthdaySection';
+import Spacing from '@/components/common/Spacing';
+import RegionSection from './RegionSection';
+import Mykeyword from './MyKeyword';
+import { ButtonWrapper } from '@/components/common/Button';
 
 export default function MoodForm() {
   const {
@@ -19,10 +23,6 @@ export default function MoodForm() {
     control,
     name: 'nickname',
   });
-  const birthday = useWatch({
-    control,
-    name: 'birthday',
-  });
   const keywords = useWatch({
     control,
     name: 'keywords',
@@ -33,7 +33,7 @@ export default function MoodForm() {
   };
 
   return (
-    <div className="mx-5 mb-5">
+    <div className="mx-5 pb-10">
       <form id="mood" onSubmit={handleSubmit(handleOnSubmit)}>
         <Input
           register={register('nickname', {
@@ -54,34 +54,31 @@ export default function MoodForm() {
           required={!errors.nickname?.message && !!nickname}
           error={errors.nickname?.message}
         />
-        <p className="mb-8 mt-2 text-xs text-gray-500">매칭이 되었을 때만 상대방에게 보여줘요</p>
-        <Input
-          register={register('birthday', {
-            required: true,
-            pattern: {
-              value: /^\d{4}\.\d{2}\.\d{2}$/,
-              message: 'YYYY.MM.DD 형식으로 입력해주세요.',
-            },
-            validate: (value) =>
-              Number(value.slice(0, 4)) < 2006 || '2005년생 이후는 가입이 불가능합니다.',
-          })}
-          id="birthday-input"
-          label="생일"
-          placeholder="생년월일을 입력해주세요."
-          isDark
-          required={!errors.birthday?.message && !!birthday}
-          error={errors.birthday?.message}
-        />
-        <GenderField />
+        <p className="mt-2 text-xs text-[#0071FF]">매칭이 되었을 때만 상대방에게 보여줘요</p>
+        <Spacing size={28} />
+        <BirthdaySection />
+        <BodyTypeSection />
+        <RegionSection />
+        <Mykeyword />
       </form>
-      <Mykeyword />
-      <Button
-        form="mood"
-        isDark
-        disabled={!isValid || !dirtyFields.birthday || !keywords.length || !dirtyFields.nickname}
-      >
-        다음
-      </Button>
+      <ButtonWrapper>
+        <Button
+          form="mood"
+          isDark
+          disabled={
+            !isValid ||
+            !dirtyFields.nickname ||
+            !dirtyFields.birthday ||
+            !dirtyFields.gender ||
+            !dirtyFields.bodyType ||
+            !dirtyFields.height ||
+            !dirtyFields.address ||
+            !keywords.length
+          }
+        >
+          다음
+        </Button>
+      </ButtonWrapper>
     </div>
   );
 }
