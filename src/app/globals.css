@@ -11,6 +11,13 @@
   :root {
     --layout-max-w: 430px;
     --layout-min-h: 100dvh;
+    --primary-stroke: white;
+    --primary-path: #f6f6f6;
+  }
+
+  .dark {
+    --primary-stroke: #292929;
+    --primary-path: #292929;
   }
 
   .body-layout {
