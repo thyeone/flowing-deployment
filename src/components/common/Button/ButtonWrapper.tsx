@@ -4,6 +4,11 @@ type ButtonWrapperProps = {
   position?: 'bottom' | 'content';
 };
 
+/**
+ * @description 버튼을 하단 고정하기 위한 래퍼입니다. 반복되는 스타일링을 재사용하기 위해 작성한 컴포넌트입니다.
+ * @param position 하단고정 = 'bottom'
+ */
+
 export default function ButtonWrapper({
   position = 'bottom',
   children,

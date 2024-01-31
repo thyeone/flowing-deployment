@@ -3,6 +3,12 @@ import { AnimatePortal } from '../Portal';
 import BottomDim from './BottomDim';
 import { motion } from 'framer-motion';
 
+/**
+ * @description
+ * 나타날 때 화면 하단에서 올라오고 사라질 때 화면 하단으로 내려가는 애니메이션이 적용되어 있습니다.
+ * 바텀시트 외부를 클릭할 경우 창이 닫힙니다.
+ */
+
 const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<{ isOpen: boolean }>>(
   ({ children, isOpen, ...rest }, ref) => {
     return (
