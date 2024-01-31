@@ -30,8 +30,8 @@ export default function Input({
   return (
     <>
       {label && (
-        <div className="mb-4 flex items-center gap-x-1">
-          <label htmlFor={id} className={`font-bold text-gray-900 ${isDark && 'dark:text-white'}`}>
+        <div className="mb-2 flex items-center gap-x-1">
+          <label htmlFor={id} className={`text-sm text-gray-600 ${isDark && 'dark:text-gray-400'}`}>
             {label}
           </label>
           {required && <CheckIcon />}
@@ -43,9 +43,9 @@ export default function Input({
           {...register}
           id={id}
           className={cn(
-            `h-[52px] w-full rounded-lg border-[1px] border-gray-100 bg-transparent px-4 text-sm outline-none transition duration-500 focus:border-primary-400`,
+            `h-[52px] w-full rounded-lg border-[1px] border-gray-100 bg-transparent px-4 outline-none focus:border-primary-400`,
             {
-              'dark:border-gray-800 dark:text-white': isDark,
+              'dark:border-gray-800 dark:text-white placeholder:dark:text-gray-700': isDark,
             },
             className,
           )}
@@ -56,7 +56,7 @@ export default function Input({
           {...register}
           id={id}
           className={cn(
-            `h-[108px] w-full resize-none rounded-lg border-[1px] border-gray-100 bg-transparent px-4 pt-4 text-sm outline-none transition duration-500 focus:border-primary-400`,
+            `h-[108px] w-full resize-none rounded-lg border-[1px] border-gray-100 bg-transparent px-4 pt-4 outline-none focus:border-primary-400`,
             {
               'dark:border-gray-800 dark:text-white': isDark,
             },
