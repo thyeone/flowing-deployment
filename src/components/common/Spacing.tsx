@@ -15,7 +15,7 @@ const Spacing = memo(function Spacing({
 }: SpacingProps) {
   return (
     <div
-      className={cn('w-full flex-none', className)}
+      className={cn('flex-none', className)}
       style={{
         [direction === 'vertical' ? 'height' : 'width']: size + 'px',
       }}
