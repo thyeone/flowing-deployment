@@ -34,7 +34,7 @@ export default function BodyTypeSection() {
             id="bodytype-input"
             placeholder="예) 170"
             className={cn(
-              `h-[52px] w-full rounded-lg border-[1px] border-gray-100 bg-transparent px-4 text-sm outline-none placeholder:text-base focus:border-primary-400 dark:border-gray-800 dark:text-white placeholder:dark:text-gray-700`,
+              `f h-[52px] w-full rounded-lg border-[1px] border-gray-100 bg-transparent px-4 text-sm outline-none placeholder:text-base focus:border-primary-400 dark:border-gray-800 dark:text-white placeholder:dark:text-gray-700`,
             )}
           />
           <span className="absolute right-4 top-3">cm</span>
