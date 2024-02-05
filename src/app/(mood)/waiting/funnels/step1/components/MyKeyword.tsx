@@ -1,7 +1,7 @@
 'use client';
 
 import CheckIcon from '@public/svg/check-16.svg';
-import { useMoodContext } from './MoodContext';
+import { useMoodContext } from '../../../components/MoodContext';
 import { useWatch } from 'react-hook-form';
 import { cn } from '@/utils/cn';
 import PlusIcon from '@/assets/Plus';
@@ -56,7 +56,9 @@ export default function Mykeyword() {
             `h-[104px] w-full rounded-lg border border-dashed border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800`,
           )}
           onClick={() => {
-            open(({ exit }) => <MyKeywordModal useForm={useForm} onClose={exit} />);
+            open(({ close, isOpen }) => (
+              <MyKeywordModal useForm={useForm} onClose={close} isOpen={isOpen} />
+            ));
           }}
         >
           <span className="mx-4 flex flex-col items-center gap-y-2 text-sm text-gray-700 dark:text-gray-300">

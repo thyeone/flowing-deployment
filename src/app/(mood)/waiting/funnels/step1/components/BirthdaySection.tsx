@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils/cn';
 import CheckIcon from '@public/svg/check-16.svg';
-import { useMoodContext } from './MoodContext';
+import { useMoodContext } from '../../../components/MoodContext';
 import { useWatch } from 'react-hook-form';
 import Spacing from '@/components/common/Spacing';
 

@@ -6,7 +6,7 @@ import CheckBox from '@/components/common/CheckBox';
 import useClickAway from '@/hooks/useClickAway';
 import { Fragment } from 'react';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
-import type { MoodContextValue } from './MoodContext';
+import type { MoodContextValue } from '../../../components/MoodContext';
 import BottomSheet from '@/components/common/Modal/BottomSheet';
 
 const BODY_TYPE_LIST = ['마름', '탄탄 슬림', '보통', '통통', '근육'] as const;
