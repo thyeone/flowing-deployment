@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 
-type StepProps = {
-  name: string;
+type StepProps<Step> = {
+  name: Readonly<Step>;
   children: React.ReactNode;
 };
 
-type FunnelProps = {
-  children: Array<React.ReactElement<StepProps>>;
+type FunnelProps<Step> = {
+  children: Array<React.ReactElement<StepProps<Step>>>;
 };
 
-const useFunnel = <T extends string>(defaultStep: T, lastStep: T) => {
-  const [step, setStep] = useState<T>(defaultStep);
+const useFunnel = <Step extends string>(defaultStep: Step, lastStep: Step) => {
+  const [step, setStep] = useState<Step>(defaultStep);
 
-  const Step = (props: StepProps): React.ReactElement => {
+  const Step = (props: StepProps<Step>): React.ReactElement => {
     return <>{props.children}</>;
   };
 
-  const Funnel = ({ children }: FunnelProps) => {
+  const Funnel = ({ children }: FunnelProps<Step>) => {
     const targetStep = children.find((childStep) => childStep.props.name === step);
 
     if (!targetStep) throw new Error(`현재 ${step}과 일치하지 않습니다.`);
@@ -28,13 +28,13 @@ const useFunnel = <T extends string>(defaultStep: T, lastStep: T) => {
 
   const prevStep = () => {
     if (step !== '1') {
-      setStep(String(Number(step) - 1) as T);
+      setStep(String(Number(step) - 1) as Step);
     }
   };
 
   const nextStep = () => {
     if (String(Number(step) + 1) < lastStep) {
-      setStep(String(Number(step) + 1) as T);
+      setStep(String(Number(step) + 1) as Step);
     }
   };
 
