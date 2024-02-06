@@ -29,7 +29,9 @@ export default function RegionSection() {
       </div>
       <div className="flex gap-x-2">
         <button
-          className={cn(`h-[52px] w-full rounded-lg bg-gray-50 dark:bg-gray-800`)}
+          className={cn(
+            `h-[52px] w-full rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-200 dark:bg-gray-800`,
+          )}
           onClick={() => open(({ exit }) => <PostCodePopup onClose={exit} useForm={useForm} />)}
         >
           <span className="mx-4 flex items-center justify-between gap-x-2 text-sm text-gray-700 dark:text-gray-300">
