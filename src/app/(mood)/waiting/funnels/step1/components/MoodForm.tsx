@@ -56,7 +56,7 @@ export default function MoodForm() {
           required={!errors.nickname?.message && !!nickname}
           error={errors.nickname?.message}
         />
-        <p className="mt-2 text-xs text-[#0071FF]">매칭이 되었을 때만 상대방에게 보여줘요</p>
+        <p className="mt-2 text-xs text-[#1E6DD1]">매칭이 되었을 때만 상대방에게 보여줘요</p>
         <Spacing size={28} />
         <BirthdaySection />
         <BodyTypeSection />
