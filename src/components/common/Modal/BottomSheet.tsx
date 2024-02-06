@@ -1,7 +1,16 @@
 import { forwardRef } from 'react';
 import { AnimatePortal } from '../Portal';
 import BottomDim from './BottomDim';
-import { motion } from 'framer-motion';
+import { type PanInfo, motion } from 'framer-motion';
+import { MIN_Y } from '@/constants/bottomSheet';
+import useBottomSheet from '@/hooks/useBottomSheet';
+import CloseIcon from '@public/svg/close-24.svg';
+
+type BottomSheetProps = {
+  isOpen: boolean;
+  onClose: VoidFunction;
+  headerTitle: string;
+};
 
 /**
  * @description
@@ -9,13 +18,22 @@ import { motion } from 'framer-motion';
  * 바텀시트 외부를 클릭할 경우 창이 닫힙니다.
  */
 
-const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<{ isOpen: boolean }>>(
-  ({ children, isOpen, ...rest }, ref) => {
+const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<BottomSheetProps>>(
+  ({ children, isOpen, onClose, headerTitle, ...rest }, ref) => {
+    const { maxScrollHeight: MAX_Y, maxBottomSheetHeight } = useBottomSheet(() => onClose());
+
+    const handleOnDragEnd = (_: PointerEvent, info: PanInfo) => {
+      if (info.point.y > MAX_Y || info.point.y < MIN_Y) {
+        onClose();
+      }
+    };
+
     return (
       <AnimatePortal isOpen={isOpen}>
         <BottomDim>
           <motion.div
-            className="absolute bottom-0 left-0 h-[464px] w-full max-w-[430px] rounded-t-2xl bg-white px-4 py-5"
+            className={`absolute bottom-0 z-50 h-fit w-full max-w-[430px] overflow-hidden rounded-t-2xl bg-white px-5 pt-3`}
+            style={{ maxHeight: maxBottomSheetHeight }}
             ref={ref}
             initial="hidden"
             animate="visible"
@@ -29,8 +47,23 @@ const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<{ isOpen:
               visible: { y: '0%' },
               hidden: { y: '100%' },
             }}
+            drag="y"
+            dragConstraints={{ top: 0, bottom: MAX_Y }}
+            onDragEnd={handleOnDragEnd}
+            dragElastic={0}
             {...rest}
           >
+            <header className="relative flex w-full cursor-pointer flex-col items-center">
+              <div className="h-1 w-[45px] rounded-[10px] bg-gray-300" />
+              <div className="relative mt-[43px] flex w-full items-center">
+                <h1 className="absolute inset-x-0 text-center text-lg font-bold text-gray-900">
+                  {headerTitle}
+                </h1>
+                <button onClick={onClose} className="absolute right-0">
+                  <CloseIcon />
+                </button>
+              </div>
+            </header>
             {children}
           </motion.div>
         </BottomDim>
