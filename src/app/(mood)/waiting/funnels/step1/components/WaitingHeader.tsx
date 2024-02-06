@@ -36,9 +36,9 @@ const convertStepToText = (step: string) => {
   switch (step) {
     case '1':
       return '자기소개 작성';
-    case '2':
-      return '나의 가치관 작성';
     case '3':
+      return '나의 가치관 작성';
+    case '4':
       return '프로필 사진';
   }
 };
