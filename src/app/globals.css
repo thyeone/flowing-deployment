@@ -27,6 +27,10 @@
   .main-layout {
     @apply relative h-full w-full max-w-[var(--layout-max-w)] overflow-x-hidden overflow-y-scroll bg-white text-gray-900;
   }
+
+  .dark-mode {
+    @apply dark:bg-gray-900 dark:text-white;
+  }
 }
 
 * {
