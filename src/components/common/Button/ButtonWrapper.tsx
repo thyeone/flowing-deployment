@@ -1,5 +1,3 @@
-'use client';
-
 import { cn } from '@/utils';
 import Spacing from '../Spacing';
 import { Children, ReactElement, cloneElement } from 'react';
