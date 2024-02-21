@@ -47,7 +47,7 @@ export default function BirthdaySection() {
             className={cn(
               `flex w-[60px] items-center justify-center rounded-lg border border-gray-100 dark:border-gray-800`,
               {
-                'border-primary-400 bg-[rgba(255,229,237,0.5)] text-primary-400 dark:border-primary-400 dark:bg-[rgba(255,61,125,0.1)]':
+                'border-primary-400 bg-primary-50 text-primary-400 dark:border-primary-400 dark:bg-[rgba(81,67,214,0.1)] dark:text-primary-500':
                   gender === 'MALE',
               },
             )}
@@ -63,7 +63,7 @@ export default function BirthdaySection() {
             className={cn(
               `flex w-[60px] items-center justify-center rounded-lg border border-gray-100 dark:border-gray-800`,
               {
-                'border-primary-400 bg-[rgba(255,229,237,0.5)] text-primary-400 dark:border-primary-400 dark:bg-[rgba(255,61,125,0.1)]':
+                'border-primary-400 bg-primary-50 text-primary-400 dark:border-primary-400 dark:bg-[rgba(81,67,214,0.1)] dark:text-primary-500':
                   gender === 'FEMALE',
               },
             )}
