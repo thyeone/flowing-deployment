@@ -3,8 +3,8 @@
 import { cn } from '@/utils/cn';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
-import DarkIcon from '@public/svg/dark-12.svg';
-import LightIcon from '@public/svg/light-14.svg';
+import DarkToggleIcon from '@public/svg/dark-toggle-14.svg';
+import LightToggleIcon from '@public/svg/light-toggle-14.svg';
 import { useIsMounted } from '@/hooks';
 
 export default function ToggleButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -30,7 +30,7 @@ export default function ToggleButton(props: React.ButtonHTMLAttributes<HTMLButto
         className="absolute ml-0.5 flex h-7 w-7 items-center justify-center rounded-[38px] bg-white"
         onClick={() => (theme === 'light' ? setTheme('dark') : setTheme('light'))}
       >
-        {theme === 'light' ? <LightIcon /> : <DarkIcon />}
+        {theme === 'light' ? <LightToggleIcon /> : <DarkToggleIcon />}
       </motion.button>
     </div>
   );
