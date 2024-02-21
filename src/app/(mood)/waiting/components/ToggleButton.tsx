@@ -5,9 +5,13 @@ import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
 import DarkIcon from '@public/svg/dark-12.svg';
 import LightIcon from '@public/svg/light-14.svg';
+import { useIsMounted } from '@/hooks';
 
 export default function ToggleButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const { theme, setTheme } = useTheme();
+  const isMounted = useIsMounted();
+
+  if (!isMounted) return null;
 
   return (
     <div className="relative flex items-center">

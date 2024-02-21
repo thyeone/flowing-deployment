@@ -11,14 +11,21 @@
   :root {
     --layout-max-w: 430px;
     --layout-min-h: 100dvh;
+    --primary-stroke: white;
+    --primary-path: #f6f6f6;
+  }
+
+  .dark {
+    --primary-stroke: #292929;
+    --primary-path: #292929;
   }
 
   .body-layout {
-    @apply flex min-h-[var(--layout-min-h)] w-screen justify-center overflow-x-hidden overflow-y-scroll bg-white;
+    @apply flex h-[var(--layout-min-h)] w-screen justify-center bg-white;
   }
 
   .main-layout {
-    @apply relative w-full max-w-[var(--layout-max-w)] bg-white text-black;
+    @apply relative h-full w-full max-w-[var(--layout-max-w)] overflow-x-hidden overflow-y-scroll bg-white text-gray-900;
   }
 }
 
@@ -39,6 +46,10 @@
     'Segoe UI Symbol',
     sans-serif;
   user-select: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 html {

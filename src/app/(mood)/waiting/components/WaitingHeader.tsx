@@ -1,16 +1,27 @@
 import { Header } from '@/components/common/Header';
 import BackButton from './BackButton';
+import { cn } from '@/utils';
 
 type WaitingHeaderProps = {
   text: string;
+  onClose?: VoidFunction;
+  isDark?: boolean;
 };
 
-export default function WaitingHeader({ text }: WaitingHeaderProps) {
+export default function WaitingHeader({ text, onClose, isDark = false }: WaitingHeaderProps) {
   return (
-    <Header className="dark:bg-black">
-      <BackButton />
+    <Header
+      className={cn({
+        'dark:bg-gray-900': isDark,
+      })}
+    >
+      <BackButton onClose={onClose} isDark={isDark} />
       {text && (
-        <span className="absolute inset-x-0 text-center font-bold text-[#292929] dark:text-white">
+        <span
+          className={cn('absolute inset-x-0 text-center font-bold text-gray-900', {
+            'dark:text-white': isDark,
+          })}
+        >
           {text}
         </span>
       )}

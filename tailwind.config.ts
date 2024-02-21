@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
 
-const { colors } = require('./src/styles');
+const { colors, zIndex } = require('./src/styles');
 
 const config: Config = {
   content: [
@@ -12,6 +12,7 @@ const config: Config = {
   theme: {
     extend: {
       colors,
+      zIndex,
     },
   },
   plugins: [],
