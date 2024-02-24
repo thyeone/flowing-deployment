@@ -11,7 +11,7 @@ export default function MoodBoard() {
   const isMounted = useIsMounted();
 
   return (
-    <div className="-z-50 mx-auto mt-10 flex h-[276px] flex-col items-center justify-center gap-y-6">
+    <div className="-z-50 mx-auto mt-10 flex h-60 flex-col items-center justify-center gap-y-6">
       {isMounted && (theme === 'light' ? <LightBoard /> : <DarkBoard />)}
       <ToggleButton />
     </div>

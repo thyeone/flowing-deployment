@@ -3,7 +3,7 @@
 import { KEYWORD_LIST } from '@/constants/keywords';
 import { cn } from '@/utils/cn';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
-import { type MoodContextValue, useMoodContext } from './MoodContext';
+import { type MoodContextValue, useMoodContext } from '../../../components/MoodContext';
 import PlusIcon from '@public/svg/plus-24.svg';
 import CheckIcon from '@public/svg/plus-checkbox-24.svg';
 
