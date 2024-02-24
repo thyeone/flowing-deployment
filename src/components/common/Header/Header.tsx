@@ -3,17 +3,17 @@
 import { cn } from '@/utils/cn';
 import type { PropsWithChildren } from 'react';
 import Spacing from '@/components/common/Spacing';
-
-type HeaderProps = React.HtmlHTMLAttributes<HTMLHeadElement>;
+import { type AnimationProps, type HTMLMotionProps, motion } from 'framer-motion';
+import { fadeInOut } from '@/constants';
 
 export default function Header({
   children,
   className,
   ...rest
-}: Partial<PropsWithChildren<HeaderProps>>) {
+}: Partial<PropsWithChildren<HTMLMotionProps<'header'>>> & AnimationProps) {
   return (
     <>
-      <header
+      <motion.header
         className={cn(
           `fixed inset-x-0 top-0 z-header mx-auto flex h-14 w-full max-w-[430px] items-center justify-between bg-white px-5`,
           className,
@@ -21,7 +21,7 @@ export default function Header({
         {...rest}
       >
         {children}
-      </header>
+      </motion.header>
       <Spacing size={56} />
     </>
   );

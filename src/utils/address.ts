@@ -1,3 +1,3 @@
-export const cutAddress = (address: string, type = '구') => {
-  return address.substring(0, address.indexOf(type) + 1);
+export const cutAddress = (address: string) => {
+  return address.split(' ').slice(0, 2).join(' ');
 };

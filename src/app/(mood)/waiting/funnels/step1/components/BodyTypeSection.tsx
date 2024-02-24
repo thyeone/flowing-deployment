@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import { useMoodContext } from './MoodContext';
+import { useMoodContext } from '../../../components/MoodContext';
 import BodyTypeSelectBox from './BodyTypeDropBox';
 import Spacing from '@/components/common/Spacing';
 import { useWatch } from 'react-hook-form';
@@ -9,7 +9,11 @@ import CheckIcon from '@public/svg/check-16.svg';
 
 export default function BodyTypeSection() {
   const useForm = useMoodContext();
-  const { control, register } = useForm;
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useForm;
   const height = useWatch({
     control,
     name: 'height',
@@ -25,12 +29,17 @@ export default function BodyTypeSection() {
         <label htmlFor="bodytype-input" className="text-sm text-gray-600 dark:text-gray-400">
           키 / 체형
         </label>
-        {height && bodyType && <CheckIcon />}
+        {height && bodyType && !errors.height?.message && <CheckIcon />}
       </div>
       <div className="relative flex gap-x-2">
         <div className="relative w-full flex-[2_2_0%]">
           <input
-            {...register('height')}
+            {...register('height', {
+              required: true,
+              minLength: 3,
+              maxLength: 3,
+              pattern: /^[0-9]*$/,
+            })}
             id="bodytype-input"
             placeholder="예) 170"
             className={cn(
