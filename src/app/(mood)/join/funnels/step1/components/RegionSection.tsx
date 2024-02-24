@@ -1,6 +1,6 @@
 import Spacing from '@/components/Spacing';
 import { cn } from '@/utils/cn';
-import { useMoodContext } from '../../../components/MoodContext';
+import { useJoin1Context } from '../../../components/MoodContext';
 import RegionIcon from '@/assets/Region';
 import RightArrowIcon from '@/assets/RightArrow';
 import useOverlay from '@/hooks/useOverlay';
@@ -11,7 +11,7 @@ import CheckIcon from '@public/svg/check-16.svg';
 import SectionLabel from './SectionLabel';
 
 export default function RegionSection() {
-  const useForm = useMoodContext();
+  const useForm = useJoin1Context();
   const { control } = useForm;
   const { open } = useOverlay();
 

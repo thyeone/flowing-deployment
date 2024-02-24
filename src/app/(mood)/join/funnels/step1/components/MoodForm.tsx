@@ -2,7 +2,7 @@
 
 import Input from '@/components/Input';
 import { type SubmitHandler, useWatch } from 'react-hook-form';
-import { type MoodContextValue, useMoodContext } from '../../../components/MoodContext';
+import { type Join1ContextValue, useJoin1Context } from '../../../components/MoodContext';
 import Button from '@/components/Button/Button';
 import BodyTypeSection from './BodyTypeSection';
 import BirthdaySection from './BirthdaySection';
@@ -20,7 +20,7 @@ export default function MoodForm() {
     control,
     handleSubmit,
     formState: { errors, isValid, dirtyFields },
-  } = useMoodContext();
+  } = useJoin1Context();
 
   const nickname = useWatch({
     control,
@@ -31,7 +31,7 @@ export default function MoodForm() {
     name: 'keywords',
   });
 
-  const handleOnSubmit: SubmitHandler<MoodContextValue> = (data) => {
+  const handleOnSubmit: SubmitHandler<Join1ContextValue> = (data) => {
     console.log(data);
   };
 

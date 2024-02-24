@@ -3,12 +3,12 @@
 import { KEYWORD_LIST } from '@/constants/keywords';
 import { cn } from '@/utils/cn';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
-import { type MoodContextValue } from '../../../components/MoodContext';
+import { type Join1ContextValue } from '../../../components/MoodContext';
 import PlusIcon from '@public/svg/plus-24.svg';
 import CheckIcon from '@public/svg/check-24.svg';
 
 type KeywordsProps = {
-  useForm: UseFormReturn<MoodContextValue>;
+  useForm: UseFormReturn<Join1ContextValue>;
 };
 
 export default function Keywords({ useForm }: KeywordsProps) {

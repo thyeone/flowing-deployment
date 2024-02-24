@@ -4,11 +4,11 @@ import RightArrow from '@/assets/RightArrow';
 import SectionLabel from './SectionLabel';
 import { useOverlay } from '@/hooks';
 import MbtiBottomSheet from './MbtiBottomSheet';
-import { useMoodContext } from '../../../components/MoodContext';
+import { useJoin1Context } from '../../../components/MoodContext';
 import { useWatch } from 'react-hook-form';
 
 export default function MbtiSection() {
-  const useForm = useMoodContext();
+  const useForm = useJoin1Context();
   const { control } = useForm;
   const mbti = useWatch({
     control,

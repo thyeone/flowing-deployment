@@ -5,12 +5,12 @@ import { BottomSheet } from '@/components/Modal';
 import Spacing from '@/components/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { cn } from '@/utils';
-import type { MoodContextValue } from '../../../components/MoodContext';
+import type { Join1ContextValue } from '../../../components/MoodContext';
 import { useWatch, type UseFormReturn } from 'react-hook-form';
 import { useState } from 'react';
 
 type MbtiBottomSheetProps = {
-  useForm: UseFormReturn<MoodContextValue>;
+  useForm: UseFormReturn<Join1ContextValue>;
   onClose: VoidFunction;
   isOpen: boolean;
 };

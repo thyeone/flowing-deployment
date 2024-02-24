@@ -2,7 +2,7 @@
 
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
-export type MoodContextValue = {
+export type Join1ContextValue = {
   nickname: string;
   birthday: string;
   gender: GenderType;
@@ -19,7 +19,7 @@ export type MoodContextValue = {
   mbti: string[];
 };
 
-const defaultValues: MoodContextValue = {
+const defaultValues: Join1ContextValue = {
   nickname: '',
   birthday: '',
   gender: 'MALE',
@@ -36,8 +36,8 @@ const defaultValues: MoodContextValue = {
   mbti: [],
 };
 
-export default function MoodProvider({ children }: PropsWithStrictChildren) {
-  const methods = useForm<MoodContextValue>({
+export default function Join1Provider({ children }: PropsWithStrictChildren) {
+  const methods = useForm<Join1ContextValue>({
     defaultValues,
     mode: 'onChange',
     shouldFocusError: false,
@@ -45,6 +45,6 @@ export default function MoodProvider({ children }: PropsWithStrictChildren) {
   return <FormProvider {...methods}>{children}</FormProvider>;
 }
 
-export function useMoodContext() {
-  return useFormContext<MoodContextValue>();
+export function useJoin1Context() {
+  return useFormContext<Join1ContextValue>();
 }

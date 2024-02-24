@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import { useMoodContext } from '../../../components/MoodContext';
+import { useJoin1Context } from '../../../components/MoodContext';
 import BodyTypeSelectBox from './BodyTypeDropBox';
 import Spacing from '@/components/Spacing';
 import { useWatch } from 'react-hook-form';
@@ -9,7 +9,7 @@ import CheckIcon from '@public/svg/check-16.svg';
 import SectionLabel from './SectionLabel';
 
 export default function BodyTypeSection() {
-  const useForm = useMoodContext();
+  const useForm = useJoin1Context();
   const {
     control,
     register,

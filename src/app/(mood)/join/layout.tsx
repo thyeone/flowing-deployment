@@ -1,11 +1,11 @@
 import FunnelProvider from './components/FunnelContext';
-import MoodProvider from './components/MoodContext';
+import Join1Provider from './components/MoodContext';
 
-export default function WatingLayout({ children }: PropsWithStrictChildren) {
+export default function JoinLayout({ children }: PropsWithStrictChildren) {
   return (
     <main className="main-layout">
       <FunnelProvider>
-        <MoodProvider>{children}</MoodProvider>
+        <Join1Provider>{children}</Join1Provider>
       </FunnelProvider>
     </main>
   );

@@ -2,12 +2,12 @@
 
 import { Portal } from '@/components/Modal';
 import DaumPostcodeEmbed, { type Address } from 'react-daum-postcode';
-import type { MoodContextValue } from '../../../components/MoodContext';
+import type { Join1ContextValue } from '../../../components/MoodContext';
 import { type UseFormReturn } from 'react-hook-form';
 import PopupHeader from '../../../components/PopupHeader';
 
 type PostCodePopupProps = {
-  useForm: UseFormReturn<MoodContextValue>;
+  useForm: UseFormReturn<Join1ContextValue>;
   onClose: VoidFunction;
 };
 

@@ -3,7 +3,7 @@
 import Button from '@/components/Button/Button';
 import CheckBox from '@/components/CheckBox';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
-import type { MoodContextValue } from '../../../components/MoodContext';
+import type { Join1ContextValue } from '../../../components/MoodContext';
 import BottomSheet from '@/components/Modal/BottomSheet';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { ButtonWrapper } from '@/components/Button';
@@ -12,7 +12,7 @@ import Spacing from '@/components/Spacing';
 const BODY_TYPE_LIST = ['마름', '탄탄 슬림', '보통', '통통', '근육'] as const;
 
 type BodyTypeBottomSheet = {
-  useForm: UseFormReturn<MoodContextValue>;
+  useForm: UseFormReturn<Join1ContextValue>;
   onClose: VoidFunction;
   isOpen: boolean;
 };

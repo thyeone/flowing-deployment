@@ -1,7 +1,7 @@
 'use client';
 
 import CheckIcon from '@public/svg/check-16.svg';
-import { useMoodContext } from '../../../components/MoodContext';
+import { useJoin1Context } from '../../../components/MoodContext';
 import { useWatch } from 'react-hook-form';
 import { cn } from '@/utils/cn';
 import PlusIcon from '@/assets/Plus';
@@ -12,7 +12,7 @@ import SectionLabel from './SectionLabel';
 import Spacing from '@/components/Spacing';
 
 export default function MykeywordSection() {
-  const useForm = useMoodContext();
+  const useForm = useJoin1Context();
   const { control, setValue } = useForm;
   const { open } = useOverlay();
 

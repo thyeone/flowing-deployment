@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import ToggleButton from './ToggleButton';
 import { useIsMounted } from '@/hooks';
-import { useMoodContext } from '../../../components/MoodContext';
+import { useJoin1Context } from '../../../components/MoodContext';
 import { useWatch } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { fadeInOut } from '@/constants';
@@ -11,7 +11,7 @@ import { fadeInOut } from '@/constants';
 export default function MoodBoard() {
   const { theme } = useTheme();
   const isMounted = useIsMounted();
-  const { control } = useMoodContext();
+  const { control } = useJoin1Context();
 
   const gender = useWatch({
     control,

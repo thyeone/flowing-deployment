@@ -3,11 +3,11 @@
 import DownArrowIcon from '@/assets/DownArrow';
 import useOverlay from '@/hooks/useOverlay';
 import BodyTypeBottomSheet from './BodyTypeBottomSheet';
-import { type MoodContextValue, useMoodContext } from '../../../components/MoodContext';
+import { type Join1ContextValue, useJoin1Context } from '../../../components/MoodContext';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 
 type BodyTypeDropBoxProps = {
-  useForm: UseFormReturn<MoodContextValue>;
+  useForm: UseFormReturn<Join1ContextValue>;
 };
 
 export default function BodyTypeDropBox({ useForm }: BodyTypeDropBoxProps) {
