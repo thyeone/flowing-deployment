@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { AnimatePortal } from '../Portal';
+import AnimatePortal from './AnimatePortal';
 import BottomDim from './BottomDim';
 import { type PanInfo, motion } from 'framer-motion';
 import { MIN_Y } from '@/constants/bottomSheet';

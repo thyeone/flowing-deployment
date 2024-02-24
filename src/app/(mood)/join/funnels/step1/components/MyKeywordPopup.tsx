@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatePortal } from '@/components/common/Portal';
+import { AnimatePortal } from '@/components/Modal';
 import PopupContainer from '@/components/Modal/PopupContainer';
 import Keywords from './Keywords';
 import { useWatch, type UseFormReturn } from 'react-hook-form';

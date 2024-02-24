@@ -1,6 +1,6 @@
 'use client';
 
-import { Portal } from '@/components/common/Portal';
+import { Portal } from '@/components/Modal';
 import DaumPostcodeEmbed, { type Address } from 'react-daum-postcode';
 import type { MoodContextValue } from '../../../components/MoodContext';
 import { type UseFormReturn } from 'react-hook-form';
