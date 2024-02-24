@@ -2,9 +2,9 @@
 
 import { Portal } from '@/components/common/Portal';
 import DaumPostcodeEmbed, { type Address } from 'react-daum-postcode';
-import WaitingHeader from './WaitingHeader';
-import type { MoodContextValue } from './MoodContext';
+import type { MoodContextValue } from '../../../components/MoodContext';
 import { type UseFormReturn } from 'react-hook-form';
+import PopupHeader from '../../../components/PopupHeader';
 
 type PostCodePopupProps = {
   useForm: UseFormReturn<MoodContextValue>;
@@ -34,7 +34,7 @@ export default function PostCodePopup({ useForm, onClose }: PostCodePopupProps) 
 
   return (
     <Portal>
-      <WaitingHeader text="거주 지역" onClose={onClose} />
+      <PopupHeader text="거주 지역" onClose={onClose} />
       <DaumPostcodeEmbed
         className="fixed inset-x-0 z-30 mx-auto mt-14 min-h-screen max-w-[430px]"
         onComplete={handleComplete}

@@ -2,7 +2,7 @@
 
 import Input from '@/components/common/Input';
 import { type SubmitHandler, useWatch } from 'react-hook-form';
-import { type MoodContextValue, useMoodContext } from './MoodContext';
+import { type MoodContextValue, useMoodContext } from '../../../components/MoodContext';
 import Button from '@/components/common/Button/Button';
 import BodyTypeSection from './BodyTypeSection';
 import BirthdaySection from './BirthdaySection';
@@ -10,8 +10,10 @@ import Spacing from '@/components/common/Spacing';
 import RegionSection from './RegionSection';
 import Mykeyword from './MyKeyword';
 import { ButtonWrapper } from '@/components/common/Button';
+import { useFunnelStep } from '../../../components/FunnelContext';
 
 export default function MoodForm() {
+  const { nextStep } = useFunnelStep();
   const {
     register,
     control,
@@ -54,7 +56,7 @@ export default function MoodForm() {
           required={!errors.nickname?.message && !!nickname}
           error={errors.nickname?.message}
         />
-        <p className="mt-2 text-xs text-[#0071FF]">매칭이 되었을 때만 상대방에게 보여줘요</p>
+        <p className="mt-2 text-xs text-[#1E6DD1]">매칭이 되었을 때만 상대방에게 보여줘요</p>
         <Spacing size={28} />
         <BirthdaySection />
         <BodyTypeSection />
@@ -65,6 +67,7 @@ export default function MoodForm() {
         <Button
           form="mood"
           isDark
+          onClick={nextStep}
           disabled={
             !isValid ||
             !dirtyFields.nickname ||
