@@ -9,7 +9,7 @@ import useOverlay from '@/hooks/useOverlay';
 import MyKeywordModal from './MyKeywordPopup';
 import DeleteIcon from '@/assets/Delete';
 import SectionLabel from './SectionLabel';
-import Spacing from '@/components/common/Spacing';
+import Spacing from '@/components/Spacing';
 
 export default function MykeywordSection() {
   const useForm = useMoodContext();

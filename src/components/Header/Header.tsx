@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils/cn';
 import type { PropsWithChildren } from 'react';
-import Spacing from '@/components/common/Spacing';
+import Spacing from '@/components/Spacing';
 import { type AnimationProps, type HTMLMotionProps, motion } from 'framer-motion';
 import { fadeInOut } from '@/constants';
 

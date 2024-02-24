@@ -1,4 +1,4 @@
-import { Header } from '@/components/common/Header';
+import { Header } from '@/components/Header';
 import BackButton from '../../../components/BackButton';
 import { cn } from '@/utils';
 import { useFunnelStep } from '../../../components/FunnelContext';

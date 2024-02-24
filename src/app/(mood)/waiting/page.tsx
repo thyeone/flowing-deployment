@@ -3,7 +3,7 @@
 import WaitingHeader from './funnels/step1/components/WaitingHeader';
 import Step1 from './funnels/step1/Step1';
 import { useFunnelStep } from './components/FunnelContext';
-import { Button, ButtonWrapper } from '@/components/common/Button';
+import { Button, ButtonWrapper } from '@/components/Button';
 
 export default function Waiting() {
   const { currentStep, Funnel, nextStep } = useFunnelStep();

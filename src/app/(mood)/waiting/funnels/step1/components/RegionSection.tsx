@@ -1,4 +1,4 @@
-import Spacing from '@/components/common/Spacing';
+import Spacing from '@/components/Spacing';
 import { cn } from '@/utils/cn';
 import { useMoodContext } from '../../../components/MoodContext';
 import RegionIcon from '@/assets/Region';

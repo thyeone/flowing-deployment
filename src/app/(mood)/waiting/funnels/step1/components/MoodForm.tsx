@@ -1,15 +1,15 @@
 'use client';
 
-import Input from '@/components/common/Input';
+import Input from '@/components/Input';
 import { type SubmitHandler, useWatch } from 'react-hook-form';
 import { type MoodContextValue, useMoodContext } from '../../../components/MoodContext';
-import Button from '@/components/common/Button/Button';
+import Button from '@/components/Button/Button';
 import BodyTypeSection from './BodyTypeSection';
 import BirthdaySection from './BirthdaySection';
-import Spacing from '@/components/common/Spacing';
+import Spacing from '@/components/Spacing';
 import RegionSection from './RegionSection';
 import MykeywordSection from './MyKeywordSection';
-import { ButtonWrapper } from '@/components/common/Button';
+import { ButtonWrapper } from '@/components/Button';
 import { useFunnelStep } from '../../../components/FunnelContext';
 import MbtiSection from './MbtiSection';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { Header } from '@/components/common/Header';
+import { Header } from '@/components/Header';
 import { cn } from '@/utils';
 import LeftArrowIcon from '@public/svg/left-arrow-24.svg';
 

@@ -3,7 +3,7 @@
 import { cn } from '@/utils/cn';
 import { useMoodContext } from '../../../components/MoodContext';
 import BodyTypeSelectBox from './BodyTypeDropBox';
-import Spacing from '@/components/common/Spacing';
+import Spacing from '@/components/Spacing';
 import { useWatch } from 'react-hook-form';
 import CheckIcon from '@public/svg/check-16.svg';
 import SectionLabel from './SectionLabel';

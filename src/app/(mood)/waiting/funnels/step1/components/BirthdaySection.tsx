@@ -4,7 +4,7 @@ import { cn } from '@/utils/cn';
 import CheckIcon from '@public/svg/check-16.svg';
 import { useMoodContext } from '../../../components/MoodContext';
 import { useWatch } from 'react-hook-form';
-import Spacing from '@/components/common/Spacing';
+import Spacing from '@/components/Spacing';
 import WaringIcon from '@public/svg/warning-16.svg';
 import SectionLabel from './SectionLabel';
 

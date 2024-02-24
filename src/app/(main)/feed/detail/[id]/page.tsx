@@ -1,4 +1,4 @@
-import FeedHeader from '@/components/common/Header/FeedHeader';
+import FeedHeader from '@/components/Header/FeedHeader';
 
 export default function FeedDetailPage() {
   return (

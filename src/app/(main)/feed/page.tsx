@@ -1,4 +1,4 @@
-import { TextHeader } from '@/components/common/Header';
+import { TextHeader } from '@/components/Header';
 
 export default function Feed() {
   return (

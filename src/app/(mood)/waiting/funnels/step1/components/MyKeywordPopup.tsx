@@ -1,13 +1,13 @@
 import React from 'react';
 import { AnimatePortal } from '@/components/common/Portal';
-import PopupContainer from '@/components/common/Modal/PopupContainer';
+import PopupContainer from '@/components/Modal/PopupContainer';
 import Keywords from './Keywords';
 import { useWatch, type UseFormReturn } from 'react-hook-form';
 import type { MoodContextValue } from '../../../components/MoodContext';
-import Spacing from '@/components/common/Spacing';
-import Button from '@/components/common/Button/Button';
+import Spacing from '@/components/Spacing';
+import Button from '@/components/Button/Button';
 import DeleteIcon from '@public/svg/delete-24.svg';
-import { ButtonWrapper } from '@/components/common/Button';
+import { ButtonWrapper } from '@/components/Button';
 import PopupHeader from '../../../components/PopupHeader';
 import { fadeInOut } from '@/constants';
 

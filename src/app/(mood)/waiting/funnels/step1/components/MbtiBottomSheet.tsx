@@ -1,8 +1,8 @@
 'use client';
 
-import { Button, ButtonWrapper } from '@/components/common/Button';
-import { BottomSheet } from '@/components/common/Modal';
-import Spacing from '@/components/common/Spacing';
+import { Button, ButtonWrapper } from '@/components/Button';
+import { BottomSheet } from '@/components/Modal';
+import Spacing from '@/components/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { cn } from '@/utils';
 import type { MoodContextValue } from '../../../components/MoodContext';
