@@ -22,7 +22,7 @@ export default function WaitingHeader({
     >
       <BackButton onClose={onClose} isDark={isDark} />
       <span
-        className={cn('absolute inset-x-0 text-center font-bold text-gray-900', {
+        className={cn('absolute inset-x-0 text-center text-lg font-bold text-gray-900', {
           'dark:text-white': isDark,
         })}
       >
@@ -35,7 +35,7 @@ export default function WaitingHeader({
 const convertStepToText = (step: string) => {
   switch (step) {
     case '1':
-      return '자기소개 작성';
+      return '내 프로필 작성';
     case '3':
       return '나의 가치관 작성';
     case '4':

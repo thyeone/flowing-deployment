@@ -6,6 +6,7 @@ import { useMoodContext } from '../../../components/MoodContext';
 import { useWatch } from 'react-hook-form';
 import Spacing from '@/components/common/Spacing';
 import WaringIcon from '@public/svg/warning-16.svg';
+import SectionLabel from './SectionLabel';
 
 export default function BirthdaySection() {
   const {
@@ -26,12 +27,7 @@ export default function BirthdaySection() {
 
   return (
     <>
-      <div className="mb-2 flex items-center gap-x-1">
-        <label htmlFor="birthday-input" className="text-sm text-gray-600 dark:text-gray-400">
-          생년월일
-        </label>
-        {!errors.birthday?.message && gender && birthday && <CheckIcon />}
-      </div>
+      <SectionLabel label="생년월일" isCheck={!errors.birthday?.message && gender && !!birthday} />
       <div className="relative flex gap-x-2">
         <input
           {...register('birthday', {
@@ -46,7 +42,7 @@ export default function BirthdaySection() {
           id="birthday-input"
           placeholder="예시) 2024.01.25"
           className={cn(
-            `h-[52px] w-full flex-[2] rounded-lg border-[1px] border-gray-100 bg-transparent px-4 text-sm outline-none placeholder:text-base focus:border-primary-400 dark:border-gray-800 dark:text-white placeholder:dark:text-gray-700`,
+            `h-[52px] w-full flex-[2] rounded-xl border border-gray-200 bg-transparent px-4 text-sm outline-none placeholder:text-base focus:border-primary-400 dark:border-gray-800 dark:text-white placeholder:dark:text-gray-700`,
           )}
         />
         {errors.birthday?.message && (
@@ -63,9 +59,9 @@ export default function BirthdaySection() {
               })
             }
             className={cn(
-              `flex w-[60px] items-center justify-center rounded-lg border border-gray-100 dark:border-gray-800`,
+              `flex w-[60px] items-center justify-center rounded-xl border border-gray-300 dark:border-gray-800`,
               {
-                'border-primary-400 bg-primary-50 text-primary-400 dark:border-primary-400 dark:bg-[rgba(81,67,214,0.1)] dark:text-primary-500':
+                'border-primary-300 text-primary-300 dark:border-primary-300 dark:text-primary-300 dark:placeholder:text-gray-700':
                   gender === 'MALE',
               },
             )}
@@ -79,9 +75,9 @@ export default function BirthdaySection() {
               })
             }
             className={cn(
-              `flex w-[60px] items-center justify-center rounded-lg border border-gray-100 dark:border-gray-800`,
+              `flex w-[60px] items-center justify-center rounded-xl border border-gray-300 dark:border-gray-800`,
               {
-                'border-primary-400 bg-primary-50 text-primary-400 dark:border-primary-400 dark:bg-[rgba(81,67,214,0.1)] dark:text-primary-500':
+                'border-primary-300 text-primary-300 dark:border-primary-300 dark:text-primary-300 dark:placeholder:text-gray-700':
                   gender === 'FEMALE',
               },
             )}
@@ -90,7 +86,7 @@ export default function BirthdaySection() {
           </button>
         </div>
       </div>
-      <Spacing size={28} />
+      <Spacing size={32} />
     </>
   );
 }
