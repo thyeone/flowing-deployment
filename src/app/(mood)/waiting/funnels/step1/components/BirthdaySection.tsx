@@ -5,9 +5,15 @@ import CheckIcon from '@public/svg/check-16.svg';
 import { useMoodContext } from '../../../components/MoodContext';
 import { useWatch } from 'react-hook-form';
 import Spacing from '@/components/common/Spacing';
+import WaringIcon from '@public/svg/warning-16.svg';
 
 export default function BirthdaySection() {
-  const { setValue, control, register } = useMoodContext();
+  const {
+    setValue,
+    control,
+    register,
+    formState: { errors },
+  } = useMoodContext();
 
   const birthday = useWatch({
     control,
@@ -24,12 +30,18 @@ export default function BirthdaySection() {
         <label htmlFor="birthday-input" className="text-sm text-gray-600 dark:text-gray-400">
           생년월일
         </label>
-        {birthday && gender && <CheckIcon />}
+        {!errors.birthday?.message && gender && birthday && <CheckIcon />}
       </div>
-      <div className="flex gap-x-2">
+      <div className="relative flex gap-x-2">
         <input
           {...register('birthday', {
             required: true,
+            pattern: {
+              value: /^\d{4}\.\d{2}\.\d{2}$/,
+              message: 'YYYY.MM.DD 형식으로 입력해주세요.',
+            },
+            validate: (value) =>
+              Number(value.slice(0, 4)) < 2006 || '2005년생 이후는 가입이 불가능합니다.',
           })}
           id="birthday-input"
           placeholder="예시) 2024.01.25"
@@ -37,6 +49,12 @@ export default function BirthdaySection() {
             `h-[52px] w-full flex-[2] rounded-lg border-[1px] border-gray-100 bg-transparent px-4 text-sm outline-none placeholder:text-base focus:border-primary-400 dark:border-gray-800 dark:text-white placeholder:dark:text-gray-700`,
           )}
         />
+        {errors.birthday?.message && (
+          <p className="absolute top-full mt-2 inline-flex items-center gap-x-1 text-xs text-error">
+            <WaringIcon />
+            {errors.birthday?.message}
+          </p>
+        )}
         <div className="flex flex-1 gap-x-2">
           <button
             onClick={() =>
