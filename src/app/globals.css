@@ -13,11 +13,15 @@
     --layout-min-h: 100dvh;
     --primary-stroke: white;
     --primary-path: #f6f6f6;
+    --primary-fill: #fbe3ee;
+    --secondary-stroke: #eb2482;
   }
 
   .dark {
     --primary-stroke: #292929;
     --primary-path: #292929;
+    --primary-fill: #850055;
+    --secondary-stroke: #f6b8d4;
   }
 
   .body-layout {
