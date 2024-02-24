@@ -1,6 +1,6 @@
 import Spacing from '@/components/common/Spacing';
 import { cn } from '@/utils/cn';
-import { useMoodContext } from './MoodContext';
+import { useMoodContext } from '../../../components/MoodContext';
 import RegionIcon from '@/assets/Region';
 import RightArrowIcon from '@/assets/RightArrow';
 import useOverlay from '@/hooks/useOverlay';

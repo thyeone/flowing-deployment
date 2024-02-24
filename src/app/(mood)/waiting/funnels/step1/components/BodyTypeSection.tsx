@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import { useMoodContext } from './MoodContext';
+import { useMoodContext } from '../../../components/MoodContext';
 import BodyTypeSelectBox from './BodyTypeDropBox';
 import Spacing from '@/components/common/Spacing';
 import { useWatch } from 'react-hook-form';
