@@ -12,7 +12,7 @@ const useBottomSheet = (handler: VoidFunction) => {
 
   const onDragEnd = (_: PointerEvent, info: PanInfo) => {
     const MAX_Y = deviceHeight - 150;
-    console.log(info.point.y, MAX_Y, MIN_Y);
+
     if (info.point.y > MAX_Y || info.point.y < MIN_Y || info.velocity.y > 200) {
       handler();
     }
