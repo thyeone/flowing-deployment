@@ -47,7 +47,7 @@ const renderButtonElements = (elements: ReactElement[]) => {
   const buttonElements = Children.map(elements, (child, index) => {
     return cloneElement(child, {
       className: cn('rounded-xl', {
-        'flex-[1_1_104px] bg-white border border-gray-300 text-black': index === 0,
+        'flex-[1_1_104px] bg-white border border-gray-300 text-black font-normal': index === 0,
         'flex-[2_0_223px] bg-primary-300 text-white': index === 1,
       }),
     });
