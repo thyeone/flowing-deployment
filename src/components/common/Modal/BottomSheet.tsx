@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 import { AnimatePortal } from '../Portal';
 import BottomDim from './BottomDim';
-import { type PanInfo, motion } from 'framer-motion';
+import { type PanInfo, motion, HTMLMotionProps } from 'framer-motion';
 import { MIN_Y } from '@/constants/bottomSheet';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import CloseIcon from '@public/svg/close-24.svg';
 
-type BottomSheetProps = {
+type BottomSheetProps = HTMLMotionProps<'div'> & {
   isOpen: boolean;
   onClose: VoidFunction;
   headerTitle: string;
@@ -20,13 +20,11 @@ type BottomSheetProps = {
 
 const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<BottomSheetProps>>(
   ({ children, isOpen, onClose, headerTitle, ...rest }, ref) => {
-    const { maxScrollHeight: MAX_Y, maxBottomSheetHeight } = useBottomSheet(() => onClose());
-
-    const handleOnDragEnd = (_: PointerEvent, info: PanInfo) => {
-      if (info.point.y > MAX_Y || info.point.y < MIN_Y) {
-        onClose();
-      }
-    };
+    const {
+      maxScrollHeight: MAX_Y,
+      maxBottomSheetHeight,
+      onDragEnd,
+    } = useBottomSheet(() => onClose());
 
     return (
       <AnimatePortal isOpen={isOpen}>
@@ -49,7 +47,7 @@ const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<BottomShe
             }}
             drag="y"
             dragConstraints={{ top: 0, bottom: MAX_Y }}
-            onDragEnd={handleOnDragEnd}
+            onDragEnd={onDragEnd}
             dragElastic={0}
             {...rest}
           >
