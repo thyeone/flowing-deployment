@@ -29,13 +29,14 @@ export default function BodyTypeBottomSheet({ useForm, onClose, isOpen }: BodyTy
     <BottomSheet isOpen={isOpen} ref={ref} onClose={onClose} headerTitle="체형 선택">
       <Spacing size={52} />
       <div
-        className="flex h-full flex-col gap-y-[34px] overflow-y-scroll"
+        className="flex h-full snap-y snap-mandatory flex-col gap-y-[34px] overflow-y-scroll"
         style={{ maxHeight: maxBottomSheetContentHeight }}
       >
         {BODY_TYPE_LIST.map((value, index) => (
           <CheckBox
             key={index}
             id={`${value}-checkbox`}
+            className="snap-center"
             label={value}
             isChecked={bodyType === value}
             onChange={() => {

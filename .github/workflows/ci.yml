@@ -15,18 +15,14 @@ jobs:
         with:
           node-version: 18
 
-      - name: caching
-        uses: actions/cache@v3
+      - name: Cache node_modules
         id: yarn-cache
+        uses: actions/cache@v3
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          path: '**/node_modules'
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install Dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'

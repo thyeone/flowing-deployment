@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import Spacing from '../Spacing';
 
 type ButtonProps = {
   isDark?: boolean;
@@ -16,22 +15,20 @@ export default function Button({
   ...rest
 }: PropsWithStrictChildren<ButtonProps>) {
   return (
-    <>
-      <button
-        {...rest}
-        className={cn(
-          `flex h-[52px] w-full items-center justify-center rounded-xl bg-gray-900 px-4 font-medium text-white`,
-          {
-            'dark:bg-white dark:text-gray-900': isDark,
-            'bg-gray-200': disabled,
-            'dark:bg-gray-700 dark:text-gray-500': disabled && isDark,
-          },
-          className,
-        )}
-        disabled={disabled}
-      >
-        {children}
-      </button>
-    </>
+    <button
+      {...rest}
+      className={cn(
+        `flex h-[52px] w-full items-center justify-center rounded-xl bg-primary-300 px-4 font-bold text-white`,
+        {
+          'dark:text-white': isDark,
+          'bg-gray-200 font-normal': disabled,
+          'dark:bg-gray-700 dark:font-normal dark:text-gray-500': disabled && isDark,
+        },
+        className,
+      )}
+      disabled={disabled}
+    >
+      {children}
+    </button>
   );
 }
