@@ -1,4 +1,4 @@
-import JoinHeader from '@/components/common/Header/JoinHeader';
+import JoinHeader from '@/components/Header/JoinHeader';
 
 export default function Login() {
   return (
