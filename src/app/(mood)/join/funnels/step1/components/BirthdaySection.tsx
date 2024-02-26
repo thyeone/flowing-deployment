@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils/cn';
 import CheckIcon from '@public/svg/check-16.svg';
-import { useJoin1Context } from '../../../components/MoodContext';
+import { useJoin1Context } from '../../../components/Join1Context';
 import { useWatch } from 'react-hook-form';
 import Spacing from '@/components/Spacing';
 import WaringIcon from '@public/svg/warning-16.svg';

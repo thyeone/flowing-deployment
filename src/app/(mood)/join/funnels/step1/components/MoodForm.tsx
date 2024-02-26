@@ -2,7 +2,7 @@
 
 import Input from '@/components/Input';
 import { type SubmitHandler, useWatch } from 'react-hook-form';
-import { type Join1ContextValue, useJoin1Context } from '../../../components/MoodContext';
+import { type Join1ContextValue, useJoin1Context } from '../../../components/Join1Context';
 import Button from '@/components/Button/Button';
 import BodyTypeSection from './BodyTypeSection';
 import BirthdaySection from './BirthdaySection';
@@ -70,16 +70,16 @@ export default function MoodForm() {
           form="mood"
           isDark
           onClick={nextStep}
-          disabled={
-            !isValid ||
-            !dirtyFields.nickname ||
-            !dirtyFields.birthday ||
-            !dirtyFields.bodyType ||
-            !dirtyFields.height ||
-            !dirtyFields.address ||
-            !dirtyFields.mbti ||
-            !keywords.length
-          }
+          // disabled={
+          //   !isValid ||
+          //   !dirtyFields.nickname ||
+          //   !dirtyFields.birthday ||
+          //   !dirtyFields.bodyType ||
+          //   !dirtyFields.height ||
+          //   !dirtyFields.address ||
+          //   !dirtyFields.mbti ||
+          //   !keywords.length
+          // }
         >
           다음
         </Button>

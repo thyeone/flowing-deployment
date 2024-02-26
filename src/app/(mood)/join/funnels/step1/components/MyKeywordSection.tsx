@@ -1,7 +1,7 @@
 'use client';
 
 import CheckIcon from '@public/svg/check-16.svg';
-import { useJoin1Context } from '../../../components/MoodContext';
+import { useJoin1Context } from '../../../components/Join1Context';
 import { useWatch } from 'react-hook-form';
 import { cn } from '@/utils/cn';
 import PlusIcon from '@/assets/Plus';

@@ -5,7 +5,7 @@ import { BottomSheet } from '@/components/Modal';
 import Spacing from '@/components/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { cn } from '@/utils';
-import type { Join1ContextValue } from '../../../components/MoodContext';
+import type { Join1ContextValue } from '../../../components/Join1Context';
 import { useWatch, type UseFormReturn } from 'react-hook-form';
 import { useState } from 'react';
 

@@ -3,7 +3,7 @@
 import DownArrowIcon from '@/assets/DownArrow';
 import useOverlay from '@/hooks/useOverlay';
 import BodyTypeBottomSheet from './BodyTypeBottomSheet';
-import { type Join1ContextValue, useJoin1Context } from '../../../components/MoodContext';
+import { type Join1ContextValue, useJoin1Context } from '../../../components/Join1Context';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 
 type BodyTypeDropBoxProps = {

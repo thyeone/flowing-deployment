@@ -3,7 +3,7 @@
 import Button from '@/components/Button/Button';
 import CheckBox from '@/components/CheckBox';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
-import type { Join1ContextValue } from '../../../components/MoodContext';
+import type { Join1ContextValue } from '../../../components/Join1Context';
 import BottomSheet from '@/components/Modal/BottomSheet';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { ButtonWrapper } from '@/components/Button';

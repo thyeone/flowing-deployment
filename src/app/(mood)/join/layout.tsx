@@ -1,12 +1,13 @@
+import AnimatePresenceLayout from './components/AnimatePresenceLayout';
 import FunnelProvider from './components/FunnelContext';
-import Join1Provider from './components/MoodContext';
+import Join1Provider from './components/Join1Context';
 
 export default function JoinLayout({ children }: PropsWithStrictChildren) {
   return (
-    <main className="main-layout">
-      <FunnelProvider>
-        <Join1Provider>{children}</Join1Provider>
-      </FunnelProvider>
-    </main>
+    <FunnelProvider>
+      <Join1Provider>
+        <AnimatePresenceLayout>{children}</AnimatePresenceLayout>
+      </Join1Provider>
+    </FunnelProvider>
   );
 }

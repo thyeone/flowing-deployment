@@ -4,7 +4,7 @@ import RightArrow from '@/assets/RightArrow';
 import SectionLabel from './SectionLabel';
 import { useOverlay } from '@/hooks';
 import MbtiBottomSheet from './MbtiBottomSheet';
-import { useJoin1Context } from '../../../components/MoodContext';
+import { useJoin1Context } from '../../../components/Join1Context';
 import { useWatch } from 'react-hook-form';
 
 export default function MbtiSection() {
