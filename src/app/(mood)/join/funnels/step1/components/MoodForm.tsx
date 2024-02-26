@@ -70,16 +70,16 @@ export default function MoodForm() {
           form="mood"
           isDark
           onClick={nextStep}
-          // disabled={
-          //   !isValid ||
-          //   !dirtyFields.nickname ||
-          //   !dirtyFields.birthday ||
-          //   !dirtyFields.bodyType ||
-          //   !dirtyFields.height ||
-          //   !dirtyFields.address ||
-          //   !dirtyFields.mbti ||
-          //   !keywords.length
-          // }
+          disabled={
+            !isValid ||
+            !dirtyFields.nickname ||
+            !dirtyFields.birthday ||
+            !dirtyFields.bodyType ||
+            !dirtyFields.height ||
+            !dirtyFields.address ||
+            !dirtyFields.mbti ||
+            !keywords.length
+          }
         >
           다음
         </Button>
