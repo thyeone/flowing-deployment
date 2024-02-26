@@ -16,7 +16,7 @@ export default function MoodBoard() {
   const gender = useWatch({
     control,
     name: 'gender',
-  });
+  }).toLowerCase();
 
   return (
     <div className="-z-50 mx-auto mb-6 mt-8 flex h-52 flex-col items-center justify-center gap-y-6">
