@@ -8,8 +8,10 @@ import PlusIcon from '@/assets/Plus';
 import useOverlay from '@/hooks/useOverlay';
 import MyKeywordModal from './MyKeywordPopup';
 import DeleteIcon from '@/assets/Delete';
+import SectionLabel from './SectionLabel';
+import Spacing from '@/components/common/Spacing';
 
-export default function Mykeyword() {
+export default function MykeywordSection() {
   const useForm = useMoodContext();
   const { control, setValue } = useForm;
   const { open } = useOverlay();
@@ -31,12 +33,7 @@ export default function Mykeyword() {
 
   return (
     <>
-      <div className="mb-2 flex items-center gap-x-1">
-        <label htmlFor="region-input" className="text-sm text-gray-600 dark:text-gray-400">
-          내 키워드
-        </label>
-        {!!keywords.length && <CheckIcon />}
-      </div>
+      <SectionLabel label="내 키워드" isCheck={!!keywords.length} />
       {keywords.length ? (
         <ul className="mt-3 flex flex-wrap gap-2">
           {keywords.map((keyword, index) => (
@@ -61,12 +58,13 @@ export default function Mykeyword() {
             ));
           }}
         >
-          <span className="mx-4 flex flex-col items-center gap-y-2 text-sm text-gray-700 dark:text-gray-300">
-            <PlusIcon className="text-gray-300 dark:text-gray-700" />
+          <span className="mx-4 flex flex-col items-center gap-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <PlusIcon className="text-gray-400 dark:text-gray-700" />
             나를 소개하는 키워드를 선택해주세요
           </span>
         </button>
       )}
+      <Spacing size={32} />
     </>
   );
 }

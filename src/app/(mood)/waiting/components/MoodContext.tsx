@@ -7,8 +7,8 @@ export type MoodContextValue = {
   birthday: string;
   gender: GenderType;
   keywords: string[];
-  bodyType: BodyType;
-  height: number;
+  bodyType: BodyType | undefined;
+  height: number | undefined;
   address: {
     roadAddress: string;
     zonecode: string;
@@ -16,12 +16,13 @@ export type MoodContextValue = {
     sigungu: string;
     bname: string;
   };
+  mbti: string[];
 };
 
-const defaultValues = {
+const defaultValues: MoodContextValue = {
   nickname: '',
   birthday: '',
-  gender: undefined,
+  gender: 'MALE',
   keywords: [],
   bodyType: undefined,
   height: undefined,
@@ -32,12 +33,14 @@ const defaultValues = {
     sigungu: '',
     bname: '',
   },
+  mbti: [],
 };
 
 export default function MoodProvider({ children }: PropsWithStrictChildren) {
   const methods = useForm<MoodContextValue>({
     defaultValues,
     mode: 'onChange',
+    shouldFocusError: false,
   });
   return <FormProvider {...methods}>{children}</FormProvider>;
 }
