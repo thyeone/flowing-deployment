@@ -1,4 +1,4 @@
-import { JoinHeader } from '@/components/common/Header';
+import { JoinHeader } from '@/components/Header';
 
 export default function Landing() {
   return (

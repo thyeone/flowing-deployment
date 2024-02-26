@@ -1,4 +1,4 @@
-import { Header } from '@/components/common/Header';
+import { Header } from '@/components/Header';
 import LogoIcon from '@public/svg/logo.svg';
 
 export default function HomeHeader() {

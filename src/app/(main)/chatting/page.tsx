@@ -1,4 +1,4 @@
-import TextHeader from '@/components/common/Header/TextHeader';
+import TextHeader from '@/components/Header/TextHeader';
 
 export default function Chatting() {
   return (
