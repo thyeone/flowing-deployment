@@ -8,9 +8,10 @@ import BodyTypeSection from './BodyTypeSection';
 import BirthdaySection from './BirthdaySection';
 import Spacing from '@/components/common/Spacing';
 import RegionSection from './RegionSection';
-import Mykeyword from './MyKeyword';
+import MykeywordSection from './MyKeywordSection';
 import { ButtonWrapper } from '@/components/common/Button';
 import { useFunnelStep } from '../../../components/FunnelContext';
+import MbtiSection from './MbtiSection';
 
 export default function MoodForm() {
   const { nextStep } = useFunnelStep();
@@ -57,11 +58,12 @@ export default function MoodForm() {
           error={errors.nickname?.message}
         />
         <p className="mt-2 text-xs text-[#1E6DD1]">매칭이 되었을 때만 상대방에게 보여줘요</p>
-        <Spacing size={28} />
+        <Spacing size={32} />
         <BirthdaySection />
         <BodyTypeSection />
         <RegionSection />
-        <Mykeyword />
+        <MykeywordSection />
+        <MbtiSection />
       </form>
       <ButtonWrapper>
         <Button
@@ -72,10 +74,10 @@ export default function MoodForm() {
             !isValid ||
             !dirtyFields.nickname ||
             !dirtyFields.birthday ||
-            !dirtyFields.gender ||
             !dirtyFields.bodyType ||
             !dirtyFields.height ||
             !dirtyFields.address ||
+            !dirtyFields.mbti ||
             !keywords.length
           }
         >

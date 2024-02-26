@@ -46,34 +46,6 @@ export default function BodyTypeBottomSheet({ useForm, onClose, isOpen }: BodyTy
             }}
           />
         ))}
-        {BODY_TYPE_LIST.map((value, index) => (
-          <CheckBox
-            key={index}
-            id={`${value}-checkbox`}
-            className="snap-center"
-            label={value}
-            isChecked={bodyType === value}
-            onChange={() => {
-              setValue('bodyType', value, {
-                shouldDirty: true,
-              });
-            }}
-          />
-        ))}
-        {BODY_TYPE_LIST.map((value, index) => (
-          <CheckBox
-            key={index}
-            id={`${value}-checkbox`}
-            className="snap-center"
-            label={value}
-            isChecked={bodyType === value}
-            onChange={() => {
-              setValue('bodyType', value, {
-                shouldDirty: true,
-              });
-            }}
-          />
-        ))}
       </div>
       <Spacing size={52} />
       <ButtonWrapper>

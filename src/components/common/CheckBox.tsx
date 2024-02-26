@@ -17,7 +17,6 @@ export default function CheckBox({
   className,
   ...rest
 }: CheckBoxProps) {
-  console.log(className);
   return (
     <label htmlFor={id} className="flex gap-x-2">
       <input

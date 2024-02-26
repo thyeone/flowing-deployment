@@ -1,9 +1,10 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import CheckIcon from '@public/svg/check-16.svg';
+// import CheckIcon from '@public/svg/check-16.svg';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 import WaringIcon from '@public/svg/warning-16.svg';
+import CheckIcon from '@/assets/CheckIcon';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
   React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -31,7 +32,7 @@ export default function Input({
     <>
       {label && (
         <div className="mb-2 flex items-center gap-x-1">
-          <label htmlFor={id} className={`text-sm text-gray-600 ${isDark && 'dark:text-gray-400'}`}>
+          <label htmlFor={id} className={`text-sm text-gray-800 ${isDark && 'dark:text-gray-400'}`}>
             {label}
           </label>
           {required && <CheckIcon />}
@@ -43,9 +44,9 @@ export default function Input({
           {...register}
           id={id}
           className={cn(
-            `h-[52px] w-full rounded-lg border-[1px] border-gray-100 bg-transparent px-4 outline-none focus:border-primary-400`,
+            `h-[52px] w-full rounded-xl border-[1px] border-gray-200 bg-transparent px-4 outline-none focus:border-primary-400`,
             {
-              'dark:border-gray-800 dark:text-white placeholder:dark:text-gray-700': isDark,
+              'dark:border-gray-800 dark:text-white dark:placeholder:text-gray-700 ': isDark,
             },
             className,
           )}

@@ -4,12 +4,14 @@ import WaitingHeader from './funnels/step1/components/WaitingHeader';
 import Step1 from './funnels/step1/Step1';
 import { useFunnelStep } from './components/FunnelContext';
 import { Button, ButtonWrapper } from '@/components/common/Button';
+import { motion } from 'framer-motion';
+import { fadeInOut } from '@/constants';
 
 export default function Waiting() {
   const { currentStep, Funnel, nextStep } = useFunnelStep();
 
   return (
-    <>
+    <motion.div {...fadeInOut}>
       {!(currentStep === '2' || currentStep === '5') && (
         <WaitingHeader isDark={currentStep === '1'} currentStep={currentStep} />
       )}
@@ -32,6 +34,6 @@ export default function Waiting() {
           </ButtonWrapper>
         </Funnel.step>
       </Funnel>
-    </>
+    </motion.div>
   );
 }

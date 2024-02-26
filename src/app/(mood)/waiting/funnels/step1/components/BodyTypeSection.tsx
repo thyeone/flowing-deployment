@@ -6,6 +6,7 @@ import BodyTypeSelectBox from './BodyTypeDropBox';
 import Spacing from '@/components/common/Spacing';
 import { useWatch } from 'react-hook-form';
 import CheckIcon from '@public/svg/check-16.svg';
+import SectionLabel from './SectionLabel';
 
 export default function BodyTypeSection() {
   const useForm = useMoodContext();
@@ -25,12 +26,7 @@ export default function BodyTypeSection() {
 
   return (
     <>
-      <div className="mb-2 flex items-center gap-x-1">
-        <label htmlFor="bodytype-input" className="text-sm text-gray-600 dark:text-gray-400">
-          키 / 체형
-        </label>
-        {height && bodyType && !errors.height?.message && <CheckIcon />}
-      </div>
+      <SectionLabel label="키 / 체형" isCheck={!!height && !!bodyType && !errors.height?.message} />
       <div className="relative flex gap-x-2">
         <div className="relative w-full flex-[2_2_0%]">
           <input
@@ -50,7 +46,7 @@ export default function BodyTypeSection() {
         </div>
         <BodyTypeSelectBox useForm={useForm} />
       </div>
-      <Spacing size={28} />
+      <Spacing size={32} />
     </>
   );
 }

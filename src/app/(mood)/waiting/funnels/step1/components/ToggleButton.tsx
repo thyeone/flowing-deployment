@@ -23,7 +23,6 @@ export default function ToggleButton(props: React.ButtonHTMLAttributes<HTMLButto
         {...props}
       />
       <motion.button
-        layoutId="test"
         animate={{
           translateX: theme === 'dark' ? 26 : 0,
         }}
