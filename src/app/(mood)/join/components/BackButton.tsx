@@ -1,14 +1,14 @@
 'use client';
 
 import LeftArrow from '@/assets/LeftArrow';
-import { useFunnelStep } from './FunnelContext';
+import { useFunnelContext } from './FunnelContext';
 
 export default function BackButton({
   isDark,
   onClose,
   ...rest
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { onClose?: VoidFunction; isDark?: boolean }) {
-  const { prevStep } = useFunnelStep();
+  const { prevStep } = useFunnelContext();
 
   const handleButtonClick = () => {
     if (onClose) {

@@ -1,15 +1,18 @@
 'use client';
 
-import { AnimatePresence } from 'framer-motion';
-import { useFunnelStep } from './FunnelContext';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useFunnelContext } from './FunnelContext';
+import { fadeInOut } from '@/constants';
 
 export default function AnimatePresenceLayout({ children }: PropsWithStrictChildren) {
-  const { currentStep } = useFunnelStep();
+  const { currentStep } = useFunnelContext();
 
   return (
     <AnimatePresence mode="popLayout">
-      <main key={currentStep} className="main-layout">
-        {children}
+      <main className="main-layout">
+        <motion.div key={currentStep} {...fadeInOut} className="size-full">
+          {children}
+        </motion.div>
       </main>
     </AnimatePresence>
   );
