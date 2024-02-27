@@ -22,7 +22,7 @@ export default function CheckBox({
       <input
         id={id}
         type="checkbox"
-        className={cn('appearance-none', className)}
+        className={cn('hidden appearance-none', className)}
         checked={isChecked}
         onChange={onChange}
         {...rest}
