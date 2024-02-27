@@ -33,7 +33,7 @@ const useFunnel = <Step extends string>(defaultStep: Step, lastStep: Step) => {
   };
 
   const nextStep = () => {
-    if (String(Number(step) + 1) < lastStep) {
+    if (String(Number(step) + 1) <= lastStep) {
       setStep(String(Number(step) + 1) as Step);
     }
   };

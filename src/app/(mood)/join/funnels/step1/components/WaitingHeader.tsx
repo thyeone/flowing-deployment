@@ -1,7 +1,6 @@
 import { Header } from '@/components/Header';
 import BackButton from '../../../components/BackButton';
 import { cn } from '@/utils';
-import { useFunnelStep } from '../../../components/FunnelContext';
 
 type WaitingHeaderProps = {
   currentStep: string;

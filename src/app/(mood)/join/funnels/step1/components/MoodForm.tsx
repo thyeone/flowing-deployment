@@ -10,11 +10,11 @@ import Spacing from '@/components/Spacing';
 import RegionSection from './RegionSection';
 import MykeywordSection from './MyKeywordSection';
 import { ButtonWrapper } from '@/components/Button';
-import { useFunnelStep } from '../../../components/FunnelContext';
+import { useFunnelContext } from '../../../components/FunnelContext';
 import MbtiSection from './MbtiSection';
 
 export default function MoodForm() {
-  const { nextStep } = useFunnelStep();
+  const { nextStep } = useFunnelContext();
   const {
     register,
     control,
@@ -36,7 +36,7 @@ export default function MoodForm() {
   };
 
   return (
-    <div className="mx-5 pb-10">
+    <>
       <form id="mood" onSubmit={handleSubmit(handleOnSubmit)}>
         <Input
           register={register('nickname', {
@@ -84,6 +84,6 @@ export default function MoodForm() {
           다음
         </Button>
       </ButtonWrapper>
-    </div>
+    </>
   );
 }
