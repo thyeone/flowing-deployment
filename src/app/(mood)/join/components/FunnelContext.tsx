@@ -29,7 +29,7 @@ export default function FunnelProvider({ children }: PropsWithStrictChildren) {
   return <FunnelContext.Provider value={memoizedValue}>{children}</FunnelContext.Provider>;
 }
 
-export const useFunnelStep = () => {
+export const useFunnelContext = () => {
   const funnelContext = useContext(FunnelContext);
 
   if (!funnelContext) throw new Error('부모 컴포넌트에서 FunnelContext를 사용해주세요.');

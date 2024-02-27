@@ -27,6 +27,7 @@ export default function MoodBoard() {
           src={`/image/${theme}-${gender}-profile.png`}
           width={128}
           height={132}
+          fetchPriority="high"
           alt="profile"
           {...fadeInOut}
         />
