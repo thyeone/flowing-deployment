@@ -18,7 +18,7 @@ export default function MbtiSection() {
 
   return (
     <>
-      <SectionLabel label="MBTI" isCheck={false} />
+      <SectionLabel label="MBTI" isCheck={mbti.length === 4} />
       <button
         onClick={() =>
           open(({ isOpen, close }) => (

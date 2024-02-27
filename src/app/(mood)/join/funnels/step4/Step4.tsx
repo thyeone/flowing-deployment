@@ -76,7 +76,9 @@ export default function Step4({ nextStep }: Pick<ReturnType<typeof useFunnelCont
                     },
                   )}
                 >
-                  <Person />
+                  <div className="flex size-full items-end justify-center overflow-hidden">
+                    <Person />
+                  </div>
                 </label>
               )}
             </Fragment>
