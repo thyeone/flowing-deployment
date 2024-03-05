@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/utils/cn';
-import CheckIcon from '@public/svg/check-16.svg';
 import { useJoin1Context } from '../../../components/Join1Context';
 import { useWatch } from 'react-hook-form';
 import Spacing from '@/components/Spacing';
