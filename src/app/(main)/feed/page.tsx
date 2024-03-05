@@ -1,9 +1,11 @@
-import { TextHeader } from '@/components/Header';
+import { Header } from '@/components/Header';
 
 export default function Feed() {
   return (
     <div>
-      <TextHeader text="피드" />
+      <Header>
+        <Header.FeedHeader>피드</Header.FeedHeader>
+      </Header>
       <h1>Feed</h1>
     </div>
   );

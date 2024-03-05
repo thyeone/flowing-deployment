@@ -1,9 +1,11 @@
-import TextHeader from '@/components/Header/TextHeader';
+import { Header } from '@/components/Header';
 
 export default function Chatting() {
   return (
     <div>
-      <TextHeader text="채팅" />
+      <Header>
+        <Header.TextHeader>채팅</Header.TextHeader>
+      </Header>
       <h1>Chatting</h1>
     </div>
   );
