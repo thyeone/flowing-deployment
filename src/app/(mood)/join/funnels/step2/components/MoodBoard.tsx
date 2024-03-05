@@ -7,7 +7,6 @@ import { useJoin1Context } from '../../../components/Join1Context';
 import { useWatch } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { fadeInOut } from '@/constants';
-import usePreloadImages from '@/hooks/usePreloadImage';
 
 export default function MoodBoard() {
   const { theme } = useTheme();
