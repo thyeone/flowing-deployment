@@ -33,11 +33,11 @@ function TextHeader({ children }: PropsWithStrictChildren) {
 
 function FeedHeader({ children }: PropsWithStrictChildren) {
   return (
-    <Header>
+    <>
       <BackButton />
       <span className="font-bold text-[#292929]">{children}</span>
       <MenuButton />
-    </Header>
+    </>
   );
 }
 
