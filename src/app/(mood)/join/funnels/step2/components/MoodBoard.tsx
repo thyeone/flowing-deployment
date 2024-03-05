@@ -19,13 +19,6 @@ export default function MoodBoard() {
     name: 'gender',
   }).toLowerCase();
 
-  usePreloadImages([
-    '/image/light-male-profile.png',
-    '/image/light-female-profile.png',
-    '/image/dark-female-profile.png',
-    '/image/dark-male-profile.png',
-  ]);
-
   return (
     <div className="-z-50 mx-auto mb-6 mt-8 flex h-52 flex-col items-center justify-center gap-y-6">
       {isMounted && (
