@@ -1,10 +1,17 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Providers from '@/providers/Providers';
 
 export const metadata: Metadata = {
   title: 'Gyeol | 결',
   description: 'Gyeol, 결',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({ children }: PropsWithStrictChildren) {
