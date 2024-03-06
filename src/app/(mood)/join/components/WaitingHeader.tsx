@@ -1,5 +1,5 @@
 import { Header } from '@/components/Header';
-import BackButton from '../../../components/BackButton';
+import BackButton from './BackButton';
 import { cn } from '@/utils';
 
 type WaitingHeaderProps = {
