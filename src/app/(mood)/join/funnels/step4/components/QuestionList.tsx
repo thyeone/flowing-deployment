@@ -10,6 +10,7 @@ import { useStep4Context } from './Step4Context';
 import { VALUE_CATEGORIES } from './TabBar';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { Button, ButtonWrapper } from '@/components/Button';
+import { motion } from 'framer-motion';
 
 export default function QuestionList() {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -55,10 +56,11 @@ export default function QuestionList() {
     <form id="question" onSubmit={handleSubmit(onSubmit)}>
       <ul className="flex flex-col gap-y-3">
         {question.map(({ id, question }) => (
-          <li
+          <motion.li
+            layout="position"
             key={id}
             className={cn(
-              'flex h-auto min-h-[52px] w-full items-start rounded-xl border border-gray-200 bg-white px-5 py-4 transition-all duration-150',
+              'flex h-auto min-h-[52px] w-full items-start rounded-xl border border-gray-200 bg-white px-5 py-4',
               {
                 'flex-col items-start justify-start border-primary-300':
                   questionIndex?.includes(id),
@@ -97,7 +99,7 @@ export default function QuestionList() {
                 <p className="absolute top-[33px] text-sm font-bold text-gray-500">A.</p>
               </div>
             )}
-          </li>
+          </motion.li>
         ))}
       </ul>
       <Spacing size={22} />
