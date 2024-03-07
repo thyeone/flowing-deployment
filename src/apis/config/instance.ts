@@ -17,7 +17,7 @@ instance.interceptors.request.use(
       const token = cookies().get('accessToken');
       config.headers.Authorization = `Bearer ${token}`;
     } catch (error) {
-      console.log('쿠키가 없음: ', error);
+      console.log(error);
     }
 
     return config;
