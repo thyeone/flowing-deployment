@@ -7,6 +7,7 @@ import { useJoin1Context } from '../../../components/Join1Context';
 import { useWatch } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { fadeInOut } from '@/constants';
+import usePreloadImages from '@/hooks/usePreloadImage';
 
 export default function MoodBoard() {
   const { theme } = useTheme();
@@ -17,6 +18,13 @@ export default function MoodBoard() {
     control,
     name: 'gender',
   }).toLowerCase();
+
+  usePreloadImages([
+    '/image/light-male-profile.png',
+    '/image/light-female-profile.png',
+    '/image/dark-female-profile.png',
+    '/image/dark-male-profile.png',
+  ]);
 
   return (
     <div className="-z-50 mx-auto mb-6 mt-8 flex h-52 flex-col items-center justify-center gap-y-6">
