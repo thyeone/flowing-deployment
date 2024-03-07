@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/Button/Button';
-import CheckBox from '@/components/CheckBox';
+import Radio from '@/components/Radio';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 import type { Join1ContextValue } from '../../../components/Join1Context';
 import BottomSheet from '@/components/Modal/BottomSheet';
@@ -33,9 +33,9 @@ export default function BodyTypeBottomSheet({ useForm, onClose, isOpen }: BodyTy
         style={{ maxHeight: maxBottomSheetContentHeight }}
       >
         {BODY_TYPE_LIST.map((value, index) => (
-          <CheckBox
+          <Radio
             key={index}
-            id={`${value}-checkbox`}
+            id={`${value}-radio`}
             className="snap-center"
             label={value}
             isChecked={bodyType === value}

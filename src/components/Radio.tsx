@@ -4,24 +4,17 @@ import { cn } from '@/utils';
 import CheckBoxActiveIcon from '@public/svg/checkbox-active-16.svg';
 import CheckBoxInActiveIcon from '@public/svg/checkbox-inactive-16.svg';
 
-type CheckBoxProps = React.InputHTMLAttributes<HTMLInputElement> & {
+type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   isChecked?: boolean;
 };
 
-export default function CheckBox({
-  id,
-  label,
-  isChecked,
-  onChange,
-  className,
-  ...rest
-}: CheckBoxProps) {
+export default function Radio({ id, label, isChecked, onChange, className, ...rest }: RadioProps) {
   return (
     <label htmlFor={id} className="flex gap-x-2">
       <input
         id={id}
-        type="checkbox"
+        type="radio"
         className={cn('hidden appearance-none', className)}
         checked={isChecked}
         onChange={onChange}
