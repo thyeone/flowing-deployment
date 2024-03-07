@@ -12,9 +12,13 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig<any>) => {
-    const { cookies } = await import('next/headers');
-    const token = cookies().get('accessToken');
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+    try {
+      const { cookies } = await import('next/headers');
+      const token = cookies().get('accessToken');
+      config.headers.Authorization = `Bearer ${token}`;
+    } catch (error) {
+      console.log('쿠키가 없음: ', error);
+    }
 
     return config;
   },
