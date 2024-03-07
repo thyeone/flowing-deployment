@@ -12,9 +12,9 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig<any>) => {
-    const { accessToken } = await getToken();
-
-    if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
+    const { cookies } = await import('next/headers');
+    const token = cookies().get('accessToken');
+    if (token) config.headers.Authorization = `Bearer ${token}`;
 
     return config;
   },
