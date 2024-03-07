@@ -1,16 +1,16 @@
-import { Button, ButtonWrapper } from '@/components/Button';
-import Step2Image from '@public/svg/join-step2.svg';
-import type { useFunnelContext } from '../../components/FunnelContext';
+import MoodBoard from './components/MoodBoard';
+import MoodForm from './components/MoodForm';
+import Spacing from '@/components/Spacing';
 
-export default function Step2({ nextStep }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
+export default function Step2() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
-      <Step2Image />
-      <h1 className="mt-10 text-[22px] font-bold">상세 프로필 작성할까요?</h1>
-      <p className="mt-3 text-sm text-gray-500">상세 프로필 작성하고 플로잉을 시작해보세요</p>
-      <ButtonWrapper>
-        <Button onClick={nextStep}>상세 프로필 작성</Button>
-      </ButtonWrapper>
+    <div className="mx-5">
+      <Spacing size={16} />
+      <p className="text-xl font-bold">내 프로필을 작성하고</p>
+      <p className="text-xl font-bold">프로필 테마를 설정해 주세요</p>
+      <MoodBoard />
+      <MoodForm />
+      <Spacing size={40} />
     </div>
   );
 }

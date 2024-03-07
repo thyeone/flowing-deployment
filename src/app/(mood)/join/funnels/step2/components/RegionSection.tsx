@@ -7,7 +7,6 @@ import useOverlay from '@/hooks/useOverlay';
 import PostCodePopup from './PostCodePopup';
 import { useWatch } from 'react-hook-form';
 import { cutAddress } from '@/utils';
-import CheckIcon from '@public/svg/check-16.svg';
 import SectionLabel from './SectionLabel';
 
 export default function RegionSection() {

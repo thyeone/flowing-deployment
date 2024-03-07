@@ -1,13 +1,12 @@
-import React from 'react';
-import { AnimatePortal } from '@/components/Modal';
-import PopupContainer from '@/components/Modal/PopupContainer';
+'use client';
+
+import { AnimatePortal, PopupContainer } from '@/components/Modal';
 import Keywords from './Keywords';
 import { useWatch, type UseFormReturn } from 'react-hook-form';
 import type { Join1ContextValue } from '../../../components/Join1Context';
 import Spacing from '@/components/Spacing';
-import Button from '@/components/Button/Button';
 import DeleteIcon from '@public/svg/delete-24.svg';
-import { ButtonWrapper } from '@/components/Button';
+import { ButtonWrapper, Button } from '@/components/Button';
 import PopupHeader from '../../../components/PopupHeader';
 import { fadeInOut } from '@/constants';
 import StepTitle from '../../../components/StepTitle';

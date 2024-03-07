@@ -33,11 +33,11 @@ export default function WaitingHeader({
 
 const convertStepToText = (step: string) => {
   switch (step) {
-    case '1':
+    case '2':
       return '내 프로필 작성';
-    case '3':
-      return '나의 가치관 작성';
     case '4':
+      return '나의 가치관 작성';
+    case '5':
       return '프로필 사진';
   }
 };
