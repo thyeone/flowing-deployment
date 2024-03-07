@@ -1,9 +1,11 @@
-import FeedHeader from '@/components/Header/FeedHeader';
+import { Header } from '@/components/Header';
 
 export default function FeedDetailPage() {
   return (
     <div>
-      <FeedHeader />
+      <Header>
+        <Header.FeedHeader>피드</Header.FeedHeader>
+      </Header>
       <h1>FeedDetailPage</h1>
     </div>
   );
