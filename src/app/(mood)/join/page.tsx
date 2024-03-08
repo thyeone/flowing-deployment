@@ -1,6 +1,7 @@
 import { queryKeys } from '@/apis/question';
 import { questionApi } from '@/apis/question';
 import HydrationProvider from '@/providers/HydrationProvider';
+
 import JoinFunnel from './funnels/JoinFunnel';
 
 export default function Join() {

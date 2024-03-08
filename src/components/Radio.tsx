@@ -1,8 +1,9 @@
 'use client';
 
-import { cn } from '@/utils';
 import CheckBoxActiveIcon from '@public/svg/checkbox-active-16.svg';
 import CheckBoxInActiveIcon from '@public/svg/checkbox-inactive-16.svg';
+
+import { cn } from '@/utils';
 
 type RadioProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;

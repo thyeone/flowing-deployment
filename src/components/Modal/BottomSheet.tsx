@@ -1,10 +1,12 @@
+import CloseIcon from '@public/svg/close-24.svg';
+import { HTMLMotionProps, type PanInfo, motion } from 'framer-motion';
 import { forwardRef } from 'react';
-import AnimatePortal from './AnimatePortal';
-import BottomDim from './BottomDim';
-import { type PanInfo, motion, HTMLMotionProps } from 'framer-motion';
+
 import { MIN_Y } from '@/constants/bottomSheet';
 import useBottomSheet from '@/hooks/useBottomSheet';
-import CloseIcon from '@public/svg/close-24.svg';
+
+import AnimatePortal from './AnimatePortal';
+import BottomDim from './BottomDim';
 
 type BottomSheetProps = HTMLMotionProps<'div'> & {
   isOpen: boolean;

@@ -1,13 +1,15 @@
 'use client';
 
-import { useTheme } from 'next-themes';
-import ToggleButton from './ToggleButton';
-import { useIsMounted } from '@/hooks';
-import { useJoin1Context } from '../../../components/Join1Context';
-import { useWatch } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { useWatch } from 'react-hook-form';
+
 import { fadeInOut } from '@/constants';
+import { useIsMounted } from '@/hooks';
 import usePreloadImages from '@/hooks/usePreloadImage';
+
+import { useJoin1Context } from '../../../components/Join1Context';
+import ToggleButton from './ToggleButton';
 
 export default function MoodBoard() {
   const { theme } = useTheme();

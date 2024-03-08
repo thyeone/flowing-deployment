@@ -1,7 +1,8 @@
 'use client';
 
-import { useFunnel } from '@/hooks';
 import { createContext, useContext, useMemo } from 'react';
+
+import { useFunnel } from '@/hooks';
 
 export type FunnelContextValue = Pick<
   ReturnType<typeof useFunnel<Steps>>,

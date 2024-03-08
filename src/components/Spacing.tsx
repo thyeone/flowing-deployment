@@ -1,5 +1,6 @@
-import { cn } from '@/utils/cn';
 import { memo } from 'react';
+
+import { cn } from '@/utils/cn';
 
 type SpacingProps = React.HTMLAttributes<HTMLDivElement> & {
   children?: never;

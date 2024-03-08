@@ -1,10 +1,11 @@
 'use client';
 
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+
 import { useGetLogin } from '@/apis/auth';
 import { BASE_DOMAIN } from '@/constants/environment';
 import { setToken } from '@/utils';
-import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 export default function KakaoCallbackPage() {
   const router = useRouter();

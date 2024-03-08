@@ -1,4 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
+
 import Portal from './Portal';
 
 type AnimatePortalProps = {

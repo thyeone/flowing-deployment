@@ -1,9 +1,10 @@
 'use client';
 
-import KakaoIcon from '@public/svg/kakao.svg';
 import GoogleIcon from '@public/svg/google.svg';
-import Spacing from '@/components/Spacing';
+import KakaoIcon from '@public/svg/kakao.svg';
 import Link from 'next/link';
+
+import Spacing from '@/components/Spacing';
 import { BASE_DOMAIN } from '@/constants';
 
 export default function Login() {

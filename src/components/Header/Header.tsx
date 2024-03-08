@@ -1,10 +1,12 @@
-import { cn } from '@/utils/cn';
-import type { PropsWithChildren } from 'react';
-import Spacing from '@/components/Spacing';
 import { type AnimationProps, type HTMLMotionProps } from 'framer-motion';
+import type { PropsWithChildren } from 'react';
+
+import Spacing from '@/components/Spacing';
+import { cn } from '@/utils/cn';
+
+import { BackButton } from '.';
 import { MotionHeader } from '../Motion';
 import MenuButton from './MenuButton';
-import { BackButton } from '.';
 
 export default function Header({
   children,

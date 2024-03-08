@@ -1,4 +1,3 @@
-import { OverlayContext } from '@/providers/OverlayProvider';
 import {
   type Ref,
   forwardRef,
@@ -10,6 +9,8 @@ import {
   useRef,
   useState,
 } from 'react';
+
+import { OverlayContext } from '@/providers/OverlayProvider';
 
 let elementId = 1;
 

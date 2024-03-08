@@ -1,12 +1,13 @@
 'use client';
 
 import { Button, ButtonWrapper } from '@/components/Button';
-import type { useFunnelContext } from '../../components/FunnelContext';
 import Spacing from '@/components/Spacing';
-import TabBar, { VALUE_CATEGORIES } from './components/TabBar';
+
+import type { useFunnelContext } from '../../components/FunnelContext';
 import StepTitle from '../../components/StepTitle';
 import QuestionList from './components/QuestionList';
 import { useStep4Context } from './components/Step4Context';
+import TabBar, { VALUE_CATEGORIES } from './components/TabBar';
 
 export default function Step4({ nextStep }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
   const { tab } = useStep4Context();

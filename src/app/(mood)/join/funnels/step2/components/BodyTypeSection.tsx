@@ -1,11 +1,13 @@
 'use client';
 
+import CheckIcon from '@public/svg/check-16.svg';
+import { useWatch } from 'react-hook-form';
+
+import Spacing from '@/components/Spacing';
 import { cn } from '@/utils/cn';
+
 import { useJoin1Context } from '../../../components/Join1Context';
 import BodyTypeSelectBox from './BodyTypeDropBox';
-import Spacing from '@/components/Spacing';
-import { useWatch } from 'react-hook-form';
-import CheckIcon from '@public/svg/check-16.svg';
 import SectionLabel from './SectionLabel';
 
 export default function BodyTypeSection() {

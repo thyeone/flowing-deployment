@@ -1,11 +1,13 @@
 'use client';
 
+import CheckIcon from '@public/svg/check-24.svg';
+import PlusIcon from '@public/svg/plus-24.svg';
+import { type UseFormReturn, useWatch } from 'react-hook-form';
+
 import { KEYWORD_LIST } from '@/constants/keywords';
 import { cn } from '@/utils/cn';
-import { type UseFormReturn, useWatch } from 'react-hook-form';
+
 import { type Join1ContextValue } from '../../../components/Join1Context';
-import PlusIcon from '@public/svg/plus-24.svg';
-import CheckIcon from '@public/svg/check-24.svg';
 
 type KeywordsProps = {
   useForm: UseFormReturn<Join1ContextValue>;

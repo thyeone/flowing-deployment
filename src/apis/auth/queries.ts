@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { queryKeys } from './keys';
+
 import { authApi } from '.';
+import { queryKeys } from './keys';
 
 export const useGetLogin = (code: string, provider: string, redirectUri: string) => {
   return useQuery({
