@@ -1,6 +1,7 @@
 'use client';
 
 import LeftArrow from '@/assets/LeftArrow';
+
 import { useFunnelContext } from './FunnelContext';
 
 export default function BackButton({

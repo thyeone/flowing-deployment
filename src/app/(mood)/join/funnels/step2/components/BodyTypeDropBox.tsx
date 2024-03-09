@@ -1,10 +1,12 @@
 'use client';
 
+import { type UseFormReturn, useWatch } from 'react-hook-form';
+
 import DownArrowIcon from '@/assets/DownArrow';
 import useOverlay from '@/hooks/useOverlay';
-import BodyTypeBottomSheet from './BodyTypeBottomSheet';
+
 import { type Join1ContextValue } from '../../../components/Join1Context';
-import { type UseFormReturn, useWatch } from 'react-hook-form';
+import BodyTypeBottomSheet from './BodyTypeBottomSheet';
 
 type BodyTypeDropBoxProps = {
   useForm: UseFormReturn<Join1ContextValue>;

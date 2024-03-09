@@ -1,5 +1,6 @@
-import { cn } from '@/utils';
 import type { SVGProps } from 'react';
+
+import { cn } from '@/utils';
 
 export default function LeftArrow({
   isDark = false,

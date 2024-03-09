@@ -1,8 +1,9 @@
 'use client';
 
+import LeftArrowIcon from '@public/svg/left-arrow-24.svg';
+
 import { Header } from '@/components/Header';
 import { cn } from '@/utils';
-import LeftArrowIcon from '@public/svg/left-arrow-24.svg';
 
 type PopupHeaderProps = {
   onClose: VoidFunction;

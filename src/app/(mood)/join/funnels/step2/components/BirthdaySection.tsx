@@ -1,10 +1,12 @@
 'use client';
 
-import { cn } from '@/utils/cn';
-import { useJoin1Context } from '../../../components/Join1Context';
-import { useWatch } from 'react-hook-form';
-import Spacing from '@/components/Spacing';
 import WaringIcon from '@public/svg/warning-16.svg';
+import { useWatch } from 'react-hook-form';
+
+import Spacing from '@/components/Spacing';
+import { cn } from '@/utils/cn';
+
+import { useJoin1Context } from '../../../components/Join1Context';
 import SectionLabel from './SectionLabel';
 
 export default function BirthdaySection() {

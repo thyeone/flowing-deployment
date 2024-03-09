@@ -1,5 +1,7 @@
-import { Button, ButtonWrapper } from '@/components/Button';
 import Step2Image from '@public/svg/join-step2.svg';
+
+import { Button, ButtonWrapper } from '@/components/Button';
+
 import type { useFunnelContext } from '../../components/FunnelContext';
 
 export default function Step3({ nextStep }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {

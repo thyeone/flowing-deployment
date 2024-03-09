@@ -1,11 +1,13 @@
 'use client';
 
-import RightArrow from '@/assets/RightArrow';
-import SectionLabel from './SectionLabel';
-import { useOverlay } from '@/hooks';
-import MbtiBottomSheet from './MbtiBottomSheet';
-import { useJoin1Context } from '../../../components/Join1Context';
 import { useWatch } from 'react-hook-form';
+
+import RightArrow from '@/assets/RightArrow';
+import { useOverlay } from '@/hooks';
+
+import { useJoin1Context } from '../../../components/Join1Context';
+import MbtiBottomSheet from './MbtiBottomSheet';
+import SectionLabel from './SectionLabel';
 
 export default function MbtiSection() {
   const useForm = useJoin1Context();

@@ -1,7 +1,8 @@
 'use client';
 
-import { LifeColor, JobColor, LoveColor, LifeBW, JobBW, LoveBW } from '@/assets/MyValue';
+import { JobBW, JobColor, LifeBW, LifeColor, LoveBW, LoveColor } from '@/assets/MyValue';
 import { cn } from '@/utils';
+
 import { useStep4Context } from './Step4Context';
 
 export const VALUE_CATEGORIES = [

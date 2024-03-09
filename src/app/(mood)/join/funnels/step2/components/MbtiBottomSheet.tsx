@@ -1,13 +1,15 @@
 'use client';
 
+import { useState } from 'react';
+import { type UseFormReturn, useWatch } from 'react-hook-form';
+
 import { Button, ButtonWrapper } from '@/components/Button';
 import { BottomSheet } from '@/components/Modal';
 import Spacing from '@/components/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { cn } from '@/utils';
+
 import type { Join1ContextValue } from '../../../components/Join1Context';
-import { useWatch, type UseFormReturn } from 'react-hook-form';
-import { useState } from 'react';
 
 type MbtiBottomSheetProps = {
   useForm: UseFormReturn<Join1ContextValue>;

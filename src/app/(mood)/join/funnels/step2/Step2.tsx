@@ -1,6 +1,7 @@
+import Spacing from '@/components/Spacing';
+
 import MoodBoard from './components/MoodBoard';
 import MoodForm from './components/MoodForm';
-import Spacing from '@/components/Spacing';
 
 export default function Step2() {
   return (

@@ -1,5 +1,6 @@
-import { fadeInOut } from '@/constants';
 import { motion } from 'framer-motion';
+
+import { fadeInOut } from '@/constants';
 
 export default function PopupContainer({ children }: PropsWithStrictChildren) {
   return (

@@ -1,11 +1,12 @@
 'use client';
 
-import { cn } from '@/utils/cn';
-import { useTheme } from 'next-themes';
-import { motion } from 'framer-motion';
 import DarkToggleIcon from '@public/svg/dark-toggle-14.svg';
 import LightToggleIcon from '@public/svg/light-toggle-14.svg';
+import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
+
 import { useIsMounted } from '@/hooks';
+import { cn } from '@/utils/cn';
 
 export default function ToggleButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const { theme, setTheme } = useTheme();

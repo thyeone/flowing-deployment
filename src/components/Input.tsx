@@ -1,10 +1,11 @@
 'use client';
 
-import { cn } from '@/utils/cn';
+import WaringIcon from '@public/svg/warning-16.svg';
 // import CheckIcon from '@public/svg/check-16.svg';
 import type { UseFormRegisterReturn } from 'react-hook-form';
-import WaringIcon from '@public/svg/warning-16.svg';
+
 import CheckIcon from '@/assets/CheckIcon';
+import { cn } from '@/utils/cn';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
   React.TextareaHTMLAttributes<HTMLTextAreaElement> & {

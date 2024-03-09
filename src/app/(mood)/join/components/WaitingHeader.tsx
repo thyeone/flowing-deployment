@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header';
-import BackButton from './BackButton';
 import { cn } from '@/utils';
+
+import BackButton from './BackButton';
 
 type WaitingHeaderProps = {
   currentStep: string;

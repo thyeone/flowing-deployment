@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useClickAway } from '.';
-import { MAX_BOTTOM_SHEET_CONTENT, MIN_Y } from '@/constants';
 import type { PanInfo } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+import { MAX_BOTTOM_SHEET_CONTENT, MIN_Y } from '@/constants';
+
+import { useClickAway } from '.';
 
 const useBottomSheet = (handler: VoidFunction) => {
   const [deviceHeight, setDeviceHeight] = useState(0);

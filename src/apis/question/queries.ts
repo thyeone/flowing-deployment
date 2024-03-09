@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { type Value, queryKeys, questionApi } from '.';
 
 export const useGetValueQuestion = (type: Value) => {

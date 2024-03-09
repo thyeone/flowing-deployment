@@ -1,12 +1,14 @@
-import Spacing from '@/components/Spacing';
-import { cn } from '@/utils/cn';
-import { useJoin1Context } from '../../../components/Join1Context';
+import { useWatch } from 'react-hook-form';
+
 import RegionIcon from '@/assets/Region';
 import RightArrowIcon from '@/assets/RightArrow';
+import Spacing from '@/components/Spacing';
 import useOverlay from '@/hooks/useOverlay';
-import PostCodePopup from './PostCodePopup';
-import { useWatch } from 'react-hook-form';
 import { cutAddress } from '@/utils';
+import { cn } from '@/utils/cn';
+
+import { useJoin1Context } from '../../../components/Join1Context';
+import PostCodePopup from './PostCodePopup';
 import SectionLabel from './SectionLabel';
 
 export default function RegionSection() {
