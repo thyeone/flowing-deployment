@@ -1,8 +1,10 @@
 import axios from 'axios';
-import type { AxiosResponse, Axios, InternalAxiosRequestConfig, AxiosError } from 'axios';
-import { getResponseFromBody } from './common';
+import type { Axios, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+
 import { getToken, setToken } from '@/utils';
+
 import { authApi } from '../auth';
+import { getResponseFromBody } from './common';
 import { ApiError } from './error';
 
 const instance = axios.create({

@@ -1,16 +1,18 @@
 'use client';
 
-import ActiveHeartIcon from '@public/svg/heart-button-on.svg';
 import InActiveHeartIcon from '@public/svg/heart-button-off.svg';
+import ActiveHeartIcon from '@public/svg/heart-button-on.svg';
+import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { cn } from '@/utils';
-import Spacing from '@/components/Spacing';
+import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
+
 import { useGetValueQuestion } from '@/apis/question';
+import { Button, ButtonWrapper } from '@/components/Button';
+import Spacing from '@/components/Spacing';
+import { cn } from '@/utils';
+
 import { useStep4Context } from './Step4Context';
 import { VALUE_CATEGORIES } from './TabBar';
-import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
-import { Button, ButtonWrapper } from '@/components/Button';
-import { motion } from 'framer-motion';
 
 export default function QuestionList() {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);

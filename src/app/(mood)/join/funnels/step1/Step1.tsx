@@ -1,9 +1,11 @@
 'use client';
 
-import { Button, ButtonWrapper } from '@/components/Button';
-import type { useFunnelContext } from '../../components/FunnelContext';
 import Step1Image from '@public/svg/join-step1.svg';
+
+import { Button, ButtonWrapper } from '@/components/Button';
 import Spacing from '@/components/Spacing';
+
+import type { useFunnelContext } from '../../components/FunnelContext';
 
 export default function Step1({ nextStep }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
   return (

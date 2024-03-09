@@ -1,14 +1,16 @@
 'use client';
 
+import DeleteIcon from '@public/svg/dark-delete-24.svg';
+import Image from 'next/image';
+import { Fragment } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+
+import Person from '@/assets/Person';
 import { Button, ButtonWrapper } from '@/components/Button';
+import { cn, convertFileToBase64 } from '@/utils';
+
 import type { useFunnelContext } from '../../components/FunnelContext';
 import StepTitle from '../../components/StepTitle';
-import { cn, convertFileToBase64 } from '@/utils';
-import Person from '@/assets/Person';
-import { useFieldArray, useForm } from 'react-hook-form';
-import { Fragment } from 'react';
-import Image from 'next/image';
-import DeleteIcon from '@public/svg/dark-delete-24.svg';
 
 export default function Step5({ nextStep }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
   const { register, handleSubmit, control } = useForm<{

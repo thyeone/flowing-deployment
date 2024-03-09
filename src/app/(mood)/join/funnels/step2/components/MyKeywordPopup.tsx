@@ -1,15 +1,17 @@
 'use client';
 
-import { AnimatePortal, PopupContainer } from '@/components/Modal';
-import Keywords from './Keywords';
-import { useWatch, type UseFormReturn } from 'react-hook-form';
-import type { Join1ContextValue } from '../../../components/Join1Context';
-import Spacing from '@/components/Spacing';
 import DeleteIcon from '@public/svg/delete-24.svg';
-import { ButtonWrapper, Button } from '@/components/Button';
-import PopupHeader from '../../../components/PopupHeader';
+import { type UseFormReturn, useWatch } from 'react-hook-form';
+
+import { Button, ButtonWrapper } from '@/components/Button';
+import { AnimatePortal, PopupContainer } from '@/components/Modal';
+import Spacing from '@/components/Spacing';
 import { fadeInOut } from '@/constants';
+
+import type { Join1ContextValue } from '../../../components/Join1Context';
+import PopupHeader from '../../../components/PopupHeader';
 import StepTitle from '../../../components/StepTitle';
+import Keywords from './Keywords';
 
 type MyKeywordPopupProps = {
   useForm: UseFormReturn<Join1ContextValue>;

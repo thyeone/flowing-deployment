@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
-import './globals.css';
+
 import Providers from '@/providers/Providers';
+
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Gyeol | 결',

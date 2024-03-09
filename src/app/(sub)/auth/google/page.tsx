@@ -1,9 +1,10 @@
 'use client';
 
-import { useGetLogin } from '@/apis/auth';
-import { BASE_DOMAIN } from '@/constants/environment';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+
+import { useGetLogin } from '@/apis/auth';
+import { BASE_DOMAIN } from '@/constants/environment';
 
 export default function GoogleCallbackPage() {
   const router = useRouter();

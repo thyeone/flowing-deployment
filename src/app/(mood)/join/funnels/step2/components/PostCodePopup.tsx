@@ -1,9 +1,11 @@
 'use client';
 
-import { Portal } from '@/components/Modal';
 import DaumPostcodeEmbed, { type Address } from 'react-daum-postcode';
-import type { Join1ContextValue } from '../../../components/Join1Context';
 import { type UseFormReturn } from 'react-hook-form';
+
+import { Portal } from '@/components/Modal';
+
+import type { Join1ContextValue } from '../../../components/Join1Context';
 import PopupHeader from '../../../components/PopupHeader';
 
 type PostCodePopupProps = {

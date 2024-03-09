@@ -1,7 +1,8 @@
 'use client';
 
-import LeftArrow from '@/assets/LeftArrow';
 import { useRouter } from 'next/navigation';
+
+import LeftArrow from '@/assets/LeftArrow';
 
 export default function BackButton() {
   const router = useRouter();

@@ -1,17 +1,19 @@
 'use client';
 
-import Input from '@/components/Input';
 import { type SubmitHandler, useWatch } from 'react-hook-form';
-import { type Join1ContextValue, useJoin1Context } from '../../../components/Join1Context';
-import Button from '@/components/Button/Button';
-import BodyTypeSection from './BodyTypeSection';
-import BirthdaySection from './BirthdaySection';
-import Spacing from '@/components/Spacing';
-import RegionSection from './RegionSection';
-import MykeywordSection from './MyKeywordSection';
+
 import { ButtonWrapper } from '@/components/Button';
+import Button from '@/components/Button/Button';
+import Input from '@/components/Input';
+import Spacing from '@/components/Spacing';
+
 import { useFunnelContext } from '../../../components/FunnelContext';
+import { type Join1ContextValue, useJoin1Context } from '../../../components/Join1Context';
+import BirthdaySection from './BirthdaySection';
+import BodyTypeSection from './BodyTypeSection';
 import MbtiSection from './MbtiSection';
+import MykeywordSection from './MyKeywordSection';
+import RegionSection from './RegionSection';
 
 export default function MoodForm() {
   const { nextStep } = useFunnelContext();

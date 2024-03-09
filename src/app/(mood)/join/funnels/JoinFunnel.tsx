@@ -1,13 +1,13 @@
 'use client';
 
+import { useFunnelContext } from '../components/FunnelContext';
+import WaitingHeader from '../components/WaitingHeader';
 import Step1 from './step1/Step1';
 import Step2 from './step2/Step2';
 import Step3 from './step3/Step3';
-import Step5 from './step5/Step5';
 import Step4 from './step4/Step4';
-import { useFunnelContext } from '../components/FunnelContext';
-import WaitingHeader from '../components/WaitingHeader';
 import Step4Provider from './step4/components/Step4Context';
+import Step5 from './step5/Step5';
 
 export default function JoinFunnel() {
   const { currentStep, Funnel, nextStep } = useFunnelContext();
