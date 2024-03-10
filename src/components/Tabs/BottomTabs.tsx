@@ -25,11 +25,11 @@ export default function BottomTabs() {
   const pathName = usePathname();
 
   return (
-    <nav className="fixed bottom-0 h-[88.5px] w-full max-w-[430px] border-t border-gray-200 bg-white pt-[7px]">
-      <ul className="flex justify-between px-7">
+    <nav className="fixed bottom-0 z-10 w-full max-w-[430px] border-t border-gray-200 bg-white">
+      <ul className="flex h-[60px] w-full">
         {tabs.map(({ name, href, icon, checkedIcon }, index) => (
-          <Link key={index} href={href}>
-            <li className="flex flex-col items-center text-[10px]">
+          <Link key={index} href={href} className="flex-1">
+            <li className="flex h-full flex-col items-center justify-center text-[10px]">
               {pathName === href ? checkedIcon : icon}
               <span className={`${pathName === href ? 'text-gray-900' : 'text-gray-600'}`}>
                 {name}
