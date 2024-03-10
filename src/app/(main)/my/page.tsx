@@ -1,11 +1,11 @@
 import { Header } from '@/components/Header';
 import BottomTabs from '@/components/Tabs/BottomTabs';
 
-export default function Chatting() {
+export default function My() {
   return (
     <div>
       <Header>
-        <Header.TextHeader>채팅</Header.TextHeader>
+        <Header.TextHeader>My</Header.TextHeader>
       </Header>
       <h1>Chatting</h1>
       <BottomTabs />

@@ -1,3 +1,5 @@
+import BottomTabs from '@/components/Tabs/BottomTabs';
+
 import HomeHeader from './components/HomeHeader';
 
 export default function Home() {
@@ -5,6 +7,7 @@ export default function Home() {
     <div>
       <HomeHeader />
       <h1>Home</h1>
+      <BottomTabs />
     </div>
   );
 }
