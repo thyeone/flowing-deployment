@@ -1,4 +1,5 @@
 import { Header } from '@/components/Header';
+import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
 export default function Like() {
   return (
@@ -7,6 +8,7 @@ export default function Like() {
         <Header.TextHeader>Like</Header.TextHeader>
       </Header>
       <h1>Chatting</h1>
+      <BottomTabBar />
     </div>
   );
 }

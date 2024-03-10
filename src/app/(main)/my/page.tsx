@@ -1,5 +1,5 @@
 import { Header } from '@/components/Header';
-import BottomTabs from '@/components/Tabs/BottomTabs';
+import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
 export default function My() {
   return (
@@ -8,7 +8,7 @@ export default function My() {
         <Header.TextHeader>My</Header.TextHeader>
       </Header>
       <h1>Chatting</h1>
-      <BottomTabs />
+      <BottomTabBar />
     </div>
   );
 }

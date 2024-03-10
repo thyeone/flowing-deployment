@@ -1,4 +1,4 @@
-import BottomTabs from '@/components/Tabs/BottomTabs';
+import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
 import HomeHeader from './components/HomeHeader';
 
@@ -7,7 +7,7 @@ export default function Home() {
     <div>
       <HomeHeader />
       <h1>Home</h1>
-      <BottomTabs />
+      <BottomTabBar />
     </div>
   );
 }

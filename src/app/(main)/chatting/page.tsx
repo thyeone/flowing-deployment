@@ -1,5 +1,5 @@
 import { Header } from '@/components/Header';
-import BottomTabs from '@/components/Tabs/BottomTabs';
+import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
 export default function Chatting() {
   return (
@@ -8,7 +8,7 @@ export default function Chatting() {
         <Header.TextHeader>채팅</Header.TextHeader>
       </Header>
       <h1>Chatting</h1>
-      <BottomTabs />
+      <BottomTabBar />
     </div>
   );
 }

@@ -21,7 +21,7 @@ const tabs = [
   { name: '마이', href: '/my', icon: <MyOffIcon />, checkedIcon: <MyOnIcon /> },
 ];
 
-export default function BottomTabs() {
+export default function BottomTabBar() {
   const pathName = usePathname();
 
   return (
