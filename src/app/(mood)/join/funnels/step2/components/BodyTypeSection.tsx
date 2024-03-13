@@ -1,6 +1,5 @@
 'use client';
 
-import CheckIcon from '@public/svg/check-16.svg';
 import { useWatch } from 'react-hook-form';
 
 import Spacing from '@/components/Spacing';

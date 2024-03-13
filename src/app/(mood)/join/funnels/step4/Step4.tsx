@@ -22,7 +22,7 @@ export default function Step4({ nextStep }: Pick<ReturnType<typeof useFunnelCont
         bottomTitle="나의 가치관을 작성해주세요"
         subDescription="3개까지 선택 가능"
       />
-      <QuestionList />
+      <QuestionList nextStep={nextStep} />
     </div>
   );
 }
