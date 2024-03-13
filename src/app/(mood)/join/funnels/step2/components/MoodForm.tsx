@@ -40,7 +40,7 @@ export default function MoodForm() {
 
     const { zonecode, ...restAddress } = address;
 
-    if (!bodyType || !height || !address.zonecode) return;
+    if (!bodyType || !height) return;
 
     mutate(
       {
