@@ -29,6 +29,8 @@ export default function Step1({
     }
   }, [profile]);
 
+  if (!profile) return null;
+
   return (
     <>
       <div className="flex h-[85%] flex-col items-center justify-center">
