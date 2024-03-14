@@ -21,6 +21,7 @@ export default function KakaoCallbackPage() {
     if (data) {
       const { accessToken, refreshToken } = data;
       setToken(accessToken, refreshToken);
+      setMemberId(decodeAccessToken());
     }
   }, [data]);
 
@@ -29,12 +30,6 @@ export default function KakaoCallbackPage() {
 
     if (profile?.status === 'ACTIVE') router.replace('/home');
   }, [profile]);
-
-  useEffect(() => {
-    if (decodeAccessToken()) {
-      setMemberId(decodeAccessToken()!);
-    }
-  }, [data]);
 
   return <></>;
 }
