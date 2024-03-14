@@ -3,69 +3,120 @@
 import InActiveHeartIcon from '@public/svg/heart-button-off.svg';
 import ActiveHeartIcon from '@public/svg/heart-button-on.svg';
 import { motion } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { SetStateAction, useRef, useState } from 'react';
 import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 
-import { useGetValueQuestion } from '@/apis/question';
+import { usePostValueResponse } from '@/apis/profile';
+import { type Value, useGetValueQuestion } from '@/apis/question';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Spacing from '@/components/Spacing';
 import { cn } from '@/utils';
 
+import type { useFunnelContext } from '../../../components/FunnelContext';
 import { useStep4Context } from './Step4Context';
 import { VALUE_CATEGORIES } from './TabBar';
 
-export default function QuestionList() {
+export default function QuestionList({
+  nextStep,
+}: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { tab } = useStep4Context();
 
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, resetField } = useForm();
 
-  const [questionIndex, setQuestionIndex] = useState<number[]>([]);
+  const [selectedLife, setSelectedLife] = useState<number[]>([]);
+  const [selectedJob, setSelectedJob] = useState<number[]>([]);
+  const [selectedLove, setSelectedLove] = useState<number[]>([]);
 
   const { data: question } = useGetValueQuestion(VALUE_CATEGORIES[tab - 1]['params']);
+  const { mutate } = usePostValueResponse();
 
-  const handleHeartButton = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
-    e.preventDefault();
-
-    if (questionIndex.length === 3 && !questionIndex.includes(id)) {
-      alert('가치관 선택 3개를 초과했어요!'); // TODO: 토스트
+  const handleHeartButton = (id: number, type: Value) => {
+    if (isOverQuestionMaxLength(type) && !isIncludeQuestion(id, type)) {
+      alert('가치관 선택 3개를 초과했어요!');
       return;
     }
 
-    questionIndex?.includes(id)
-      ? setQuestionIndex((prev) => {
-          const newQuestionIndex = prev?.filter((prev) => id !== prev);
-
-          return newQuestionIndex ?? [];
-        })
-      : setQuestionIndex((prev) => {
-          return prev ? [...prev, id] : [id];
+    const updateSelectedQuestion = (setter: React.Dispatch<SetStateAction<number[]>>) => {
+      if (isIncludeQuestion(id, type)) {
+        setter((prev) => {
+          const newIndex = prev.filter((prevId) => prevId !== id);
+          return newIndex;
         });
+        resetField(id.toString());
+      } else setter((prev) => [...prev, id]);
+    };
+
+    switch (type) {
+      case 'life':
+        updateSelectedQuestion(setSelectedLife);
+        break;
+      case 'job':
+        updateSelectedQuestion(setSelectedJob);
+        break;
+      case 'love':
+        updateSelectedQuestion(setSelectedLove);
+        break;
+    }
+  };
+
+  const isIncludeQuestion = (id: number, type: Value) => {
+    switch (type) {
+      case 'life':
+        return selectedLife.includes(id);
+      case 'job':
+        return selectedJob.includes(id);
+      case 'love':
+        return selectedLove.includes(id);
+    }
+  };
+
+  const isOverQuestionMaxLength = (type: Value) => {
+    switch (type) {
+      case 'life':
+        return selectedLife.length === 3;
+      case 'job':
+        return selectedJob.length === 3;
+      case 'love':
+        return selectedLove.length === 3;
+    }
   };
 
   const handleResizeHeight = () => {
     if (!textareaRef.current) return;
 
-    textareaRef.current.style.height = 'auto'; // Reset height
+    textareaRef.current.style.height = 'auto';
     textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
   };
 
-  const onSubmit: SubmitHandler<Record<number, string>> = (data: any) => {
-    console.log(data);
+  const handleOnSubmit: SubmitHandler<Record<number, string>> = (data) => {
+    const convertData = Object.keys(data).map((key) => ({
+      id: Number(key),
+      response: data[Number(key)],
+    }));
+
+    mutate(
+      convertData.filter((data) => data.response),
+      {
+        onSuccess: () => nextStep(),
+      },
+    );
   };
 
   return (
-    <form id="question" onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleOnSubmit)}>
       <ul className="flex flex-col gap-y-3">
-        {question.map(({ id, question }) => (
+        {question.map(({ id, type, question }) => (
           <motion.li
             layout="position"
             key={id}
             className={cn(
               'flex h-auto min-h-[52px] w-full items-start rounded-xl border border-gray-200 bg-white px-5 py-4',
               {
-                'flex-col items-start justify-start border-primary-300':
-                  questionIndex?.includes(id),
+                'flex-col items-start justify-start border-primary-300': isIncludeQuestion(
+                  id,
+                  type,
+                ),
               },
             )}
           >
@@ -74,11 +125,11 @@ export default function QuestionList() {
                 <span className="absolute top-0 font-bold text-primary-400">Q.</span>
                 <span className="ml-5">{question}</span>
               </div>
-              <button onClick={(e) => handleHeartButton(e, id)}>
-                {questionIndex?.includes(id) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
+              <button type="button" onClick={() => handleHeartButton(id, type)}>
+                {isIncludeQuestion(id, type) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
               </button>
             </div>
-            {questionIndex?.includes(id) && (
+            {isIncludeQuestion(id, type) && (
               <div className="relative size-full min-h-[88px]">
                 <Spacing size={16} />
                 <div className="h-[1px] w-full bg-gray-200" />

@@ -14,13 +14,8 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig<any>) => {
-    try {
-      const { cookies } = await import('next/headers');
-      const token = cookies().get('accessToken');
-      config.headers.Authorization = `Bearer ${token}`;
-    } catch (error) {
-      console.log(error);
-    }
+    const { accessToken } = getToken();
+    if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
 
     return config;
   },
@@ -43,13 +38,18 @@ instance.interceptors.response.use(
 
     // TODO: 401 내에서도 서비스 에러 코드로 분기 처리하기
     if (status === 401) {
-      const { accessToken, refreshToken } = await getToken();
+      const token = getToken();
 
-      if (accessToken && refreshToken) {
+      if (!token) {
+        window.location.href = '/';
+      }
+
+      if (token) {
+        const { accessToken, refreshToken } = token;
         try {
           const { accessToken: access, refreshToken: refresh } = await authApi.postRefresh(
-            accessToken,
-            refreshToken,
+            accessToken!,
+            refreshToken!,
           );
           setToken(access, refresh);
 

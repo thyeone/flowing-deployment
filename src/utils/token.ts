@@ -1,19 +1,22 @@
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
+import { jwtDecode } from 'jwt-decode';
 
 import { TOKEN_KEYS } from '@/constants';
+
+type Payload = {
+  authority: string;
+  exp: number;
+  id: string;
+};
 
 const REFRESH_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000;
 // const ACCESS_EXPIRE_TIME = 60 * 60 * 1000;
 
-export const getToken = (): Promise<{ accessToken: string; refreshToken: string }> => {
+export const getToken = () => {
   const accessToken = getCookie(TOKEN_KEYS.accessToken);
   const refreshToken = getCookie(TOKEN_KEYS.refreshToken);
 
-  return new Promise((resolve) => {
-    if (accessToken && refreshToken) {
-      resolve({ accessToken, refreshToken });
-    }
-  });
+  return { accessToken, refreshToken };
 };
 
 export const setToken = (accessToken: string, refreshToken: string) => {
@@ -31,4 +34,16 @@ export const setToken = (accessToken: string, refreshToken: string) => {
 export const deleteToken = () => {
   deleteCookie(TOKEN_KEYS.accessToken);
   deleteCookie(TOKEN_KEYS.refreshToken);
+};
+
+export const decodeAccessToken = () => {
+  const { accessToken } = getToken();
+
+  if (accessToken) {
+    const payload: Payload = jwtDecode(accessToken);
+
+    return payload.id;
+  }
+
+  return '';
 };

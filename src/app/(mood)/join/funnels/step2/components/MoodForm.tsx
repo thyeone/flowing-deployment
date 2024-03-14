@@ -2,6 +2,7 @@
 
 import { type SubmitHandler, useWatch } from 'react-hook-form';
 
+import { usePostSelfIntro } from '@/apis/profile/mutations';
 import { ButtonWrapper } from '@/components/Button';
 import Button from '@/components/Button/Button';
 import Input from '@/components/Input';
@@ -17,6 +18,7 @@ import RegionSection from './RegionSection';
 
 export default function MoodForm() {
   const { nextStep } = useFunnelContext();
+  const { mutate } = usePostSelfIntro();
   const {
     register,
     control,
@@ -34,12 +36,35 @@ export default function MoodForm() {
   });
 
   const handleOnSubmit: SubmitHandler<Join1ContextValue> = (data) => {
-    console.log(data);
+    const { gender, mbti, keywords, height, bodyType, address, birth, ...rest } = data;
+
+    const { zonecode, ...restAddress } = address;
+
+    if (!bodyType || !height) return;
+
+    mutate(
+      {
+        keywords: keywords.join(','),
+        mbti: mbti.join(''),
+        gender: gender === 'MALE',
+        height: +height,
+        bodyType: bodyType === '탄탄 슬림' ? '탄탄_슬림' : bodyType,
+        birth: birth.replaceAll('.', '-'),
+        address: {
+          zonecode: +address.zonecode,
+          ...restAddress,
+        },
+        ...rest,
+      },
+      {
+        onSuccess: () => nextStep(),
+      },
+    );
   };
 
   return (
     <>
-      <form id="mood" onSubmit={handleSubmit(handleOnSubmit)}>
+      <form onSubmit={handleSubmit(handleOnSubmit)}>
         <Input
           register={register('nickname', {
             required: true,
@@ -66,26 +91,24 @@ export default function MoodForm() {
         <RegionSection />
         <MykeywordSection />
         <MbtiSection />
+        <ButtonWrapper>
+          <Button
+            isDark
+            disabled={
+              !isValid ||
+              !dirtyFields.nickname ||
+              !dirtyFields.birth ||
+              !dirtyFields.bodyType ||
+              !dirtyFields.height ||
+              !dirtyFields.address ||
+              !dirtyFields.mbti ||
+              !keywords.length
+            }
+          >
+            다음
+          </Button>
+        </ButtonWrapper>
       </form>
-      <ButtonWrapper>
-        <Button
-          form="mood"
-          isDark
-          onClick={nextStep}
-          disabled={
-            !isValid ||
-            !dirtyFields.nickname ||
-            !dirtyFields.birthday ||
-            !dirtyFields.bodyType ||
-            !dirtyFields.height ||
-            !dirtyFields.address ||
-            !dirtyFields.mbti ||
-            !keywords.length
-          }
-        >
-          다음
-        </Button>
-      </ButtonWrapper>
     </>
   );
 }
