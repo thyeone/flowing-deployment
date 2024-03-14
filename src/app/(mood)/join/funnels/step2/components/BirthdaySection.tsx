@@ -17,9 +17,9 @@ export default function BirthdaySection() {
     formState: { errors },
   } = useJoin1Context();
 
-  const birthday = useWatch({
+  const birth = useWatch({
     control,
-    name: 'birthday',
+    name: 'birth',
   });
   const gender = useWatch({
     control,
@@ -28,10 +28,10 @@ export default function BirthdaySection() {
 
   return (
     <>
-      <SectionLabel label="생년월일" isCheck={!errors.birthday?.message && gender && !!birthday} />
+      <SectionLabel label="생년월일" isCheck={!errors.birth?.message && gender && !!birth} />
       <div className="relative flex gap-x-2">
         <input
-          {...register('birthday', {
+          {...register('birth', {
             required: true,
             pattern: {
               value: /^\d{4}\.\d{2}\.\d{2}$/,
@@ -40,16 +40,16 @@ export default function BirthdaySection() {
             validate: (value) =>
               Number(value.slice(0, 4)) < 2006 || '2005년생 이후는 가입이 불가능합니다.',
           })}
-          id="birthday-input"
+          id="birth-input"
           placeholder="예시) 2024.01.25"
           className={cn(
             `h-[52px] w-full flex-[2] rounded-xl border border-gray-200 bg-transparent px-4 text-sm outline-none placeholder:text-base focus:border-primary-400 dark:border-gray-800 dark:text-white placeholder:dark:text-gray-700`,
           )}
         />
-        {errors.birthday?.message && (
+        {errors.birth?.message && (
           <p className="absolute top-full mt-2 inline-flex items-center gap-x-1 text-xs text-error">
             <WaringIcon />
-            {errors.birthday?.message}
+            {errors.birth?.message}
           </p>
         )}
         <div className="flex flex-1 gap-x-2">

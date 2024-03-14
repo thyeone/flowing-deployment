@@ -10,7 +10,7 @@ import Step4Provider from './step4/components/Step4Context';
 import Step5 from './step5/Step5';
 
 export default function JoinFunnel() {
-  const { currentStep, Funnel, nextStep } = useFunnelContext();
+  const { currentStep, Funnel, nextStep, setStep } = useFunnelContext();
 
   return (
     <>
@@ -19,7 +19,7 @@ export default function JoinFunnel() {
       )}
       <Funnel>
         <Funnel.step name="1">
-          <Step1 nextStep={nextStep} />
+          <Step1 nextStep={nextStep} setStep={setStep} />
         </Funnel.step>
         <Funnel.step name="2">
           <div className="dark-mode absolute top-0 w-full pt-[57px]">

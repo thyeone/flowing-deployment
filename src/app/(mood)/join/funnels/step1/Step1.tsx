@@ -1,13 +1,36 @@
 'use client';
 
 import Step1Image from '@public/svg/join-step1.svg';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
+import { type MemberResponse, useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Spacing from '@/components/Spacing';
+import { decodeAccessToken } from '@/utils';
 
-import type { useFunnelContext } from '../../components/FunnelContext';
+import { useFunnelContext } from '../../components/FunnelContext';
 
-export default function Step1({ nextStep }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
+export default function Step1({
+  nextStep,
+  setStep,
+}: Pick<ReturnType<typeof useFunnelContext>, 'nextStep' | 'setStep'>) {
+  const router = useRouter();
+  const memberId = decodeAccessToken() || '';
+  const { data: profile } = useGetMember(memberId);
+
+  useEffect(() => {
+    if (profile?.status === 'ACTIVE') router.replace('/home');
+
+    if (profile?.status === 'INACTIVE') router.replace('/');
+
+    if (profile?.status === 'IN_SING_UP') {
+      setStep(getEmptyProfile(profile?.profile as MemberResponse['profile']));
+    }
+  }, [profile]);
+
+  if (!profile) return null;
+
   return (
     <>
       <div className="flex h-[85%] flex-col items-center justify-center">
@@ -21,4 +44,25 @@ export default function Step1({ nextStep }: Pick<ReturnType<typeof useFunnelCont
       </ButtonWrapper>
     </>
   );
+}
+
+function getEmptyProfile(profile: MemberResponse['profile']) {
+  for (const key in profile) {
+    const field = profile[key as keyof MemberResponse['profile']];
+
+    if (!Object.keys(field) || (Array.isArray(field) && !field.length)) {
+      switch (key) {
+        case 'selfIntro':
+          return '1';
+        case 'address':
+          return '1';
+        case 'valueResponses':
+          return '3';
+        case 'images':
+          return '5';
+      }
+    }
+  }
+
+  return '1';
 }

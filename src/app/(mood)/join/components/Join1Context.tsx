@@ -4,7 +4,7 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
 export type Join1ContextValue = {
   nickname: string;
-  birthday: string;
+  birth: string;
   gender: GenderType;
   keywords: string[];
   bodyType: BodyType | undefined;
@@ -21,7 +21,7 @@ export type Join1ContextValue = {
 
 const defaultValues: Join1ContextValue = {
   nickname: '',
-  birthday: '',
+  birth: '',
   gender: 'MALE',
   keywords: [],
   bodyType: undefined,
