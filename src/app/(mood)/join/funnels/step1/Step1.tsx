@@ -50,8 +50,6 @@ function getEmptyProfile(profile: MemberResponse['profile']) {
   for (const key in profile) {
     const field = profile[key as keyof MemberResponse['profile']];
 
-    console.log(field);
-
     if (!Object.keys(field) || (Array.isArray(field) && !field.length)) {
       switch (key) {
         case 'selfIntro':
