@@ -41,7 +41,7 @@ export default function PostCodePopup({ useForm, onClose }: PostCodePopupProps) 
       <DaumPostcodeEmbed
         className="fixed inset-x-0 z-30 mx-auto mt-14 min-h-screen max-w-[430px]"
         onComplete={handleComplete}
-        shorthand={false}
+        shorthand={true}
         autoClose={false}
       />
     </Portal>
