@@ -5,9 +5,11 @@ import Image from 'next/image';
 import { Fragment } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
+import { usePostFile } from '@/apis/file/mutations';
+import { usePostProfileImage } from '@/apis/profile';
 import Person from '@/assets/Person';
 import { Button, ButtonWrapper } from '@/components/Button';
-import { cn, convertFileToBase64 } from '@/utils';
+import { cn, compressImage } from '@/utils';
 
 import type { useFunnelContext } from '../../components/FunnelContext';
 import StepTitle from '../../components/StepTitle';
@@ -15,7 +17,8 @@ import StepTitle from '../../components/StepTitle';
 export default function Step5({ nextStep }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
   const { register, handleSubmit, control } = useForm<{
     files: {
-      file: string;
+      uuid: string;
+      url: string;
     }[];
   }>();
   const { fields, append, remove } = useFieldArray({
@@ -24,18 +27,32 @@ export default function Step5({ nextStep }: Pick<ReturnType<typeof useFunnelCont
     rules: { minLength: 2, maxLength: 6, required: true },
   });
 
+  const { mutate: postFile } = usePostFile();
+  const { mutate: postProfileImage } = usePostProfileImage();
+
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
 
-      await convertFileToBase64(file).then((url) => append({ file: url as string }));
+      try {
+        const image = await compressImage(file);
+        postFile(image, {
+          onSuccess: ({ id, path }) => {
+            append({ uuid: id, url: path });
+          },
+        });
+      } catch (error) {
+        alert('최대 용량 5MB를 초과했어요.');
+      }
     }
   };
 
-  // TODO
-  const onSubmit = (data: any) => {
-    // const formData = new FormData();
-    console.log(fields);
+  const onSubmit = () => {
+    const fileIds = fields.map(({ uuid }) => uuid);
+
+    postProfileImage(fileIds, {
+      onSuccess: () => nextStep(),
+    });
   };
 
   return (
@@ -51,15 +68,16 @@ export default function Step5({ nextStep }: Pick<ReturnType<typeof useFunnelCont
             <Fragment key={value}>
               <input
                 {...register(`files`)}
+                accept="image/png, image/jpeg, image/jpg"
                 id={value.toString()}
                 onChange={handleChange}
                 type="file"
                 className="hidden appearance-none"
               />
-              {fields[index]?.file ? (
+              {fields[index]?.url ? (
                 <li className="relative aspect-[3/4] flex-1 overflow-hidden rounded-xl">
                   <Image
-                    src={fields[index].file}
+                    src={fields[index].url}
                     fill={true}
                     className="absolute object-cover"
                     alt="test"
@@ -88,9 +106,7 @@ export default function Step5({ nextStep }: Pick<ReturnType<typeof useFunnelCont
         </ul>
         <p className="mt-2 text-xs text-gray-500">프로필 사진은 최소 2장 이상 올려주세요</p>
         <ButtonWrapper>
-          <Button onClick={nextStep} disabled={fields.length < 2}>
-            완료
-          </Button>
+          <Button disabled={fields.length < 2}>완료</Button>
         </ButtonWrapper>
       </form>
     </>

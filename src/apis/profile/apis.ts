@@ -9,4 +9,9 @@ export const profileApi = {
     await http.post(`/members/${memberId}/profiles/value-responses`, {
       valueResponses: formData,
     }),
+
+  postProfileImage: async (memberId: string, fileIds: string[]) =>
+    await http.post(`/members/${memberId}/profiles/images`, {
+      fileIds,
+    }),
 };

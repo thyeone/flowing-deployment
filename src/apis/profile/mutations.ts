@@ -16,3 +16,8 @@ export const usePostValueResponse = () =>
     mutationFn: (formData: ValueRequest[]) =>
       profileApi.postValueResponse(decodeAccessToken(), formData),
   });
+
+export const usePostProfileImage = () =>
+  useMutation({
+    mutationFn: (fileIds: string[]) => profileApi.postProfileImage(decodeAccessToken(), fileIds),
+  });
