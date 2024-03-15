@@ -8,13 +8,14 @@ import Step3 from './step3/Step3';
 import Step4 from './step4/Step4';
 import Step4Provider from './step4/components/Step4Context';
 import Step5 from './step5/Step5';
+import Step6 from './step6/Step6';
 
 export default function JoinFunnel() {
   const { currentStep, Funnel, nextStep, setStep } = useFunnelContext();
 
   return (
     <>
-      {!(currentStep === '1' || currentStep === '3') && (
+      {!(currentStep === '1' || currentStep === '3' || currentStep === '6') && (
         <WaitingHeader isDark={currentStep === '2'} currentStep={currentStep} />
       )}
       <Funnel>
@@ -38,7 +39,7 @@ export default function JoinFunnel() {
           <Step5 nextStep={nextStep} />
         </Funnel.step>
         <Funnel.step name="6">
-          <div>Step 6</div>
+          <Step6 />
         </Funnel.step>
       </Funnel>
     </>

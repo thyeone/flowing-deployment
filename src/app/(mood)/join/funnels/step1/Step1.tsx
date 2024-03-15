@@ -64,5 +64,5 @@ function getEmptyProfile(profile: MemberResponse['profile']) {
     }
   }
 
-  return '1';
+  return '6';
 }
