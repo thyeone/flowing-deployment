@@ -1,4 +1,4 @@
-import { Toast } from '@/components/Modal';
+import { Toast } from '@/components/Overlay';
 
 import { useOverlay } from '.';
 

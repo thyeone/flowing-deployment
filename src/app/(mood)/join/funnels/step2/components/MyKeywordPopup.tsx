@@ -4,7 +4,7 @@ import DeleteIcon from '@public/svg/delete-24.svg';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 
 import { Button, ButtonWrapper } from '@/components/Button';
-import { AnimatePortal, PopupContainer } from '@/components/Modal';
+import { AnimatePortal, PopupContainer } from '@/components/Overlay';
 import Spacing from '@/components/Spacing';
 import { fadeInOut } from '@/constants';
 

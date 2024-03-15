@@ -3,7 +3,7 @@
 import DaumPostcodeEmbed, { type Address } from 'react-daum-postcode';
 import { type UseFormReturn } from 'react-hook-form';
 
-import { Portal } from '@/components/Modal';
+import { Portal } from '@/components/Overlay';
 
 import type { Join1ContextValue } from '../../../components/Join1Context';
 import PopupHeader from '../../../components/PopupHeader';
