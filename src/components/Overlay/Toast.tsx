@@ -22,11 +22,11 @@ export default function Toast({
     <AnimatePortal isOpen={isOpen}>
       <motion.div
         {...fadeInOut}
-        className="fixed inset-x-0 top-4 z-modal mx-auto flex justify-center px-5"
+        className="fixed inset-x-0 top-4 z-modal mx-auto flex w-full max-w-[430px] justify-center px-5"
       >
         <div
           className={cn(
-            `inline-flex h-10 w-full max-w-[430px] items-center gap-x-1 rounded-xl bg-[#212123] px-4 py-3 text-sm text-white opacity-80`,
+            `inline-flex h-10 w-full items-center gap-x-1 rounded-xl bg-[#212123] px-4 py-3 text-sm text-white opacity-80`,
             {
               'bg-[#FF3333]': type === 'warning',
             },
