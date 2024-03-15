@@ -14,7 +14,7 @@ type Steps = '1' | '2' | '3' | '4' | '5' | '6';
 const FunnelContext = createContext<FunnelContextValue | null>(null);
 
 export default function FunnelProvider({ children }: PropsWithStrictChildren) {
-  const { setStep, currentStep, Funnel, prevStep, nextStep } = useFunnel<Steps>('2', '6');
+  const { setStep, currentStep, Funnel, prevStep, nextStep } = useFunnel<Steps>('1', '6');
 
   const memoizedValue = useMemo(
     () => ({
