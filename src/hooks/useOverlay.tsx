@@ -52,6 +52,11 @@ const useOverlay = ({ exitOnUnmount = true, delay = 0 }: Options = {}) => {
             }}
           />,
         );
+        if (delay) {
+          setTimeout(() => {
+            overlayRef.current?.close();
+          }, delay);
+        }
       },
       close: () => {
         overlayRef.current?.close();
