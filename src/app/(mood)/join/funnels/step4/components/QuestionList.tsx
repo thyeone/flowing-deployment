@@ -10,6 +10,7 @@ import { usePostValueResponse } from '@/apis/profile';
 import { type Value, useGetValueQuestion } from '@/apis/question';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Spacing from '@/components/Spacing';
+import useToast from '@/hooks/useToast';
 import { cn } from '@/utils';
 
 import type { useFunnelContext } from '../../../components/FunnelContext';
@@ -21,6 +22,7 @@ export default function QuestionList({
 }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { tab } = useStep4Context();
+  const { openToast } = useToast();
 
   const { handleSubmit, control, resetField } = useForm();
 
@@ -33,7 +35,7 @@ export default function QuestionList({
 
   const handleHeartButton = (id: number, type: Value) => {
     if (isOverQuestionMaxLength(type) && !isIncludeQuestion(id, type)) {
-      alert('가치관 선택 3개를 초과했어요!');
+      openToast({ message: '가치관 선택 3개를 초과했어요!', type: 'warning' });
       return;
     }
 
