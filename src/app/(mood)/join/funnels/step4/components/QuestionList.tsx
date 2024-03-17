@@ -24,7 +24,8 @@ export default function QuestionList({
   const { tab } = useStep4Context();
   const { openToast } = useToast();
 
-  const { handleSubmit, control, resetField } = useForm();
+  const { handleSubmit, control, resetField, watch } = useForm();
+  const watchFields = watch();
 
   const [selectedLife, setSelectedLife] = useState<number[]>([]);
   const [selectedJob, setSelectedJob] = useState<number[]>([]);
@@ -159,7 +160,9 @@ export default function QuestionList({
       </ul>
       <Spacing size={22} />
       <ButtonWrapper>
-        <Button>다음</Button>
+        <Button disabled={Object.values(watchFields).filter((value) => value).length !== 9}>
+          다음
+        </Button>
       </ButtonWrapper>
     </form>
   );
