@@ -4,7 +4,7 @@ import { type UseFormReturn, useWatch } from 'react-hook-form';
 
 import { ButtonWrapper } from '@/components/Button';
 import Button from '@/components/Button/Button';
-import BottomSheet from '@/components/Modal/BottomSheet';
+import BottomSheet from '@/components/Overlay/BottomSheet';
 import Radio from '@/components/Radio';
 import Spacing from '@/components/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';

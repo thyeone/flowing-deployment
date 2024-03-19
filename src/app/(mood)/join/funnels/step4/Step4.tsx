@@ -1,6 +1,5 @@
 'use client';
 
-import { Button, ButtonWrapper } from '@/components/Button';
 import Spacing from '@/components/Spacing';
 
 import type { useFunnelContext } from '../../components/FunnelContext';
