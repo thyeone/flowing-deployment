@@ -9,6 +9,7 @@ import { usePostFile } from '@/apis/file/mutations';
 import { usePostProfileImage } from '@/apis/profile';
 import Person from '@/assets/Person';
 import { Button, ButtonWrapper } from '@/components/Button';
+import useToast from '@/hooks/useToast';
 import { cn, compressImage } from '@/utils';
 
 import type { useFunnelContext } from '../../components/FunnelContext';
@@ -26,6 +27,7 @@ export default function Step5({ nextStep }: Pick<ReturnType<typeof useFunnelCont
     name: 'files',
     rules: { minLength: 2, maxLength: 6, required: true },
   });
+  const { openToast } = useToast();
 
   const { mutate: postFile } = usePostFile();
   const { mutate: postProfileImage } = usePostProfileImage();
@@ -42,7 +44,7 @@ export default function Step5({ nextStep }: Pick<ReturnType<typeof useFunnelCont
           },
         });
       } catch (error) {
-        alert('최대 용량 5MB를 초과했어요.');
+        openToast({ message: '최대 용량 5MB를 초과했어요.', type: 'warning' });
       }
     }
   };

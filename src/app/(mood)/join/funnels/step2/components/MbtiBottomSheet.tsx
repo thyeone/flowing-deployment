@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 
 import { Button, ButtonWrapper } from '@/components/Button';
-import { BottomSheet } from '@/components/Modal';
+import { BottomSheet } from '@/components/Overlay';
 import Spacing from '@/components/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { cn } from '@/utils';
