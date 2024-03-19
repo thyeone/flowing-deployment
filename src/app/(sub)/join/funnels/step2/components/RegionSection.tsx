@@ -26,6 +26,7 @@ export default function RegionSection() {
       <SectionLabel label="거주 지역" isCheck={!!address.roadAddress} />
       <div className="flex gap-x-2">
         <button
+          type="button"
           className={cn(`h-[52px] w-full rounded-xl bg-gray-50 dark:bg-gray-800`)}
           onClick={() => open(({ exit }) => <PostCodePopup onClose={exit} useForm={useForm} />)}
         >

@@ -29,6 +29,7 @@ export default function BodyTypeDropBox({ useForm }: BodyTypeDropBoxProps) {
 
   return (
     <button
+      type="button"
       onClick={handleClickButton}
       className="flex h-[52px] w-32 items-center justify-evenly rounded-lg border border-gray-100 text-sm dark:border-gray-800"
     >

@@ -54,6 +54,7 @@ export default function BirthdaySection() {
         )}
         <div className="flex flex-1 gap-x-2">
           <button
+            type="button"
             onClick={() =>
               setValue('gender', 'MALE', {
                 shouldDirty: true,
@@ -70,6 +71,7 @@ export default function BirthdaySection() {
             남
           </button>
           <button
+            type="button"
             onClick={() =>
               setValue('gender', 'FEMALE', {
                 shouldDirty: true,
