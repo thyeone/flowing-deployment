@@ -34,6 +34,7 @@ export default function Step6() {
         <p className="text-sm text-gray-700">
           {data?.profile.selfIntro.height} / {data?.profile.selfIntro.bodyType}
         </p>
+        <Spacing size={12} />
       </div>
       <Spacing size={72} />
       <ButtonWrapper>
