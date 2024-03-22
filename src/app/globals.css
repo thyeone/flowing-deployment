@@ -54,6 +54,7 @@
     'Segoe UI Symbol',
     sans-serif;
   user-select: none;
+  -webkit-user-drag: none;
 }
 
 ::-webkit-scrollbar {
