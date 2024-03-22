@@ -65,10 +65,10 @@ export default function Login() {
         onDragEnd={onDragEnd}
         className="flex w-full cursor-grab items-center"
       >
-        {CAROUSEL_LIST.map(({ id, image, title, description }, index) => (
+        {CAROUSEL_LIST.map(({ id, image, title, description }) => (
           <div
             className="flex size-full shrink-0 flex-col"
-            style={{ left: `${index * 100}%`, right: `${index * 100}%` }}
+            style={{ left: `${id * 100}%`, right: `${id * 100}%` }}
             key={id}
           >
             <div className="flex h-[50vh] w-full items-center justify-center bg-primary-50">
