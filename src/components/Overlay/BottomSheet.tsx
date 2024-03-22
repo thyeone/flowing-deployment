@@ -2,6 +2,7 @@ import CloseIcon from '@public/svg/close-24.svg';
 import { HTMLMotionProps, type PanInfo, motion } from 'framer-motion';
 import { forwardRef } from 'react';
 
+import { springTransition } from '@/constants';
 import { MIN_Y } from '@/constants/bottomSheet';
 import useBottomSheet from '@/hooks/useBottomSheet';
 
@@ -38,11 +39,7 @@ const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<BottomShe
             initial="hidden"
             animate="visible"
             exit="hidden"
-            transition={{
-              type: 'spring',
-              damping: 40,
-              stiffness: 350,
-            }}
+            {...springTransition}
             variants={{
               visible: { y: '0%' },
               hidden: { y: '100%' },

@@ -6,3 +6,11 @@ export const fadeInOut: AnimationProps = {
   exit: { opacity: 0, willChange: 'opacity' },
   transition: { ease: 'easeOut', duration: 0.5, willChange: 'opacity' },
 };
+
+export const springTransition = {
+  transition: {
+    type: 'spring',
+    damping: 40,
+    stiffness: 350,
+  },
+};
