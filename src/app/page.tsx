@@ -36,16 +36,16 @@ const CAROUSEL_LIST = [
 ] as const;
 
 export default function Login() {
-  const [index, setIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
   const x = useMotionValue(0);
 
   const onDragEnd = () => {
     if (x.get() < -20) {
-      setIndex((prev) => (prev + 1) % CAROUSEL_LIST.length);
+      setSlideIndex((prev) => (prev + 1) % CAROUSEL_LIST.length);
     }
 
     if (x.get() > 20) {
-      setIndex((prev) => (prev === 0 ? CAROUSEL_LIST.length - 1 : prev - 1));
+      setSlideIndex((prev) => (prev === 0 ? CAROUSEL_LIST.length - 1 : prev - 1));
     }
   };
 
@@ -60,7 +60,7 @@ export default function Login() {
           right: 0,
         }}
         dragElastic={0.2}
-        animate={{ translateX: `-${index * 100}%` }}
+        animate={{ translateX: `-${slideIndex * 100}%` }}
         {...springTransition}
         onDragEnd={onDragEnd}
         className="flex w-full cursor-grab items-center"
@@ -86,9 +86,9 @@ export default function Login() {
         {CAROUSEL_LIST.map(({ id }) => (
           <li
             key={id}
-            onClick={() => setIndex(id)}
+            onClick={() => setSlideIndex(id)}
             className={cn('h-0.5 w-3 cursor-pointer rounded-[10px] bg-gray-300', {
-              'bg-primary-300': id === index,
+              'bg-primary-300': id === slideIndex,
             })}
           />
         ))}
