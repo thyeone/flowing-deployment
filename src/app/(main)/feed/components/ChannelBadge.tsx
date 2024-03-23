@@ -6,7 +6,7 @@ type ChannelBadgeProps = {
 
 export default function ChannelBadge({ channelName }: ChannelBadgeProps) {
   return (
-    <div className="w-fit rounded-[4px] bg-primary-50 px-[6px] pb-[4.5px] pt-[3.5px] text-[10px] font-bold text-primary-300">
+    <div className="flex h-[18px] w-fit items-center rounded-[4px] bg-primary-50 px-[6px] text-[10px] font-bold text-primary-300">
       {channelName}
     </div>
   );
