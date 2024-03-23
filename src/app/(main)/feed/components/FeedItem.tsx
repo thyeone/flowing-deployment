@@ -1,9 +1,9 @@
 import { Contents } from '@/apis/feed';
+import Avatar from '@/components/Avatar';
 
 import ChannelBadge from './ChannelBadge';
 import CommentCount from './CommentCount';
 import LikeCount from './LikeCount';
-import ProfileImage from './ProfileImage';
 
 type FeedItemProps = {
   key: number;
@@ -17,7 +17,7 @@ export default function FeedItem({ key, contents }: FeedItemProps) {
 
       {/* profile */}
       <div className="flex items-center gap-2">
-        <ProfileImage image={contents.profilePic} />
+        <Avatar image={contents.profilePic} />
         <div>
           <p className="text-[14px] font-bold">
             {contents.nickname}. {contents.age}
