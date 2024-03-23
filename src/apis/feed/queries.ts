@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { queryKeys } from '.';
 import { feedApi } from '.';
 
-export const useGetFeed = (query: string) => {
+export const useGetFeed = (query: string = '') => {
   return useQuery({
-    queryKey: ['feed'],
+    queryKey: queryKeys.getFeed(query),
     queryFn: () => feedApi.getFeed(query),
   });
 };

@@ -7,7 +7,7 @@ import BottomTabBar from '@/components/TabBar/BottomTabBar';
 import FeedItem from './components/FeedItem';
 
 export default function Feed() {
-  const { data: feed } = useGetFeed('');
+  const { data: feed } = useGetFeed();
 
   return (
     <div>
