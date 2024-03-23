@@ -12,14 +12,14 @@ type FeedItemProps = {
 
 export default function FeedItem({ key, contents }: FeedItemProps) {
   return (
-    <div key={key} className="flex flex-col gap-4 border-b border-gray-200 px-5 py-5">
+    <div key={key} className="flex flex-col gap-4 border-b border-gray-200 p-5">
       <ChannelBadge channelName={contents.channel} />
 
       {/* profile */}
       <div className="flex items-center gap-2">
         <ProfileImage image={contents.profilePic} />
         <div>
-          <p className="text-[14px] font-bold text-gray-900">
+          <p className="text-[14px] font-bold">
             {contents.nickname}. {contents.age}
           </p>
           <p className="text-[12px] text-gray-600">
@@ -29,7 +29,7 @@ export default function FeedItem({ key, contents }: FeedItemProps) {
       </div>
 
       {/* content */}
-      <p className="text-gray-900">{contents.content}</p>
+      <p>{contents.content}</p>
 
       {/* count */}
       <div className="flex items-center justify-between">
