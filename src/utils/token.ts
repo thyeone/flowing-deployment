@@ -3,12 +3,6 @@ import { jwtDecode } from 'jwt-decode';
 
 import { TOKEN_KEYS } from '@/constants';
 
-type Payload = {
-  authority: string;
-  exp: number;
-  id: string;
-};
-
 const REFRESH_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000;
 // const ACCESS_EXPIRE_TIME = 60 * 60 * 1000;
 

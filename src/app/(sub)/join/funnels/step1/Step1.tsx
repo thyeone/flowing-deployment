@@ -8,6 +8,7 @@ import { type MemberResponse, useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Spacing from '@/components/Spacing';
 import { decodeAccessToken } from '@/utils';
+import { getEmptyProfile } from '@/utils/getEmptyProfile';
 
 import { useFunnelContext } from '../../components/FunnelContext';
 
@@ -44,25 +45,4 @@ export default function Step1({
       </ButtonWrapper>
     </>
   );
-}
-
-function getEmptyProfile(profile: MemberResponse['profile']) {
-  for (const key in profile) {
-    const field = profile[key as keyof MemberResponse['profile']];
-
-    if (!Object.keys(field) || (Array.isArray(field) && !field.length)) {
-      switch (key) {
-        case 'selfIntro':
-          return '1';
-        case 'address':
-          return '1';
-        case 'valueResponses':
-          return '3';
-        case 'images':
-          return '5';
-      }
-    }
-  }
-
-  return '6';
 }
