@@ -29,6 +29,22 @@ export default function Header({
   );
 }
 
+function Left({ children, className }: PropsWithChildren<{ className?: string }>) {
+  return <div className={cn('mr-auto flex items-center', className)}>{children}</div>;
+}
+
+function Center({ children, className }: PropsWithChildren<{ className?: string }>) {
+  return (
+    <span className={cn('absolute inset-x-0 text-center text-lg font-bold', className)}>
+      {children}
+    </span>
+  );
+}
+
+function Right({ children, className }: PropsWithChildren<{ className?: string }>) {
+  return <div className={cn('ml-auto flex items-center', className)}>{children}</div>;
+}
+
 function TextHeader({ children }: PropsWithStrictChildren) {
   return <span className="text-lg font-bold text-[#212529]">{children}</span>;
 }
@@ -42,6 +58,10 @@ function FeedHeader({ children }: PropsWithStrictChildren) {
     </>
   );
 }
+
+Header.Left = Left;
+Header.Center = Center;
+Header.Right = Right;
 
 Header.TextHeader = TextHeader;
 Header.FeedHeader = FeedHeader;
