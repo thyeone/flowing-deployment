@@ -1,5 +1,7 @@
 'use client';
 
+import FileFormProvider from '@/providers/FileFormProvider';
+
 import { useFunnelContext } from '../components/FunnelContext';
 import WaitingHeader from '../components/WaitingHeader';
 import Step1 from './step1/Step1';
@@ -36,7 +38,9 @@ export default function JoinFunnel() {
           </Step4Provider>
         </Funnel.step>
         <Funnel.step name="5">
-          <Step5 nextStep={nextStep} />
+          <FileFormProvider>
+            <Step5 nextStep={nextStep} />
+          </FileFormProvider>
         </Funnel.step>
         <Funnel.step name="6">
           <Step6 />
