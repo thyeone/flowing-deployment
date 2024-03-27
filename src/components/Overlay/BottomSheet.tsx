@@ -1,3 +1,5 @@
+'use client';
+
 import CloseIcon from '@public/svg/close-24.svg';
 import { HTMLMotionProps, type PanInfo, motion } from 'framer-motion';
 import { forwardRef } from 'react';
