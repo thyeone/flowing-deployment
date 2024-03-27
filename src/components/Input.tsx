@@ -1,7 +1,6 @@
 'use client';
 
 import WaringIcon from '@public/svg/warning-16.svg';
-// import CheckIcon from '@public/svg/check-16.svg';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
 import CheckIcon from '@/assets/CheckIcon';
@@ -9,7 +8,6 @@ import { cn } from '@/utils/cn';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
   React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-    element?: 'input' | 'textarea';
     id: string;
     label?: string;
     required?: boolean;
@@ -19,7 +17,6 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> &
   };
 
 export default function Input({
-  element = 'input',
   id,
   label,
   register,
@@ -39,33 +36,18 @@ export default function Input({
           {required && <CheckIcon />}
         </div>
       )}
-      {element === 'input' ? (
-        <input
-          {...rest}
-          {...register}
-          id={id}
-          className={cn(
-            `h-[52px] w-full rounded-xl border-[1px] border-gray-200 bg-transparent px-4 outline-none focus:border-primary-400`,
-            {
-              'dark:border-gray-800 dark:text-white dark:placeholder:text-gray-700 ': isDark,
-            },
-            className,
-          )}
-        />
-      ) : (
-        <textarea
-          {...rest}
-          {...register}
-          id={id}
-          className={cn(
-            `h-[108px] w-full resize-none rounded-lg border-[1px] border-gray-100 bg-transparent px-4 pt-4 outline-none focus:border-primary-400`,
-            {
-              'dark:border-gray-800 dark:text-white': isDark,
-            },
-            className,
-          )}
-        />
-      )}
+      <input
+        {...rest}
+        {...register}
+        id={id}
+        className={cn(
+          `h-[52px] w-full rounded-xl border-[1px] border-gray-200 bg-transparent px-4 outline-none focus:border-gray-700`,
+          {
+            'dark:border-gray-800 dark:text-white dark:placeholder:text-gray-700 ': isDark,
+          },
+          className,
+        )}
+      />
       {error && (
         <p className="mt-2 inline-flex items-center gap-x-1 text-xs text-error">
           <WaringIcon />
