@@ -73,8 +73,8 @@ export default function MultiValueResponsePopup({
     }));
 
     setValue('valueResponses', [
-      ...sliceOriginalResponse(originalResponse, type),
       ...newResponse.filter(({ response }) => response),
+      ...sliceOriginalResponse(originalResponse, type),
     ]);
 
     onClose();
