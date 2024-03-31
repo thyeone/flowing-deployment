@@ -24,7 +24,13 @@ export default function QuestionList({
   const { openToast } = useToast();
   const { textareaRef, handleResizeHeight } = useDynamicTextareaHeight();
 
-  const { handleSubmit, control, resetField, watch } = useForm();
+  const {
+    handleSubmit,
+    control,
+    resetField,
+    watch,
+    formState: { isValid },
+  } = useForm();
   const watchFields = watch();
 
   const [selectedLife, setSelectedLife] = useState<number[]>([]);
@@ -85,6 +91,14 @@ export default function QuestionList({
     }
   };
 
+  const checkAnswersHaveAllTypes = () => {
+    const lifeAnswered = selectedLife.some((id) => watchFields[id.toString()]);
+    const jobAnswered = selectedJob.some((id) => watchFields[id.toString()]);
+    const loveAnswered = selectedLove.some((id) => watchFields[id.toString()]);
+
+    return lifeAnswered && jobAnswered && loveAnswered;
+  };
+
   const handleOnSubmit: SubmitHandler<Record<number, string>> = (data) => {
     const convertData = Object.keys(data).map((key) => ({
       id: Number(key),
@@ -104,7 +118,7 @@ export default function QuestionList({
       <ul className="flex flex-col gap-y-3">
         {question.map(({ id, type, question }) => (
           <motion.li
-            layout="position"
+            layout="size"
             key={id}
             className={cn(
               'flex h-auto min-h-[52px] w-full items-start rounded-xl border border-gray-200 bg-white px-5 py-4',
@@ -139,9 +153,11 @@ export default function QuestionList({
                       ref={(e) => {
                         textareaRef.current = e;
                       }}
+                      minLength={20}
+                      maxLength={500}
                       placeholder="답변을 적어주세요."
                       onInput={handleResizeHeight}
-                      className="h-auto w-full resize-none px-5 text-sm outline-none placeholder:text-gray-500"
+                      className="h-auto w-full resize-none px-5 text-sm outline-none transition-all placeholder:text-gray-500"
                     />
                   )}
                 />
@@ -153,9 +169,7 @@ export default function QuestionList({
       </ul>
       <Spacing size={22} />
       <ButtonWrapper>
-        <Button disabled={Object.values(watchFields).filter((value) => value).length !== 9}>
-          다음
-        </Button>
+        <Button disabled={!checkAnswersHaveAllTypes() || !isValid}>다음</Button>
       </ButtonWrapper>
     </form>
   );
