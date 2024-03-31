@@ -128,6 +128,8 @@ export default function MultiValueResponsePopup({
                     render={({ field }) => (
                       <textarea
                         {...field}
+                        minLength={20}
+                        maxLength={500}
                         ref={(e) => {
                           textareaRef.current = e;
                         }}
