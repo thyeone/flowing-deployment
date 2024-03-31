@@ -1,6 +1,6 @@
 import DeleteIcon from '@public/svg/dark-delete-24.svg';
 import Image from 'next/image';
-import { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import { usePostFile } from '@/apis/file/mutations';
 import type { MemberResponse } from '@/apis/member';
@@ -14,9 +14,9 @@ type ProfileCardProps = {
   fileArrayContext: ReturnType<typeof useFileFieldArrayContext>;
 };
 
-export default function ProfileCard({ profileData, fileArrayContext }: ProfileCardProps) {
+const ProfileCard = ({ profileData, fileArrayContext }: ProfileCardProps) => {
   const { register } = useFileFormContext();
-  const { append, remove, fields } = fileArrayContext;
+  const { append, remove, fields, replace } = fileArrayContext;
 
   const { openToast } = useToast();
   const { mutate: postFile } = usePostFile();
@@ -45,9 +45,13 @@ export default function ProfileCard({ profileData, fileArrayContext }: ProfileCa
   };
 
   useEffect(() => {
-    const images = profileData?.profile.images;
-    if (images) {
-      images.slice(0, 6).forEach(({ id, path }) => append({ uuid: id, path }));
+    if (profileData) {
+      const images = profileData.profile.images.map(({ id, path }) => ({
+        uuid: id,
+        path,
+      }));
+
+      replace(images);
     }
   }, [profileData]);
 
@@ -101,4 +105,6 @@ export default function ProfileCard({ profileData, fileArrayContext }: ProfileCa
       <p className="mt-2 text-xs text-gray-500">프로필 사진은 최소 2장 이상 올려주세요</p>
     </>
   );
-}
+};
+
+export default React.memo(ProfileCard);
