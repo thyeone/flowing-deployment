@@ -118,7 +118,7 @@ export default function QuestionList({
       <ul className="flex flex-col gap-y-3">
         {question.map(({ id, type, question }) => (
           <motion.li
-            layout="size"
+            layout="position"
             key={id}
             className={cn(
               'flex h-auto min-h-[52px] w-full items-start rounded-xl border border-gray-200 bg-white px-5 py-4',
