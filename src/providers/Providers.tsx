@@ -6,10 +6,10 @@ import QueryProvider from './QueryProvider';
 
 export default function Providers({ children }: PropsWithStrictChildren) {
   return (
-    <QueryProvider>
-      <OverlayProvider>
+    <OverlayProvider>
+      <QueryProvider>
         <NextThemeProvider>{children}</NextThemeProvider>
-      </OverlayProvider>
-    </QueryProvider>
+      </QueryProvider>
+    </OverlayProvider>
   );
 }
