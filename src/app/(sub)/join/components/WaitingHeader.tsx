@@ -20,14 +20,16 @@ export default function WaitingHeader({
         'dark:bg-gray-900': isDark,
       })}
     >
-      <BackButton onClose={onClose} isDark={isDark} />
-      <span
-        className={cn('absolute inset-x-0 text-center text-lg font-bold text-gray-900', {
+      <Header.Left>
+        <BackButton onClose={onClose} isDark={isDark} />
+      </Header.Left>
+      <Header.Center
+        className={cn({
           'dark:text-white': isDark,
         })}
       >
         {convertStepToText(currentStep)}
-      </span>
+      </Header.Center>
     </Header>
   );
 }
