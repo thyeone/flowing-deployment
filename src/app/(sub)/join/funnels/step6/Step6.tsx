@@ -21,7 +21,7 @@ export default function Step6() {
       <div className="mx-[53px] flex size-full flex-col items-center justify-center rounded-2xl bg-white p-3.5">
         <div className="relative size-full rounded-2xl">
           <Image
-            src={data?.profile.images[0].path as string}
+            src={data?.profile.images[0]?.path as string}
             fill={true}
             className="absolute rounded-2xl object-cover"
             alt="profile"

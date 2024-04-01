@@ -41,7 +41,7 @@ export function useFileFieldArrayContext() {
 
   if (!fileContext) throw new Error('FileFormProvider 내부에서 사용해주세요.');
 
-  const { append, remove, fields } = fileContext;
+  const { append, remove, fields, replace } = fileContext;
 
-  return { append, remove, fields };
+  return { append, remove, fields, replace };
 }
