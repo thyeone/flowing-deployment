@@ -66,6 +66,8 @@ export default function MultiValueResponsePopup({
   };
 
   const onSubmit: SubmitHandler<Record<number, string>> = (data) => {
+    if (!question) return;
+
     const newResponse = Object.keys(data).map((key) => ({
       id: Number(key),
       question: question[question.findIndex((data) => data.id === +key)].question,
@@ -97,7 +99,7 @@ export default function MultiValueResponsePopup({
       <Spacing size={20} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <ul className="flex flex-col gap-y-3">
-          {question.map(({ id, question }, index) => (
+          {question?.map(({ id, question }) => (
             <motion.li
               layout="position"
               key={id}
