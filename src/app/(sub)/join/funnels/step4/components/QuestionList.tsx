@@ -10,7 +10,7 @@ import { usePostValueResponse } from '@/apis/profile';
 import { type Value, useGetValueQuestion } from '@/apis/question';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Spacing from '@/components/Spacing';
-import useToast from '@/hooks/useToast';
+import { useDynamicTextareaHeight, useToast } from '@/hooks';
 import { cn } from '@/utils';
 
 import type { useFunnelContext } from '../../../components/FunnelContext';
@@ -20,9 +20,9 @@ import { VALUE_CATEGORIES } from './TabBar';
 export default function QuestionList({
   nextStep,
 }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep'>) {
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const { tab } = useStep4Context();
   const { openToast } = useToast();
+  const { textareaRef, handleResizeHeight } = useDynamicTextareaHeight();
 
   const { handleSubmit, control, resetField, watch } = useForm();
   const watchFields = watch();
@@ -83,13 +83,6 @@ export default function QuestionList({
       case 'love':
         return selectedLove.length === 3;
     }
-  };
-
-  const handleResizeHeight = () => {
-    if (!textareaRef.current) return;
-
-    textareaRef.current.style.height = 'auto';
-    textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
   };
 
   const handleOnSubmit: SubmitHandler<Record<number, string>> = (data) => {

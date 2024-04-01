@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
@@ -8,6 +9,7 @@ import { calculateAge, decodeAccessToken } from '@/utils';
 export default function Step6() {
   const memberId = decodeAccessToken();
   const { data } = useGetMember(memberId);
+  const router = useRouter();
 
   return (
     <div className="flex size-full flex-col items-center bg-gradient-to-br from-[#FFF0FC] to-[#FFE6DE] px-[53px]">
@@ -38,7 +40,7 @@ export default function Step6() {
       </div>
       <Spacing size={72} />
       <ButtonWrapper>
-        <Button>프로필 수정</Button>
+        <Button onClick={() => router.push('/profile')}>프로필 수정</Button>
       </ButtonWrapper>
     </div>
   );
