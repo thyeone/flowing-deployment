@@ -116,7 +116,7 @@ export default function QuestionList({
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)}>
       <ul className="flex flex-col gap-y-3">
-        {question.map(({ id, type, question }) => (
+        {question?.map(({ id, type, question }) => (
           <motion.li
             layout="position"
             key={id}
