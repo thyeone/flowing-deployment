@@ -3,13 +3,16 @@
 import NextThemeProvider from './NextThemeProvider';
 import OverlayProvider from './OverlayProvider';
 import QueryProvider from './QueryProvider';
+import ToastProvider from './ToastProvider';
 
 export default function Providers({ children }: PropsWithStrictChildren) {
   return (
-    <OverlayProvider>
+    <ToastProvider>
       <QueryProvider>
-        <NextThemeProvider>{children}</NextThemeProvider>
+        <OverlayProvider>
+          <NextThemeProvider>{children}</NextThemeProvider>
+        </OverlayProvider>
       </QueryProvider>
-    </OverlayProvider>
+    </ToastProvider>
   );
 }
