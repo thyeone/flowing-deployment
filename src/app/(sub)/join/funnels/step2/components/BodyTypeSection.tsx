@@ -27,15 +27,13 @@ export default function BodyTypeSection() {
 
   return (
     <>
-      <SectionLabel label="키 / 체형" isCheck={!!height && !!bodyType && !errors.height?.message} />
+      <SectionLabel label="키 / 체형" isCheck={!!height && !!bodyType && !errors.height} />
       <div className="relative flex gap-x-2">
         <div className="relative w-full flex-[2_2_0%]">
           <input
             {...register('height', {
               required: true,
-              minLength: 3,
-              maxLength: 3,
-              pattern: /^[0-9]*$/,
+              pattern: /^(1[3-9][0-9]|2[0-1][0-9]|220)$/,
             })}
             id="bodytype-input"
             placeholder="예) 170"

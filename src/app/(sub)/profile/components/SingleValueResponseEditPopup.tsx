@@ -75,6 +75,8 @@ export default function ValueResponseEditPopup({
             ref={(e) => {
               textareaRef.current = e;
             }}
+            minLength={20}
+            maxLength={500}
             onFocus={handleResizeHeight}
             onInput={handleResizeHeight}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>

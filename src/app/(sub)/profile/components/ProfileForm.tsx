@@ -64,10 +64,9 @@ export default function ProfileForm() {
     if (member) {
       setValue('keywords', member.profile.selfIntro.keywords.split(','));
 
-      // TODO: DB 테이블 비워지면 slice 제거하기
       setValue(
         'valueResponses',
-        member.profile.valueResponses.slice(0, 9).map(({ id, question, response }) => ({
+        member.profile.valueResponses.map(({ id, question, response }) => ({
           id,
           question,
           response,
