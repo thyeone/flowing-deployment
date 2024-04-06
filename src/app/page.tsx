@@ -11,26 +11,27 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import Spacing from '@/components/Spacing';
+import Video from '@/components/Video';
 import { BASE_DOMAIN, springTransition } from '@/constants';
 import { cn } from '@/utils';
 
 const CAROUSEL_LIST = [
   {
     id: 0,
-    image: FirstImage,
+    src: '/video/onboarding1.mp4',
     title: '내 가치관을 적고\n새로운 이성을 만나보세요',
     description:
       '사진이 아닌, 가치관이 만나는 지점\n플로잉에서 가치관을 통해 진정한 사랑을 찾아보세요',
   },
   {
     id: 1,
-    image: SecondImage,
+    src: '/video/onboarding2.mp4',
     title: '나와 비슷한 가치관을 가진\n 이성과 대화해 보세요!',
     description: '마음에 드는 상대방의 가치관을 확인하고\n대화를 통해 첫 걸음을 내디뎌 보세요',
   },
   {
     id: 2,
-    image: ThirdImage,
+    src: '/video/onboarding3.mp4',
     title: '나와 결이 통하는 순간,\n플로잉에서 경험하세요.',
     description: '마음의 결이 맞을 때, 사랑은 더 깊어집니다.\n플로잉에서 진정한 사랑을 경험하세요.',
   },
@@ -66,14 +67,14 @@ export default function Login() {
         onDragEnd={onDragEnd}
         className="flex h-2/3 w-full cursor-grab items-center"
       >
-        {CAROUSEL_LIST.map(({ id, image, title, description }) => (
+        {CAROUSEL_LIST.map(({ id, src, title, description }) => (
           <div
             className="flex size-full shrink-0 flex-col"
             style={{ left: `${id * 100}%`, right: `${id * 100}%` }}
             key={id}
           >
-            <div className="relative flex size-full flex-[2] items-center justify-center overflow-hidden bg-primary-50">
-              <Image src={image} alt="service" className="size-full object-contain p-10" />
+            <div className="flex size-full flex-[2] items-center justify-center overflow-hidden pb-10">
+              <Video src={src} className="w-full object-cover" />
             </div>
             <Spacing size={40} />
             <div className="flex flex-1 flex-col gap-y-4 whitespace-pre-wrap text-center">
