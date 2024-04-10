@@ -7,5 +7,6 @@ export const useGetLogin = (code: string, provider: string, redirectUri: string)
   return useQuery({
     queryKey: queryKeys.getLogin(code),
     queryFn: () => authApi.getLogin(code, provider, redirectUri),
+    enabled: !!code,
   });
 };
