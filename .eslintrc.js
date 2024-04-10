@@ -20,5 +20,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'no-extra-boolean-cast': 'off',
+    'prefer-const': 'off',
   },
 };
