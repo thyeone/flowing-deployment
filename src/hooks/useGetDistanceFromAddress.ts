@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { useScript, useToast } from '@/hooks';
 import { useLatitude, useLongitude } from '@/store/coords';
 import { getCoordsFromAddress, getDistance } from '@/utils';
-
-import useScript from './useScript';
-import useToast from './useToast';
 
 const useGetDistanceFromAddress = (bname: string) => {
   const [isLoaded, setIsLoaded] = useState(false);
