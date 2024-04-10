@@ -5,8 +5,8 @@ import { queryKeys } from './keys';
 
 export const useGetMember = (memberId: string) => {
   return useSuspenseQuery({
-    queryKey: queryKeys.getMember(memberId!),
-    queryFn: () => memberApi.getMember(memberId!),
+    queryKey: queryKeys.getMember(memberId),
+    queryFn: () => memberApi.getMember(memberId),
     select: (data) => {
       const { status, profile } = data;
 
