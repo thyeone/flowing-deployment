@@ -1,18 +1,15 @@
 'use client';
 
-import FirstImage from '@public/image/onboarding1.png';
-import SecondImage from '@public/image/onboarding2.png';
-import ThirdImage from '@public/image/onboarding3.png';
 import GoogleIcon from '@public/svg/google.svg';
 import KakaoIcon from '@public/svg/kakao.svg';
-import { motion, useMotionValue } from 'framer-motion';
-import Image from 'next/image';
+import { useMotionValue } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import Slider from '@/components/Slider';
 import Spacing from '@/components/Spacing';
 import Video from '@/components/Video';
-import { BASE_DOMAIN, springTransition } from '@/constants';
+import { BASE_DOMAIN } from '@/constants';
 import { cn } from '@/utils';
 
 const CAROUSEL_LIST = [
@@ -53,27 +50,14 @@ export default function Login() {
 
   return (
     <main className="main-layout">
-      <motion.div
-        style={{ x }}
-        draggable
-        drag="x"
-        dragConstraints={{
-          left: 0,
-          right: 0,
-        }}
-        dragElastic={0.2}
-        animate={{ translateX: `-${slideIndex * 100}%` }}
-        {...springTransition}
-        onDragEnd={onDragEnd}
-        className="flex h-2/3 w-full cursor-grab items-center"
-      >
+      <Slider className="h-2/3 items-center" style={{ x }} index={slideIndex} onDragEnd={onDragEnd}>
         {CAROUSEL_LIST.map(({ id, src, title, description }) => (
           <div
             className="flex size-full shrink-0 flex-col"
             style={{ left: `${id * 100}%`, right: `${id * 100}%` }}
             key={id}
           >
-            <div className="flex size-full flex-[2] items-center justify-center overflow-hidden pb-10">
+            <div className="relative flex size-full flex-[2] items-center justify-center overflow-hidden pb-10">
               <Video src={src} className="w-full object-cover" />
             </div>
             <Spacing size={40} />
@@ -83,7 +67,7 @@ export default function Login() {
             </div>
           </div>
         ))}
-      </motion.div>
+      </Slider>
       <Spacing size={32} />
       <ul className="flex items-center justify-center gap-x-1">
         {CAROUSEL_LIST.map(({ id }) => (
