@@ -7,7 +7,7 @@ import { useGetLogin } from '@/apis/auth';
 import { BASE_DOMAIN } from '@/constants/environment';
 import { setToken } from '@/utils';
 
-export default function KakaoCallbackPage() {
+export default function KakaoCallback() {
   const router = useRouter();
   const params = useSearchParams();
   const code = params.get('code') || '';
