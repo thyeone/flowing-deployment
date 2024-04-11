@@ -15,7 +15,6 @@ const ICON = {
 };
 
 export default function ValueQnASection({ valueResponses }: ValueQnASectionProps) {
-  console.log(valueResponses);
   return (
     <>
       <div className="border-t border-gray-100 px-5 pt-8 dark:border-gray-800">
