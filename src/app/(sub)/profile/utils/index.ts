@@ -27,6 +27,17 @@ export const convertLabelToType = (label: Label): Value => {
   }
 };
 
+export const convertTypeToLabel = (type: ValueResponse['type']) => {
+  switch (type) {
+    case '사랑':
+      return '연애관';
+    case '일':
+      return '직업';
+    default:
+      return '라이프';
+  }
+};
+
 export const sliceLabelToTitle = (label: Label) => {
   switch (label) {
     case '라이프 가치관':

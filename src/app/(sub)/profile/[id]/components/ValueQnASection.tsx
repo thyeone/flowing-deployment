@@ -1,12 +1,21 @@
 import { ValueResponse } from '@/apis/profile';
-import { JobBW, JobColor, LifeBW, LifeColor, LoveBW, LoveColor } from '@/assets/MyValue';
+import { JobColor, LifeColor, LoveColor } from '@/assets/MyValue';
 import Spacing from '@/components/Spacing';
+
+import { convertTypeToLabel } from '../../utils';
 
 type ValueQnASectionProps = {
   valueResponses: ValueResponse[];
 };
 
+const ICON = {
+  일: <JobColor />,
+  사랑: <LoveColor />,
+  인생: <LifeColor />,
+};
+
 export default function ValueQnASection({ valueResponses }: ValueQnASectionProps) {
+  console.log(valueResponses);
   return (
     <>
       <div className="border-t border-gray-100 px-5 pt-8 dark:border-gray-800">
@@ -17,14 +26,14 @@ export default function ValueQnASection({ valueResponses }: ValueQnASectionProps
       </div>
       <Spacing size={16} />
       <ul className="flex size-full snap-x snap-mandatory gap-x-2 overflow-x-auto px-5">
-        {valueResponses.map(({ id, question, response }) => (
+        {valueResponses.map(({ id, type, question, response }) => (
           <li
             key={id}
             className="w-full shrink-0 snap-center rounded-xl bg-gray-50 px-4 py-5 dark:bg-[rgba(66,66,69,0.5)]"
           >
             <div className="flex items-center gap-x-[6px]">
-              <LoveColor />
-              <span>연애관</span>
+              {ICON[type]}
+              <span>{convertTypeToLabel(type)}</span>
             </div>
             <Spacing size={20} />
             <div className="flex gap-x-1 font-bold">

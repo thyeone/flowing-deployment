@@ -25,6 +25,7 @@ export type ImageResponse = {
 
 export type ValueResponse = {
   id: number;
+  type: '인생' | '일' | '사랑';
   question: string;
   response: string;
 };
