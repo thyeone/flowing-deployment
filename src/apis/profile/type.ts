@@ -30,7 +30,7 @@ export type ValueResponse = {
   response: string;
 };
 
-export type ValueRequest = Omit<ValueResponse, 'question'>;
+export type ValueRequest = Omit<ValueResponse, 'question' | 'type'>;
 
 export type SelfIntroRequest = SelfIntroResponse & {
   address: Omit<AddressResponse, 'id'>;
