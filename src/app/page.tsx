@@ -4,13 +4,13 @@ import GoogleIcon from '@public/svg/google.svg';
 import KakaoIcon from '@public/svg/kakao.svg';
 import { useMotionValue } from 'framer-motion';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Slider from '@/components/Slider';
 import Spacing from '@/components/Spacing';
 import Video from '@/components/Video';
 import { BASE_DOMAIN } from '@/constants';
-import { cn } from '@/utils';
+import { cn, deleteToken } from '@/utils';
 
 const CAROUSEL_LIST = [
   {
@@ -47,6 +47,10 @@ export default function Login() {
       setSlideIndex((prev) => (prev === 0 ? CAROUSEL_LIST.length - 1 : prev - 1));
     }
   };
+
+  useEffect(() => {
+    deleteToken();
+  }, []);
 
   return (
     <main className="main-layout">
