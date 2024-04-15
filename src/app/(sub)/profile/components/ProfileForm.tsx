@@ -66,8 +66,9 @@ export default function ProfileForm() {
 
       setValue(
         'valueResponses',
-        member.profile.valueResponses.map(({ id, question, response }) => ({
+        member.profile.valueResponses.map(({ id, type, question, response }) => ({
           id,
+          type,
           question,
           response,
         })),
@@ -94,23 +95,21 @@ export default function ProfileForm() {
       <Spacing size={32} />
       <ValueResponseList
         valueResponses={
-          member?.profile.valueResponses.filter((data) => data.id < 6) as ValueResponse[]
+          member.profile.valueResponses.filter(({ type }) => type === '인생') as ValueResponse[]
         }
         label="라이프 가치관"
       />
       <Spacing size={16} />
       <ValueResponseList
         valueResponses={
-          member?.profile.valueResponses.filter(
-            (data) => data.id > 5 && data.id < 11,
-          ) as ValueResponse[]
+          member.profile.valueResponses.filter(({ type }) => type === '사랑') as ValueResponse[]
         }
         label="연애관"
       />
       <Spacing size={16} />
       <ValueResponseList
         valueResponses={
-          member?.profile.valueResponses.filter((data) => data.id > 10) as ValueResponse[]
+          member.profile.valueResponses.filter(({ type }) => type === '일') as ValueResponse[]
         }
         label="직업 가치관"
       />

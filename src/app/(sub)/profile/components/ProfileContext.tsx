@@ -7,7 +7,7 @@ import type { ValueResponse } from '@/apis/profile';
 export type ProfileContextValue = {
   oneLineIntroduce: string;
   keywords: string[];
-  valueResponses: Omit<ValueResponse, 'type'>[];
+  valueResponses: ValueResponse[];
 };
 
 const defaultValues: ProfileContextValue = {
