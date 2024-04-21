@@ -1,9 +1,7 @@
 'use client';
 
-type VideoProps = React.VideoHTMLAttributes<HTMLVideoElement> & {
-  src: string;
-};
+import { ComponentProps } from 'react';
 
-export default function Video({ src, ...rest }: VideoProps) {
-  return <video src={src} {...rest} preload="auto" autoPlay muted loop playsInline />;
+export default function Video(props: ComponentProps<'video'>) {
+  return <video preload="auto" autoPlay={true} muted={true} loop playsInline {...props} />;
 }
