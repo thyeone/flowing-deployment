@@ -19,19 +19,19 @@ export default function Step1({
 }: Pick<ReturnType<typeof useFunnelContext>, 'nextStep' | 'setStep'>) {
   const router = useRouter();
   const memberId = decodeAccessToken() || '';
-  // const { data: profile } = useGetMember(memberId);
+  const { data: profile } = useGetMember(memberId);
 
-  // useEffect(() => {
-  //   if (profile.status === 'ACTIVE') router.replace('/home');
+  useEffect(() => {
+    if (profile.status === 'ACTIVE') router.replace('/home');
 
-  //   if (profile.status === 'INACTIVE') router.replace('/');
+    if (profile.status === 'INACTIVE') router.replace('/');
 
-  //   if (profile.status === 'IN_SING_UP') {
-  //     setStep(getEmptyProfile(profile?.profile as MemberResponse['profile']));
-  //   }
-  // }, [profile]);
+    if (profile.status === 'IN_SING_UP') {
+      setStep(getEmptyProfile(profile?.profile as MemberResponse['profile']));
+    }
+  }, [profile]);
 
-  // if (!profile) return null;
+  if (!profile) return null;
 
   return (
     <>
