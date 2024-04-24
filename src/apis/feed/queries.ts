@@ -10,7 +10,7 @@ export const useGetFeedList = (query: string = '') => {
   });
 };
 
-export const useGetFeed = (id: string) => {
+export const useGetFeed = (id: number) => {
   return useQuery({
     queryKey: queryKeys.getFeed(id),
     queryFn: () => feedApi.getFeed(id),

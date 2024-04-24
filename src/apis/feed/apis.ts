@@ -5,7 +5,7 @@ export const feedApi = {
     return await http.get<FeedResponse[]>(`/feeds${query}`);
   },
 
-  getFeed: async (id: string) => {
+  getFeed: async (id: number) => {
     return await http.get<FeedResponse>(`/feeds/${id}`);
   },
 };
