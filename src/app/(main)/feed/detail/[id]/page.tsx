@@ -18,7 +18,12 @@ export default function FeedDetailPage() {
       <Header>
         <Header.FeedHeader>피드</Header.FeedHeader>
       </Header>
-      <FeedItem id={feedData.id} contents={feedData.contents} images={feedData.images} />
+      <FeedItem
+        id={feedData.id}
+        className="border-b-8 border-gray-100 py-8 pt-4"
+        contents={feedData.contents}
+        images={feedData.images}
+      />
     </div>
   );
 }
