@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { useGetFeedList } from '@/apis/feed';
 import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
@@ -14,9 +16,16 @@ export default function Feed() {
       <FeedHeader />
       <ul className="mb-[60px]">
         {feedList?.map(({ id, contents, images }) => (
-          <li key={id} className="border-b border-gray-200">
-            <FeedItem id={id} contents={contents} images={images} />
-          </li>
+          <Link key={id} href={`/feed/detail/${id}`}>
+            <li>
+              <FeedItem
+                id={id}
+                className="border-b border-gray-200 py-5"
+                contents={contents}
+                images={images}
+              />
+            </li>
+          </Link>
         ))}
       </ul>
       <BottomTabBar />
