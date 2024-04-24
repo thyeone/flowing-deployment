@@ -16,9 +16,7 @@ type ChannelBadgeProps = {
 export default function ChannelBadge({ name }: ChannelBadgeProps) {
   const style = channelStyle.find((channel) => channel.name === name);
 
-  if (!style) {
-    throw new Error('일치하는 채널명이 없습니다!');
-  }
+  if (!style) throw new Error('일치하는 채널명이 없습니다!');
 
   return (
     <div
