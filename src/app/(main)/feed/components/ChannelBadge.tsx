@@ -1,3 +1,4 @@
+import { FeedChannelType } from '@/apis/feed';
 import { cn } from '@/utils';
 
 const channelStyle = [

@@ -2,6 +2,7 @@ import FemaleAvatar from '@public/svg/female.svg?url';
 import MaleAvatar from '@public/svg/male.svg?url';
 import Image from 'next/image';
 
+import { FeedResponse } from '@/apis/feed';
 import { cn } from '@/utils';
 
 import ChannelBadge from './ChannelBadge';
@@ -15,7 +16,7 @@ type FeedItemProps = {
   images: FeedResponse['images'];
 };
 
-export default function FeedItem({ id, className, contents, images  }: FeedItemProps) {
+export default function FeedItem({ id, className, contents, images }: FeedItemProps) {
   const DateFormat = (date: string) => date.split('T')[0].replace(/-/g, '.');
 
   return (
