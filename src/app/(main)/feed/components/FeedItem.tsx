@@ -2,7 +2,7 @@ import FemaleAvatar from '@public/svg/female.svg?url';
 import MaleAvatar from '@public/svg/male.svg?url';
 import Image from 'next/image';
 
-import { FeedResponse } from '@/apis/feed';
+import type { FeedResponse } from '@/apis/feed';
 import { cn } from '@/utils';
 
 import ChannelBadge from './ChannelBadge';

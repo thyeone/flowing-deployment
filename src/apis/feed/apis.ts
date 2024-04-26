@@ -1,5 +1,5 @@
 import http from '../config/instance';
-import { FeedResponse } from './type';
+import type { FeedResponse } from './type';
 
 export const feedApi = {
   getFeedList: async (query: string) => {
