@@ -11,11 +11,11 @@ export default function InterestSection({ keywords }: InterestSectionProps) {
       <div className="px-5">
         <p className="text-lg font-bold">관심사</p>
         <Spacing size={16} />
-        <ul className="flex gap-1">
+        <ul className="flex flex-wrap gap-1">
           {keywords.split(',').map((keyword) => (
             <li
               key={keyword}
-              className="flex h-[30px] w-fit items-center justify-center rounded-[48px] border border-gray-100 px-4 text-xs dark:border-gray-800"
+              className="flex h-[30px] w-fit items-center justify-center whitespace-nowrap rounded-[48px] border border-gray-100 px-4 text-xs dark:border-gray-800"
             >
               {keyword}
             </li>
