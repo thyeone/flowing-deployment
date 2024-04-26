@@ -1,3 +1,5 @@
 export const queryKeys = {
-  getFeed: (query: string) => ['feed', query],
+  getFeedList: (query: string) => ['getFeedList', query],
+
+  getFeed: (id: number) => ['getFeed', id],
 } as const;

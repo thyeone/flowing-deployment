@@ -1,10 +1,19 @@
-export type Contents = {
+export type FeedChannelType = {
+  id: number;
+  name: '연애 이야기' | '데일리' | '취미 활동' | '고민상담' | '셀프 소개팅' | '반려동물';
+  title: string;
+  subTitle: string;
+};
+
+export type FeedContentsType = {
+  memberId: string;
   profilePic: string;
   nickname: string;
   age: number;
   region: string;
+  gender: boolean;
   content: string;
-  channel: string;
+  channel: FeedChannelType;
   viewCount: number;
   likeCount: number;
   commentCount: number;
@@ -14,6 +23,6 @@ export type Contents = {
 
 export type FeedResponse = {
   id: number;
-  contents: Contents;
+  contents: FeedContentsType;
   images: string[];
 };
