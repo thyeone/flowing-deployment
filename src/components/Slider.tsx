@@ -24,7 +24,7 @@ export default function Slider({
       dragSnapToOrigin={true}
       {...springTransition}
       onDragEnd={onDragEnd}
-      className={cn('flex size-full cursor-grab', className)}
+      className={cn('flex size-full cursor-grab active:cursor-grabbing', className)}
       {...rest}
     >
       {children}
