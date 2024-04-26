@@ -10,7 +10,7 @@ export default function FloatingChatButton({ nickname }: { nickname: string }) {
   const { open } = useOverlay();
 
   return (
-    <div className="absolute bottom-5 left-[60%]">
+    <div className="absolute bottom-5 right-[152px]">
       <button
         className="fixed bottom-5 z-float flex h-[52px] w-[132px] items-center justify-center gap-x-2 rounded-[62px_48px_2px_62px] bg-primary-300 font-bold text-white"
         onClick={() =>
