@@ -9,7 +9,7 @@ const useSetCoords = () => {
   const { openToast } = useToast();
 
   useEffect(() => {
-    if (navigator.geolocation) {
+    if (navigator.geolocation && setCoords) {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
           const { latitude: lat, longitude: lon } = coords;
@@ -30,7 +30,7 @@ const useSetCoords = () => {
         },
       );
     }
-  }, []);
+  }, [setCoords, navigator.geolocation]);
 };
 
 export default useSetCoords;
