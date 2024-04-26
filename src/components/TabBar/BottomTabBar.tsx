@@ -1,15 +1,15 @@
 'use client';
 
-import ChattingOffIcon from '@public/svg/chatting-off.svg';
-import ChattingOnIcon from '@public/svg/chatting-on.svg';
-import FeedOffIcon from '@public/svg/feed-off.svg';
-import FeedOnIcon from '@public/svg/feed-on.svg';
-import HomeOffIcon from '@public/svg/home-off.svg';
-import HomeOnIcon from '@public/svg/home-on.svg';
-import LikeOffIcon from '@public/svg/like-off.svg';
-import LikeOnIcon from '@public/svg/like-on.svg';
-import MyOffIcon from '@public/svg/my-off.svg';
-import MyOnIcon from '@public/svg/my-on.svg';
+import ChattingOffIcon from '@public/svg/bottomTabBar/chatting-off.svg';
+import ChattingOnIcon from '@public/svg/bottomTabBar/chatting-on.svg';
+import FeedOffIcon from '@public/svg/bottomTabBar/feed-off.svg';
+import FeedOnIcon from '@public/svg/bottomTabBar/feed-on.svg';
+import HomeOffIcon from '@public/svg/bottomTabBar/home-off.svg';
+import HomeOnIcon from '@public/svg/bottomTabBar/home-on.svg';
+import LikeOffIcon from '@public/svg/bottomTabBar/like-off.svg';
+import LikeOnIcon from '@public/svg/bottomTabBar/like-on.svg';
+import MyOffIcon from '@public/svg/bottomTabBar/my-off.svg';
+import MyOnIcon from '@public/svg/bottomTabBar/my-on.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
