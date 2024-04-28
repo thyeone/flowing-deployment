@@ -2,6 +2,8 @@
 
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 
+import type { BodyType } from '@/apis/profile';
+
 export type Join1ContextValue = {
   nickname: string;
   birth: string;

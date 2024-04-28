@@ -157,7 +157,7 @@ export default function QuestionList({
                       maxLength={500}
                       placeholder="답변을 적어주세요."
                       onInput={handleResizeHeight}
-                      className="h-auto w-full resize-none px-5 text-sm outline-none transition-all placeholder:text-gray-500"
+                      className="h-auto w-full resize-none bg-transparent px-5 text-sm outline-none transition-all placeholder:text-gray-500"
                     />
                   )}
                 />

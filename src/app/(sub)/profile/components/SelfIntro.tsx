@@ -1,6 +1,7 @@
+import CheckIcon from '@public/svg/check-24.svg';
+
 import type { MemberResponse } from '@/apis/member';
 import { AddressResponse, SelfIntroResponse } from '@/apis/profile';
-import CheckIcon from '@/assets/CheckIcon';
 
 type SelfIntroProps = {
   profileData: MemberResponse;
@@ -14,18 +15,18 @@ type SelfIntroFieldProps = {
 export default function SelfIntro({ profileData }: SelfIntroProps) {
   return (
     <div className="flex flex-col gap-y-2">
-      <SelfIntroField label="닉네임" value={profileData?.profile?.selfIntro.nickname} />
-      <SelfIntroField label="생일" value={profileData?.profile?.selfIntro.birth} />
+      <SelfIntroField label="닉네임" value={profileData.profile?.selfIntro.nickname} />
+      <SelfIntroField label="생일" value={profileData.profile?.selfIntro.birth} />
       <SelfIntroField
         label="성별"
-        value={profileData?.profile?.selfIntro.gender ? '남성' : '여성'}
+        value={profileData.profile?.selfIntro.gender ? '남성' : '여성'}
       />
       <SelfIntroField
         label="키 / 체형"
-        value={`${profileData?.profile?.selfIntro.height}cm / ${profileData?.profile?.selfIntro.bodyType}`}
+        value={`${profileData.profile?.selfIntro.height}cm / ${profileData.profile?.selfIntro.bodyType}`}
       />
-      <SelfIntroField label="지역" value={profileData?.profile?.address.sigungu} />
-      <SelfIntroField label="MBTI" value={profileData?.profile?.selfIntro.mbti} />
+      <SelfIntroField label="지역" value={profileData.profile?.address.sigungu} />
+      <SelfIntroField label="MBTI" value={profileData.profile?.selfIntro.mbti} />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 'use client';
 
 import CloseIcon from '@public/svg/close-24.svg';
-import { useState } from 'react';
-import { type UseFormReturn, useWatch } from 'react-hook-form';
+import { Controller, type UseFormReturn, useForm, useWatch } from 'react-hook-form';
 
+import type { ValueResponse } from '@/apis/profile';
 import { Button, ButtonWrapper } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { PopupContainer } from '@/components/Overlay';
@@ -14,25 +14,30 @@ import type { ProfileContextValue } from './ProfileContext';
 
 type ValueResponseEditPopupProps = {
   index: number;
+  type: ValueResponse['type'];
   headerTitle: '라이프 가치관' | '연애관' | '직업 가치관';
   question: string;
-  useForm: UseFormReturn<ProfileContextValue>;
+  hookForm: UseFormReturn<ProfileContextValue>;
   isOpen: boolean;
   onClose: VoidFunction;
 };
 
 export default function ValueResponseEditPopup({
   index,
+  type,
   headerTitle,
   question,
-  useForm,
+  hookForm,
   isOpen,
   onClose,
 }: ValueResponseEditPopupProps) {
-  const [textFieldValue, setTextFieldValue] = useState('');
   const { textareaRef, handleResizeHeight } = useDynamicTextareaHeight();
 
-  const { control, handleSubmit, setValue } = useForm;
+  const { control, handleSubmit, setValue } = hookForm;
+  const {
+    control: useFormControl,
+    formState: { isValid },
+  } = useForm();
   const response = useWatch({
     control,
     name: 'valueResponses',
@@ -45,6 +50,7 @@ export default function ValueResponseEditPopup({
 
     setValue(`valueResponses.${index}`, {
       id: response[index].id,
+      type,
       question,
       response: value as string,
     });
@@ -55,7 +61,7 @@ export default function ValueResponseEditPopup({
   return (
     <PopupContainer key="popup" isOpen={isOpen}>
       <Header>
-        <Header.Center>{headerTitle}</Header.Center>
+        <Header.Center className="text-gray-900">{headerTitle}</Header.Center>
         <Header.Right>
           <button onClick={onClose}>
             <CloseIcon />
@@ -66,27 +72,35 @@ export default function ValueResponseEditPopup({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex gap-x-1">
           <span className="text-xl font-bold text-primary-400">Q.</span>
-          <span className="flex pr-[88px] text-xl font-bold">{question}</span>
+          <span className="flex pr-[88px] text-xl font-bold text-gray-900">{question}</span>
         </div>
         <div className="mt-4 flex size-full min-h-[127px] items-start gap-x-1 border-t border-gray-50 py-4">
           <span className="relative text-xl font-bold text-gray-400">A.</span>
-          <textarea
-            defaultValue={response[index]?.response || ''}
-            ref={(e) => {
-              textareaRef.current = e;
+          <Controller
+            name="answer"
+            control={useFormControl}
+            rules={{
+              required: true,
+              minLength: 20,
+              maxLength: 500,
             }}
-            minLength={20}
-            maxLength={500}
-            onFocus={handleResizeHeight}
-            onInput={handleResizeHeight}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              setTextFieldValue(e.target.value)
-            }
-            className="h-auto max-h-[calc(75dvh-100px)] w-full resize-none overflow-y-scroll text-xl outline-none"
+            render={({ field }) => (
+              <textarea
+                {...field}
+                ref={(e) => {
+                  textareaRef.current = e;
+                }}
+                defaultValue={response[index]?.response || ''}
+                placeholder="답변을 적어주세요."
+                onFocus={handleResizeHeight}
+                onInput={handleResizeHeight}
+                className="h-auto max-h-[calc(75dvh-100px)] w-full resize-none overflow-y-scroll bg-transparent text-xl text-gray-900 outline-none"
+              />
+            )}
           />
         </div>
         <ButtonWrapper>
-          <Button disabled={!textFieldValue.length}>수정</Button>
+          <Button disabled={!isValid}>수정</Button>
         </ButtonWrapper>
       </form>
       <Spacing size={100} />

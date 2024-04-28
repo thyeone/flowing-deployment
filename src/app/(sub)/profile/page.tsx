@@ -1,5 +1,4 @@
 import { SSRSafeSuspense } from '@/components/Async';
-import Loading from '@/components/Loading';
 import Spacing from '@/components/Spacing';
 import FileFormProvider from '@/providers/FileFormProvider';
 
@@ -11,7 +10,7 @@ export default function Profile() {
   return (
     <>
       <ProfileHeader />
-      <SSRSafeSuspense fallback={<Loading />}>
+      <SSRSafeSuspense>
         <FileFormProvider>
           <ProfileProvider>
             <Spacing size={16} />

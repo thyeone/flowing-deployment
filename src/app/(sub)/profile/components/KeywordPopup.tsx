@@ -57,7 +57,7 @@ export default function KeywordPopup({ isOpen, onClose, useForm }: KeywordPopupP
   return (
     <PopupContainer isOpen={isOpen}>
       <Header>
-        <Header.Center>내 키워드 수정</Header.Center>
+        <Header.Center className="text-gray-900">내 키워드 수정</Header.Center>
         <Header.Right>
           <button type="button" onClick={onClose}>
             <CloseIcon />
