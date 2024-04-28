@@ -1,3 +1,5 @@
+import { SSRSafeSuspense } from '@/components/Async';
+import Loading from '@/components/Loading';
 import Spacing from '@/components/Spacing';
 import FileFormProvider from '@/providers/FileFormProvider';
 
@@ -7,12 +9,16 @@ import ProfileHeader from './components/ProfileHeader';
 
 export default function Profile() {
   return (
-    <FileFormProvider>
-      <ProfileProvider>
-        <ProfileHeader />
-        <Spacing size={16} />
-        <ProfileForm />
-      </ProfileProvider>
-    </FileFormProvider>
+    <>
+      <ProfileHeader />
+      <SSRSafeSuspense fallback={<Loading />}>
+        <FileFormProvider>
+          <ProfileProvider>
+            <Spacing size={16} />
+            <ProfileForm />
+          </ProfileProvider>
+        </FileFormProvider>
+      </SSRSafeSuspense>
+    </>
   );
 }

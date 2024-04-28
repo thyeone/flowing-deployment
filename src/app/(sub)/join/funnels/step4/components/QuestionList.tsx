@@ -3,7 +3,7 @@
 import InActiveHeartIcon from '@public/svg/heart-button-off.svg';
 import ActiveHeartIcon from '@public/svg/heart-button-on.svg';
 import { motion } from 'framer-motion';
-import { SetStateAction, useRef, useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 
 import { usePostValueResponse } from '@/apis/profile';

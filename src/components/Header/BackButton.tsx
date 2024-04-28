@@ -4,11 +4,15 @@ import { useRouter } from 'next/navigation';
 
 import LeftArrow from '@/assets/LeftArrow';
 
-export default function BackButton() {
+type BackButtonProps = {
+  isDark?: boolean;
+};
+
+export default function BackButton({ isDark }: BackButtonProps) {
   const router = useRouter();
   return (
     <button onClick={() => router.back()}>
-      <LeftArrow />
+      <LeftArrow isDark={isDark} />
     </button>
   );
 }

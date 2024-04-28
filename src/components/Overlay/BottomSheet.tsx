@@ -14,7 +14,7 @@ import BottomDim from './BottomDim';
 type BottomSheetProps = HTMLMotionProps<'div'> & {
   isOpen: boolean;
   onClose: VoidFunction;
-  headerTitle: string;
+  headerTitle?: string;
 };
 
 /**
@@ -50,18 +50,21 @@ const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<BottomShe
             dragConstraints={{ top: 0, bottom: MAX_Y }}
             onDragEnd={onDragEnd}
             dragElastic={0}
+            dragSnapToOrigin
             {...rest}
           >
             <header className="relative flex w-full cursor-pointer flex-col items-center">
               <div className="h-1 w-[45px] rounded-[10px] bg-gray-300" />
-              <div className="relative mt-[43px] flex w-full items-center">
-                <h1 className="absolute inset-x-0 text-center text-lg font-bold text-gray-900">
-                  {headerTitle}
-                </h1>
-                <button onClick={onClose} className="absolute right-0">
-                  <CloseIcon />
-                </button>
-              </div>
+              {headerTitle && (
+                <div className="relative mt-[43px] flex w-full items-center">
+                  <h1 className="absolute inset-x-0 text-center text-lg font-bold text-gray-900">
+                    {headerTitle}
+                  </h1>
+                  <button onClick={onClose} className="absolute right-0">
+                    <CloseIcon />
+                  </button>
+                </div>
+              )}
             </header>
             {children}
           </motion.div>

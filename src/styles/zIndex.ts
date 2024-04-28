@@ -1,5 +1,6 @@
 export const zIndex = {
-  header: 10,
-  bottomDim: 11,
+  header: 100,
+  float: 101,
+  bottomDim: 99998,
   modal: 99999,
 };

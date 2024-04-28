@@ -6,7 +6,6 @@ import { cn } from '@/utils/cn';
 
 import { BackButton } from '.';
 import { MotionHeader } from '../Motion';
-import MenuButton from './MenuButton';
 
 export default function Header({
   children,
@@ -54,7 +53,6 @@ function FeedHeader({ children }: PropsWithStrictChildren) {
     <>
       <BackButton />
       <span className="font-bold text-[#292929]">{children}</span>
-      <MenuButton />
     </>
   );
 }
