@@ -3,7 +3,7 @@ import type { SVGProps } from 'react';
 import { cn } from '@/utils';
 
 export default function LeftArrow({
-  isDark = false,
+  isDark,
   ...rest
 }: SVGProps<SVGSVGElement> & { isDark?: boolean }) {
   return (

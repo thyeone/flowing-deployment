@@ -6,3 +6,7 @@ export { default as useDynamicTextareaHeight } from './useDynamicTextareaHeight'
 export { default as useBottomSheet } from './useBottomSheet';
 export { default as useToast } from './useToast';
 export { default as usePreloadImage } from './usePreloadImage';
+export { default as useApiError } from './useApiError';
+export { default as useGetDistanceFromAddress } from './useGetDistanceFromAddress';
+export { default as useScript } from './useScript';
+export { default as useSetCoords } from './useSetCoords';

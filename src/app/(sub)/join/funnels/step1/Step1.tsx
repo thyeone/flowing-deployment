@@ -21,11 +21,11 @@ export default function Step1({
   const { data: profile } = useGetMember(memberId);
 
   useEffect(() => {
-    if (profile?.status === 'ACTIVE') router.replace('/home');
+    if (profile.status === 'ACTIVE') router.replace('/home');
 
-    if (profile?.status === 'INACTIVE') router.replace('/');
+    if (profile.status === 'INACTIVE') router.replace('/');
 
-    if (profile?.status === 'IN_SING_UP') {
+    if (profile.status === 'IN_SING_UP') {
       setStep(getEmptyProfile(profile?.profile as MemberResponse['profile']));
     }
   }, [profile]);

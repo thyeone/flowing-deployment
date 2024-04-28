@@ -25,11 +25,12 @@ export type ImageResponse = {
 
 export type ValueResponse = {
   id: number;
+  type: '인생' | '일' | '사랑';
   question: string;
   response: string;
 };
 
-export type ValueRequest = Omit<ValueResponse, 'question'>;
+export type ValueRequest = Omit<ValueResponse, 'question' | 'type'>;
 
 export type SelfIntroRequest = SelfIntroResponse & {
   address: Omit<AddressResponse, 'id'>;

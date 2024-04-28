@@ -27,6 +27,17 @@ export const convertLabelToType = (label: Label): Value => {
   }
 };
 
+export const convertTypeToLabel = (type: ValueResponse['type']) => {
+  switch (type) {
+    case '사랑':
+      return '연애관';
+    case '일':
+      return '직업';
+    default:
+      return '라이프';
+  }
+};
+
 export const sliceLabelToTitle = (label: Label) => {
   switch (label) {
     case '라이프 가치관':
@@ -38,7 +49,7 @@ export const sliceLabelToTitle = (label: Label) => {
   }
 };
 
-export const filterValueList = (valueResponse: ValueResponse[], label: Label) => {
+export const filterValueList = (valueResponse: Omit<ValueResponse, 'type'>[], label: Label) => {
   switch (label) {
     case '라이프 가치관':
       return valueResponse?.filter(({ id }) => id < LABEL_INDEX_MAP[label][1]);
@@ -54,9 +65,9 @@ export const filterValueList = (valueResponse: ValueResponse[], label: Label) =>
 };
 
 export const sliceOriginalResponse = (
-  originalRes: ValueResponse[],
+  originalRes: Omit<ValueResponse, 'type'>[],
   type: Value,
-): ValueResponse[] => {
+): Omit<ValueResponse, 'type'>[] => {
   switch (type) {
     case 'life':
       return originalRes.filter(({ id }) => id > TYPE_INDEX_MAP[type][1]);
