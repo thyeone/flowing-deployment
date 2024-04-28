@@ -1,9 +1,14 @@
 'use client';
 
+import LoadingBox from '@public/lottie/loading-box.json';
+import { useQueryClient } from '@tanstack/react-query';
+import Lottie from 'lottie-react';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 
 import { MemberResponse, useGetMember } from '@/apis/member';
+import { queryKeys } from '@/apis/member/keys';
 import {
   ValueResponse,
   usePostProfileImage,
@@ -24,6 +29,8 @@ import SelfIntro from './SelfIntro';
 import ValueResponseList from './ValueResponseList';
 
 export default function ProfileForm() {
+  const router = useRouter();
+
   const { setValue, watch, handleSubmit } = useProfileContext();
   const fileArrayContext = useFileFieldArrayContext();
   const { fields } = fileArrayContext;
@@ -31,9 +38,11 @@ export default function ProfileForm() {
   const keywords = watch('keywords');
 
   const { data: member } = useGetMember(decodeAccessToken());
-  const { mutate: postProfileImage } = usePostProfileImage();
-  const { mutate: postSelfIntro } = usePostSelfIntro();
-  const { mutate: postValueResponse } = usePostValueResponse();
+  const { mutate: postProfileImage, isPending: isPendingPostProfileImage } = usePostProfileImage();
+  const { mutate: postSelfIntro, isPending: isPendingPostSelfIntro } = usePostSelfIntro();
+  const { mutate: postValueResponse, isPending: isPendingPostValueResponse } =
+    usePostValueResponse();
+  const queryClient = useQueryClient();
 
   const { openToast } = useToast();
 
@@ -56,8 +65,19 @@ export default function ProfileForm() {
         mbti: 'ENFP', // TODO: getMember에 mbti가 없어서 임시
         keywords: keywords.join(','),
       }),
-      postValueResponse(valueResponses.map(({ id, response }) => ({ id, response }))),
+      postValueResponse(
+        valueResponses.map(({ id, response }) => ({ id, response })),
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({
+              queryKey: queryKeys.getMember(decodeAccessToken()),
+            });
+          },
+        },
+      ),
     ]);
+
+    router.push(`/profile/approved/${decodeAccessToken()}`);
   };
 
   useEffect(() => {
@@ -66,14 +86,28 @@ export default function ProfileForm() {
 
       setValue(
         'valueResponses',
-        member.profile.valueResponses.map(({ id, question, response }) => ({
+        member.profile.valueResponses.map(({ id, type, question, response }) => ({
           id,
+          type,
           question,
           response,
         })),
       );
     }
   }, [member]);
+
+  if (isPendingPostProfileImage || isPendingPostSelfIntro || isPendingPostValueResponse) {
+    return (
+      <div className="absolute top-0 flex h-full flex-col items-center justify-center">
+        <Lottie animationData={LoadingBox} />
+        <Spacing size={40} />
+        <p className="text-xl font-bold">프로필 생성중이에요</p>
+        <Spacing size={12} />
+        <p className="text-sm text-gray-500">프로필 생성중이에요!</p>
+        <p className="text-sm text-gray-500">잠시만 기다려주세요!</p>
+      </div>
+    );
+  }
 
   return (
     <form className="px-5" onSubmit={handleSubmit(onSubmit)}>
@@ -94,23 +128,21 @@ export default function ProfileForm() {
       <Spacing size={32} />
       <ValueResponseList
         valueResponses={
-          member?.profile.valueResponses.filter((data) => data.id < 6) as ValueResponse[]
+          member.profile.valueResponses.filter(({ type }) => type === '인생') as ValueResponse[]
         }
         label="라이프 가치관"
       />
       <Spacing size={16} />
       <ValueResponseList
         valueResponses={
-          member?.profile.valueResponses.filter(
-            (data) => data.id > 5 && data.id < 11,
-          ) as ValueResponse[]
+          member.profile.valueResponses.filter(({ type }) => type === '사랑') as ValueResponse[]
         }
         label="연애관"
       />
       <Spacing size={16} />
       <ValueResponseList
         valueResponses={
-          member?.profile.valueResponses.filter((data) => data.id > 10) as ValueResponse[]
+          member.profile.valueResponses.filter(({ type }) => type === '일') as ValueResponse[]
         }
         label="직업 가치관"
       />

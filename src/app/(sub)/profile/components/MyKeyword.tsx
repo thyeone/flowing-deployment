@@ -1,9 +1,9 @@
 'use client';
 
+import CheckIcon from '@public/svg/check-24.svg';
+import DeleteIcon from '@public/svg/delete-24.svg';
 import { useWatch } from 'react-hook-form';
 
-import CheckIcon from '@/assets/CheckIcon';
-import DeleteIcon from '@/assets/Delete';
 import Spacing from '@/components/Spacing';
 import { useOverlay } from '@/hooks';
 

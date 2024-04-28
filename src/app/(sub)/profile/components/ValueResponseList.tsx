@@ -1,9 +1,9 @@
 'use client';
 
+import CheckIcon from '@public/svg/check-24.svg';
 import { useWatch } from 'react-hook-form';
 
 import { ValueResponse } from '@/apis/profile';
-import CheckIcon from '@/assets/CheckIcon';
 import Spacing from '@/components/Spacing';
 import { useOverlay } from '@/hooks';
 
@@ -55,16 +55,17 @@ export default function ValueResponseList({ valueResponses, label }: ValueRespon
       </div>
       <Spacing size={16} />
       <ul className="flex flex-col gap-y-4">
-        {filterValueList(responses, label).map(({ id, response, question }, index) => (
+        {filterValueList(responses, label).map(({ id, response, question, type }, index) => (
           <li
             key={id}
             onClick={() => {
               open(({ isOpen, close }) => (
                 <SingleValueResponseEditPopup
                   index={index}
+                  type={type}
                   headerTitle={label}
                   question={question}
-                  useForm={useForm}
+                  hookForm={useForm}
                   isOpen={isOpen}
                   onClose={close}
                 />

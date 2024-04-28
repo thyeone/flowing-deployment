@@ -27,5 +27,3 @@ type FileValue = {
 };
 
 type GenderType = 'MALE' | 'FEMALE';
-
-type BodyType = '마름' | '탄탄 슬림' | '보통' | '통통' | '근육' | '탄탄_슬림';

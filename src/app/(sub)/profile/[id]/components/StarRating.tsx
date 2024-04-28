@@ -17,7 +17,7 @@ export default function StarRating({ rating, handleOnClick }: StarRatingProps) {
         .fill(theme === 'light' ? <UnCheckedLightStar /> : <UncheckedDarkStar />)
         .map((icon, index) => (
           <Fragment key={index}>
-            <input type="radio" name="rating" className="appearance-none" />
+            <input type="radio" name="rating" className="hidden appearance-none" />
             <span onClick={() => handleOnClick(index)}>
               {index < rating ? <ChekcedStar /> : icon}
             </span>

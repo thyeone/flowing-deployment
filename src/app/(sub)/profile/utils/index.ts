@@ -3,27 +3,25 @@ import type { Value } from '@/apis/question';
 
 import type { Label } from '../type';
 
-// TODO: id가 아닌 type 항목으로 필터링 할 예정
-const TYPE_INDEX_MAP = {
-  life: [0, 6],
-  job: [5, 11],
-  love: [11, 15],
-} as const;
-
-const LABEL_INDEX_MAP = {
-  '라이프 가치관': [0, 6],
-  연애관: [5, 11],
-  '직업 가치관': [10, 15],
-};
-
-export const convertLabelToType = (label: Label): Value => {
+export const convertLabelToType = (label: Label): ValueResponse['type'] => {
   switch (label) {
     case '라이프 가치관':
-      return 'life';
+      return '인생';
     case '연애관':
-      return 'love';
+      return '사랑';
     default:
+      return '일';
+  }
+};
+
+export const convertTypeToEng = (type: ValueResponse['type']): Value => {
+  switch (type) {
+    case '사랑':
+      return 'love';
+    case '일':
       return 'job';
+    default:
+      return 'life';
   }
 };
 
@@ -49,33 +47,6 @@ export const sliceLabelToTitle = (label: Label) => {
   }
 };
 
-export const filterValueList = (valueResponse: Omit<ValueResponse, 'type'>[], label: Label) => {
-  switch (label) {
-    case '라이프 가치관':
-      return valueResponse?.filter(({ id }) => id < LABEL_INDEX_MAP[label][1]);
-
-    case '연애관':
-      return valueResponse.filter(
-        ({ id }) => id > LABEL_INDEX_MAP[label][0] && id < LABEL_INDEX_MAP[label][1],
-      );
-
-    case '직업 가치관':
-      return valueResponse.filter(({ id }) => id > LABEL_INDEX_MAP[label][0]);
-  }
-};
-
-export const sliceOriginalResponse = (
-  originalRes: Omit<ValueResponse, 'type'>[],
-  type: Value,
-): Omit<ValueResponse, 'type'>[] => {
-  switch (type) {
-    case 'life':
-      return originalRes.filter(({ id }) => id > TYPE_INDEX_MAP[type][1]);
-    case 'job':
-      return originalRes.filter(
-        ({ id }) => id < TYPE_INDEX_MAP[type][0] && id > TYPE_INDEX_MAP[type][1],
-      );
-    default:
-      return originalRes.filter(({ id }) => id < TYPE_INDEX_MAP[type][0]);
-  }
+export const filterValueList = (valueResponse: ValueResponse[], label: Label) => {
+  return valueResponse.filter(({ type }) => type === convertLabelToType(label));
 };
