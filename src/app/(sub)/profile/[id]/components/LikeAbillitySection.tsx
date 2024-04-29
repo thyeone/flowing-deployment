@@ -43,7 +43,7 @@ export default function LikeAbillitySeciton({ profile, nickname }: LikeAbillityS
     <>
       <div className="flex flex-col items-center py-8">
         <div className="flex items-center gap-x-2">
-          <Avatar image={profile.images[0].path} />
+          <Avatar gender={profile.selfIntro.gender} size="sm" />
           <span className="text-2xl font-bold">{`${profile.selfIntro.nickname}. ${calculateAge(
             profile.selfIntro.birth,
           )}`}</span>
