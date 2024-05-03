@@ -62,7 +62,6 @@ export default function ProfileForm() {
       postSelfIntro({
         ...member.profile.selfIntro,
         address: member.profile.address,
-        mbti: 'ENFP', // TODO: getMember에 mbti가 없어서 임시
         keywords: keywords.join(','),
       }),
       postValueResponse(
@@ -86,15 +85,19 @@ export default function ProfileForm() {
 
       setValue(
         'valueResponses',
-        member.profile.valueResponses.map(({ id, type, question, response }) => ({
-          id,
-          type,
-          question,
-          response,
-        })),
+        member.profile.valueResponses
+          .sort((a, b) => a.id - b.id)
+          .map(({ id, type, question, response }) => ({
+            id,
+            type,
+            question,
+            response,
+          })),
       );
     }
   }, [member]);
+
+  console.log(watch('valueResponses'), 'form');
 
   if (isPendingPostProfileImage || isPendingPostSelfIntro || isPendingPostValueResponse) {
     return (
