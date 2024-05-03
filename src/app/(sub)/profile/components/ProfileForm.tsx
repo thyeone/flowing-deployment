@@ -97,8 +97,6 @@ export default function ProfileForm() {
     }
   }, [member]);
 
-  console.log(watch('valueResponses'), 'form');
-
   if (isPendingPostProfileImage || isPendingPostSelfIntro || isPendingPostValueResponse) {
     return (
       <div className="absolute top-0 flex h-full flex-col items-center justify-center">
