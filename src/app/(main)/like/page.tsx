@@ -5,7 +5,7 @@ export default function Like() {
   return (
     <div>
       <Header>
-        <Header.TextHeader>Like</Header.TextHeader>
+        <Header.Center>Like</Header.Center>
       </Header>
       <h1>Chatting</h1>
       <BottomTabBar />
