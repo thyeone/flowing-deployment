@@ -56,19 +56,15 @@ export default function ProfileForm() {
       return;
     }
 
-    try {
-      await Promise.all([
-        postProfileImage(fileIds),
-        postSelfIntro({
-          ...member.profile.selfIntro,
-          address: member.profile.address,
-          keywords: keywords.join(','),
-        }),
-        postValueResponse(valueResponses.map(({ id, response }) => ({ id, response }))),
-      ]).then(() => router.push(`/profile/approved/${decodeAccessToken()}`));
-    } catch (error) {
-      openToast({ type: 'warning', message: '잠시 후 다시 시도해주세요.' });
-    }
+    await Promise.all([
+      postProfileImage(fileIds),
+      postSelfIntro({
+        ...member.profile.selfIntro,
+        address: member.profile.address,
+        keywords: keywords.join(','),
+      }),
+      postValueResponse(valueResponses.map(({ id, response }) => ({ id, response }))),
+    ]).then(() => router.push(`/profile/approved/${decodeAccessToken()}`));
   };
 
   useEffect(() => {
