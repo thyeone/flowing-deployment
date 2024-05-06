@@ -24,6 +24,10 @@
     --secondary-stroke: #f6b8d4;
   }
 
+  .max-width {
+    max-width: 430px;
+  }
+
   .body-layout {
     @apply flex h-[var(--layout-min-h)] w-screen justify-center bg-slate-50;
   }

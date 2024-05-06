@@ -12,7 +12,7 @@ export default function PopupContainer({
     <AnimatePortal isOpen={isOpen}>
       <motion.div
         {...fadeInOut}
-        className="fixed inset-x-0 z-modal mx-auto h-full w-full max-w-[430px] overflow-auto bg-white px-5"
+        className="max-width fixed inset-x-0 z-modal mx-auto size-full overflow-auto bg-white px-5"
       >
         {children}
       </motion.div>

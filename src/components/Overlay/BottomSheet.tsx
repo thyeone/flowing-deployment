@@ -35,7 +35,7 @@ const BottomSheet = forwardRef<HTMLDivElement, PropsWithStrictChildren<BottomShe
       <AnimatePortal isOpen={isOpen}>
         <BottomDim>
           <motion.div
-            className={`absolute bottom-0 z-50 h-fit w-full max-w-[430px] overflow-hidden rounded-t-2xl bg-white px-5 pt-3`}
+            className={`max-width absolute bottom-0 z-50 h-fit w-full overflow-hidden rounded-t-2xl bg-white px-5 pt-3`}
             style={{ maxHeight: maxBottomSheetHeight }}
             ref={ref}
             initial="hidden"

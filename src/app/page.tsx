@@ -85,7 +85,7 @@ export default function Login() {
         ))}
       </ul>
       <Spacing size={73} />
-      <div className="fixed inset-x-0 bottom-0 mx-auto mb-5 flex w-full max-w-[430px] flex-col gap-y-2 px-5">
+      <div className="max-width fixed inset-x-0 bottom-0 mx-auto mb-5 flex w-full flex-col gap-y-2 px-5">
         <Spacing size={72} />
         <Link
           href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${BASE_DOMAIN}/auth/kakao&response_type=code`}
