@@ -42,7 +42,6 @@ export default function ProfileForm() {
   const { mutate: postSelfIntro, isPending: isPendingPostSelfIntro } = usePostSelfIntro();
   const { mutate: postValueResponse, isPending: isPendingPostValueResponse } =
     usePostValueResponse();
-  const queryClient = useQueryClient();
 
   const { openToast } = useToast();
 
@@ -57,26 +56,19 @@ export default function ProfileForm() {
       return;
     }
 
-    await Promise.all([
-      postProfileImage(fileIds),
-      postSelfIntro({
-        ...member.profile.selfIntro,
-        address: member.profile.address,
-        keywords: keywords.join(','),
-      }),
-      postValueResponse(
-        valueResponses.map(({ id, response }) => ({ id, response })),
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: queryKeys.getMember(decodeAccessToken()),
-            });
-          },
-        },
-      ),
-    ]);
-
-    router.push(`/profile/approved/${decodeAccessToken()}`);
+    try {
+      await Promise.all([
+        postProfileImage(fileIds),
+        postSelfIntro({
+          ...member.profile.selfIntro,
+          address: member.profile.address,
+          keywords: keywords.join(','),
+        }),
+        postValueResponse(valueResponses.map(({ id, response }) => ({ id, response }))),
+      ]).then(() => router.push(`/profile/approved/${decodeAccessToken()}`));
+    } catch (error) {
+      openToast({ type: 'warning', message: '잠시 후 다시 시도해주세요.' });
+    }
   };
 
   useEffect(() => {
