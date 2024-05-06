@@ -16,7 +16,7 @@ export default function Header({
     <>
       <MotionHeader
         className={cn(
-          `fixed inset-x-0 top-0 z-header mx-auto flex h-14 w-full max-w-[430px] items-center justify-between bg-white px-5`,
+          `max-width fixed inset-x-0 top-0 z-header mx-auto flex h-14 w-full items-center justify-between bg-white px-5`,
           className,
         )}
         {...rest}
