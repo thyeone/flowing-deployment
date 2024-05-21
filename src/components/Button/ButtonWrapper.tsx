@@ -40,7 +40,7 @@ export default function ButtonWrapper({
 const renderButtonElements = (elements: ReactElement[]) => {
   if (Children.count(elements) === 1) {
     return (
-      <div className={cn('fixed inset-x-0 bottom-0 z-10 mx-auto mb-5 max-w-[430px] px-5')}>
+      <div className={cn('max-width fixed inset-x-0 bottom-0 z-10 mx-auto mb-5 px-5')}>
         {elements[0]}
       </div>
     );

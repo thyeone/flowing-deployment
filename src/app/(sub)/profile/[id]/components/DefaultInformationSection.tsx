@@ -5,7 +5,7 @@ import MBTIIcon from '@public/svg/mbti-16.svg';
 
 import type { SelfIntroResponse } from '@/apis/profile';
 import Spacing from '@/components/Spacing';
-import { getRangeOfAge } from '@/utils';
+import { getMbtiAlias, getRangeOfAge } from '@/utils';
 
 type DefaultInformationSectionProps = {
   selfIntro: SelfIntroResponse;
@@ -38,7 +38,7 @@ export default function DefaultInformationSection({ selfIntro }: DefaultInformat
         <div className="flex gap-2">
           <div className="flex h-8 flex-1 items-center gap-x-2 text-sm text-gray-700 dark:text-gray-400">
             <MBTIIcon />
-            <span>ENTJ - 통솔자</span>
+            <span>{getMbtiAlias(selfIntro.mbti)}</span>
           </div>
           <div className="flex h-8 flex-1 items-center gap-x-2 text-sm text-gray-700 dark:text-gray-400">
             <AgeIcon />

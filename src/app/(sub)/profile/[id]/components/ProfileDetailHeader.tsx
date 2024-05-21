@@ -33,7 +33,7 @@ export default function ProfileDetailHeader({ nickname, age }: ProfileDetailHead
       </Header>
       <motion.div
         ref={ref}
-        className="absolute inset-x-0 top-0 mx-auto h-80 w-full max-w-[430px] bg-gradient-to-b from-primary-50 from-40% to-white to-100% dark:from-[rgba(133,0,85,0.1)] dark:to-[rgba(33,33,35,0.1)]"
+        className="max-width absolute inset-x-0 top-0 mx-auto h-80 w-full bg-gradient-to-b from-primary-50 from-40% to-white to-100% dark:from-[rgba(133,0,85,0.1)] dark:to-[rgba(33,33,35,0.1)]"
       />
     </>
   );

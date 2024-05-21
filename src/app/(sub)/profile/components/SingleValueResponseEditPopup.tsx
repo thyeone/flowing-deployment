@@ -13,7 +13,7 @@ import useDynamicTextareaHeight from '@/hooks/useDynamicTextareaHeight';
 import type { ProfileContextValue } from './ProfileContext';
 
 type ValueResponseEditPopupProps = {
-  index: number;
+  id: number;
   type: ValueResponse['type'];
   headerTitle: '라이프 가치관' | '연애관' | '직업 가치관';
   question: string;
@@ -23,7 +23,7 @@ type ValueResponseEditPopupProps = {
 };
 
 export default function ValueResponseEditPopup({
-  index,
+  id,
   type,
   headerTitle,
   question,
@@ -42,6 +42,7 @@ export default function ValueResponseEditPopup({
     control,
     name: 'valueResponses',
   });
+  const index = response.findIndex((res) => res.id === id);
 
   const onSubmit = () => {
     if (!textareaRef.current) return;
@@ -49,7 +50,7 @@ export default function ValueResponseEditPopup({
     const { value } = textareaRef.current;
 
     setValue(`valueResponses.${index}`, {
-      id: response[index].id,
+      id,
       type,
       question,
       response: value as string,

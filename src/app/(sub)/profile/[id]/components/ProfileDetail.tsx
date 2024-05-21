@@ -1,12 +1,12 @@
 'use client';
 
 import { useGetMember } from '@/apis/member';
+import FloatingChatButton from '@/components/FloatingChatButton';
 import Spacing from '@/components/Spacing';
 import useSetCoords from '@/hooks/useSetCoords';
 import { calculateAge } from '@/utils';
 
 import DefaultInformationSection from '../components/DefaultInformationSection';
-import FloatingChatButton from '../components/FloatingChatButton';
 import InterestSection from '../components/InterestSection';
 import ProfileDetailHeader from '../components/ProfileDetailHeader';
 import ProfileImageSlider from '../components/ProfileImageSlider';

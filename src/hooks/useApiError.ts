@@ -10,7 +10,10 @@ const useApiError = () => {
       const errorMessage = error.response?.data?.message.slice(0, 40);
 
       if (errorMessage) {
-        openToast({ type: 'warning', message: errorMessage });
+        openToast({
+          type: 'warning',
+          message: errorMessage ?? '오류가 발생했습니다. 잠시 후 시도해주세요',
+        });
       }
     }
   };

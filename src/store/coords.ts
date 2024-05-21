@@ -16,24 +16,14 @@ const initialState = {
   lon: null,
 };
 
-const useCoordsStore = create(
-  devtools(
-    persist<CoordsState>(
-      (set) => ({
-        ...initialState,
-        actions: {
-          setCoords: (lat: number, lon: number) => {
-            set((state) => ({ ...state, lat, lon }));
-          },
-        },
-      }),
-      {
-        name: COORDS_KEY,
-        storage: createJSONStorage(() => localStorage),
-      },
-    ),
-  ),
-);
+const useCoordsStore = create<CoordsState>((set) => ({
+  ...initialState,
+  actions: {
+    setCoords: (lat, lon) => {
+      set((state) => ({ ...state, lat, lon }));
+    },
+  },
+}));
 
 export const useLatitude = () => useCoordsStore((state) => state.lat);
 export const useLongitude = () => useCoordsStore((state) => state.lon);

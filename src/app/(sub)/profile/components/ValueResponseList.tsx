@@ -61,7 +61,7 @@ export default function ValueResponseList({ valueResponses, label }: ValueRespon
             onClick={() => {
               open(({ isOpen, close }) => (
                 <SingleValueResponseEditPopup
-                  index={index}
+                  id={id}
                   type={type}
                   headerTitle={label}
                   question={question}

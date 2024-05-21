@@ -5,7 +5,7 @@ export default function Chatting() {
   return (
     <div>
       <Header>
-        <Header.TextHeader>채팅</Header.TextHeader>
+        <Header.Center>채팅</Header.Center>
       </Header>
       <h1>Chatting</h1>
       <BottomTabBar />
