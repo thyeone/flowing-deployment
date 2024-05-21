@@ -42,7 +42,6 @@ export default function ProfileForm() {
   const { mutate: postSelfIntro, isPending: isPendingPostSelfIntro } = usePostSelfIntro();
   const { mutate: postValueResponse, isPending: isPendingPostValueResponse } =
     usePostValueResponse();
-  const queryClient = useQueryClient();
 
   const { openToast } = useToast();
 
@@ -62,22 +61,10 @@ export default function ProfileForm() {
       postSelfIntro({
         ...member.profile.selfIntro,
         address: member.profile.address,
-        mbti: 'ENFP', // TODO: getMember에 mbti가 없어서 임시
         keywords: keywords.join(','),
       }),
-      postValueResponse(
-        valueResponses.map(({ id, response }) => ({ id, response })),
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries({
-              queryKey: queryKeys.getMember(decodeAccessToken()),
-            });
-          },
-        },
-      ),
-    ]);
-
-    router.push(`/profile/approved/${decodeAccessToken()}`);
+      postValueResponse(valueResponses.map(({ id, response }) => ({ id, response }))),
+    ]).then(() => router.push(`/profile/approved/${decodeAccessToken()}`));
   };
 
   useEffect(() => {
@@ -86,12 +73,14 @@ export default function ProfileForm() {
 
       setValue(
         'valueResponses',
-        member.profile.valueResponses.map(({ id, type, question, response }) => ({
-          id,
-          type,
-          question,
-          response,
-        })),
+        member.profile.valueResponses
+          .sort((a, b) => a.id - b.id)
+          .map(({ id, type, question, response }) => ({
+            id,
+            type,
+            question,
+            response,
+          })),
       );
     }
   }, [member]);

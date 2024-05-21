@@ -13,6 +13,8 @@ import MyOnIcon from '@public/svg/bottomTabBar/my-on.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import Spacing from '../Spacing';
+
 const tabs = [
   { name: '홈', href: '/home', icon: <HomeOffIcon />, checkedIcon: <HomeOnIcon /> },
   { name: '피드', href: '/feed', icon: <FeedOffIcon />, checkedIcon: <FeedOnIcon /> },
@@ -25,19 +27,22 @@ export default function BottomTabBar() {
   const pathName = usePathname();
 
   return (
-    <nav className="fixed bottom-0 z-10 w-full max-w-[430px] border-t border-gray-200 bg-white">
-      <ul className="flex h-[60px] w-full">
-        {tabs.map(({ name, href, icon, checkedIcon }, index) => (
-          <Link key={index} href={href} className="flex-1">
-            <li className="flex h-full flex-col items-center justify-center text-[10px]">
-              {pathName === href ? checkedIcon : icon}
-              <span className={`${pathName === href ? 'text-gray-900' : 'text-gray-600'}`}>
-                {name}
-              </span>
-            </li>
-          </Link>
-        ))}
-      </ul>
-    </nav>
+    <>
+      <Spacing size={61} />
+      <nav className="max-width fixed bottom-0 z-10 w-full border-t border-gray-200 bg-white">
+        <ul className="flex h-[60px] w-full">
+          {tabs.map(({ name, href, icon, checkedIcon }, index) => (
+            <Link key={index} href={href} className="flex-1">
+              <li className="flex h-full flex-col items-center justify-center text-[10px]">
+                {pathName === href ? checkedIcon : icon}
+                <span className={`${pathName === href ? 'text-gray-900' : 'text-gray-600'}`}>
+                  {name}
+                </span>
+              </li>
+            </Link>
+          ))}
+        </ul>
+      </nav>
+    </>
   );
 }

@@ -5,3 +5,4 @@ export * from './age';
 export * from './compressImage';
 export * from './getCoordsFromAddress';
 export * from './getEmptyProfile';
+export * from './mbti';

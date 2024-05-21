@@ -2,6 +2,7 @@ import CheckIcon from '@public/svg/check-24.svg';
 
 import type { MemberResponse } from '@/apis/member';
 import { AddressResponse, SelfIntroResponse } from '@/apis/profile';
+import { getMbtiAlias } from '@/utils';
 
 type SelfIntroProps = {
   profileData: MemberResponse;
@@ -26,7 +27,7 @@ export default function SelfIntro({ profileData }: SelfIntroProps) {
         value={`${profileData.profile?.selfIntro.height}cm / ${profileData.profile?.selfIntro.bodyType}`}
       />
       <SelfIntroField label="지역" value={profileData.profile?.address.sigungu} />
-      <SelfIntroField label="MBTI" value={profileData.profile?.selfIntro.mbti} />
+      <SelfIntroField label="MBTI" value={getMbtiAlias(profileData.profile?.selfIntro.mbti)} />
     </div>
   );
 }

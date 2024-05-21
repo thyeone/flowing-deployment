@@ -16,7 +16,7 @@ export default function FeedDetailPage() {
   return (
     <div>
       <Header>
-        <Header.FeedHeader>피드</Header.FeedHeader>
+        <Header.Center>피드</Header.Center>
       </Header>
       <FeedItem
         id={feedData.id}

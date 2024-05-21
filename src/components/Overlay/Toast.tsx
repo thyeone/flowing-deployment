@@ -22,7 +22,7 @@ export default function Toast({
     <AnimatePortal isOpen={isOpen}>
       <motion.div
         {...fadeInOut}
-        className="fixed inset-x-0 top-4 z-modal mx-auto flex w-full max-w-[430px] justify-center px-5"
+        className="max-width fixed inset-x-0 top-4 z-modal mx-auto flex w-full justify-center px-5"
       >
         <div
           className={cn(

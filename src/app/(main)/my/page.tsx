@@ -5,7 +5,7 @@ export default function My() {
   return (
     <div>
       <Header>
-        <Header.TextHeader>My</Header.TextHeader>
+        <Header.Center>My</Header.Center>
       </Header>
       <h1>Chatting</h1>
       <BottomTabBar />
