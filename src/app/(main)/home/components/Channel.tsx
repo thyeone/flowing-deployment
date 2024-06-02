@@ -15,9 +15,8 @@ export default function Channel({ content }: ChannelProps) {
         <Image
           src={content.image}
           alt={content.name}
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
+          priority
           className="absolute rounded-xl"
         />
         <div className="absolute z-10 flex size-full flex-col justify-between">
