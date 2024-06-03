@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { usePostCrush } from '@/apis/crush/mutations';
 import { useGetSendCrush } from '@/apis/crush/queries';
 import { type MemberResponse, useGetMember } from '@/apis/member';
-import Avatar from '@/components/Avatar';
+import GenderAvatar from '@/components/Avatar/GenderAvatar';
 import Spacing from '@/components/Spacing';
 import { useGetDistanceFromAddress, useIsMounted } from '@/hooks';
 import { calculateAge, decodeAccessToken } from '@/utils';
@@ -41,12 +41,11 @@ export default function LikeAbillitySeciton({ profile, nickname }: LikeAbillityS
     });
   };
 
-  // console.log(crushPoint);
   return (
     <>
       <div className="flex flex-col items-center py-8">
         <div className="flex items-center gap-x-2">
-          <Avatar gender={profile.selfIntro.gender} size="sm" />
+          <GenderAvatar gender={profile.selfIntro.gender} size="sm" />
           <span className="text-2xl font-bold">{`${profile.selfIntro.nickname}. ${calculateAge(
             profile.selfIntro.birth,
           )}`}</span>
