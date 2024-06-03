@@ -27,7 +27,7 @@ export default function MySection() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
           <Avatar imageSrc={myData.profile.images[0].path} size="lg" />
-          <div className="ml-2 flex flex-col items-center">
+          <div className="ml-2 flex flex-col">
             <span className="font-bold">
               {myData.profile.selfIntro.nickname}. {calculateAge(myData.profile.selfIntro.birth)}
             </span>
