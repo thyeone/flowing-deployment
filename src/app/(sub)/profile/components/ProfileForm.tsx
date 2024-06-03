@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 
 import { MemberResponse, useGetMember } from '@/apis/member';
-import { queryKeys } from '@/apis/member/keys';
 import {
   ValueResponse,
   usePostProfileImage,
@@ -16,6 +15,7 @@ import {
   usePostValueResponse,
 } from '@/apis/profile';
 import { Button, ButtonWrapper } from '@/components/Button';
+import Divider from '@/components/Divider';
 import ProfileCard from '@/components/ProfileCard';
 import Spacing from '@/components/Spacing';
 import TextField from '@/components/TextField';
@@ -113,7 +113,7 @@ export default function ProfileForm() {
       <Spacing size={32} />
       <MyKeyword />
       <Spacing size={32} />
-      <div className="absolute inset-x-0 h-2 w-full bg-gray-100" />
+      <Divider />
       <Spacing size={32} />
       <ValueResponseList
         valueResponses={

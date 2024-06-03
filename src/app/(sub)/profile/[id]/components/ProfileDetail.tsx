@@ -1,6 +1,7 @@
 'use client';
 
 import { useGetMember } from '@/apis/member';
+import Divider from '@/components/Divider';
 import FloatingChatButton from '@/components/FloatingChatButton';
 import Spacing from '@/components/Spacing';
 import useSetCoords from '@/hooks/useSetCoords';
@@ -35,7 +36,7 @@ export default function ProfileDetail({ id }: { id: string }) {
         <DefaultInformationSection selfIntro={member.profile.selfIntro} />
         <InterestSection keywords={member.profile.selfIntro.keywords} />
         <ValueQnASection valueResponses={member.profile.valueResponses} />
-        <div className="absolute inset-x-0 h-2 w-full bg-gray-100 dark:bg-gray-800" />
+        <Divider isDark />
         <Spacing size={64} />
       </div>
       <FloatingChatButton nickname={member.profile.selfIntro.nickname} />
