@@ -23,6 +23,7 @@ export default function MySection() {
 
   return (
     <div className="px-5">
+      <Spacing size={16} />
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
           <Avatar imageSrc={myData.profile.images[0].path} size="lg" />
@@ -30,7 +31,9 @@ export default function MySection() {
             <span className="font-bold">
               {myData.profile.selfIntro.nickname}. {calculateAge(myData.profile.selfIntro.birth)}
             </span>
-            <span className="text-xs text-gray-700">{myData.profile.address.sigungu}</span>
+            <span className="text-xs text-gray-700">
+              {myData.profile.address.sido} {myData.profile.address.sigungu}
+            </span>
           </div>
         </div>
         <Link href="/profile">
