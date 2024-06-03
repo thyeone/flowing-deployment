@@ -32,7 +32,7 @@ export default function MbtiSection() {
         className="flex h-[52px] w-full items-center justify-between rounded-xl border border-gray-200 px-4 text-sm dark:border-gray-800"
       >
         <span>{mbti.length ? getMbtiAlias(mbti.join('')) : `MBTI 선택`}</span>
-        <RightArrow width={24} height={24} />
+        <RightArrow width={24} height={24} isDark />
       </button>
     </>
   );
