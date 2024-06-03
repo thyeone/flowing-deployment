@@ -37,7 +37,7 @@ export default function RegionSection() {
                 ? cutAddress(address.roadAddress)
                 : '거주하시는 위치를 선택해주세요.'}
             </div>
-            <RightArrowIcon />
+            <RightArrowIcon isDark />
           </span>
         </button>
       </div>
