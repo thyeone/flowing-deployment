@@ -1,11 +1,19 @@
-import RightArrow from '@public/svg/right-arrow.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { ChannelResponse } from '@/apis/channel';
+import RightArrowIcon from '@/assets/RightArrow';
+
+type Channel = {
+  id: number;
+  name: string;
+  title: string;
+  subTitle: string;
+  image: string;
+  path: string;
+};
 
 type ChannelProps = {
-  content: ChannelResponse;
+  content: Channel;
 };
 
 export default function Channel({ content }: ChannelProps) {
@@ -30,7 +38,7 @@ export default function Channel({ content }: ChannelProps) {
               <div className="flex size-full items-center justify-end gap-2 px-5">
                 <p className="text-xs text-white">자세히 보기</p>
                 <div className="flex size-5 items-center justify-center rounded-full bg-white">
-                  <RightArrow />
+                  <RightArrowIcon width={12} height={12} className="text-black" />
                 </div>
               </div>
             </div>
