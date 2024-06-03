@@ -11,7 +11,7 @@ export default function RightArrow({
       height="16"
       viewBox="0 0 16 16"
       fill="none"
-      className={cn('text-gray-600 dark:text-white', {
+      className={cn('text-gray-600', {
         'dark:text-white': isDark,
       })}
       {...rest}
