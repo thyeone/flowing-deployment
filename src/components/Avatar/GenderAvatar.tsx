@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { cn } from '@/utils';
 
 type GenderAvatarProps = {
-  gender: boolean;
+  gender: GenderType;
 
   /**
    * 성별 아바타의 크기를 지정합니다. 순서대로 16, 28, 32, 40, 64 입니다.
@@ -17,7 +17,7 @@ type GenderAvatarProps = {
 export default function GenderAvatar({ gender, size }: GenderAvatarProps) {
   return (
     <Image
-      src={gender ? MaleAvatar : FemaleAvatar}
+      src={gender === 'MALE' ? MaleAvatar : FemaleAvatar}
       className={cn('rounded-full', {
         'size-4': size === 'xs',
         'size-7': size === 'sm',

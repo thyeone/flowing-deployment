@@ -11,7 +11,7 @@ export type FeedContentsType = {
   nickname: string;
   age: number;
   region: string;
-  gender: boolean;
+  gender: GenderType;
   content: string;
   channel: FeedChannelType;
   viewCount: number;
