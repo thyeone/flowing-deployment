@@ -36,7 +36,7 @@ export default function MoodForm() {
   });
 
   const handleOnSubmit: SubmitHandler<Join1ContextValue> = (data) => {
-    const { gender, mbti, keywords, height, bodyType, address, birth, ...rest } = data;
+    const { mbti, keywords, height, bodyType, address, birth, ...rest } = data;
 
     const { zonecode, ...restAddress } = address;
 
@@ -46,7 +46,6 @@ export default function MoodForm() {
       {
         keywords: keywords.join(','),
         mbti: mbti.join(''),
-        gender: gender === 'MALE',
         height: +height,
         bodyType: bodyType === '탄탄 슬림' ? '탄탄_슬림' : bodyType,
         birth: birth.replaceAll('.', '-'),
