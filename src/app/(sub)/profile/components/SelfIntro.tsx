@@ -20,7 +20,7 @@ export default function SelfIntro({ profileData }: SelfIntroProps) {
       <SelfIntroField label="생일" value={profileData.profile?.selfIntro.birth} />
       <SelfIntroField
         label="성별"
-        value={profileData.profile?.selfIntro.gender ? '남성' : '여성'}
+        value={profileData.profile?.selfIntro.gender === 'MALE' ? '남성' : '여성'}
       />
       <SelfIntroField
         label="키 / 체형"

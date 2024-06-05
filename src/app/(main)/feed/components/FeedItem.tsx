@@ -24,7 +24,11 @@ export default function FeedItem({ id, className, contents, images }: FeedItemPr
       <div className="mb-5 flex flex-col gap-4">
         <ChannelBadge name={contents.channel.name} />
         <div className="flex items-center gap-2">
-          <Image src={contents.gender ? MaleAvatar : FemaleAvatar} alt="genderAvatar" width={40} />
+          <Image
+            src={contents.gender === 'MALE' ? MaleAvatar : FemaleAvatar}
+            alt="genderAvatar"
+            width={40}
+          />
           <div>
             <p className="text-[14px] font-bold">
               {contents.nickname}. {contents.age}
