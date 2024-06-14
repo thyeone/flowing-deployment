@@ -57,7 +57,7 @@ export default function InterestChannelSection() {
       <h2 className="mb-3 text-lg font-bold">관심 채널</h2>
       <div className="flex flex-col gap-2">
         {CHANNEL_DATA.map((channel) => (
-          <Channel key={channel.id} content={channel} />
+          <Channel key={channel.id} channelData={channel} />
         ))}
       </div>
     </>
