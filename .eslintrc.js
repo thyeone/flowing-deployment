@@ -9,7 +9,6 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:prettier/recommended',
     'prettier',
-    'plugin:storybook/recommended',
   ],
   rules: {
     'react/react-in-jsx-scope': 'off',

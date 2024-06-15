@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
 
-const { colors, zIndex, borderRadius } = require('./src/styles');
+const { colors, zIndex, borderRadius, backgroundImage } = require('./src/styles');
 
 const config: Config = {
   content: [
@@ -14,6 +14,7 @@ const config: Config = {
       colors,
       zIndex,
       borderRadius,
+      backgroundImage,
     },
   },
   plugins: [],
