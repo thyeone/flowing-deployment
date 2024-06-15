@@ -14,9 +14,9 @@ export default function Home() {
         <RecommendationProfileSection />
         <Banner />
         <InterestChannelSection />
+        <Spacing size={32} />
       </div>
       <BottomTabBar />
-      <Spacing size={32} />
     </>
   );
 }
