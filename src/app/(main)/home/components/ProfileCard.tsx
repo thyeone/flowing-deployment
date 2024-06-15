@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { ProfileResponse } from '@/apis/home';
 import { useGetDistanceFromAddress } from '@/hooks';
+import useSetCoords from '@/hooks/useSetCoords';
 import { calculateAge } from '@/utils';
 
 type ProfileCardProps = {
@@ -12,6 +13,7 @@ type ProfileCardProps = {
 };
 
 export default function ProfileCard({ profileData, isBlur }: ProfileCardProps) {
+  useSetCoords();
   const distance = useGetDistanceFromAddress(profileData.address.bname);
 
   return (
