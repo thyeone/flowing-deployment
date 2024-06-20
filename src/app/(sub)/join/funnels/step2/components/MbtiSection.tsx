@@ -23,7 +23,6 @@ export default function MbtiSection() {
     <>
       <SectionLabel label="MBTI" isCheck={mbti.length === 4} />
       <button
-        type="button"
         onClick={() =>
           open(({ isOpen, close }) => (
             <MbtiBottomSheet useForm={useForm} isOpen={isOpen} onClose={close} />

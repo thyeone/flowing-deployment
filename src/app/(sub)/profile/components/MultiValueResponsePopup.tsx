@@ -118,7 +118,7 @@ export default function MultiValueResponsePopup({
                   <span className="absolute top-0 font-bold text-primary-400">Q.</span>
                   <span className="ml-5 text-gray-800">{question}</span>
                 </div>
-                <button type="button" onClick={() => handleHeartButton(id)}>
+                <button onClick={() => handleHeartButton(id)}>
                   {questionId.includes(id) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
                 </button>
               </div>

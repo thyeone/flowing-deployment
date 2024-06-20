@@ -54,7 +54,7 @@ export default function MyKeyword() {
             className="flex h-10 w-fit snap-center items-center justify-center gap-x-1 whitespace-nowrap rounded-[48px] border border-gray-200 bg-white pl-4 pr-3 text-sm"
           >
             {keyword}
-            <button type="button" onClick={() => handleRemoveKeyword(keyword)}>
+            <button onClick={() => handleRemoveKeyword(keyword)}>
               <DeleteIcon />
             </button>
           </li>

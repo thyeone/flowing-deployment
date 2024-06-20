@@ -135,7 +135,7 @@ export default function QuestionList({
                 <span className="absolute top-0 font-bold text-primary-400">Q.</span>
                 <span className="ml-5">{question}</span>
               </div>
-              <button type="button" onClick={() => handleHeartButton(id, type)}>
+              <button onClick={() => handleHeartButton(id, type)}>
                 {isIncludeQuestion(id, type) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
               </button>
             </div>

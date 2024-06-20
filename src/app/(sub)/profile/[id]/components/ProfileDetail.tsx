@@ -5,7 +5,7 @@ import Divider from '@/components/Divider';
 import FloatingChatButton from '@/components/FloatingChatButton';
 import Spacing from '@/components/Spacing';
 import useSetCoords from '@/hooks/useSetCoords';
-import { calculateAge } from '@/utils';
+import { calculateAge, decodeAccessToken } from '@/utils';
 
 import DefaultInformationSection from '../components/DefaultInformationSection';
 import InterestSection from '../components/InterestSection';
@@ -15,31 +15,38 @@ import ValueQnASection from '../components/ValueQnASection';
 import LikeAbillitySeciton from './LikeAbillitySection';
 
 export default function ProfileDetail({ id }: { id: string }) {
-  const { data: member } = useGetMember(id);
+  const { data: profileDetailData } = useGetMember(id);
+  const { data: myProfileData } = useGetMember(decodeAccessToken());
 
   useSetCoords();
+
+  console.log(profileDetailData, myProfileData);
 
   return (
     <>
       <div className="dark-mode">
         <ProfileDetailHeader
-          nickname={member.profile.selfIntro.nickname}
-          age={calculateAge(member.profile.selfIntro.birth)}
+          nickname={profileDetailData.profile.selfIntro.nickname}
+          age={calculateAge(profileDetailData.profile.selfIntro.birth)}
         />
         <div className="px-5">
-          <ProfileImageSlider images={member.profile.images} isBlur={false} />
+          <ProfileImageSlider images={profileDetailData.profile.images} isBlur={false} />
           <LikeAbillitySeciton
-            profile={member.profile}
-            nickname={member.profile.selfIntro.nickname}
+            profile={profileDetailData.profile}
+            nickname={profileDetailData.profile.selfIntro.nickname}
           />
         </div>
-        <DefaultInformationSection selfIntro={member.profile.selfIntro} />
-        <InterestSection keywords={member.profile.selfIntro.keywords} />
-        <ValueQnASection valueResponses={member.profile.valueResponses} />
+        <DefaultInformationSection selfIntro={profileDetailData.profile.selfIntro} />
+        <InterestSection keywords={profileDetailData.profile.selfIntro.keywords} />
+        <ValueQnASection valueResponses={profileDetailData.profile.valueResponses} />
         <Divider isDark />
         <Spacing size={64} />
       </div>
-      <FloatingChatButton nickname={member.profile.selfIntro.nickname} />
+      <FloatingChatButton
+        nickname={profileDetailData.profile.selfIntro.nickname}
+        sendProfileId={myProfileData.profile.id}
+        receiveProfileId={profileDetailData.profile.id}
+      />
     </>
   );
 }
