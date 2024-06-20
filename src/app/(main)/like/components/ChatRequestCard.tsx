@@ -33,7 +33,7 @@ export default function ChatRequestCard({
         src={`${S3_BASE_URL}/${profileImagePaths[0]}`}
         fill
         alt="profileImage"
-        className={cn('-z-10', {
+        className={cn('-z-10 object-cover', {
           'blur-[6px]': isBlur,
         })}
       />
