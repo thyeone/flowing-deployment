@@ -1,4 +1,4 @@
-import { SelfIntroResponse } from '../profile';
+import type { AddressResponse, SelfIntroResponse } from '../profile';
 
 export type CrushRequest = {
   sendProfileId: string;
@@ -9,9 +9,10 @@ export type CrushRequest = {
 export type CrushResponse = {
   crushId: number;
   profileId: string;
-  message: string;
   crushScore: string;
-  crushType: 'WAIT' | 'REQUEST' | 'ACCEPT' | 'REFUSE';
+  profileImagePaths: string[];
   selfIntro: SelfIntroResponse;
+  address: AddressResponse;
+  ddayTime: string;
   new: boolean;
 };
