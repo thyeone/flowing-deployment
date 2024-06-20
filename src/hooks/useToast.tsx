@@ -3,7 +3,7 @@ import { Toast } from '@/components/Overlay';
 import { useOverlay } from '.';
 
 const useToast = () => {
-  const { open } = useOverlay({ delay: 1500 });
+  const { open } = useOverlay({ delay: 1500, exitOnUnmount: false });
 
   const openToast = ({
     message,
