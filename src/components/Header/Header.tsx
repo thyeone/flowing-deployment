@@ -4,7 +4,6 @@ import type { PropsWithChildren } from 'react';
 import Spacing from '@/components/Spacing';
 import { cn } from '@/utils/cn';
 
-import { BackButton } from '.';
 import { MotionHeader } from '../Motion';
 
 export default function Header({

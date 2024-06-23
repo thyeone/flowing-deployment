@@ -51,7 +51,6 @@ export default function MykeywordSection() {
         </ul>
       ) : (
         <button
-          type="button"
           className={cn(
             `h-[104px] w-full rounded-lg border border-dashed border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800`,
           )}

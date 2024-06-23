@@ -1,17 +1,28 @@
 'use client';
 
+import { useParams, usePathname } from 'next/navigation';
+
+import { usePostChatRequest } from '@/apis/chat/mutations';
+import type { ChatRequest } from '@/apis/chat/type';
 import { Button, ButtonWrapper } from '@/components/Button';
 import { BottomSheet } from '@/components/Overlay';
 import Spacing from '@/components/Spacing';
 import Video from '@/components/Video';
 import { useBottomSheet } from '@/hooks';
+import { decodeAccessToken } from '@/utils';
 
 export default function ChatRequestBottomSheet({
   isOpen,
   onClose,
   nickname,
-}: OverlayProps & { nickname: string }) {
+  sendProfileId,
+  receiveProfileId,
+}: OverlayProps & ChatRequest & { nickname: string }) {
   const { ref } = useBottomSheet(() => onClose());
+
+  const params = useParams();
+
+  const { mutate: postChatRequest } = usePostChatRequest();
 
   return (
     <BottomSheet ref={ref} isOpen={isOpen} onClose={onClose}>
@@ -24,7 +35,17 @@ export default function ChatRequestBottomSheet({
       </p>
       <Spacing size={60} />
       <ButtonWrapper>
-        <Button onClick={() => onClose()}>대화 신청하기</Button>
+        <Button
+          onClick={() => {
+            postChatRequest({
+              sendProfileId,
+              receiveProfileId,
+            });
+            onClose();
+          }}
+        >
+          대화 신청하기
+        </Button>
       </ButtonWrapper>
     </BottomSheet>
   );
