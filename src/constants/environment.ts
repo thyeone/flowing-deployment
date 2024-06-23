@@ -5,3 +5,5 @@
 export const IS_DEV = process.env.NODE_ENV === 'development';
 
 export const BASE_DOMAIN = process.env.NEXT_PUBLIC_BASE_DOMAIN ?? 'http://localhost:3000';
+
+export const S3_BASE_URL = process.env.NEXT_PUBLIC_S3_BASE_URL;

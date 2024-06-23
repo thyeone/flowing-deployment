@@ -5,6 +5,9 @@ export const crushApi = {
   getSendCrush: async (profileId: string) =>
     await http.get<CrushResponse[]>(`/crush/send/${profileId}`),
 
+  getReceiveCrush: async (profileId: string) =>
+    await http.get<CrushResponse[]>(`/crush/receive/${profileId}`),
+
   postCrush: async (sendProfileId: string, receiveProfileId: string, crushScore: string) =>
     await http.post<void>(
       `/crush/send?sendProfileId=${sendProfileId}&receiveProfileId=${receiveProfileId}&crushScore=${crushScore}`,

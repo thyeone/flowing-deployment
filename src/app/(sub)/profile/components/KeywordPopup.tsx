@@ -59,7 +59,7 @@ export default function KeywordPopup({ isOpen, onClose, useForm }: KeywordPopupP
       <Header>
         <Header.Center className="text-gray-900">내 키워드 수정</Header.Center>
         <Header.Right>
-          <button type="button" onClick={onClose}>
+          <button onClick={onClose}>
             <CloseIcon />
           </button>
         </Header.Right>
@@ -94,14 +94,14 @@ export default function KeywordPopup({ isOpen, onClose, useForm }: KeywordPopupP
             className="flex h-10 w-fit snap-center items-center justify-center gap-x-1 whitespace-nowrap rounded-[48px] border border-gray-100 bg-white pl-4 pr-3 text-sm text-gray-900"
           >
             {keyword}
-            <button type="button" onClick={() => handleTagClick(keyword)}>
+            <button onClick={() => handleTagClick(keyword)}>
               <DeleteIcon />
             </button>
           </li>
         ))}
       </ul>
       <ButtonWrapper>
-        <Button type="button" disabled={!tempKeywords.length} onClick={handleEditButton}>
+        <Button disabled={!tempKeywords.length} onClick={handleEditButton}>
           수정
         </Button>
       </ButtonWrapper>

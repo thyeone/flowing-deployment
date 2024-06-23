@@ -9,3 +9,10 @@ export const useGetSendCrush = (profileId: string) => {
     queryFn: () => crushApi.getSendCrush(profileId),
   });
 };
+
+export const useGetReceiveCrush = (profileId: string) => {
+  return useSuspenseQuery({
+    queryKey: queryKeys.getReceiveCrush(profileId),
+    queryFn: () => crushApi.getReceiveCrush(profileId),
+  });
+};

@@ -5,7 +5,7 @@ import { cn } from '@/utils/cn';
 type ButtonProps = {
   isDark?: boolean;
   disabled?: boolean;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+} & React.ComponentProps<'button'>;
 
 export default function Button({
   isDark,
@@ -26,6 +26,7 @@ export default function Button({
         },
         className,
       )}
+      type={rest.type ?? 'button'}
       disabled={disabled}
     >
       {children}
