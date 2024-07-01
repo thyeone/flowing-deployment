@@ -1,15 +1,16 @@
 'use client';
 
-import CloseIcon from '@public/svg/close-24.svg';
-import HeartIcon from '@public/svg/fill-heart-24.svg';
 import Image from 'next/image';
 
-import { type ChatResponse, usePostChatType } from '@/apis/chat';
+import { ChatResponse } from '@/apis/chat';
+import ReceiveChatRequestPopup from '@/components/Popup/Chat/ReceiveChatRequestPopup';
 import Spacing from '@/components/Spacing';
 import { S3_BASE_URL } from '@/constants';
+import { useOverlay } from '@/hooks';
 import { calculateAge, cn } from '@/utils';
 
-import { getDday } from '../utils';
+import AcceptRejectButton from './AcceptRejectButton';
+import Dday from './Dday';
 
 export default function ReceiveChatCard({
   isBlur,
@@ -18,20 +19,35 @@ export default function ReceiveChatCard({
   profileImagePaths,
   ddayTime,
   address,
+  memberId,
+  message,
 }: ChatResponse & { isBlur: boolean }) {
-  const { mutate: postChatType } = usePostChatType();
+  const { open } = useOverlay({ exitOnUnmount: false });
 
   return (
     <li
       key={conversationId}
+      onClick={() =>
+        open(({ isOpen, close }) => (
+          <ReceiveChatRequestPopup
+            isOpen={isOpen}
+            onClose={close}
+            conversationId={conversationId}
+            selfIntro={selfIntro}
+            profileImagePaths={profileImagePaths}
+            ddayTime={ddayTime}
+            address={address}
+            memberId={memberId}
+            message={message}
+          />
+        ))
+      }
       className={cn(
-        'relative z-20 flex h-[443px] w-full shrink-0 flex-col justify-between overflow-hidden rounded-xl bg-gray-200 p-4',
+        'relative z-20 flex h-[443px] w-full shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl bg-gray-200 p-4',
         { 'bg-gradient-to-t from-[rgba(0,0,0,0.6)] to-[rgba(0,0,0,0)]': isBlur },
       )}
     >
-      <div className="flex h-5 w-fit items-center justify-center rounded-xl bg-[rgba(0,0,0,0.2)] px-2">
-        <p className="text-xs text-white">{`D-${getDday(ddayTime) ?? 'Day'}`}</p>
-      </div>
+      <Dday ddayTime={ddayTime} />
       <Image
         src={`${S3_BASE_URL}/${profileImagePaths[0]}`}
         fill
@@ -40,7 +56,7 @@ export default function ReceiveChatCard({
           'blur-[6px]': isBlur,
         })}
       />
-      <div className="flex flex-col gap-y-2">
+      <div className="flex flex-col gap-y-2" onClick={(e) => e.stopPropagation()}>
         <p className="text-xl font-bold text-white">
           {selfIntro.nickname}. {calculateAge(selfIntro.birth)}
         </p>
@@ -48,20 +64,7 @@ export default function ReceiveChatCard({
           {address.sido} {address.sigungu}
         </p>
         <Spacing size={24} />
-        <div className="flex justify-center gap-x-6 pb-4">
-          <button
-            className="flex size-[60px] items-center justify-center rounded-full bg-white"
-            onClick={() => postChatType({ conversationId, conversationType: 'REFUSE' })}
-          >
-            <CloseIcon />
-          </button>
-          <button
-            className="flex size-[60px] items-center justify-center rounded-full bg-primary-300"
-            onClick={() => postChatType({ conversationId, conversationType: 'ACCEPT' })}
-          >
-            <HeartIcon />
-          </button>
-        </div>
+        <AcceptRejectButton conversationId={conversationId} />
       </div>
     </li>
   );

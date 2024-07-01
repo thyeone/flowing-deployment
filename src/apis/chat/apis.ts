@@ -15,6 +15,15 @@ export const chatApi = {
       // null값 허용돼서 일단 주석
     }),
 
+  postChatMessage: async ({
+    conversationId,
+    message,
+  }: {
+    conversationId: number;
+    message: string;
+  }) =>
+    await http.post(`/conversation/message?conversationId=${conversationId}&message=${message}`),
+
   postChatType: async ({
     conversationId,
     conversationType,

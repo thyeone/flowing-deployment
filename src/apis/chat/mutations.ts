@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 import { useToast } from '@/hooks';
 
@@ -17,7 +16,6 @@ export const usePostChatRequest = () => {
 
 export const usePostChatType = () => {
   const queryClient = useQueryClient();
-  const router = useRouter();
   const { openToast } = useToast();
 
   return useMutation({
@@ -28,6 +26,22 @@ export const usePostChatType = () => {
       conversationType === 'ACCEPT'
         ? openToast({ message: '대화 신청을 승인했어요' })
         : openToast({ message: '대화 신청을 거절했어요' });
+    },
+  });
+};
+
+export const usePostChatMessage = (nickname: string) => {
+  const { openToast } = useToast();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: chatApi.postChatMessage,
+
+    onSuccess: () => {
+      openToast({ message: `${nickname}님께 메세지를 보냈어요!` });
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.getRequestChat(),
+      });
     },
   });
 };
