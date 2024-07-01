@@ -12,34 +12,17 @@ import { calculateAge, cn } from '@/utils';
 import AcceptRejectButton from './AcceptRejectButton';
 import Dday from './Dday';
 
-export default function ReceiveChatCard({
-  isBlur,
-  conversationId,
-  selfIntro,
-  profileImagePaths,
-  ddayTime,
-  address,
-  memberId,
-  message,
-}: ChatResponse & { isBlur: boolean }) {
+export default function ReceiveChatCard({ isBlur, ...props }: ChatResponse & { isBlur: boolean }) {
   const { open } = useOverlay({ exitOnUnmount: false });
+
+  const { conversationId, selfIntro, profileImagePaths, ddayTime, address } = props;
 
   return (
     <li
       key={conversationId}
       onClick={() =>
         open(({ isOpen, close }) => (
-          <ReceiveChatRequestPopup
-            isOpen={isOpen}
-            onClose={close}
-            conversationId={conversationId}
-            selfIntro={selfIntro}
-            profileImagePaths={profileImagePaths}
-            ddayTime={ddayTime}
-            address={address}
-            memberId={memberId}
-            message={message}
-          />
+          <ReceiveChatRequestPopup isOpen={isOpen} onClose={close} {...props} />
         ))
       }
       className={cn(

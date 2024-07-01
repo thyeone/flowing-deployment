@@ -32,7 +32,7 @@ export default function ReceiveChatRequestPopup({
   conversationId,
   memberId,
   message,
-}: OverlayProps & ChatResponse) {
+}: OverlayProps & Omit<ChatResponse, 'profileId'>) {
   const [matchType, setMatchType] = useState<MatchType>('PENDING');
   const [isFlipped, setIsFlipped] = useState(false);
 
