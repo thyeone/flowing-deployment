@@ -69,7 +69,7 @@ export default function SendChatRequestPopup({
 
   return (
     <>
-      <PopupContainer isOpen={isOpen}>
+      <PopupContainer isOpen={isOpen} isPadding={false}>
         <Header className={cn('bg-[#FFF0FC]')} isSpacing={false}>
           <Header.Right>
             <button onClick={() => onClose()}>

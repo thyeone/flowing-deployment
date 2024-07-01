@@ -46,7 +46,7 @@ export default function ReceiveChatRequestPopup({
   useSetCoords();
 
   return (
-    <PopupContainer isOpen={isOpen}>
+    <PopupContainer isOpen={isOpen} isPadding={false}>
       <Header
         className={cn('bg-[#FFF0FC]', {
           'bg-[#EEEEF1]': matchType === 'REFUSE',
