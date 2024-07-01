@@ -13,7 +13,7 @@ export default function CrushPointSection({ crushData, title }: CrushPointSectio
   return (
     <>
       <div className="px-5">
-        <div className="mb-4 mt-5 flex gap-x-1">
+        <div className="mb-4 flex gap-x-1">
           <span className="font-bold">{title}</span>
           <span className="font-bold text-primary-400">{crushData.length}</span>
         </div>
