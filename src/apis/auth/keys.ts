@@ -1,3 +1,4 @@
-export const queryKeys = {
-  getLogin: (code: string) => ['getLogin', code],
-} as const;
+export const queryKeys = Object.freeze({
+  getKakaoLogin: (code: string) => ['getKakaoLogin', code],
+  getGoogleLogin: (code: string) => ['getGoogleLogin', code],
+});

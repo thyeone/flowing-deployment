@@ -2,10 +2,11 @@ import http from '../config/instance';
 import type { LoginResponse } from './type';
 
 export const authApi = {
-  getLogin: async (code: string, provider: string, redirectUri: string) =>
-    await http.get<LoginResponse>(
-      `/auth/login?code=${code}&provider=${provider}&redirect_uri=${redirectUri}`,
-    ),
+  getKakaoLogin: async (code: string, redirectUri: string) =>
+    await http.get<LoginResponse>(`/auth/kakao?code=${code}&redirect_uri=${redirectUri}`),
+
+  getGoogleLogin: async (code: string) =>
+    await http.get<LoginResponse>(`/auth/google?code=${code}`),
 
   postRefresh: async (accessToken: string, refreshToken: string) =>
     await http.post<LoginResponse>(`/auth/refresh`, {

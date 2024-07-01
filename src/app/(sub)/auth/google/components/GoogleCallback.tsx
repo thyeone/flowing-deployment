@@ -3,15 +3,14 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { useGetKakaoLogin } from '@/apis/auth';
-import { BASE_DOMAIN } from '@/constants/environment';
+import { useGetGoogleLogin } from '@/apis/auth';
 import { setToken } from '@/utils';
 
-export default function KakaoCallback() {
+export default function GoogleCallback() {
   const router = useRouter();
   const params = useSearchParams();
   const code = params.get('code') || '';
-  const { data } = useGetKakaoLogin(code, `${BASE_DOMAIN}/auth/kakao`);
+  const { data } = useGetGoogleLogin(code);
 
   useEffect(() => {
     if (data) {
