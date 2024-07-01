@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { type ChatResponse, usePostChatMessage } from '@/apis/chat';
@@ -18,7 +18,7 @@ import { PopupContainer } from '@/components/Overlay';
 import Spacing from '@/components/Spacing';
 import TextField from '@/components/TextField';
 import { S3_BASE_URL } from '@/constants';
-import { useGetDistanceFromAddress, useSetCoords } from '@/hooks';
+import { useGetDistanceFromAddress, useSetCoords, useToast } from '@/hooks';
 import { calculateAge, cn } from '@/utils';
 
 type MatchType = 'PENDING' | 'SUBMITTED';
@@ -39,6 +39,8 @@ export default function SendChatRequestPopup({
   const [messageState, setMessageState] = useState(message || '');
 
   const { mutate: postChatMessage } = usePostChatMessage(selfIntro.nickname);
+
+  const { openToast } = useToast();
 
   const {
     register,
@@ -64,6 +66,10 @@ export default function SendChatRequestPopup({
       setIsLoading(false);
     }, 1500);
   };
+
+  useEffect(() => {
+    if (!message) openToast({ message: '카드를 눌러 메세지를 보내보세요!' });
+  }, []);
 
   useSetCoords();
 
