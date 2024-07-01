@@ -10,7 +10,7 @@ import { useTabContext } from './TabProvider';
 export default function Tabs({ children }: PropsWithStrictChildren) {
   return (
     <>
-      <nav className="max-width fixed z-10 w-full border-b border-gray-200 bg-white pt-4">
+      <nav className="max-width fixed z-header w-full border-b border-gray-200 bg-white pt-4">
         {children}
       </nav>
       <Spacing size={54} />

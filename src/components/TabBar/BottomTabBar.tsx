@@ -29,7 +29,7 @@ export default function BottomTabBar() {
   return (
     <>
       <Spacing size={61} />
-      <nav className="max-width fixed bottom-0 z-10 w-full border-t border-gray-200 bg-white">
+      <nav className="max-width fixed bottom-0 z-header w-full border-t border-gray-200 bg-white">
         <ul className="flex h-[60px] w-full">
           {tabs.map(({ name, href, icon, checkedIcon }, index) => (
             <Link key={index} href={href} className="flex-1">
