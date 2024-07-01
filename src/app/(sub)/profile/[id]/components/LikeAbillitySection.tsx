@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { CrushScore } from '@/apis/crush';
 import { usePostCrush } from '@/apis/crush/mutations';
 import { useGetSendCrush } from '@/apis/crush/queries';
 import { type MemberResponse, useGetMember } from '@/apis/member';
@@ -37,7 +38,7 @@ export default function LikeAbillitySeciton({ profile, nickname }: LikeAbillityS
     mutate({
       sendProfileId: my.profile.id,
       receiveProfileId: profile.id,
-      crushScore: index.toString(),
+      crushScore: index.toString() as CrushScore,
     });
   };
 
