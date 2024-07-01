@@ -6,11 +6,15 @@ import { chatApi } from './apis';
 import { queryKeys } from './keys';
 
 export const usePostChatRequest = () => {
+  const queryClient = useQueryClient();
   const { openToast } = useToast();
 
   return useMutation({
     mutationFn: chatApi.postChatRequest,
-    onSuccess: () => openToast({ message: '대화 신청에 성공했어요.' }),
+    onSuccess: () => {
+      openToast({ message: '대화 신청에 성공했어요.' });
+      queryClient.invalidateQueries({ queryKey: queryKeys.getRequestChat() });
+    },
   });
 };
 
