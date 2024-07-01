@@ -137,7 +137,9 @@ export default function ProfileForm() {
       />
       <Spacing size={52} />
       <ButtonWrapper>
-        <Button disabled={!keywords.length || fields.length < 2}>완료</Button>
+        <Button type="submit" disabled={!keywords.length || fields.length < 2}>
+          완료
+        </Button>
       </ButtonWrapper>
     </form>
   );

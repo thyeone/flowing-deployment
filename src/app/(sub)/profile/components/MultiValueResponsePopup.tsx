@@ -156,7 +156,9 @@ export default function MultiValueResponsePopup({
         </ul>
         <Spacing size={22} />
         <ButtonWrapper>
-          <Button disabled={!isValid}>수정</Button>
+          <Button type="submit" disabled={!isValid}>
+            수정
+          </Button>
         </ButtonWrapper>
       </form>
     </PopupContainer>
