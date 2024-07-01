@@ -7,7 +7,7 @@ export type ChatRequest = {
 
 export type ChatResponse = Pick<
   CrushResponse,
-  'address' | 'ddayTime' | 'profileImagePaths' | 'selfIntro'
+  'address' | 'ddayTime' | 'profileImagePaths' | 'selfIntro' | 'profileId'
 > & {
   conversationId: number;
   message: string;
