@@ -1,7 +1,6 @@
 'use client';
 
 import LoadingBox from '@public/lottie/loading-box.json';
-import { useQueryClient } from '@tanstack/react-query';
 import Lottie from 'lottie-react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -44,6 +43,8 @@ export default function ProfileForm() {
     usePostValueResponse();
 
   const { openToast } = useToast();
+
+  console.log(fields);
 
   const onSubmit: SubmitHandler<ProfileContextValue> = async (data) => {
     const { keywords, oneLineIntroduce, valueResponses } = data;

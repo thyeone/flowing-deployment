@@ -89,7 +89,7 @@ export default function MultiValueResponsePopup({
     <PopupContainer key={type} isOpen={isOpen}>
       <Header>
         <Header.Left>
-          <button onClick={onClose}>
+          <button onClick={() => onClose()}>
             <LeftArrow />
           </button>
         </Header.Left>
@@ -118,7 +118,7 @@ export default function MultiValueResponsePopup({
                   <span className="absolute top-0 font-bold text-primary-400">Q.</span>
                   <span className="ml-5 text-gray-800">{question}</span>
                 </div>
-                <button onClick={() => handleHeartButton(id)}>
+                <button type="button" onClick={() => handleHeartButton(id)}>
                   {questionId.includes(id) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
                 </button>
               </div>

@@ -64,7 +64,7 @@ export default function ValueResponseEditPopup({
       <Header>
         <Header.Center className="text-gray-900">{headerTitle}</Header.Center>
         <Header.Right>
-          <button onClick={onClose}>
+          <button onClick={() => onClose()}>
             <CloseIcon />
           </button>
         </Header.Right>
@@ -101,7 +101,9 @@ export default function ValueResponseEditPopup({
           />
         </div>
         <ButtonWrapper>
-          <Button disabled={!isValid}>수정</Button>
+          <Button type="submit" disabled={!isValid}>
+            수정
+          </Button>
         </ButtonWrapper>
       </form>
       <Spacing size={100} />
