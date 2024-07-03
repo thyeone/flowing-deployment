@@ -1,6 +1,5 @@
 'use client';
 
-import { useGetRequestChat } from '@/apis/chat';
 import { usePostChatRequest } from '@/apis/chat/mutations';
 import type { ChatRequest, ChatResponse } from '@/apis/chat/type';
 import { MemberResponse } from '@/apis/member';
@@ -25,39 +24,6 @@ export default function ChatRequestBottomSheet({
   const { selfIntro } = profileData;
 
   const { mutate: postChatRequest } = usePostChatRequest();
-  const { data: requestChatData } = useGetRequestChat(sendProfileId);
-
-  const targetData = requestChatData.find(({ profileId }) => profileId === receiveProfileId);
-
-  const openSendChatRequestPopup = async ({
-    profileImagePaths,
-    ddayTime,
-    selfIntro,
-    address,
-    conversationId,
-    memberId,
-    message,
-    profileId,
-  }: ChatResponse) =>
-    new Promise((resolve) => {
-      open(({ isOpen, close }) => (
-        <SendChatRequestPopup
-          isOpen={isOpen}
-          onClose={() => {
-            close();
-            resolve(true);
-          }}
-          profileImagePaths={profileImagePaths}
-          ddayTime={ddayTime}
-          selfIntro={selfIntro}
-          address={address}
-          conversationId={conversationId}
-          message={message}
-          memberId={memberId}
-          profileId={profileId}
-        />
-      ));
-    });
 
   return (
     <BottomSheet ref={ref} isOpen={isOpen} onClose={onClose}>
@@ -78,20 +44,10 @@ export default function ChatRequestBottomSheet({
                 receiveProfileId,
               },
               {
-                onSuccess: () => {
-                  setTimeout(async () => {
-                    targetData &&
-                      (await openSendChatRequestPopup({
-                        profileImagePaths: targetData.profileImagePaths,
-                        ddayTime: targetData.ddayTime,
-                        selfIntro: targetData.selfIntro,
-                        address: targetData.address,
-                        conversationId: targetData.conversationId,
-                        memberId: targetData.memberId,
-                        message: targetData.message,
-                        profileId: targetData.profileId,
-                      }));
-                  }, 1000);
+                onSuccess: (data) => {
+                  open(({ isOpen, close }) => (
+                    <SendChatRequestPopup isOpen={isOpen} onClose={close} {...data} />
+                  ));
                 },
               },
             );
