@@ -1,10 +1,12 @@
 'use client';
 
+import HeartMotion from '@public/lottie/heart.json';
 import CloseIcon from '@public/svg/close-24.svg';
 import LockIcon from '@public/svg/lock.svg';
 import FailedHeartIcon from '@public/svg/match-failed-heart.svg';
 import SuccessHeartIcon from '@public/svg/match-success-heart.svg';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -35,12 +37,18 @@ export default function ReceiveChatRequestPopup({
 }: OverlayProps & Omit<ChatResponse, 'profileId'>) {
   const [matchType, setMatchType] = useState<MatchType>('PENDING');
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const distance = useGetDistanceFromAddress(address.bname);
 
   const handleButtonClick = (type: ConversationType) => {
     setMatchType(type);
     setIsFlipped(false);
+
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
   };
 
   useSetCoords();
@@ -112,6 +120,11 @@ export default function ReceiveChatRequestPopup({
                           </button>
                         </Link>
                       </>
+                    )}
+                    {matchType === 'ACCEPT' && isLoading && (
+                      <div className="flex size-full items-center justify-center">
+                        <Lottie animationData={HeartMotion} />
+                      </div>
                     )}
                   </div>
                   <p className="text-[22px] font-bold">
