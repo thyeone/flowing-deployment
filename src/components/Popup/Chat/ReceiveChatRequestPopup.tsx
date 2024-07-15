@@ -5,7 +5,7 @@ import CloseIcon from '@public/svg/close-24.svg';
 import LockIcon from '@public/svg/lock.svg';
 import FailedHeartIcon from '@public/svg/match-failed-heart.svg';
 import SuccessHeartIcon from '@public/svg/match-success-heart.svg';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,7 +18,7 @@ import { Button, ButtonWrapper } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { PopupContainer } from '@/components/Overlay';
 import Spacing from '@/components/Spacing';
-import { S3_BASE_URL } from '@/constants';
+import { S3_BASE_URL, fadeInOut } from '@/constants';
 import { useGetDistanceFromAddress, useSetCoords } from '@/hooks';
 import { calculateAge, cn } from '@/utils';
 
@@ -37,7 +37,7 @@ export default function ReceiveChatRequestPopup({
 }: OverlayProps & Omit<ChatResponse, 'profileId'>) {
   const [matchType, setMatchType] = useState<MatchType>('PENDING');
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const distance = useGetDistanceFromAddress(address.bname);
 
@@ -58,6 +58,7 @@ export default function ReceiveChatRequestPopup({
       <Header
         className={cn('bg-[#FFF0FC]', {
           'bg-[#EEEEF1]': matchType === 'REFUSE',
+          'bg-white': isLoading,
         })}
         isSpacing={false}
       >
@@ -67,6 +68,7 @@ export default function ReceiveChatRequestPopup({
           </button>
         </Header.Right>
       </Header>
+      <AnimatePresence>{isLoading && <HeartMotionScreen />}</AnimatePresence>
       <div
         className={cn(
           'max-width absolute inset-x-0 top-0 -z-10 mx-auto size-full bg-gradient-to-b from-[rgba(255,240,252,1)] to-[rgba(255,230,222,1)]',
@@ -120,11 +122,6 @@ export default function ReceiveChatRequestPopup({
                           </button>
                         </Link>
                       </>
-                    )}
-                    {matchType === 'ACCEPT' && isLoading && (
-                      <div className="flex size-full items-center justify-center">
-                        <Lottie animationData={HeartMotion} />
-                      </div>
                     )}
                   </div>
                   <p className="text-[22px] font-bold">
@@ -288,5 +285,16 @@ function ArrowIcon() {
         fill="#EB2482"
       />
     </svg>
+  );
+}
+
+function HeartMotionScreen() {
+  return (
+    <motion.div
+      {...fadeInOut}
+      className="max-width fixed inset-x-0 z-50 mx-auto flex size-full items-center justify-center bg-white"
+    >
+      <Lottie animationData={HeartMotion} />
+    </motion.div>
   );
 }
