@@ -37,7 +37,7 @@ export default function ReceiveChatRequestPopup({
 }: OverlayProps & Omit<ChatResponse, 'profileId'>) {
   const [matchType, setMatchType] = useState<MatchType>('PENDING');
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const distance = useGetDistanceFromAddress(address.bname);
 
