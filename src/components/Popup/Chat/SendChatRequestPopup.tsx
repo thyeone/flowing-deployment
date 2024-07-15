@@ -42,11 +42,7 @@ export default function SendChatRequestPopup({
 
   const { openToast } = useToast();
 
-  const {
-    register,
-    watch,
-    formState: { isValid },
-  } = useForm<{
+  const { register, watch } = useForm<{
     message: string;
   }>();
 
@@ -55,7 +51,7 @@ export default function SendChatRequestPopup({
   const distance = useGetDistanceFromAddress(address.bname);
 
   const handleSubmitButton = () => {
-    if (!isValid) return;
+    if (!value) return;
 
     postChatMessage({ conversationId, message: value });
     setMessageState(value);
@@ -179,6 +175,7 @@ export default function SendChatRequestPopup({
                           id="message"
                           register={register('message', {
                             required: true,
+                            minLength: 5,
                           })}
                           placeholder="상대방에게 메세지를 보내보세요!"
                           className="size-full border-none p-0"
@@ -196,7 +193,7 @@ export default function SendChatRequestPopup({
                 </>
               )}
             </div>
-            {renderCardFooter(messageState, handleSubmitButton, isValid, value)}
+            {renderCardFooter(messageState, handleSubmitButton, value)}
           </div>
         )}
       </PopupContainer>
@@ -204,19 +201,14 @@ export default function SendChatRequestPopup({
   );
 }
 
-function renderCardFooter(
-  messageState: string,
-  handleSubmitButton: VoidFunction,
-  isValid: boolean,
-  value: string,
-) {
+function renderCardFooter(messageState: string, handleSubmitButton: VoidFunction, value: string) {
   return (
     <>
       {!messageState && (
         <button
           onClick={() => handleSubmitButton()}
           className={cn('h-[52px] w-full bg-primary-300 text-white', {
-            'bg-gray-400': !isValid || !value,
+            'bg-gray-400': !value,
           })}
         >
           메시지 보내기
