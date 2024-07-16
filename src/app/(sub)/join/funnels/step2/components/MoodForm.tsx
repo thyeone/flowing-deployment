@@ -92,6 +92,7 @@ export default function MoodForm() {
         <MbtiSection />
         <ButtonWrapper>
           <Button
+            type="submit"
             isDark
             disabled={
               !isValid ||

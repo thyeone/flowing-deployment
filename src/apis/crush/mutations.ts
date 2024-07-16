@@ -15,7 +15,7 @@ export const usePostCrush = () => {
       crushApi.postCrush(sendProfileId, receiveProfileId, crushScore),
     onSuccess: (_, context) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.getSendCrush(context.sendProfileId) });
-      openToast({ type: 'default', message: '호감 지수를 전달했어요!' });
+      openToast({ message: '호감 지수를 전달했어요!' });
     },
   });
 };

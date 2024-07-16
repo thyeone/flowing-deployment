@@ -1,5 +1,5 @@
 import http from '../config/instance';
-import type { CrushResponse } from './type';
+import type { CrushResponse, CrushScore } from './type';
 
 export const crushApi = {
   getSendCrush: async (profileId: string) =>
@@ -8,8 +8,10 @@ export const crushApi = {
   getReceiveCrush: async (profileId: string) =>
     await http.get<CrushResponse[]>(`/crush/receive/${profileId}`),
 
-  postCrush: async (sendProfileId: string, receiveProfileId: string, crushScore: string) =>
-    await http.post<void>(
-      `/crush/send?sendProfileId=${sendProfileId}&receiveProfileId=${receiveProfileId}&crushScore=${crushScore}`,
-    ),
+  postCrush: async (sendProfileId: string, receiveProfileId: string, crushScore: CrushScore) =>
+    await http.post<void>(`/crush/send`, {
+      sendProfileId,
+      receiveProfileId,
+      crushScore,
+    }),
 };

@@ -2,8 +2,8 @@
 
 import NonLikeable from '@public/svg/non-likeable-80.svg';
 
-import { useGetRequestChat } from '@/apis/chat/queries';
-import { useGetSendCrush } from '@/apis/crush/queries';
+import { useGetRequestChat } from '@/apis/chat';
+import { useGetSendCrush } from '@/apis/crush';
 import Divider from '@/components/Divider';
 import Spacing from '@/components/Spacing';
 
@@ -19,6 +19,7 @@ export default function SendLikeSection({ profileId }: { profileId: string }) {
       <ChatRequestSection chatData={requestChatData} />
       <Spacing size={40} />
       <Divider />
+      <Spacing size={40} />
       <CrushPointSection crushData={sendCrushData} title="보낸 호감지수" />
       <Spacing size={40} />
     </>

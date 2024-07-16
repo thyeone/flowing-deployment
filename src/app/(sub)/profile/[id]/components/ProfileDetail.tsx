@@ -41,9 +41,8 @@ export default function ProfileDetail({ id }: { id: string }) {
         <Spacing size={64} />
       </div>
       <FloatingChatButton
-        nickname={profileDetailData.profile.selfIntro.nickname}
+        profileData={profileDetailData.profile}
         sendProfileId={myProfileData.profile.id}
-        receiveProfileId={profileDetailData.profile.id}
       />
     </>
   );

@@ -7,6 +7,7 @@ import Spacing from '../Spacing';
 
 type ButtonWrapperProps = {
   position?: 'bottom' | 'content';
+  isPadding?: boolean;
 };
 
 /**
@@ -16,9 +17,10 @@ type ButtonWrapperProps = {
 
 export default function ButtonWrapper({
   position = 'bottom',
+  isPadding = true,
   children,
 }: PropsWithStrictChildren<ButtonWrapperProps>) {
-  const arrayChildren = Children.toArray(children) as ReactElement<typeof Button>[];
+  const arrayChildren = Children.toArray(children) as ReactElement<typeof HTMLButtonElement>[];
 
   if (arrayChildren.length === 0)
     throw new Error('ButtonWrapper는 최소 1개의 Button을 포함해야 합니다.');
@@ -32,15 +34,19 @@ export default function ButtonWrapper({
   return (
     <>
       {position === 'bottom' && <Spacing size={20 + 52} />}
-      {renderButtonElements(arrayChildren)}
+      {renderButtonElements(arrayChildren, isPadding)}
     </>
   );
 }
 
-const renderButtonElements = (elements: ReactElement[]) => {
+const renderButtonElements = (elements: ReactElement[], isPadding: boolean) => {
   if (Children.count(elements) === 1) {
     return (
-      <div className={cn('max-width fixed inset-x-0 bottom-0 z-10 mx-auto mb-5 px-5')}>
+      <div
+        className={cn('max-width fixed inset-x-0 bottom-0 z-10 mx-auto mb-5', {
+          'px-5': isPadding,
+        })}
+      >
         {elements[0]}
       </div>
     );

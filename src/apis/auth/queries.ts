@@ -3,9 +3,15 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { authApi } from '.';
 import { queryKeys } from './keys';
 
-export const useGetLogin = (code: string, provider: string, redirectUri: string) => {
+export const useGetKakaoLogin = (code: string, redirectUri: string) => {
   return useSuspenseQuery({
-    queryKey: queryKeys.getLogin(code),
-    queryFn: () => authApi.getLogin(code, provider, redirectUri),
+    queryKey: queryKeys.getKakaoLogin(code),
+    queryFn: () => authApi.getKakaoLogin(code, redirectUri),
   });
 };
+
+export const useGetGoogleLogin = (code: string, redirectUri: string) =>
+  useSuspenseQuery({
+    queryKey: queryKeys.getGoogleLogin(code),
+    queryFn: () => authApi.getGoogleLogin(code, redirectUri),
+  });

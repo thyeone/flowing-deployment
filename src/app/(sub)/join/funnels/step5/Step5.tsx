@@ -33,7 +33,9 @@ export default function Step5({ nextStep }: Pick<ReturnType<typeof useFunnelCont
         />
         <ProfileCard fileArrayContext={fileArrayContext} />
         <ButtonWrapper>
-          <Button disabled={fields.length < 2}>완료</Button>
+          <Button type="submit" disabled={fields.length < 2}>
+            완료
+          </Button>
         </ButtonWrapper>
       </form>
     </>

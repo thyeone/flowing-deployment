@@ -3,16 +3,21 @@
 import ChatIcon from '@public/svg/chat-16.svg';
 
 import type { ChatRequest } from '@/apis/chat/type';
+import type { MemberResponse } from '@/apis/member';
 import { useOverlay } from '@/hooks';
 
 import ChatRequestBottomSheet from './ChatRequestBottomSheet';
 
 export default function FloatingChatButton({
-  nickname,
+  profileData,
   sendProfileId,
-  receiveProfileId,
-}: { nickname: string } & ChatRequest) {
+}: {
+  profileData: MemberResponse['profile'];
+  sendProfileId: string;
+}) {
   const { open } = useOverlay();
+
+  const { id: profileId } = profileData;
 
   return (
     <div className="absolute bottom-5 right-[152px]">
@@ -23,9 +28,9 @@ export default function FloatingChatButton({
             <ChatRequestBottomSheet
               isOpen={isOpen}
               onClose={close}
-              nickname={nickname}
+              profileData={profileData}
               sendProfileId={sendProfileId}
-              receiveProfileId={receiveProfileId}
+              receiveProfileId={profileId}
             />
           ))
         }

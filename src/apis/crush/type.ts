@@ -3,7 +3,7 @@ import type { AddressResponse, SelfIntroResponse } from '../profile';
 export type CrushRequest = {
   sendProfileId: string;
   receiveProfileId: string;
-  crushScore: string;
+  crushScore: CrushScore;
 };
 
 export type CrushResponse = {
@@ -16,3 +16,5 @@ export type CrushResponse = {
   ddayTime: string;
   new: boolean;
 };
+
+export type CrushScore = '1' | '2' | '3' | '4' | '5';
