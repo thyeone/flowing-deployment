@@ -10,8 +10,8 @@ export const useGetKakaoLogin = (code: string, redirectUri: string) => {
   });
 };
 
-export const useGetGoogleLogin = (code: string) =>
+export const useGetGoogleLogin = (code: string, redirectUri: string) =>
   useSuspenseQuery({
     queryKey: queryKeys.getGoogleLogin(code),
-    queryFn: () => authApi.getGoogleLogin(code),
+    queryFn: () => authApi.getGoogleLogin(code, redirectUri),
   });
