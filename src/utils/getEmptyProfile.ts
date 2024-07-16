@@ -1,6 +1,8 @@
 import type { MemberResponse } from '@/apis/member';
 
 export const getEmptyProfile = (profile: MemberResponse['profile']) => {
+  if (!profile) return '1';
+
   for (const key in profile) {
     const field = profile[key as keyof MemberResponse['profile']];
 
