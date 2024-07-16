@@ -169,7 +169,9 @@ export default function QuestionList({
       </ul>
       <Spacing size={22} />
       <ButtonWrapper>
-        <Button disabled={!checkAnswersHaveAllTypes() || !isValid}>다음</Button>
+        <Button type="submit" disabled={!checkAnswersHaveAllTypes() || !isValid}>
+          다음
+        </Button>
       </ButtonWrapper>
     </form>
   );

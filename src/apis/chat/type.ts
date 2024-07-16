@@ -5,6 +5,13 @@ export type ChatRequest = {
   receiveProfileId: string;
 };
 
-export type ChatResponse = CrushResponse & { conversationId: number; message: string };
+export type ChatResponse = Pick<
+  CrushResponse,
+  'address' | 'ddayTime' | 'profileImagePaths' | 'selfIntro' | 'profileId'
+> & {
+  conversationId: number;
+  message: string;
+  memberId: string;
+};
 
 export type ConversationType = 'ACCEPT' | 'REFUSE';

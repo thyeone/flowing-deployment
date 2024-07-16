@@ -9,8 +9,9 @@ import { MotionHeader } from '../Motion';
 export default function Header({
   children,
   className,
+  isSpacing = true,
   ...rest
-}: PropsWithChildren<HTMLMotionProps<'header'>> & AnimationProps) {
+}: PropsWithChildren<HTMLMotionProps<'header'>> & AnimationProps & { isSpacing?: boolean }) {
   return (
     <>
       <MotionHeader
@@ -22,7 +23,7 @@ export default function Header({
       >
         {children}
       </MotionHeader>
-      <Spacing size={56} />
+      {isSpacing && <Spacing size={56} />}
     </>
   );
 }

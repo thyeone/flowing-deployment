@@ -9,7 +9,7 @@ import Spacing from './Spacing';
 
 type TextFieldProps = React.InputHTMLAttributes<HTMLTextAreaElement> & {
   id: string;
-  label: string;
+  label?: string;
   register?: UseFormRegisterReturn;
   required?: boolean;
 };

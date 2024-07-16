@@ -9,11 +9,20 @@ export const chatApi = {
     await http.get<ChatResponse[]>(`/conversation/receive/${profileId}`),
 
   postChatRequest: async (chatRequestData: ChatRequest) =>
-    await http.post<void>('/conversation/send', {
+    await http.post<ChatResponse>('/conversation/send', {
       ...chatRequestData,
       // message: '',
       // null값 허용돼서 일단 주석
     }),
+
+  postChatMessage: async ({
+    conversationId,
+    message,
+  }: {
+    conversationId: number;
+    message: string;
+  }) =>
+    await http.post(`/conversation/message?conversationId=${conversationId}&message=${message}`),
 
   postChatType: async ({
     conversationId,

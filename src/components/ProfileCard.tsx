@@ -76,7 +76,11 @@ const ProfileCard = ({ profileData, fileArrayContext }: ProfileCardProps) => {
                   className="absolute object-cover"
                   alt="test"
                 />
-                <button className="absolute right-1 top-1 z-[1]" onClick={() => remove(index)}>
+                <button
+                  type="button"
+                  className="absolute right-1 top-1 z-[1]"
+                  onClick={() => remove(index)}
+                >
                   <DeleteIcon width="24" height="24" />
                 </button>
               </li>
