@@ -3,8 +3,8 @@
 import LoadingBox from '@public/lottie/loading-box.json';
 import Lottie from 'lottie-react';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import type { SubmitHandler } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { type SubmitHandler, useWatch } from 'react-hook-form';
 
 import { MemberResponse, useGetMember } from '@/apis/member';
 import {
@@ -30,32 +30,37 @@ import ValueResponseList from './ValueResponseList';
 export default function ProfileForm() {
   const router = useRouter();
 
-  const { setValue, watch, handleSubmit } = useProfileContext();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { setValue, control, handleSubmit, register } = useProfileContext();
   const fileArrayContext = useFileFieldArrayContext();
   const { fields } = fileArrayContext;
 
-  const keywords = watch('keywords');
+  const keywords = useWatch({ control, name: 'keywords' });
+  const introduction = useWatch({ control, name: 'introduction' });
 
   const { data: member } = useGetMember(decodeAccessToken());
-  const { mutate: postProfileImage, isPending: isPendingPostProfileImage } = usePostProfileImage();
-  const { mutate: postSelfIntro, isPending: isPendingPostSelfIntro } = usePostSelfIntro();
-  const { mutate: postValueResponse, isPending: isPendingPostValueResponse } =
-    usePostValueResponse();
+  const { mutate: postProfileImage } = usePostProfileImage();
+  const { mutate: postSelfIntro } = usePostSelfIntro();
+  const { mutate: postValueResponse } = usePostValueResponse();
 
   const { openToast } = useToast();
 
-  console.log(fields);
-
   const onSubmit: SubmitHandler<ProfileContextValue> = async (data) => {
-    const { keywords, oneLineIntroduce, valueResponses } = data;
-    const fileIds = fields.map(({ uuid }) => uuid);
-
     if (!member) return;
+
+    const { keywords, introduction, valueResponses } = data;
+    const fileIds = fields.map(({ uuid }) => uuid);
 
     if (JSON.stringify(fileIds) === JSON.stringify(member.profile.images.map(({ id }) => id))) {
       openToast({ type: 'warning', message: '사진을 수정해주세요' });
       return;
     }
+
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
 
     await Promise.all([
       postProfileImage(fileIds),
@@ -63,6 +68,7 @@ export default function ProfileForm() {
         ...member.profile.selfIntro,
         address: member.profile.address,
         keywords: keywords.join(','),
+        introduction,
       }),
       postValueResponse(valueResponses.map(({ id, response }) => ({ id, response }))),
     ]).then(() => router.push(`/profile/approved/${decodeAccessToken()}`));
@@ -83,10 +89,14 @@ export default function ProfileForm() {
             response,
           })),
       );
+
+      setValue('introduction', member.profile.selfIntro.introduction || '');
     }
   }, [member]);
 
-  if (isPendingPostProfileImage || isPendingPostSelfIntro || isPendingPostValueResponse) {
+  console.log(member.profile.selfIntro.introduction);
+
+  if (isLoading) {
     return (
       <div className="absolute top-0 flex h-full flex-col items-center justify-center">
         <Lottie animationData={LoadingBox} />
@@ -104,10 +114,13 @@ export default function ProfileForm() {
       <ProfileCard profileData={member as MemberResponse} fileArrayContext={fileArrayContext} />
       <Spacing size={32} />
       <TextField
+        register={register('introduction', {
+          required: true,
+        })}
         label="한줄 자기소개"
         id="one-line-introduce"
         placeholder="자기소개를 입력해주세요."
-        required={false}
+        required={!!introduction.length}
       />
       <Spacing size={32} />
       <SelfIntro profileData={member as MemberResponse} />
@@ -138,7 +151,10 @@ export default function ProfileForm() {
       />
       <Spacing size={52} />
       <ButtonWrapper>
-        <Button type="submit" disabled={!keywords.length || fields.length < 2}>
+        <Button
+          type="submit"
+          disabled={!keywords.length || fields.length < 2 || !introduction.length}
+        >
           완료
         </Button>
       </ButtonWrapper>

@@ -1,6 +1,7 @@
 export type SelfIntroResponse = {
   nickname: string;
   gender: GenderType;
+  introduction?: string;
   birth: string;
   height: number;
   bodyType: BodyType;

@@ -30,6 +30,7 @@ export default function ProfileDetail({ id }: { id: string }) {
         <div className="px-5">
           <ProfileImageSlider images={profileDetailData.profile.images} isBlur={false} />
           <LikeAbillitySeciton
+            isMe={id === profileDetailData.profile.memberId}
             profile={profileDetailData.profile}
             nickname={profileDetailData.profile.selfIntro.nickname}
           />
@@ -40,10 +41,12 @@ export default function ProfileDetail({ id }: { id: string }) {
         <Divider isDark />
         <Spacing size={64} />
       </div>
-      <FloatingChatButton
-        profileData={profileDetailData.profile}
-        sendProfileId={myProfileData.profile.id}
-      />
+      {
+        <FloatingChatButton
+          profileData={profileDetailData.profile}
+          sendProfileId={myProfileData.profile.id}
+        />
+      }
     </>
   );
 }

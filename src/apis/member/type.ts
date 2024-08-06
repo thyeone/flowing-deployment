@@ -10,6 +10,7 @@ export type MemberResponse = {
   status: 'ACTIVE' | 'IN_SING_UP' | 'INACTIVE';
   profile: {
     id: string;
+    memberId: string;
     selfIntro: SelfIntroResponse;
     address: AddressResponse;
     valueResponses: ValueResponse[];

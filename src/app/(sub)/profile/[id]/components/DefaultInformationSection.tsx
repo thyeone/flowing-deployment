@@ -17,11 +17,8 @@ export default function DefaultInformationSection({ selfIntro }: DefaultInformat
       <div className="px-5">
         <p className="text-lg font-bold">자기소개</p>
         <Spacing size={16} />
-        <div className="h-fit w-full rounded-xl bg-gray-100 px-5 py-4 dark:bg-gray-800">
-          <p>
-            저는 타코를 좋아하고 전시가는거 좋아해요
-            <br /> 저는 타코를 좋아하고 전시가는거 좋아해요
-          </p>
+        <div className="h-fit min-h-[76px] w-full rounded-xl bg-gray-100 px-5 py-4 dark:bg-gray-800">
+          <p>{selfIntro.introduction}</p>
         </div>
         <Spacing size={16} />
         <div className="flex gap-2">

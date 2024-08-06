@@ -24,7 +24,7 @@ export default function ReceiveLikeSection({ profileId }: { profileId: string })
       <Spacing size={40} />
     </>
   ) : (
-    <div className="flex h-[70%] flex-col items-center justify-center">
+    <div className="flex h-[calc(100%-171px)] grow flex-col items-center justify-center">
       <NonLikeable />
       <Spacing size={32} />
       <p className="text-gray-500">아직 받은 호감이 없어요</p>
