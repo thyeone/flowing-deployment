@@ -125,14 +125,13 @@ export default function MultiValueResponsePopup({
               {questionId.includes(id) && (
                 <div className="relative size-full min-h-[88px]">
                   <Spacing size={16} />
-                  <div className="h-[1px] w-full bg-gray-200" />
+                  <div className="h-px w-full bg-gray-200" />
                   <Spacing size={16} />
                   <Controller
                     name={`${id}`}
                     control={control}
                     rules={{
                       required: true,
-                      minLength: 15,
                       maxLength: 500,
                     }}
                     render={({ field }) => (
