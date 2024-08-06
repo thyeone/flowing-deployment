@@ -18,25 +18,27 @@ export default function ApprovedSection({ id }: { id: string }) {
       <Spacing size={12} />
       <p className="whitespace-pre-wrap text-center text-sm font-medium text-gray-500">{`플로잉과 함께\n매력적인 이성을 찾아보세요`}</p>
       <Spacing size={32} />
-      <div className="mx-[53px] flex size-full flex-col items-center justify-center rounded-2xl bg-white p-3.5">
-        <div className="relative size-full rounded-2xl">
-          <Image
-            src={member.profile.images[0]?.path as string}
-            fill={true}
-            className="absolute rounded-2xl object-cover"
-            alt="profile"
-          />
+      <div className="mx-[53px] flex size-full grow items-center justify-center">
+        <div className="flex size-full max-h-[460px] shrink flex-col items-center justify-center rounded-2xl bg-white p-3.5">
+          <div className="relative size-full rounded-2xl">
+            <Image
+              src={member.profile.images[0]?.path as string}
+              fill={true}
+              className="absolute rounded-2xl object-cover"
+              alt="profile"
+            />
+          </div>
+          <Spacing size={24} />
+          <p className="text-[22px] font-bold">{`${member.profile.selfIntro.nickname}. ${calculateAge(
+            member.profile.selfIntro.birth as string,
+          )}`}</p>
+          <Spacing size={16} />
+          <p className="text-sm text-gray-700">{`${member.profile.address.sido} ${member.profile.address.sigungu}`}</p>
+          <p className="text-sm text-gray-700">
+            {member.profile.selfIntro.height} / {member.profile.selfIntro.bodyType}
+          </p>
+          <Spacing size={12} />
         </div>
-        <Spacing size={24} />
-        <p className="text-[22px] font-bold">{`${member.profile.selfIntro.nickname}. ${calculateAge(
-          member.profile.selfIntro.birth as string,
-        )}`}</p>
-        <Spacing size={16} />
-        <p className="text-sm text-gray-700">{`${member.profile.address.sido} ${member.profile.address.sigungu}`}</p>
-        <p className="text-sm text-gray-700">
-          {member.profile.selfIntro.height} / {member.profile.selfIntro.bodyType}
-        </p>
-        <Spacing size={12} />
       </div>
       <Spacing size={72} />
       <Link href="/home">
