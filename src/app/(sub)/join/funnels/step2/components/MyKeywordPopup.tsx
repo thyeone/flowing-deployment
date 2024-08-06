@@ -3,9 +3,11 @@
 import DeleteIcon from '@public/svg/delete-24.svg';
 import { useState } from 'react';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
+import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Button, ButtonWrapper } from '@/components/Button';
-import { AnimatePortal, PopupContainer } from '@/components/Overlay';
+import { PopupContainer } from '@/components/Overlay';
 import Spacing from '@/components/Spacing';
 import { fadeInOut } from '@/constants';
 import { useToast } from '@/hooks';
@@ -62,18 +64,20 @@ export default function MyKeywordPopup({ useForm, onClose, isOpen }: MyKeywordPo
       />
       <Keywords handleOnClick={handleTagClick} keywords={tempKeywords} />
       <Spacing size={86} />
-      <ul className="max-width fixed inset-x-0 bottom-[112px] mx-auto flex h-20 w-full snap-x snap-mandatory items-center gap-x-2 overflow-scroll border-t border-t-gray-100 bg-gray-50 px-5">
-        {tempKeywords.map((keyword, index) => (
-          <li
-            key={index}
-            onClick={() => handleTagClick(keyword)}
-            className="flex h-10 w-fit cursor-pointer snap-center items-center justify-center gap-x-1 whitespace-nowrap rounded-[48px] border border-gray-100 bg-white pl-4 pr-3 text-sm text-gray-900"
-          >
-            {keyword}
-            <DeleteIcon />
-          </li>
-        ))}
-      </ul>
+      <section className="max-width fixed inset-x-0 bottom-[112px] mx-auto flex h-20 w-full items-center overflow-x-scroll border-t border-t-gray-100 bg-gray-50">
+        <Swiper slidesPerView="auto" spaceBetween={8} className="w-full !px-5">
+          {tempKeywords.map((keyword, index) => (
+            <SwiperSlide key={index} style={{ width: 'auto' }}>
+              <div className="flex h-10 w-fit items-center justify-center gap-x-1 whitespace-nowrap rounded-[48px] border border-gray-100 bg-white pl-4 pr-3 text-sm text-gray-900">
+                {keyword}
+                <button onClick={() => handleTagClick(keyword)}>
+                  <DeleteIcon />
+                </button>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
       <ButtonWrapper>
         <Button onClick={handleAddButton} disabled={!tempKeywords.length} className="px-5">
           추가하기
