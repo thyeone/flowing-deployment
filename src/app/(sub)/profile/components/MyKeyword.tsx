@@ -3,6 +3,8 @@
 import CheckIcon from '@public/svg/check-24.svg';
 import DeleteIcon from '@public/svg/delete-24.svg';
 import { useWatch } from 'react-hook-form';
+import 'swiper/css';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Spacing from '@/components/Spacing';
 import { useOverlay } from '@/hooks';
@@ -47,19 +49,20 @@ export default function MyKeyword() {
         </span>
       </div>
       <Spacing size={16} />
-      <ul className="flex grow-0 snap-x snap-mandatory gap-x-2 overflow-auto">
-        {keywords.map((keyword, index) => (
-          <li
-            key={index}
-            className="flex h-10 w-fit snap-center items-center justify-center gap-x-1 whitespace-nowrap rounded-[48px] border border-gray-200 bg-white pl-4 pr-3 text-sm"
-          >
-            {keyword}
-            <button onClick={() => handleRemoveKeyword(keyword)}>
-              <DeleteIcon />
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <Swiper spaceBetween={8} slidesPerView="auto" className="w-full">
+          {keywords.map((keyword, index) => (
+            <SwiperSlide key={index} style={{ width: 'auto' }}>
+              <div className="flex h-10 w-fit snap-center items-center justify-center gap-x-1 whitespace-nowrap rounded-[48px] border border-gray-200 bg-white pl-4 pr-3 text-sm">
+                {keyword}
+                <button onClick={() => handleRemoveKeyword(keyword)}>
+                  <DeleteIcon />
+                </button>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </>
   );
 }

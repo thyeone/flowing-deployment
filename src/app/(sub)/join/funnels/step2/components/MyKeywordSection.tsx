@@ -1,6 +1,5 @@
 'use client';
 
-import CheckIcon from '@public/svg/check-16.svg';
 import { useWatch } from 'react-hook-form';
 
 import DeleteIcon from '@/assets/Delete';
@@ -51,6 +50,7 @@ export default function MykeywordSection() {
         </ul>
       ) : (
         <button
+          type="button"
           className={cn(
             `h-[104px] w-full rounded-lg border border-dashed border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800`,
           )}

@@ -14,13 +14,14 @@ import { calculateAge, decodeAccessToken } from '@/utils';
 import StarRating from './StarRating';
 
 type LikeAbillitySecitonProps = {
+  isMe: boolean;
   profile: MemberResponse['profile'];
   nickname: string;
 };
 
 const DEFAULT_RATING = 0 as const;
 
-export default function LikeAbillitySeciton({ profile, nickname }: LikeAbillitySecitonProps) {
+export default function LikeAbillitySeciton({ isMe, profile, nickname }: LikeAbillitySecitonProps) {
   const distance = useGetDistanceFromAddress(profile.address.bname);
   const isMounted = useIsMounted();
   const [rating, setRating] = useState<number>(DEFAULT_RATING);
@@ -50,7 +51,7 @@ export default function LikeAbillitySeciton({ profile, nickname }: LikeAbillityS
           <span className="text-2xl font-bold">{`${profile.selfIntro.nickname}. ${calculateAge(
             profile.selfIntro.birth,
           )}`}</span>
-          {crushPoint && (
+          {crushPoint && !isMe && (
             <div className="flex h-6 w-fit items-center justify-center rounded-[38px] bg-primary-50 px-2 py-[6px] dark:bg-primary-900">
               <span
                 key={crushPoint.crushId}
@@ -67,7 +68,7 @@ export default function LikeAbillitySeciton({ profile, nickname }: LikeAbillityS
           <span className="text-primary-500">{distance ? `${distance}km` : '???km'}</span>
         </div>
       </div>
-      {!crushPoint && (
+      {!crushPoint && !isMe && (
         <div className="flex w-full flex-col items-center justify-center whitespace-nowrap border-t border-gray-100 py-8 text-sm dark:border-gray-800">
           <div>
             <span className="font-bold">{nickname}</span>
