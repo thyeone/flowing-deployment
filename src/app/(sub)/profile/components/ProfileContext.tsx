@@ -5,13 +5,13 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 import type { ValueResponse } from '@/apis/profile';
 
 export type ProfileContextValue = {
-  oneLineIntroduce: string;
+  introduction: string;
   keywords: string[];
   valueResponses: ValueResponse[];
 };
 
 const defaultValues: ProfileContextValue = {
-  oneLineIntroduce: '',
+  introduction: '',
   keywords: [],
   valueResponses: [],
 };
