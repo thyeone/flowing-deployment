@@ -94,13 +94,9 @@ const OverlayController = forwardRef(function OverlayController(
 
   const handleOverlayClose = useCallback(() => setIsOpenOverlay(false), []);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return { close: handleOverlayClose };
-    },
-    [handleOverlayClose],
-  );
+  useImperativeHandle(ref, () => {
+    return { close: handleOverlayClose };
+  }, [handleOverlayClose]);
 
   useEffect(() => {
     requestAnimationFrame(() => {
