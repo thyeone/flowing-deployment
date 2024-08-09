@@ -3,17 +3,20 @@
 import Link from 'next/link';
 
 import { useGetFeedList } from '@/apis/feed';
+import { TabProvider } from '@/components/TabBar';
 import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
 import FeedHeader from './components/FeedHeader';
 import FeedItem from './components/FeedItem';
+import FeedTabs from './components/FeedTabs';
 
 export default function Feed() {
   const { data: feedList } = useGetFeedList();
 
   return (
-    <div>
+    <TabProvider initialValue="recommend">
       <FeedHeader />
+      <FeedTabs />
       <ul className="mb-[60px]">
         {feedList?.map(({ id, contents, images }) => (
           <Link key={id} href={`/feed/detail/${id}`}>
@@ -29,6 +32,6 @@ export default function Feed() {
         ))}
       </ul>
       <BottomTabBar />
-    </div>
+    </TabProvider>
   );
 }
