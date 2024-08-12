@@ -43,7 +43,7 @@ export default function Input({
         className={cn(
           `h-[52px] w-full rounded-xl border-[1px] border-gray-200 bg-transparent px-4 outline-none focus:border-primary-400`,
           {
-            'dark:border-gray-800 dark:text-white dark:placeholder:text-gray-700 ': isDark,
+            'dark:border-gray-800 dark:text-white dark:placeholder:text-gray-700': isDark,
           },
           className,
         )}
