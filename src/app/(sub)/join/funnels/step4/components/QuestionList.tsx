@@ -135,26 +135,27 @@ export default function QuestionList({
                 <span className="absolute top-0 font-bold text-primary-400">Q.</span>
                 <span className="ml-5">{question}</span>
               </div>
-              <button onClick={() => handleHeartButton(id, type)}>
+              <button type="button" onClick={() => handleHeartButton(id, type)}>
                 {isIncludeQuestion(id, type) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
               </button>
             </div>
             {isIncludeQuestion(id, type) && (
               <div className="relative size-full min-h-[88px]">
                 <Spacing size={16} />
-                <div className="h-[1px] w-full bg-gray-200" />
+                <div className="h-px w-full bg-gray-200" />
                 <Spacing size={16} />
                 <Controller
                   name={`${id}`}
                   control={control}
+                  rules={{
+                    maxLength: 500,
+                  }}
                   render={({ field }) => (
                     <textarea
                       {...field}
                       ref={(e) => {
                         textareaRef.current = e;
                       }}
-                      minLength={20}
-                      maxLength={500}
                       placeholder="답변을 적어주세요."
                       onInput={handleResizeHeight}
                       className="h-auto w-full resize-none bg-transparent px-5 text-sm outline-none transition-all placeholder:text-gray-500"
