@@ -9,6 +9,7 @@ import BottomTabBar from '@/components/TabBar/BottomTabBar';
 import FeedHeader from './components/FeedHeader';
 import FeedItem from './components/FeedItem';
 import FeedTabs from './components/FeedTabs';
+import FeedFilterBar from './components/Filter/FeedFilterBar';
 
 export default function Feed() {
   const { data: feedList } = useGetFeedList();
@@ -17,6 +18,7 @@ export default function Feed() {
     <TabProvider initialValue="recommend">
       <FeedHeader />
       <FeedTabs />
+      <FeedFilterBar />
       <ul className="mb-[60px]">
         {feedList?.map(({ id, contents, images }) => (
           <Link key={id} href={`/feed/detail/${id}`}>
