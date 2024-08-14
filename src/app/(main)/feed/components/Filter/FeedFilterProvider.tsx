@@ -4,30 +4,31 @@ import React, { createContext, useContext, useReducer } from 'react';
 
 type Tab = 'gender' | 'region' | 'age';
 type Age = { from: number; to: number };
+type Gender = { male: boolean; female: boolean };
 type State = {
   selectedTab: Tab;
-  gender: GenderType | null;
+  gender: Gender;
   region: string | null;
   age: Age;
 };
 
 type Action =
   | { type: 'SET_TAB'; payload: Tab }
-  | { type: 'SET_GENDER'; payload: GenderType | null }
+  | { type: 'SET_GENDER'; payload: Gender }
   | { type: 'SET_REGION'; payload: string | null }
   | { type: 'SET_AGE'; payload: Age };
 
 type FeedFilterContextValue = {
   state: State;
   setSelectedTab: (tab: Tab) => void;
-  setGender: (gender: GenderType) => void;
+  setGender: (gender: Gender) => void;
   setRegion: (region: string) => void;
   setAge: (range: Age) => void;
 };
 
 const initialState: State = {
   selectedTab: 'gender',
-  gender: null,
+  gender: { male: true, female: true },
   region: null,
   age: { from: 0, to: 60 },
 };
@@ -56,7 +57,7 @@ export default function FeedFilterProvider({ children }: { children: React.React
     dispatch({ type: 'SET_TAB', payload: tab });
   };
 
-  const setGender = (gender: GenderType) => {
+  const setGender = (gender: Gender) => {
     dispatch({ type: 'SET_GENDER', payload: gender });
   };
 
@@ -86,7 +87,7 @@ export default function FeedFilterProvider({ children }: { children: React.React
 export function useFeedFilterContext() {
   const feedFilterContext = useContext(FeedFilterContext);
 
-  if (!feedFilterContext) throw new Error('부모 트리에서 TabContext를 사용해주세요.');
+  if (!feedFilterContext) throw new Error('부모 트리에서 FeedFilterContext를 사용해주세요.');
 
   return { ...feedFilterContext };
 }
