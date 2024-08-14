@@ -43,6 +43,7 @@ export default function FeedFilterBar() {
           ))}
         </Swiper>
       </div>
+      <FeedFilter open={open} onClose={() => setOpen(false)} />
     </>
   );
 }
