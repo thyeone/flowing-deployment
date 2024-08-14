@@ -4,6 +4,7 @@ import Spacing from '@/components/Spacing';
 import { useBottomSheet } from '@/hooks';
 
 import FeedFilterProvider from './FeedFilterProvider';
+import FeedFilterTabs from './FeedFilterTabs';
 
 type FilterProps = {
   open: boolean;
@@ -17,6 +18,7 @@ export default function FeedFilter({ open, onClose }: FilterProps) {
       <FeedFilterProvider>
         <div className="min-h-[500px]">
           <Spacing size={35} />
+          <FeedFilterTabs />
 
         </div>
         <ButtonWrapper>
