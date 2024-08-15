@@ -3,7 +3,7 @@ import { useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import FeedFilter from './FeedFilter';
+import FeedFilter from './Filter/FeedFilter';
 
 const channels = [
   { id: 0, name: '전체' },
@@ -16,7 +16,7 @@ const channels = [
 ];
 
 export default function FeedFilterBar() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <>

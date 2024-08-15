@@ -8,7 +8,7 @@ export default function FeedFilterGender() {
   const { state, setGender } = useFeedFilterContext();
 
   return (
-    <div className="flex flex-col">
+    <>
       <span className="font-bold text-gray-900">성별</span>
       <span className="text-xs text-gray-500 ">
         설정한 성별의 글만 볼 수 있어요! (중복선택 가능)
@@ -53,6 +53,6 @@ export default function FeedFilterGender() {
           </span>
         </button>
       </div>
-    </div>
+    </>
   );
 }

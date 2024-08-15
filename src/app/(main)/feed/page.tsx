@@ -6,10 +6,10 @@ import { useGetFeedList } from '@/apis/feed';
 import { TabProvider } from '@/components/TabBar';
 import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
+import FeedFilterBar from './components/FeedFilterBar';
 import FeedHeader from './components/FeedHeader';
 import FeedItem from './components/FeedItem';
 import FeedTabs from './components/FeedTabs';
-import FeedFilterBar from './components/Filter/FeedFilterBar';
 
 export default function Feed() {
   const { data: feedList } = useGetFeedList();

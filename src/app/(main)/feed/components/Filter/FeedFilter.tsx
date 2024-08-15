@@ -1,8 +1,8 @@
-import { Button, ButtonWrapper } from '@/components/Button';
 import { BottomSheet } from '@/components/Overlay';
 import Spacing from '@/components/Spacing';
 import { useBottomSheet } from '@/hooks';
 
+import FeedFilterFooter from './FeedFilterFooter';
 import FeedFilterProvider from './FeedFilterProvider';
 import FeedFilterSection from './FeedFilterSection';
 import FeedFilterTabs from './FeedFilterTabs';
@@ -19,16 +19,10 @@ export default function FeedFilter({ open, onClose }: FilterProps) {
       <FeedFilterProvider>
         <div className="flex min-h-[500px] flex-col">
           <Spacing size={35} />
-
           <FeedFilterTabs />
           <FeedFilterSection />
         </div>
-        <ButtonWrapper>
-          <ButtonWrapper position="content">
-            <Button onClick={() => {}}>초기화</Button>
-            <Button onClick={() => {}}>필터 적용</Button>
-          </ButtonWrapper>
-        </ButtonWrapper>
+        <FeedFilterFooter />
       </FeedFilterProvider>
     </BottomSheet>
   );

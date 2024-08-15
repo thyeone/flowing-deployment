@@ -8,29 +8,31 @@ type Gender = { male: boolean; female: boolean };
 type State = {
   selectedTab: Tab;
   gender: Gender;
-  region: string | null;
+  region: number[];
   age: Age;
 };
 
 type Action =
   | { type: 'SET_TAB'; payload: Tab }
   | { type: 'SET_GENDER'; payload: Gender }
-  | { type: 'SET_REGION'; payload: string | null }
-  | { type: 'SET_AGE'; payload: Age };
+  | { type: 'SET_REGION'; payload: number[] }
+  | { type: 'SET_AGE'; payload: Age }
+  | { type: 'RESET' };
 
 type FeedFilterContextValue = {
   state: State;
   setSelectedTab: (tab: Tab) => void;
   setGender: (gender: Gender) => void;
-  setRegion: (region: string) => void;
+  setRegion: (region: number[]) => void;
   setAge: (range: Age) => void;
+  reset: () => void;
 };
 
 const initialState: State = {
   selectedTab: 'gender',
   gender: { male: true, female: true },
-  region: null,
-  age: { from: 0, to: 60 },
+  region: [],
+  age: { from: 1, to: 100 },
 };
 
 const reducer = (state: State, action: Action) => {
@@ -42,7 +44,9 @@ const reducer = (state: State, action: Action) => {
     case 'SET_REGION':
       return { ...state, region: action.payload };
     case 'SET_AGE':
-      return { ...state, ageRange: action.payload };
+      return { ...state, age: action.payload };
+    case 'RESET':
+      return initialState;
     default:
       return state;
   }
@@ -52,7 +56,7 @@ const FeedFilterContext = createContext<FeedFilterContextValue | null>(null);
 
 export default function FeedFilterProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state);
+
   const setSelectedTab = (tab: Tab) => {
     dispatch({ type: 'SET_TAB', payload: tab });
   };
@@ -61,12 +65,16 @@ export default function FeedFilterProvider({ children }: { children: React.React
     dispatch({ type: 'SET_GENDER', payload: gender });
   };
 
-  const setRegion = (region: string) => {
+  const setRegion = (region: number[]) => {
     dispatch({ type: 'SET_REGION', payload: region });
   };
 
   const setAge = (range: Age) => {
     dispatch({ type: 'SET_AGE', payload: range });
+  };
+
+  const reset = () => {
+    dispatch({ type: 'RESET' });
   };
 
   return (
@@ -77,6 +85,7 @@ export default function FeedFilterProvider({ children }: { children: React.React
         setGender,
         setRegion,
         setAge,
+        reset,
       }}
     >
       {children}
