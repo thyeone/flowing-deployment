@@ -3,13 +3,14 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
 type Tab = 'gender' | 'region' | 'age';
-type Age = { from: number; to: number };
-type Gender = { male: boolean; female: boolean };
+type Age = { min: number; max: number };
+type Gender = Record<GenderType, boolean>;
 type State = {
   selectedTab: Tab;
   gender: Gender;
   region: number[];
   age: Age;
+  channelId: number;
 };
 
 type Action =
@@ -17,6 +18,7 @@ type Action =
   | { type: 'SET_GENDER'; payload: Gender }
   | { type: 'SET_REGION'; payload: number[] }
   | { type: 'SET_AGE'; payload: Age }
+  | { type: 'SET_CHANNEL_ID'; payload: number }
   | { type: 'RESET' };
 
 type FeedFilterContextValue = {
@@ -26,13 +28,15 @@ type FeedFilterContextValue = {
   setRegion: (region: number[]) => void;
   setAge: (range: Age) => void;
   reset: () => void;
+  setChannelId: (channelId: number) => void;
 };
 
 const initialState: State = {
   selectedTab: 'gender',
-  gender: { male: true, female: true },
+  gender: { MALE: true, FEMALE: true },
   region: [],
-  age: { from: 1, to: 100 },
+  age: { min: 1, max: 100 },
+  channelId: 0,
 };
 
 const reducer = (state: State, action: Action) => {
@@ -46,7 +50,9 @@ const reducer = (state: State, action: Action) => {
     case 'SET_AGE':
       return { ...state, age: action.payload };
     case 'RESET':
-      return initialState;
+      return { ...initialState, channelId: state.channelId };
+    case 'SET_CHANNEL_ID':
+      return { ...state, channelId: action.payload };
     default:
       return state;
   }
@@ -77,6 +83,10 @@ export default function FeedFilterProvider({ children }: { children: React.React
     dispatch({ type: 'RESET' });
   };
 
+  const setChannelId = (channelId: number) => {
+    dispatch({ type: 'SET_CHANNEL_ID', payload: channelId });
+  };
+
   return (
     <FeedFilterContext.Provider
       value={{
@@ -86,6 +96,7 @@ export default function FeedFilterProvider({ children }: { children: React.React
         setRegion,
         setAge,
         reset,
+        setChannelId,
       }}
     >
       {children}

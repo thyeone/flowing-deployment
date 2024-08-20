@@ -3,7 +3,10 @@ import { useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { cn } from '@/utils';
+
 import FeedFilter from './Filter/FeedFilter';
+import { useFeedFilterContext } from './Filter/FeedFilterProvider';
 
 const channels = [
   { id: 0, name: '전체' },
@@ -16,6 +19,8 @@ const channels = [
 ];
 
 export default function FeedFilterBar() {
+  const { state, setChannelId } = useFeedFilterContext();
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -35,7 +40,11 @@ export default function FeedFilterBar() {
             <SwiperSlide key={id} className="!w-fit">
               <button
                 type="button"
-                className="flex h-9 !w-fit items-center justify-center rounded-[28px] border border-gray-200 px-3 text-xs"
+                className={cn(
+                  'flex h-9 !w-fit items-center justify-center rounded-[28px] border border-gray-200 px-3 text-xs',
+                  { 'bg-gray-900 text-white': state.channelId === id },
+                )}
+                onClick={() => setChannelId(id)}
               >
                 {name}
               </button>

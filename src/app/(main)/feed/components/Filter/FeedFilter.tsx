@@ -3,7 +3,6 @@ import Spacing from '@/components/Spacing';
 import { useBottomSheet } from '@/hooks';
 
 import FeedFilterFooter from './FeedFilterFooter';
-import FeedFilterProvider from './FeedFilterProvider';
 import FeedFilterSection from './FeedFilterSection';
 import FeedFilterTabs from './FeedFilterTabs';
 
@@ -16,14 +15,12 @@ export default function FeedFilter({ open, onClose }: FilterProps) {
 
   return (
     <BottomSheet ref={ref} isOpen={open} onClose={onClose} headerTitle="필터">
-      <FeedFilterProvider>
-        <div className="flex min-h-[500px] flex-col">
-          <Spacing size={35} />
-          <FeedFilterTabs />
-          <FeedFilterSection />
-        </div>
-        <FeedFilterFooter />
-      </FeedFilterProvider>
+      <div className="flex min-h-[500px] flex-col">
+        <Spacing size={35} />
+        <FeedFilterTabs />
+        <FeedFilterSection />
+      </div>
+      <FeedFilterFooter />
     </BottomSheet>
   );
 }
