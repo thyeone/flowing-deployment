@@ -3,6 +3,7 @@ import { useState } from 'react';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { useTabContext } from '@/components/TabBar/TabProvider';
 import { cn } from '@/utils';
 
 import FeedFilter from './Filter/FeedFilter';
@@ -19,40 +20,43 @@ const channels = [
 ];
 
 export default function FeedFilterBar() {
-  const { state, setChannelId } = useFeedFilterContext();
+  const { selectedTab } = useTabContext();
+  const { filter, setChannelId } = useFeedFilterContext();
 
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <div className="flex items-center gap-3 py-3 pl-4">
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="flex h-9 w-fit items-center justify-center gap-1.5 whitespace-nowrap rounded-[28px] border border-gray-200 px-3 text-xs"
-        >
-          <FilterIcon />
-          필터
-        </button>
-        <div className="h-4 w-px bg-gray-200" />
-        <Swiper slidesPerView="auto" spaceBetween={8}>
-          {channels.map(({ id, name }) => (
-            <SwiperSlide key={id} className="!w-fit">
-              <button
-                type="button"
-                className={cn(
-                  'flex h-9 !w-fit items-center justify-center rounded-[28px] border border-gray-200 px-3 text-xs',
-                  { 'bg-gray-900 text-white': state.channelId === id },
-                )}
-                onClick={() => setChannelId(id)}
-              >
-                {name}
-              </button>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <FeedFilter open={open} onClose={() => setOpen(false)} />
-    </>
+    selectedTab !== 'matched' && (
+      <>
+        <div className="flex items-center gap-3 py-3 pl-4">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="flex h-9 w-fit items-center justify-center gap-1.5 whitespace-nowrap rounded-[28px] border border-gray-200 px-3 text-xs"
+          >
+            <FilterIcon />
+            필터
+          </button>
+          <div className="h-4 w-px bg-gray-200" />
+          <Swiper slidesPerView="auto" spaceBetween={8}>
+            {channels.map(({ id, name }) => (
+              <SwiperSlide key={id} className="!w-fit">
+                <button
+                  type="button"
+                  className={cn(
+                    'flex h-9 !w-fit items-center justify-center rounded-[28px] border border-gray-200 px-3 text-xs',
+                    { 'bg-gray-900 text-white': filter.channelId === id },
+                  )}
+                  onClick={() => setChannelId(id)}
+                >
+                  {name}
+                </button>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <FeedFilter open={open} onClose={() => setOpen(false)} />
+      </>
+    )
   );
 }

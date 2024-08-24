@@ -20,7 +20,7 @@ export default function FeedFilter({ open, onClose }: FilterProps) {
         <FeedFilterTabs />
         <FeedFilterSection />
       </div>
-      <FeedFilterFooter />
+      <FeedFilterFooter onClose={onClose} />
     </BottomSheet>
   );
 }

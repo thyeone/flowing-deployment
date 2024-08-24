@@ -3,7 +3,7 @@ import { cn } from '@/utils';
 
 import { useFeedFilterContext } from './FeedFilterProvider';
 
-const REGIONS = [
+const ADDRESS = [
   { id: 1, label: '서울' },
   { id: 2, label: '경기' },
   { id: 3, label: '인천' },
@@ -21,31 +21,31 @@ const REGIONS = [
   { id: 15, label: '부산' },
   { id: 16, label: '제주' },
 ];
-export default function FeedFilterRegion() {
-  const { state, setRegion } = useFeedFilterContext();
+export default function FeedFilterAddress() {
+  const { filterState, setAddress } = useFeedFilterContext();
 
-  const checkRegionIncluded = (id: number) => state.region.includes(id);
+  const checkRegionIncluded = (id: number) => filterState.address.includes(id);
 
   return (
     <>
       <span className="font-bold text-gray-900">거주 지역</span>
-      <span className="text-xs text-gray-500 ">
+      <span className="text-xs text-gray-500">
         설정한 지역의 글만 볼 수 있어요! (중복선택 가능)
       </span>
       <Spacing size={16} />
       <div className="grid grid-cols-4 gap-2">
-        {REGIONS.map(({ id, label }) => (
+        {ADDRESS.map(({ id, label }) => (
           <button
             key={id}
             onClick={() => {
-              const prevRegion = state.region;
+              const prevRegion = filterState.address;
               let newRegion;
               if (checkRegionIncluded(id)) {
-                newRegion = prevRegion.filter((region) => region !== id);
+                newRegion = prevRegion.filter((address) => address !== id);
               } else {
                 newRegion = [...prevRegion, id];
               }
-              setRegion(newRegion);
+              setAddress(newRegion);
             }}
             className={cn(
               `col-span-1 flex w-full flex-col items-center justify-center gap-3 rounded-xl border border-gray-300 py-4`,

@@ -1,58 +1,63 @@
 'use client';
 
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useState } from 'react';
 
-type Tab = 'gender' | 'region' | 'age';
+type Tab = 'gender' | 'address' | 'age';
 type Age = { min: number; max: number };
 type Gender = Record<GenderType, boolean>;
-type State = {
+type FilterState = {
   selectedTab: Tab;
   gender: Gender;
-  region: number[];
+  address: number[];
   age: Age;
-  channelId: number;
 };
+
+type Filter = {
+  channelId: number;
+} & FilterState;
 
 type Action =
   | { type: 'SET_TAB'; payload: Tab }
   | { type: 'SET_GENDER'; payload: Gender }
-  | { type: 'SET_REGION'; payload: number[] }
+  | { type: 'SET_ADDRESS'; payload: number[] }
   | { type: 'SET_AGE'; payload: Age }
-  | { type: 'SET_CHANNEL_ID'; payload: number }
   | { type: 'RESET' };
 
 type FeedFilterContextValue = {
-  state: State;
+  filterState: FilterState;
   setSelectedTab: (tab: Tab) => void;
   setGender: (gender: Gender) => void;
-  setRegion: (region: number[]) => void;
+  setAddress: (address: number[]) => void;
   setAge: (range: Age) => void;
   reset: () => void;
   setChannelId: (channelId: number) => void;
+  filter: Filter;
+  setFilterResult: () => void;
 };
 
-const initialState: State = {
+const initialState: FilterState = {
   selectedTab: 'gender',
   gender: { MALE: true, FEMALE: true },
-  region: [],
+  address: [],
   age: { min: 1, max: 100 },
-  channelId: 0,
 };
 
-const reducer = (state: State, action: Action) => {
+const initialFilter: Filter = {
+  channelId: 0,
+  ...initialState,
+};
+const reducer = (state: FilterState, action: Action) => {
   switch (action.type) {
     case 'SET_TAB':
       return { ...state, selectedTab: action.payload };
     case 'SET_GENDER':
       return { ...state, gender: action.payload };
-    case 'SET_REGION':
-      return { ...state, region: action.payload };
+    case 'SET_ADDRESS':
+      return { ...state, address: action.payload };
     case 'SET_AGE':
       return { ...state, age: action.payload };
     case 'RESET':
-      return { ...initialState, channelId: state.channelId };
-    case 'SET_CHANNEL_ID':
-      return { ...state, channelId: action.payload };
+      return { ...initialState, selectedTab: state.selectedTab };
     default:
       return state;
   }
@@ -61,7 +66,8 @@ const reducer = (state: State, action: Action) => {
 const FeedFilterContext = createContext<FeedFilterContextValue | null>(null);
 
 export default function FeedFilterProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [filterState, dispatch] = useReducer(reducer, initialState);
+  const [filter, setFilter] = useState(initialFilter);
 
   const setSelectedTab = (tab: Tab) => {
     dispatch({ type: 'SET_TAB', payload: tab });
@@ -71,8 +77,8 @@ export default function FeedFilterProvider({ children }: { children: React.React
     dispatch({ type: 'SET_GENDER', payload: gender });
   };
 
-  const setRegion = (region: number[]) => {
-    dispatch({ type: 'SET_REGION', payload: region });
+  const setAddress = (address: number[]) => {
+    dispatch({ type: 'SET_ADDRESS', payload: address });
   };
 
   const setAge = (range: Age) => {
@@ -84,19 +90,25 @@ export default function FeedFilterProvider({ children }: { children: React.React
   };
 
   const setChannelId = (channelId: number) => {
-    dispatch({ type: 'SET_CHANNEL_ID', payload: channelId });
+    setFilter({ ...filter, channelId });
+  };
+
+  const setFilterResult = () => {
+    setFilter({ ...filterState, channelId: filter.channelId });
   };
 
   return (
     <FeedFilterContext.Provider
       value={{
-        state,
+        filterState,
         setSelectedTab,
         setGender,
-        setRegion,
+        setAddress,
         setAge,
         reset,
         setChannelId,
+        filter,
+        setFilterResult,
       }}
     >
       {children}

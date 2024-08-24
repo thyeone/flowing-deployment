@@ -6,12 +6,12 @@ import { useFeedFilterContext } from './FeedFilterProvider';
 
 const TABS = [
   { id: 1, name: '성별', value: 'gender' },
-  { id: 2, name: '거주 지역', value: 'region' },
+  { id: 2, name: '거주 지역', value: 'address' },
   { id: 3, name: '연령대', value: 'age' },
 ] as const;
 
 export default function FeedFilterTabs() {
-  const { state, setSelectedTab } = useFeedFilterContext();
+  const { filterState, setSelectedTab } = useFeedFilterContext();
 
   return (
     <div className="w-full border-b border-gray-200 bg-white pt-4">
@@ -20,13 +20,16 @@ export default function FeedFilterTabs() {
           <motion.li
             key={id}
             className={cn('cursor-pointer text-gray-500', {
-              'font-bold text-gray-900': value === state.selectedTab,
+              'font-bold text-gray-900': value === filterState.selectedTab,
             })}
             onClick={() => setSelectedTab(value)}
           >
             {name}
-            {value === state.selectedTab && (
-              <motion.div className="mt-3 h-px w-full bg-gray-900" layoutId="bg-gray-900" />
+            {value === filterState.selectedTab && (
+              <motion.div
+                className="mt-3 h-px w-full bg-gray-900"
+                layoutId="filter-tab-underline"
+              />
             )}
           </motion.li>
         ))}

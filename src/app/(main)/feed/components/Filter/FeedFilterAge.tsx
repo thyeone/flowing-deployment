@@ -4,8 +4,8 @@ import Spacing from '@/components/Spacing';
 import { useFeedFilterContext } from './FeedFilterProvider';
 
 export default function FeedFilterAge() {
-  const { state, setAge } = useFeedFilterContext();
-  const { min, max } = state.age;
+  const { filterState, setAge } = useFeedFilterContext();
+  const { min, max } = filterState.age;
 
   return (
     <>
@@ -18,9 +18,9 @@ export default function FeedFilterAge() {
         </span>
         <RangeSlider
           fromValue={min}
-          setFromValue={(value) => setAge({ ...state.age, min: value })}
+          setFromValue={(value) => setAge({ ...filterState.age, min: value })}
           toValue={max}
-          setToValue={(value) => setAge({ ...state.age, max: value })}
+          setToValue={(value) => setAge({ ...filterState.age, max: value })}
           min={1}
           max={100}
         />

@@ -26,3 +26,16 @@ export type FeedResponse = {
   contents: FeedContentsType;
   images: string[];
 };
+
+export type FeedsPageParams = {
+  feedId: number;
+  size: number;
+};
+
+export type FeedsParams = {
+  channelId: number;
+  gender: GenderType[];
+  address: string;
+  minAge: string;
+  maxAge: string;
+};
