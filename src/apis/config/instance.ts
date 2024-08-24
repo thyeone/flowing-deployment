@@ -1,5 +1,6 @@
-import axios from 'axios';
 import type { Axios, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
+import qs from 'qs';
 
 import { getToken, setToken } from '@/utils';
 
@@ -65,6 +66,10 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+instance.defaults.paramsSerializer = (parmas) => {
+  return qs.stringify(parmas, { arrayFormat: 'repeat' });
+};
 
 const http = {
   get: <T = unknown>(...args: Parameters<Axios['get']>) =>
