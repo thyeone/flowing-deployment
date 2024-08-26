@@ -7,6 +7,7 @@ import Divider from '@/components/Divider';
 import ChannelList from '../components/ChannelList';
 import FeedCreateHeader from './components/FeedCreateHeader';
 import FeedWarning from './components/FeedWarning';
+import ImageSection from './components/ImageSection';
 export default function FeedCreatePage() {
   const [open, setOpen] = useState(true);
   return (
@@ -15,6 +16,7 @@ export default function FeedCreatePage() {
       <div className="flex items-center gap-3 py-3 pl-4">
         <ChannelList selectedChannelId={1} setSelectedChannelId={() => {}} excludeTotal />
       </div>
+      <ImageSection />
       <Divider size="xs" />
       <FeedWarning open={open} onClose={() => setOpen(false)} />
     </>
