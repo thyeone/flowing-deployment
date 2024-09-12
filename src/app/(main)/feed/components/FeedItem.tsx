@@ -1,6 +1,7 @@
 import FemaleAvatar from '@public/svg/female.svg?url';
 import MaleAvatar from '@public/svg/male.svg?url';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import type { FeedResponse } from '@/apis/feed';
 import { cn } from '@/utils';
@@ -21,7 +22,7 @@ export default function FeedItem({ id, className, contents, images }: FeedItemPr
 
   return (
     <div className={cn(`px-5`, className)}>
-      <div className="mb-5 flex flex-col gap-4">
+      <Link href={`/feed/detail/${id}`} className="mb-5 flex flex-col gap-4">
         <ChannelBadge name={contents.channel.name} />
         <div className="flex items-center gap-2">
           <Image
@@ -40,7 +41,7 @@ export default function FeedItem({ id, className, contents, images }: FeedItemPr
         </div>
 
         <p>{contents.content}</p>
-      </div>
+      </Link>
 
       <div className="flex items-center justify-between">
         <div className="flex gap-[12px]">

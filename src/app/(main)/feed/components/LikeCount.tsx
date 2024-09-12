@@ -1,5 +1,6 @@
 import LikeOff from '@public/svg/like-off.svg';
-import LikeOn from '@public/svg/like-on.svg';
+
+import { usePostFeedsCommentsLike } from '@/apis/feed/mutation';
 
 type LikeCountProps = {
   id: number;
@@ -8,10 +9,15 @@ type LikeCountProps = {
 
 /* todo: 좋아요 기능 구현 */
 export default function LikeCount({ id, count }: LikeCountProps) {
+  const { mutate } = usePostFeedsCommentsLike();
+
   return (
-    <div className="flex items-center gap-[6px] text-[14px] text-gray-600">
+    <button
+      className="flex items-center gap-[6px] text-[14px] text-gray-600"
+      onClick={() => mutate(id)}
+    >
       <LikeOff />
       <p>{count}</p>
-    </div>
+    </button>
   );
 }
