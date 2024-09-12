@@ -39,3 +39,19 @@ export type FeedsParams = {
   minAge: string;
   maxAge: string;
 };
+
+export type FeedsRequest = {
+  channelId: number;
+  content: string;
+  feedImageIds: string[];
+};
+
+export type FeedsCommentsParams = {
+  feedId: number;
+  commentId?: number;
+  size?: number;
+};
+
+export type FeedsCommentsRequest = {
+  content: string;
+};
