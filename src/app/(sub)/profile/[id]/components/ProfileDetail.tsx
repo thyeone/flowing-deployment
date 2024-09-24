@@ -1,9 +1,9 @@
 'use client';
 
 import { useGetMember } from '@/apis/member';
-import Divider from '@/components/Divider';
 import FloatingChatButton from '@/components/FloatingChatButton';
-import Spacing from '@/components/Spacing';
+import Divider from '@/components/layout/Divider';
+import Spacing from '@/components/layout/Spacing';
 import useSetCoords from '@/hooks/useSetCoords';
 import { calculateAge, decodeAccessToken } from '@/utils';
 

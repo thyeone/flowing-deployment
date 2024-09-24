@@ -1,6 +1,6 @@
 'use client';
 
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 
 import type { useFunnelContext } from '../../components/FunnelContext';
 import StepTitle from '../../components/StepTitle';

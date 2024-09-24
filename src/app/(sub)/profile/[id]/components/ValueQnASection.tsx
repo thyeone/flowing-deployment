@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { ValueResponse } from '@/apis/profile';
 import { JobColor, LifeColor, LoveColor } from '@/assets/MyValue';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 
 import { convertTypeToLabel } from '../../utils';
 

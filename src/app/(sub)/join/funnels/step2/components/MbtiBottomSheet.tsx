@@ -5,7 +5,7 @@ import { type UseFormReturn, useWatch } from 'react-hook-form';
 
 import { Button, ButtonWrapper } from '@/components/Button';
 import { BottomSheet } from '@/components/Overlay';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
 import { cn } from '@/utils';
 

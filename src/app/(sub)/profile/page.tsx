@@ -1,5 +1,5 @@
 import { SSRSafeSuspense } from '@/components/Async';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import FileFormProvider from '@/providers/FileFormProvider';
 
 import ProfileProvider from './components/ProfileContext';

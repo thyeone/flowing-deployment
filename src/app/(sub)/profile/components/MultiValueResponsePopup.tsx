@@ -12,7 +12,7 @@ import LeftArrow from '@/assets/LeftArrow';
 import { Button, ButtonWrapper } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { PopupContainer } from '@/components/Overlay';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { useDynamicTextareaHeight, useToast } from '@/hooks';
 import { cn } from '@/utils';
 
