@@ -4,8 +4,8 @@ import NonLikeable from '@public/svg/non-likeable-80.svg';
 
 import { useGetReceiveChat } from '@/apis/chat';
 import { useGetReceiveCrush } from '@/apis/crush';
-import Divider from '@/components/Divider';
-import Spacing from '@/components/Spacing';
+import Divider from '@/components/layout/Divider';
+import Spacing from '@/components/layout/Spacing';
 
 import ChatRequestSection from './ChatRequestSection';
 import CrushPointSection from './CrushPointSection';

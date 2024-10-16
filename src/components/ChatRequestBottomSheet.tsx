@@ -1,12 +1,12 @@
 'use client';
 
 import { usePostChatRequest } from '@/apis/chat/mutations';
-import type { ChatRequest, ChatResponse } from '@/apis/chat/type';
+import type { ChatRequest } from '@/apis/chat/type';
 import { MemberResponse } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
 import { BottomSheet } from '@/components/Overlay';
-import Spacing from '@/components/Spacing';
 import Video from '@/components/Video';
+import Spacing from '@/components/layout/Spacing';
 import { useBottomSheet, useOverlay } from '@/hooks';
 
 import SendChatRequestPopup from './Popup/Chat/SendChatRequestPopup';

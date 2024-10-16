@@ -5,7 +5,7 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import CheckIcon from '@/assets/CheckIcon';
 import { cn } from '@/utils';
 
-import Spacing from './Spacing';
+import Spacing from './layout/Spacing';
 
 type TextFieldProps = React.InputHTMLAttributes<HTMLTextAreaElement> & {
   id: string;

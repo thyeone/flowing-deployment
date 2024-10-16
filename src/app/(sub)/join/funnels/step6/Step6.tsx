@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 
 import { useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { calculateAge, decodeAccessToken } from '@/utils';
 
 export default function Step6() {

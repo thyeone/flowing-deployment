@@ -9,7 +9,7 @@ import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 import { usePostValueResponse } from '@/apis/profile';
 import { type Value, useGetValueQuestion } from '@/apis/question';
 import { Button, ButtonWrapper } from '@/components/Button';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { useDynamicTextareaHeight, useToast } from '@/hooks';
 import { cn } from '@/utils';
 

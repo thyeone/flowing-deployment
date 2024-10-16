@@ -1,5 +1,5 @@
-import Spacing from '@/components/Spacing';
 import BottomTabBar from '@/components/TabBar/BottomTabBar';
+import Spacing from '@/components/layout/Spacing';
 
 import Banner from './components/Banner';
 import HomeHeader from './components/HomeHeader';
