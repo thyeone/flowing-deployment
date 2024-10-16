@@ -19,6 +19,18 @@ export const useGetFeed = (id: number) => {
   });
 };
 
+export const useGetFeedsComments = (feedId: number) => {
+  // return useInfiniteQuery({
+  //   queryKey: queryKeys.getFeedsComments(feedId),
+  //   queryFn: ({ pageParam }) => feedApi.getFeedsComments(feedId, {commentId: pageParam, size: 10}),
+  //   initialPageParam: 0,
+  //   getNextPageParam: (lastPage) => lastPage.at(-1)?.id,
+  // });
+  return useQuery({
+    queryKey: queryKeys.getFeedsComments(feedId),
+    queryFn: () => feedApi.getFeedsComments(feedId, { commentId: null, size: 10 }),
+  });
+};
 export const useGetFeedRecommend = ({ enabled }: { enabled: boolean }) => {
   return useInfiniteQuery({
     queryKey: queryKeys.getFeedsRecommend(),
