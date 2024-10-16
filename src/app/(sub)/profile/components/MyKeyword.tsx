@@ -6,7 +6,7 @@ import { useWatch } from 'react-hook-form';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { useOverlay } from '@/hooks';
 
 import KeywordPopup from './KeywordPopup';

@@ -7,8 +7,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import Slider from '@/components/Slider';
-import Spacing from '@/components/Spacing';
 import Video from '@/components/Video';
+import Spacing from '@/components/layout/Spacing';
 import { BASE_DOMAIN } from '@/constants';
 import { cn, deleteToken } from '@/utils';
 

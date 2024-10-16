@@ -4,7 +4,7 @@ import CheckIcon from '@public/svg/check-24.svg';
 import { useWatch } from 'react-hook-form';
 
 import { ValueResponse } from '@/apis/profile';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { useOverlay } from '@/hooks';
 
 import type { Label } from '../type';

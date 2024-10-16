@@ -2,7 +2,7 @@ import { useWatch } from 'react-hook-form';
 
 import RegionIcon from '@/assets/Region';
 import RightArrowIcon from '@/assets/RightArrow';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import useOverlay from '@/hooks/useOverlay';
 import { cutAddress } from '@/utils';
 import { cn } from '@/utils/cn';

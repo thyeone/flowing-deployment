@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 import { cn } from '@/utils';
 
-import Spacing from '../Spacing';
+import Spacing from '../layout/Spacing';
 import { useTabContext } from './TabProvider';
 
 export default function Tabs({ children }: PropsWithStrictChildren) {

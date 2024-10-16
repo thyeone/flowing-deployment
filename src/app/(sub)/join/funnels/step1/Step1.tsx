@@ -1,15 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { type MemberResponse, useGetMember } from '@/apis/member';
+import { MemberResponse, useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
-import Spacing from '@/components/Spacing';
 import Video from '@/components/Video';
-import { decodeAccessToken } from '@/utils';
-import { getEmptyProfile } from '@/utils/getEmptyProfile';
+import { decodeAccessToken, getEmptyProfile } from '@/utils';
 
 import { useFunnelContext } from '../../components/FunnelContext';
 

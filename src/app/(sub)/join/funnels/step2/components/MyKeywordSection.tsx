@@ -4,7 +4,7 @@ import { useWatch } from 'react-hook-form';
 
 import DeleteIcon from '@/assets/Delete';
 import PlusIcon from '@/assets/Plus';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import useOverlay from '@/hooks/useOverlay';
 import { cn } from '@/utils/cn';
 

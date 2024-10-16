@@ -7,7 +7,7 @@ import { usePostCrush } from '@/apis/crush/mutations';
 import { useGetSendCrush } from '@/apis/crush/queries';
 import { type MemberResponse, useGetMember } from '@/apis/member';
 import GenderAvatar from '@/components/Avatar/GenderAvatar';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { useGetDistanceFromAddress, useIsMounted } from '@/hooks';
 import { calculateAge, decodeAccessToken } from '@/utils';
 

@@ -6,7 +6,7 @@ import { usePostSelfIntro } from '@/apis/profile/mutations';
 import { ButtonWrapper } from '@/components/Button';
 import Button from '@/components/Button/Button';
 import Input from '@/components/Input';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 
 import { useFunnelContext } from '../../../components/FunnelContext';
 import { type Join1ContextValue, useJoin1Context } from '../../../components/Join1Context';

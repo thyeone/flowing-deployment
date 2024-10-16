@@ -2,7 +2,7 @@
 
 import { useWatch } from 'react-hook-form';
 
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { cn } from '@/utils/cn';
 
 import { useJoin1Context } from '../../../components/Join1Context';

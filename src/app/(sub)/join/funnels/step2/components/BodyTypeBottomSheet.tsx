@@ -6,7 +6,7 @@ import { ButtonWrapper } from '@/components/Button';
 import Button from '@/components/Button/Button';
 import BottomSheet from '@/components/Overlay/BottomSheet';
 import Radio from '@/components/Radio';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
 
 import type { Join1ContextValue } from '../../../components/Join1Context';

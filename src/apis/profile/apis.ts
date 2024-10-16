@@ -2,16 +2,16 @@ import http from '../config/instance';
 import type { SelfIntroRequest, ValueRequest } from './type';
 
 export const profileApi = {
-  postSelfIntro: async (memberId: string, formData: SelfIntroRequest) =>
-    await http.post(`/members/${memberId}/profiles/self-intro`, formData),
+  postSelfIntro: async (formData: SelfIntroRequest) =>
+    http.post(`/members/profiles/self-intro`, formData),
 
-  postValueResponse: async (memberId: string, formData: ValueRequest[]) =>
-    await http.post(`/members/${memberId}/profiles/value-responses`, {
+  postValueResponse: async (formData: ValueRequest[]) =>
+    await http.post(`/members/profiles/value-responses`, {
       valueResponses: formData,
     }),
 
-  postProfileImage: async (memberId: string, fileIds: string[]) =>
-    await http.post(`/members/${memberId}/profiles/images`, {
+  postProfileImage: async (fileIds: string[]) =>
+    await http.post(`/members/profiles/images`, {
       fileIds,
     }),
 };
