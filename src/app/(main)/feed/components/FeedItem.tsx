@@ -1,6 +1,7 @@
 import FemaleAvatar from '@public/svg/female.svg?url';
 import MaleAvatar from '@public/svg/male.svg?url';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import type { FeedResponse } from '@/apis/feed';
 import { cn } from '@/utils';
@@ -20,8 +21,8 @@ export default function FeedItem({ id, className, contents, images }: FeedItemPr
   const DateFormat = (date: string) => date.split('T')[0].replace(/-/g, '.');
 
   return (
-    <div className={cn(`px-5`, className)}>
-      <div className="mb-5 flex flex-col gap-4">
+    <div className={cn(`flex flex-col gap-4 px-5 py-4`, className)}>
+      <Link href={`/feed/detail/${id}`} className="flex flex-col gap-4">
         <ChannelBadge name={contents.channel.name} />
         <div className="flex items-center gap-2">
           <Image
@@ -40,12 +41,12 @@ export default function FeedItem({ id, className, contents, images }: FeedItemPr
         </div>
 
         <p>{contents.content}</p>
-      </div>
+      </Link>
 
       <div className="flex items-center justify-between">
         <div className="flex gap-[12px]">
           <LikeCount id={id} count={contents.likeCount} />
-          <CommentCount count={contents.commentCount} />
+          <CommentCount id={id} count={contents.commentCount} />
         </div>
         <p className="text-[12px] text-gray-600">{contents.viewCount}명 조회</p>
       </div>

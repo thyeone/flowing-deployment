@@ -1,5 +1,4 @@
 import NoContentIcon from '@public/svg/no-content.svg';
-import Link from 'next/link';
 
 import { useGetFeedMatchCrush, useGetFeedRecommend, useGetFeeds } from '@/apis/feed';
 import { useTabContext } from '@/components/TabBar/TabProvider';
@@ -46,16 +45,14 @@ export default function FeedList() {
       <ul className="mb-[60px]">
         {feedListQuery?.data?.pages.map((group) =>
           group.map(({ id, contents, images }) => (
-            <Link key={id} href={`/feed/detail/${id}`}>
-              <li>
-                <FeedItem
-                  id={id}
-                  className="border-b border-gray-200 py-5"
-                  contents={contents}
-                  images={images}
-                />
-              </li>
-            </Link>
+            <li key={id}>
+              <FeedItem
+                id={id}
+                className="border-b border-gray-200 py-5"
+                contents={contents}
+                images={images}
+              />
+            </li>
           )),
         )}
       </ul>
@@ -66,7 +63,7 @@ export default function FeedList() {
         </div>
       )}
 
-      <div ref={setTarget} className="h-[1px]" />
+      <div ref={setTarget} className="h-px" />
     </>
   );
 }

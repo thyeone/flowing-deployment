@@ -1,5 +1,5 @@
 import { BottomSheet } from '@/components/Overlay';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { useBottomSheet } from '@/hooks';
 
 import FeedFilterFooter from './FeedFilterFooter';
