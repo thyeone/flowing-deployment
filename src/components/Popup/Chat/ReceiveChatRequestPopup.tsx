@@ -17,7 +17,7 @@ import Dday from '@/app/(main)/like/components/Dday';
 import { Button, ButtonWrapper } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { PopupContainer } from '@/components/Overlay';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { S3_BASE_URL, fadeInOut } from '@/constants';
 import { useGetDistanceFromAddress, useSetCoords } from '@/hooks';
 import { calculateAge, cn } from '@/utils';

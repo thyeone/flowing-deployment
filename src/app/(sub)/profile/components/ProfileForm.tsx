@@ -14,10 +14,10 @@ import {
   usePostValueResponse,
 } from '@/apis/profile';
 import { Button, ButtonWrapper } from '@/components/Button';
-import Divider from '@/components/Divider';
 import ProfileCard from '@/components/ProfileCard';
-import Spacing from '@/components/Spacing';
 import TextField from '@/components/TextField';
+import Divider from '@/components/layout/Divider';
+import Spacing from '@/components/layout/Spacing';
 import { useToast } from '@/hooks';
 import { useFileFieldArrayContext } from '@/providers/FileFormProvider';
 import { decodeAccessToken } from '@/utils';

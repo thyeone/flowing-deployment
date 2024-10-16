@@ -1,5 +1,5 @@
 import { SelfIntroResponse } from '@/apis/profile';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 
 type InterestSectionProps = {
   keywords: SelfIntroResponse['keywords'];

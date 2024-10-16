@@ -1,4 +1,4 @@
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 
 import MoodBoard from './components/MoodBoard';
 import MoodForm from './components/MoodForm';

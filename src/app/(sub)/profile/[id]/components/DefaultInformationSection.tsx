@@ -4,7 +4,7 @@ import HeightIcon from '@public/svg/height-16.svg';
 import MBTIIcon from '@public/svg/mbti-16.svg';
 
 import type { SelfIntroResponse } from '@/apis/profile';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { getMbtiAlias, getRangeOfAge } from '@/utils';
 
 type DefaultInformationSectionProps = {

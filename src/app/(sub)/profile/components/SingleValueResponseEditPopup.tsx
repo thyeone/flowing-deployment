@@ -7,7 +7,7 @@ import type { ValueResponse } from '@/apis/profile';
 import { Button, ButtonWrapper } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { PopupContainer } from '@/components/Overlay';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import useDynamicTextareaHeight from '@/hooks/useDynamicTextareaHeight';
 
 import type { ProfileContextValue } from './ProfileContext';

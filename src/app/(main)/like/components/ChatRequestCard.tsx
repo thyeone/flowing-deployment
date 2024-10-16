@@ -5,7 +5,7 @@ import Image from 'next/image';
 import type { ChatResponse } from '@/apis/chat';
 import { Button } from '@/components/Button';
 import SendChatRequestPopup from '@/components/Popup/Chat/SendChatRequestPopup';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { S3_BASE_URL } from '@/constants';
 import { useOverlay } from '@/hooks';
 import { calculateAge, cn } from '@/utils';
