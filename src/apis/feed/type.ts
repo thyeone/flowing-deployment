@@ -47,8 +47,7 @@ export type FeedsRequest = {
 };
 
 export type FeedsCommentsParams = {
-  feedId: number;
-  commentId?: number;
+  commentId?: number | null;
   size?: number;
 };
 

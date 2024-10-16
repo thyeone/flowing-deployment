@@ -1,4 +1,4 @@
-import Comment from '@public/svg/comment.svg';
+import CommentIcon from '@public/svg/comment.svg';
 import Link from 'next/link';
 
 type CommentCountProps = {
@@ -12,7 +12,7 @@ export default function CommentCount({ id, count }: CommentCountProps) {
       href={`/feed/detail/${id}#comment`}
       className="flex items-center gap-[6px] text-[14px] text-gray-600"
     >
-      <Comment />
+      <CommentIcon width={16} height={16} />
       <p>{count}</p>
     </Link>
   );

@@ -40,13 +40,13 @@ export const feedApi = {
   patchFeedsComments: async (feedId: number, commentId: number, data: FeedsCommentsRequest) => {
     return await http.patch(`/feeds/${feedId}/comments/${commentId}`, data);
   },
-  postFeedsCommentsLike: async (feedId: number, commentId: number) => {
+  postFeedsCommentsLike: async ({ feedId, commentId }: { feedId: number; commentId: number }) => {
     return await http.post(`/feeds/${feedId}/comments/${commentId}/like`);
   },
   postFeedsCommentsReply: async (feedId: number, commentId: number, data: FeedsCommentsRequest) => {
     return await http.post(`/feeds/${feedId}/comments/${commentId}/reply`);
   },
-  postFeedsLike: async (feedId: number) => {
+  postFeedsLike: async ({ feedId }: { feedId: number }) => {
     return await http.post(`/feeds/${feedId}/like`);
   },
   getFeedsRecommend: async (params: FeedsPageParams) => {
