@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Divider from '@/components/Divider';
+import Divider from '@/components/layout/Divider';
 
 import ChannelList from '../components/ChannelList';
 import ContentSection from './components/ContentSection';
