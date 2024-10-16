@@ -1,5 +1,5 @@
 import GenderAvatar from '@/components/Avatar/GenderAvatar';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { cn } from '@/utils';
 
 import { useFeedFilterContext } from './FeedFilterProvider';

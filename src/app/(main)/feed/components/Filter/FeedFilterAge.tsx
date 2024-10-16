@@ -1,5 +1,5 @@
 import RangeSlider from '@/components/RangeSlider';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 
 import { useFeedFilterContext } from './FeedFilterProvider';
 
