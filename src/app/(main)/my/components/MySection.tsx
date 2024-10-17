@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useGetMember } from '@/apis/member';
 import RightArrowIcon from '@/assets/RightArrow';
 import Avatar from '@/components/Avatar/Avatar';
-import Divider from '@/components/Divider';
-import Spacing from '@/components/Spacing';
+import Divider from '@/components/layout/Divider';
+import Spacing from '@/components/layout/Spacing';
 import { calculateAge, decodeAccessToken } from '@/utils';
 
 const MY_TABS = [

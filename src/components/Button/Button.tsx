@@ -1,22 +1,25 @@
 'use client';
 
+import { forwardRef } from 'react';
+
 import { cn } from '@/utils/cn';
 
-type ButtonProps = {
+type ButtonProps<T extends React.ElementType = 'button'> = React.ComponentPropsWithoutRef<T> & {
+  as?: T;
   isDark?: boolean;
   disabled?: boolean;
 } & React.ComponentProps<'button'>;
 
-export default function Button({
-  isDark,
-  disabled,
-  className,
-  children,
-  ...rest
-}: PropsWithStrictChildren<ButtonProps>) {
+export default forwardRef(function Button<T extends React.ElementType = 'button'>(
+  { as, isDark, disabled, className, children, ...rest }: PropsWithStrictChildren<ButtonProps<T>>,
+  ref: React.ForwardedRef<T>,
+) {
+  const Element = as || 'button';
+
   return (
-    <button
+    <Element
       {...rest}
+      ref={ref}
       className={cn(
         `flex h-[52px] w-full items-center justify-center rounded-xl bg-primary-300 px-4 font-bold text-white`,
         {
@@ -30,6 +33,6 @@ export default function Button({
       disabled={disabled}
     >
       {children}
-    </button>
+    </Element>
   );
-}
+});

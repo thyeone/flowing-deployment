@@ -1,7 +1,7 @@
 import { type AnimationProps, type HTMLMotionProps } from 'framer-motion';
 import type { PropsWithChildren } from 'react';
 
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { cn } from '@/utils/cn';
 
 import { MotionHeader } from '../Motion';

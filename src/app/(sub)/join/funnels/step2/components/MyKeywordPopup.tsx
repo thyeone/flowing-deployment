@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { Button, ButtonWrapper } from '@/components/Button';
 import { PopupContainer } from '@/components/Overlay';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { fadeInOut } from '@/constants';
 import { useToast } from '@/hooks';
 

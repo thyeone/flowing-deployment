@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { ChatResponse } from '@/apis/chat';
 import ReceiveChatRequestPopup from '@/components/Popup/Chat/ReceiveChatRequestPopup';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { S3_BASE_URL } from '@/constants';
 import { useOverlay } from '@/hooks';
 import { calculateAge, cn } from '@/utils';

@@ -29,3 +29,5 @@ export const colors = {
     900: '#212123',
   },
 } as const;
+
+export const colorKeys = Object.keys(colors);

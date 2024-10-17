@@ -2,8 +2,7 @@ import { Children, ReactElement, cloneElement } from 'react';
 
 import { cn } from '@/utils';
 
-import { Button } from '.';
-import Spacing from '../Spacing';
+import Spacing from '../layout/Spacing';
 
 type ButtonWrapperProps = {
   position?: 'bottom' | 'content';

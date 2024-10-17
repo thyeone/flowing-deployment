@@ -13,7 +13,7 @@ import MyOnIcon from '@public/svg/bottomTabBar/my-on.svg';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import Spacing from '../Spacing';
+import Spacing from '../layout/Spacing';
 
 const tabs = [
   { name: '홈', href: '/home', icon: <HomeOffIcon />, checkedIcon: <HomeOnIcon /> },

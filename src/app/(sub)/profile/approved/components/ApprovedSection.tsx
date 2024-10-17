@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
-import Spacing from '@/components/Spacing';
+import Spacing from '@/components/layout/Spacing';
 import { calculateAge } from '@/utils';
 
 export default function ApprovedSection({ id }: { id: string }) {
