@@ -15,7 +15,7 @@ type AvatarProps = {
 export default function Avatar({ imageSrc, size }: AvatarProps) {
   return (
     <div
-      className={cn('relative rounded-full', {
+      className={cn('relative shrink-0 rounded-full', {
         'size-8': size === 'xs',
         'size-9': size === 'sm',
         'size-12': size === 'md',
