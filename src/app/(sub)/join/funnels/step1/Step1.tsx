@@ -1,12 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
-import { MemberResponse, useGetMember } from '@/apis/member';
+import { useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Video from '@/components/Video';
-import { decodeAccessToken, getEmptyProfile } from '@/utils';
+import { decodeAccessToken } from '@/utils';
 
 import { useFunnelContext } from '../../components/FunnelContext';
 
@@ -18,21 +17,19 @@ export default function Step1({
   const memberId = decodeAccessToken() || '';
   const { data: profile } = useGetMember(memberId);
 
-  useEffect(() => {
-    if (profile.status === 'ACTIVE') router.replace('/home');
+  // useEffect(() => {
+  //   if (profile.status === 'ACTIVE') router.replace('/home');
 
-    if (profile.status === 'INACTIVE') router.replace('/');
+  //   if (profile.status === 'INACTIVE') router.replace('/');
 
-    if (profile.status === 'IN_SING_UP') {
-      setStep(getEmptyProfile(profile?.profile as MemberResponse['profile']));
-    }
-  }, [profile]);
-
-  if (!profile) return null;
+  //   if (profile.status === 'IN_SING_UP') {
+  //     setStep(getEmptyProfile(profile?.profile as MemberResponse['profile']));
+  //   }
+  // }, [profile]);
 
   return (
     <>
-      <div className="flex h-[80%] flex-col items-center justify-center">
+      <div className="flex h-[calc(100dvh-92px)] flex-col items-center justify-center">
         <div className="relative h-[300px] w-full overflow-hidden">
           <Video src="/video/step1-girl.mp4" className="absolute size-full" loop={false} />
         </div>
