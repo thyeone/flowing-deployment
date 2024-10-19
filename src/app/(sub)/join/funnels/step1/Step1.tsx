@@ -1,11 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-import { useGetMember } from '@/apis/member';
+import { type MemberResponse, useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Video from '@/components/Video';
-import { decodeAccessToken } from '@/utils';
+import { decodeAccessToken, getEmptyProfile } from '@/utils';
 
 import { useFunnelContext } from '../../components/FunnelContext';
 
@@ -17,15 +18,15 @@ export default function Step1({
   const memberId = decodeAccessToken() || '';
   const { data: profile } = useGetMember(memberId);
 
-  // useEffect(() => {
-  //   if (profile.status === 'ACTIVE') router.replace('/home');
+  useEffect(() => {
+    if (profile.status === 'ACTIVE') router.replace('/home');
 
-  //   if (profile.status === 'INACTIVE') router.replace('/');
+    if (profile.status === 'INACTIVE') router.replace('/');
 
-  //   if (profile.status === 'IN_SING_UP') {
-  //     setStep(getEmptyProfile(profile?.profile as MemberResponse['profile']));
-  //   }
-  // }, [profile]);
+    if (profile.status === 'IN_SING_UP') {
+      setStep(getEmptyProfile(profile?.profile as MemberResponse['profile']));
+    }
+  }, [profile]);
 
   return (
     <>
