@@ -3,8 +3,7 @@
 import { type SubmitHandler, useWatch } from 'react-hook-form';
 
 import { usePostSelfIntro } from '@/apis/profile/mutations';
-import { ButtonWrapper } from '@/components/Button';
-import Button from '@/components/Button/Button';
+import { Button, ButtonWrapper } from '@/components/Button';
 import Input from '@/components/Input';
 import Spacing from '@/components/layout/Spacing';
 
@@ -90,7 +89,7 @@ export default function MoodForm() {
         <RegionSection />
         <MykeywordSection />
         <MbtiSection />
-        <ButtonWrapper>
+        <ButtonWrapper className="dark:bg-gray-900">
           <Button
             type="submit"
             isDark

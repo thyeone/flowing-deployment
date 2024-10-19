@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { MemberResponse, useGetMember } from '@/apis/member';
+import { type MemberResponse, useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Video from '@/components/Video';
 import { decodeAccessToken, getEmptyProfile } from '@/utils';
@@ -28,11 +28,9 @@ export default function Step1({
     }
   }, [profile]);
 
-  if (!profile) return null;
-
   return (
     <>
-      <div className="flex h-[80%] flex-col items-center justify-center">
+      <div className="flex h-[calc(100dvh-92px)] flex-col items-center justify-center">
         <div className="relative h-[300px] w-full overflow-hidden">
           <Video src="/video/step1-girl.mp4" className="absolute size-full" loop={false} />
         </div>

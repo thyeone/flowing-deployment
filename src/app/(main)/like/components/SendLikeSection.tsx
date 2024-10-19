@@ -4,6 +4,7 @@ import NonLikeable from '@public/svg/non-likeable-80.svg';
 
 import { useGetRequestChat } from '@/apis/chat';
 import { useGetSendCrush } from '@/apis/crush';
+import EmblaCarousel from '@/components/EmblaCarousel';
 import Divider from '@/components/layout/Divider';
 import Spacing from '@/components/layout/Spacing';
 
@@ -16,7 +17,9 @@ export default function SendLikeSection({ profileId }: { profileId: string }) {
 
   return sendCrushData.length > 0 || requestChatData.length > 0 ? (
     <>
-      <ChatRequestSection chatData={requestChatData} />
+      <EmblaCarousel>
+        <ChatRequestSection chatData={requestChatData} />
+      </EmblaCarousel>
       <Spacing size={40} />
       <Divider />
       <Spacing size={40} />
