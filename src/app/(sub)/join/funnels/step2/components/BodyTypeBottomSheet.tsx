@@ -2,11 +2,9 @@
 
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 
-import { ButtonWrapper } from '@/components/Button';
 import Button from '@/components/Button/Button';
 import BottomSheet from '@/components/Overlay/BottomSheet';
 import Radio from '@/components/Radio';
-import Spacing from '@/components/layout/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
 
 import type { Join1ContextValue } from '../../../components/Join1Context';
@@ -29,9 +27,8 @@ export default function BodyTypeBottomSheet({ useForm, onClose, isOpen }: BodyTy
 
   return (
     <BottomSheet isOpen={isOpen} ref={ref} onClose={onClose} headerTitle="체형 선택">
-      <Spacing size={52} />
       <div
-        className="flex h-fit snap-y snap-mandatory flex-col gap-y-[34px] overflow-y-scroll"
+        className="flex h-fit snap-y snap-mandatory flex-col gap-y-[34px] overflow-y-scroll py-4"
         style={{ maxHeight: maxBottomSheetContentHeight }}
       >
         {BODY_TYPE_LIST.map((value, index) => (
@@ -49,10 +46,9 @@ export default function BodyTypeBottomSheet({ useForm, onClose, isOpen }: BodyTy
           />
         ))}
       </div>
-      <Spacing size={52} />
-      <ButtonWrapper>
+      <BottomSheet.Footer>
         <Button onClick={onClose}>확인</Button>
-      </ButtonWrapper>
+      </BottomSheet.Footer>
     </BottomSheet>
   );
 }

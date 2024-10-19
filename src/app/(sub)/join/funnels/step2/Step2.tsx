@@ -11,7 +11,6 @@ export default function Step2() {
       <p className="text-xl font-bold">프로필 테마를 설정해 주세요</p>
       <MoodBoard />
       <MoodForm />
-      <Spacing size={40} />
     </div>
   );
 }

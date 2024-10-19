@@ -16,6 +16,7 @@ import {
 import { Button, ButtonWrapper } from '@/components/Button';
 import ProfileCard from '@/components/ProfileCard';
 import TextField from '@/components/TextField';
+import Col from '@/components/layout/Col';
 import Divider from '@/components/layout/Divider';
 import Spacing from '@/components/layout/Spacing';
 import { useToast } from '@/hooks';
@@ -94,23 +95,21 @@ export default function ProfileForm() {
     }
   }, [member]);
 
-  console.log(member.profile.selfIntro.introduction);
-
   if (isLoading) {
     return (
-      <div className="absolute top-0 flex h-full flex-col items-center justify-center">
+      <Col isCentered className="h-dvh">
         <Lottie animationData={LoadingBox} />
         <Spacing size={40} />
         <p className="text-xl font-bold">프로필 생성중이에요</p>
         <Spacing size={12} />
         <p className="text-sm text-gray-500">프로필 생성중이에요!</p>
         <p className="text-sm text-gray-500">잠시만 기다려주세요!</p>
-      </div>
+      </Col>
     );
   }
 
   return (
-    <form className="px-5" onSubmit={handleSubmit(onSubmit)}>
+    <form className="px-5 pt-4" onSubmit={handleSubmit(onSubmit)}>
       <ProfileCard profileData={member as MemberResponse} fileArrayContext={fileArrayContext} />
       <Spacing size={32} />
       <TextField
@@ -149,7 +148,7 @@ export default function ProfileForm() {
         }
         label="직업 가치관"
       />
-      <Spacing size={52} />
+      <Spacing size={32} />
       <ButtonWrapper>
         <Button
           type="submit"

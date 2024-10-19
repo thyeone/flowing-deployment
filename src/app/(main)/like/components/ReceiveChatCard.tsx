@@ -3,6 +3,7 @@
 import Image from 'next/image';
 
 import { ChatResponse } from '@/apis/chat';
+import EmblaCarousel from '@/components/EmblaCarousel';
 import ReceiveChatRequestPopup from '@/components/Popup/Chat/ReceiveChatRequestPopup';
 import Spacing from '@/components/layout/Spacing';
 import { S3_BASE_URL } from '@/constants';
@@ -18,7 +19,7 @@ export default function ReceiveChatCard({ isBlur, ...props }: ChatResponse & { i
   const { conversationId, selfIntro, profileImagePaths, ddayTime, address } = props;
 
   return (
-    <li
+    <EmblaCarousel.Item
       key={conversationId}
       onClick={() =>
         open(({ isOpen, close }) => (
@@ -49,6 +50,6 @@ export default function ReceiveChatCard({ isBlur, ...props }: ChatResponse & { i
         <Spacing size={24} />
         <AcceptRejectButton conversationId={conversationId} />
       </div>
-    </li>
+    </EmblaCarousel.Item>
   );
 }

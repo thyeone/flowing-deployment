@@ -1,6 +1,7 @@
 'use client';
 
 import CloseIcon from '@public/svg/close-24.svg';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { Header } from '@/components/Header';
@@ -12,9 +13,9 @@ export default function ProfileHeader() {
     <Header>
       <Header.Center>내 프로필</Header.Center>
       <Header.Right>
-        <button onClick={() => router.push('/my')}>
+        <Link href="/my">
           <CloseIcon />
-        </button>
+        </Link>
       </Header.Right>
     </Header>
   );
