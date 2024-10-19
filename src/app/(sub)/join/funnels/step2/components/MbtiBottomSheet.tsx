@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 
-import { Button, ButtonWrapper } from '@/components/Button';
+import { Button } from '@/components/Button';
 import { BottomSheet } from '@/components/Overlay';
 import Spacing from '@/components/layout/Spacing';
 import useBottomSheet from '@/hooks/useBottomSheet';
@@ -72,8 +72,8 @@ export default function MbtiBottomSheet({ useForm, onClose, isOpen }: MbtiBottom
           <MbtiTypeButton key={index} {...mbtiTypes} index={index} mbti={mbti} setMbti={setMbti} />
         ))}
       </div>
-      <Spacing size={68} />
-      <ButtonWrapper>
+      <Spacing size={48} />
+      <BottomSheet.Footer>
         <Button
           disabled={!!(mbti.length !== 4)}
           onClick={() => {
@@ -85,7 +85,7 @@ export default function MbtiBottomSheet({ useForm, onClose, isOpen }: MbtiBottom
         >
           선택
         </Button>
-      </ButtonWrapper>
+      </BottomSheet.Footer>
     </BottomSheet>
   );
 }

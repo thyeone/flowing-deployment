@@ -3,7 +3,7 @@
 import { usePostChatRequest } from '@/apis/chat/mutations';
 import type { ChatRequest } from '@/apis/chat/type';
 import { MemberResponse } from '@/apis/member';
-import { Button, ButtonWrapper } from '@/components/Button';
+import { Button } from '@/components/Button';
 import { BottomSheet } from '@/components/Overlay';
 import Video from '@/components/Video';
 import Spacing from '@/components/layout/Spacing';
@@ -34,10 +34,10 @@ export default function ChatRequestBottomSheet({
       <p className="text-center text-sm text-gray-500">
         대화 신청하고 상대방이 승인하면 대화를 할 수 있어요
       </p>
-      <Spacing size={60} />
-      <ButtonWrapper>
+      <Spacing size={20} />
+      <BottomSheet.Footer>
         <Button
-          onClick={async () => {
+          onClick={() => {
             postChatRequest(
               {
                 sendProfileId,
@@ -55,7 +55,7 @@ export default function ChatRequestBottomSheet({
         >
           대화 신청하기
         </Button>
-      </ButtonWrapper>
+      </BottomSheet.Footer>
     </BottomSheet>
   );
 }
