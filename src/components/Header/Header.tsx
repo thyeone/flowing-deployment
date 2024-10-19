@@ -41,7 +41,7 @@ function Center({ children, className }: PropsWithChildren<{ className?: string 
 }
 
 function Right({ children, className }: PropsWithChildren<{ className?: string }>) {
-  return <div className={cn('ml-auto flex items-center', className)}>{children}</div>;
+  return <div className={cn('z-10 ml-auto flex items-center', className)}>{children}</div>;
 }
 
 Header.Left = Left;
