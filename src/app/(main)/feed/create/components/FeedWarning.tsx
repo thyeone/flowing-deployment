@@ -28,7 +28,7 @@ export default function FeedWarning({ open, onClose }: FeedWarningProps) {
       <div className="flex h-fit flex-col py-6">
         <span className="text-xl font-bold text-gray-900">이런 내용은 피해주세요</span>
         {warningList.map(({ icon, text }) => (
-          <div className="mt-4 flex items-center gap-2">
+          <div key={text} className="mt-4 flex items-center gap-2">
             {icon}
             <span className="text-gray-900">{text}</span>
           </div>
