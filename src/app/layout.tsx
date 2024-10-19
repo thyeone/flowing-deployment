@@ -5,8 +5,8 @@ import Providers from '@/providers/Providers';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Gyeol | 결',
-  description: 'Gyeol, 결',
+  title: 'Flowing | 플로잉',
+  description: 'Flowing, 플로잉',
 };
 
 export const viewport: Viewport = {
