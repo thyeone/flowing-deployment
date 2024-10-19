@@ -30,7 +30,7 @@ export default function ProfileDetail({ id }: { id: string }) {
         <div className="px-5">
           <ProfileImageSlider images={profileDetailData.profile.images} isBlur={false} />
           <LikeAbillitySeciton
-            isMe={id === profileDetailData.profile.memberId}
+            isMe={id === myProfileData.profile.memberId}
             profile={profileDetailData.profile}
             nickname={profileDetailData.profile.selfIntro.nickname}
           />

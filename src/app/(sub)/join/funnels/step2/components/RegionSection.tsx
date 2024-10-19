@@ -4,7 +4,6 @@ import RegionIcon from '@/assets/Region';
 import RightArrowIcon from '@/assets/RightArrow';
 import Spacing from '@/components/layout/Spacing';
 import useOverlay from '@/hooks/useOverlay';
-import { cutAddress } from '@/utils';
 import { cn } from '@/utils/cn';
 
 import { useJoin1Context } from '../../../components/Join1Context';
@@ -33,8 +32,8 @@ export default function RegionSection() {
           <span className="mx-4 flex items-center justify-between gap-x-2 text-sm text-gray-700 dark:text-white">
             <div className="flex items-center gap-x-2">
               <RegionIcon />
-              {address.roadAddress
-                ? cutAddress(address.roadAddress)
+              {address.sido
+                ? address.sido + ' ' + address.sigungu
                 : '거주하시는 위치를 선택해주세요.'}
             </div>
             <RightArrowIcon isDark />

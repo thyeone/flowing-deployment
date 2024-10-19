@@ -18,7 +18,7 @@ export default function ProfileCard({ profileData, isBlur }: ProfileCardProps) {
 
   return (
     <>
-      <Link href={`profile/${profileData.id}`} key={profileData.id} className="flex-1">
+      <Link href={`profile/${profileData.memberId}`} key={profileData.id} className="flex-1">
         <div className="flex h-[288px] flex-col rounded-xl border border-gray-100 bg-white p-1">
           {isBlur ? (
             <div className="relative flex h-[220px] items-center justify-center overflow-hidden rounded-t-xl backdrop-blur-lg">

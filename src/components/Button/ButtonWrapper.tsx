@@ -2,11 +2,13 @@ import { Children, ReactElement, cloneElement } from 'react';
 
 import { cn } from '@/utils';
 
+import Flex from '../layout/Flex';
 import Spacing from '../layout/Spacing';
 
 type ButtonWrapperProps = {
   position?: 'bottom' | 'content';
   isPadding?: boolean;
+  className?: string;
 };
 
 /**
@@ -18,6 +20,7 @@ export default function ButtonWrapper({
   position = 'bottom',
   isPadding = true,
   children,
+  className,
 }: PropsWithStrictChildren<ButtonWrapperProps>) {
   const arrayChildren = Children.toArray(children) as ReactElement<typeof HTMLButtonElement>[];
 
@@ -32,22 +35,27 @@ export default function ButtonWrapper({
 
   return (
     <>
-      {position === 'bottom' && <Spacing size={20 + 52} />}
-      {renderButtonElements(arrayChildren, isPadding)}
+      {position === 'bottom' && <Spacing size={20 + 72} />}
+      {renderButtonElements(arrayChildren, isPadding, className)}
     </>
   );
 }
 
-const renderButtonElements = (elements: ReactElement[], isPadding: boolean) => {
+const renderButtonElements = (elements: ReactElement[], isPadding: boolean, className?: string) => {
   if (Children.count(elements) === 1) {
     return (
-      <div
-        className={cn('max-width fixed inset-x-0 bottom-0 z-10 mx-auto mb-5', {
-          'px-5': isPadding,
-        })}
+      <Flex
+        align="center"
+        className={cn(
+          'max-width fixed inset-x-0 bottom-0 z-10 mx-auto h-[92px] w-full bg-white',
+          {
+            'px-5': isPadding,
+          },
+          className,
+        )}
       >
         {elements[0]}
-      </div>
+      </Flex>
     );
   }
 
@@ -60,5 +68,9 @@ const renderButtonElements = (elements: ReactElement[], isPadding: boolean) => {
     });
   });
 
-  return <div className="flex gap-x-2">{buttonElements}</div>;
+  return (
+    <Flex align="center" className="gap-2">
+      {buttonElements}
+    </Flex>
+  );
 };

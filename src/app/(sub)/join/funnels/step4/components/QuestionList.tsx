@@ -1,13 +1,13 @@
 'use client';
 
-import InActiveHeartIcon from '@public/svg/heart-button-off.svg';
-import ActiveHeartIcon from '@public/svg/heart-button-on.svg';
 import { motion } from 'framer-motion';
 import { SetStateAction, useState } from 'react';
 import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 
 import { usePostValueResponse } from '@/apis/profile';
 import { type Value, useGetValueQuestion } from '@/apis/question';
+import ActiveHeartIcon from '@/assets/ActiveHeartIcon';
+import InActiveHeartIcon from '@/assets/InActiveHeartIcon';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Spacing from '@/components/layout/Spacing';
 import { useDynamicTextareaHeight, useToast } from '@/hooks';
@@ -121,7 +121,7 @@ export default function QuestionList({
             layout="position"
             key={id}
             className={cn(
-              'flex h-auto min-h-[52px] w-full items-start rounded-xl border border-gray-200 bg-white px-5 py-4',
+              'flex h-auto min-h-[57px] w-full items-start rounded-xl border border-gray-200 bg-white px-5 py-4',
               {
                 'flex-col items-start justify-start border-primary-300': isIncludeQuestion(
                   id,
@@ -130,12 +130,18 @@ export default function QuestionList({
               },
             )}
           >
-            <div className="flex w-full items-center justify-between">
-              <div className="relative flex items-center gap-x-1 pr-3 text-sm">
-                <span className="absolute top-0 font-bold text-primary-400">Q.</span>
-                <span className="ml-5">{question}</span>
-              </div>
-              <button type="button" onClick={() => handleHeartButton(id, type)}>
+            <div className="relative flex w-full items-center justify-between">
+              <span className="relative ml-5 pr-[53px] text-[16px] leading-[22.4px] text-gray-800">
+                {question}
+                <span className="absolute right-[calc(100%+4px)] top-0 text-[16px] font-bold leading-[22.4px] text-primary-400">
+                  Q.
+                </span>
+              </span>
+              <button
+                type="button"
+                onClick={() => handleHeartButton(id, type)}
+                className="absolute -top-1 right-0"
+              >
                 {isIncludeQuestion(id, type) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
               </button>
             </div>
@@ -158,7 +164,7 @@ export default function QuestionList({
                       }}
                       placeholder="답변을 적어주세요."
                       onInput={handleResizeHeight}
-                      className="h-auto w-full resize-none bg-transparent px-5 text-sm outline-none transition-all placeholder:text-gray-500"
+                      className="h-auto w-full resize-none bg-transparent px-5 text-sm text-gray-800 outline-none transition-all placeholder:text-gray-500"
                     />
                   )}
                 />
