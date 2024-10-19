@@ -12,4 +12,7 @@ export const fileApi = {
       },
     });
   },
+  getFile: async (id: string) => {
+    return await http.get<FileResponse>(`/files/${id}`);
+  },
 };
