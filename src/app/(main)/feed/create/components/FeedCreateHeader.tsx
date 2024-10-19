@@ -1,6 +1,19 @@
+import { SubmitHandler } from 'react-hook-form';
+
+import { usePostFeed } from '@/apis/feed/mutation';
 import { BackButton, Header } from '@/components/Header';
 
+import { FeedCreateForm, useFeedCreateFormContext } from './FeedCreateFormContext';
+
 export default function FeedCreateHeader() {
+  const { handleSubmit } = useFeedCreateFormContext();
+  const { mutate: postFeed } = usePostFeed();
+
+  const onSubmit: SubmitHandler<FeedCreateForm> = (data) => {
+    const submitData = { ...data, feedImageIds: data.images.map(({ id }) => id) };
+    postFeed(submitData);
+  };
+
   return (
     <div>
       <Header>
@@ -9,7 +22,11 @@ export default function FeedCreateHeader() {
         </Header.Left>
         <Header.Center>피드 작성</Header.Center>{' '}
         <Header.Right className="gap-4">
-          <button type="button" onClick={() => {}} className="text-sm font-bold text-primary-400">
+          <button
+            type="button"
+            onClick={handleSubmit(onSubmit)}
+            className="text-sm font-bold text-primary-400"
+          >
             작성 완료
           </button>
         </Header.Right>

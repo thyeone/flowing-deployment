@@ -14,7 +14,7 @@ export const feedApi = {
       params,
     });
   },
-  postFeeds: async (data: FeedsRequest) => {
+  postFeed: async (data: FeedsRequest) => {
     return await http.post(`/feeds`, data);
   },
   getFeed: async (feedId: number) => {
