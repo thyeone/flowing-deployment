@@ -12,7 +12,7 @@ const FeedCreate = () => {
   return (
     <>
       <FeedCreateHeader />
-      <div className="flex items-center gap-3 py-3 pl-4">
+      <div className="flex items-center py-3 pl-4">
         <ChannelList
           selectedChannelId={watch('channelId')}
           setSelectedChannelId={(id) => {

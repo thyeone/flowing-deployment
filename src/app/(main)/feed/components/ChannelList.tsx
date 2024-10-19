@@ -1,4 +1,5 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { useRef } from 'react';
+import { useDraggable } from 'react-use-draggable-scroll';
 
 import { cn } from '@/utils/cn';
 
@@ -23,24 +24,27 @@ export default function ChannelList({
   setSelectedChannelId,
   excludeTotal = false,
 }: ChannelListProps) {
+  const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
+  const { events } = useDraggable(ref, {
+    applyRubberBandEffect: true,
+  });
   const channelList = excludeTotal ? channels.slice(1) : channels;
 
   return (
-    <Swiper slidesPerView="auto" spaceBetween={4}>
+    <div {...events} ref={ref} className="flex items-center space-x-2 overflow-x-scroll pr-3">
       {channelList.map(({ id, name }) => (
-        <SwiperSlide key={id} className="!w-fit">
-          <button
-            type="button"
-            className={cn(
-              'flex h-9 !w-fit items-center justify-center rounded-[28px] border border-gray-200 px-3 text-xs',
-              { 'bg-gray-900 text-white': selectedChannelId === id },
-            )}
-            onClick={() => setSelectedChannelId(id)}
-          >
-            {name}
-          </button>
-        </SwiperSlide>
+        <button
+          key={id}
+          type="button"
+          className={cn(
+            'flex h-9 w-fit flex-none items-center justify-center rounded-[28px] border border-gray-200 px-3 text-xs',
+            { 'bg-gray-900 text-white': selectedChannelId === id },
+          )}
+          onClick={() => setSelectedChannelId(id)}
+        >
+          {name}
+        </button>
       ))}
-    </Swiper>
+    </div>
   );
 }
