@@ -20,8 +20,6 @@ export default function ProfileDetail({ id }: { id: string }) {
 
   useSetCoords();
 
-  console.log();
-
   return (
     <>
       <div className="dark-mode">
