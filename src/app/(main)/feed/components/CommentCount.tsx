@@ -8,12 +8,9 @@ type CommentCountProps = {
 
 export default function CommentCount({ id, count }: CommentCountProps) {
   return (
-    <Link
-      href={`/feed/detail/${id}#comment`}
-      className="flex items-center gap-[6px] text-[14px] text-gray-600"
-    >
+    <Link href={`/feed/detail/${id}#comment`} className="flex items-center gap-[6px] text-gray-600">
       <CommentIcon width={16} height={16} />
-      <p>{count}</p>
+      <p className="text-[13px]">{count}</p>
     </Link>
   );
 }

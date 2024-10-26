@@ -13,7 +13,7 @@ export default function LikeCount({ id, count }: LikeCountProps) {
 
   return (
     <button
-      className="flex items-center gap-[6px] text-[14px] text-gray-600"
+      className="flex items-center gap-[6px] text-gray-600"
       onClick={() => {
         mutate({ feedId: id });
       }}
@@ -23,7 +23,7 @@ export default function LikeCount({ id, count }: LikeCountProps) {
         height={16}
         className={cn({ 'fill-primary-300 stroke-primary-300': true, 'fill-none': false })}
       />
-      <p>{count}</p>
+      <p className="text-[13px]">{count}</p>
     </button>
   );
 }
