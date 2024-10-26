@@ -16,7 +16,7 @@ const FeedCreate = () => {
         <ChannelList
           selectedChannelId={watch('channel')}
           setSelectedChannelId={(id) => {
-            setValue('channel', id);
+            setValue('channel', id as number);
           }}
           excludeTotal
         />

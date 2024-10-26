@@ -33,7 +33,7 @@ export type FeedsPageParams = {
 };
 
 export type FeedsParams = {
-  channelId: number;
+  channelId: number | null;
   gender: GenderType[];
   address: string;
   minAge: string;

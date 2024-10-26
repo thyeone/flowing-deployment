@@ -4,13 +4,13 @@ import { useDraggable } from 'react-use-draggable-scroll';
 import { cn } from '@/utils/cn';
 
 type ChannelListProps = {
-  selectedChannelId: number;
-  setSelectedChannelId: (id: number) => void;
+  selectedChannelId: number | null;
+  setSelectedChannelId: (id: number | null) => void;
   excludeTotal?: boolean;
 };
 
 const channels = [
-  { id: 0, name: '전체' },
+  { id: null, name: '전체' },
   { id: 1, name: '연애 이야기' },
   { id: 2, name: '데일리' },
   { id: 3, name: '취미 활동' },

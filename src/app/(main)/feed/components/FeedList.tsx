@@ -11,15 +11,14 @@ import { useFeedFilterContext } from './Filter/FeedFilterProvider';
 export default function FeedList() {
   const { selectedTab } = useTabContext();
   const { filter } = useFeedFilterContext();
-
   const feedsParams = {
     channelId: filter.channelId,
     gender: Object.keys(filter.gender).filter(
       (key) => filter.gender[key as GenderType],
     ) as GenderType[],
-    address: filter.address.join(','),
-    minAge: ageToDateString({ age: filter.age.min }),
-    maxAge: ageToDateString({ age: filter.age.max, firstDay: true }),
+    address: filter.address.join(', '),
+    maxAge: ageToDateString({ age: filter.age.min }),
+    minAge: ageToDateString({ age: filter.age.max, firstDay: true }),
   };
 
   const feedLatestQuery = useGetFeeds({

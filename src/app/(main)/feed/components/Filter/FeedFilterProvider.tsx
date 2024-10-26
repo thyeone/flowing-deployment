@@ -13,7 +13,7 @@ type FilterState = {
 };
 
 type Filter = {
-  channelId: number;
+  channelId: number | null;
 } & FilterState;
 
 type Action =
@@ -43,7 +43,7 @@ const initialState: FilterState = {
 };
 
 const initialFilter: Filter = {
-  channelId: 0,
+  channelId: null,
   ...initialState,
 };
 const reducer = (state: FilterState, action: Action) => {
