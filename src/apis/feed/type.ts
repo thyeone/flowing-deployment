@@ -41,7 +41,7 @@ export type FeedsParams = {
 };
 
 export type FeedsRequest = {
-  channelId: number;
+  channel: number;
   content: string;
   feedImageIds: string[];
 };

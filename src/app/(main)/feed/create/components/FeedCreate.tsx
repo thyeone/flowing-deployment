@@ -14,9 +14,9 @@ const FeedCreate = () => {
       <FeedCreateHeader />
       <div className="flex items-center py-3 pl-4">
         <ChannelList
-          selectedChannelId={watch('channelId')}
+          selectedChannelId={watch('channel')}
           setSelectedChannelId={(id) => {
-            setValue('channelId', id);
+            setValue('channel', id);
           }}
           excludeTotal
         />

@@ -5,7 +5,7 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 import { FileResponse } from '@/apis/file/type';
 
 export type FeedCreateForm = {
-  channelId: number;
+  channel: number;
   content: string;
   images: FileResponse[];
 };
