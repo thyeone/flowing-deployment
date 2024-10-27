@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useToast } from '@/hooks';
+import { decodeAccessToken } from '@/utils';
 
 import { chatApi } from './apis';
 import { queryKeys } from './keys';
@@ -14,6 +15,9 @@ export const usePostChatRequest = () => {
     onSuccess: () => {
       openToast({ message: '대화 신청에 성공했어요.' });
       queryClient.invalidateQueries({ queryKey: queryKeys.getRequestChat() });
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.getRemainConversation(),
+      });
     },
   });
 };

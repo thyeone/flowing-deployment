@@ -8,6 +8,9 @@ export const chatApi = {
   getReceiveChat: async (profileId: string) =>
     await http.get<ChatResponse[]>(`/conversation/receive/${profileId}`),
 
+  getRemainCoversation: async (profileId: string) =>
+    await http.get<number>(`/conversation/remain/${profileId}`),
+
   postChatRequest: async (chatRequestData: ChatRequest) =>
     await http.post<ChatResponse>('/conversation/send', {
       ...chatRequestData,
