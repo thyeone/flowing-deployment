@@ -1,15 +1,22 @@
 import LikeOff from '@public/svg/like-off.svg';
 
 import { usePostFeedsCommentsLike } from '@/apis/feed/mutation';
+import { cn } from '@/utils';
 
 type LikeCountProps = {
   feedId: number;
   commentId: number;
   count: number;
+  clickedLike: boolean;
 };
 
-export default function CommentLikeCount({ feedId, commentId, count }: LikeCountProps) {
-  const { mutate } = usePostFeedsCommentsLike();
+export default function CommentLikeCount({
+  feedId,
+  commentId,
+  count,
+  clickedLike,
+}: LikeCountProps) {
+  const { mutate } = usePostFeedsCommentsLike({ feedId });
 
   return (
     <button
@@ -21,7 +28,14 @@ export default function CommentLikeCount({ feedId, commentId, count }: LikeCount
         })
       }
     >
-      <LikeOff width={12} height={12} />
+      <LikeOff
+        width={13}
+        height={13}
+        className={cn({
+          'fill-primary-300 stroke-primary-300': clickedLike,
+          'fill-none stroke-gray-600': !clickedLike,
+        })}
+      />
       <span>좋아요</span>
       <p>{count}</p>
     </button>

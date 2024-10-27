@@ -44,10 +44,15 @@ export const usePostFeedsLike = () => {
   });
 };
 
-export const usePostFeedsCommentsLike = () => {
+export const usePostFeedsCommentsLike = ({ feedId }: { feedId: number }) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: feedApi.postFeedsCommentsLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.getFeedsComments(feedId),
+      });
+    },
   });
 };

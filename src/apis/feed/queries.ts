@@ -20,15 +20,13 @@ export const useGetFeed = (id: number) => {
 };
 
 export const useGetFeedsComments = (feedId: number) => {
-  // return useInfiniteQuery({
-  //   queryKey: queryKeys.getFeedsComments(feedId),
-  //   queryFn: ({ pageParam }) => feedApi.getFeedsComments(feedId, {commentId: pageParam, size: 10}),
-  //   initialPageParam: 0,
-  //   getNextPageParam: (lastPage) => lastPage.at(-1)?.id,
-  // });
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: queryKeys.getFeedsComments(feedId),
-    queryFn: () => feedApi.getFeedsComments(feedId, { commentId: null, size: 10 }),
+    queryFn: ({ pageParam }) =>
+      feedApi.getFeedsComments(feedId, { commentId: pageParam, size: 10 }),
+    initialPageParam: 0,
+    // TODO: Fix the type of lastPage
+    getNextPageParam: (lastPage: any) => lastPage.at(-1)?.id,
   });
 };
 export const useGetFeedRecommend = ({ enabled }: { enabled: boolean }) => {

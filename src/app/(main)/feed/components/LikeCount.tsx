@@ -21,7 +21,10 @@ export default function LikeCount({ id, count }: LikeCountProps) {
       <LikeOff
         width={16}
         height={16}
-        className={cn({ 'fill-primary-300 stroke-primary-300': true, 'fill-none': false })}
+        className={cn({
+          'fill-primary-300 stroke-primary-300': false,
+          'fill-none stroke-gray-600': true,
+        })}
       />
       <p className="text-[13px]">{count}</p>
     </button>
