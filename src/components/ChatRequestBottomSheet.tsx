@@ -70,11 +70,9 @@ export default function ChatRequestBottomSheet({
         <span className="text-[12px] leading-3 text-primary-400">
           남은 횟수 {getRemainCoversation}회
         </span>
-        <div className="relative">
-          <Tooltip label="대화 신청 횟수는 매일 0시에 충전됩니다">
-            <InfoIcon />
-          </Tooltip>
-        </div>
+        <Tooltip label="대화 신청 횟수는 매일 0시에 충전됩니다">
+          <InfoIcon />
+        </Tooltip>
       </Flex>
       <Spacing size={20} />
       <BottomSheet.Footer>
