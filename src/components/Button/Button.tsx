@@ -30,13 +30,15 @@ export default forwardRef(function Button<T extends React.ElementType = 'button'
       {...rest}
       ref={ref}
       className={cn(
-        `flex h-[52px] w-full items-center justify-center rounded-xl bg-primary-300 px-4 font-bold text-white`,
+        `flex h-[52px] w-full items-center justify-center rounded-xl px-4 font-bold`,
         {
           'bg-primary-300 text-white': variant === 'contained',
+          'bg-gray-200 font-normal': variant === 'contained' && disabled,
           'border border-primary-300 bg-white text-primary-300': variant === 'outlined',
-          'text-primary-300': variant === 'text',
+          'border-gray-200 text-gray-400': variant === 'outlined' && disabled,
+          'bg-none text-primary-300': variant === 'text',
+          'bg-none text-gray-400': variant === 'text' && disabled,
           'dark:text-white': isDark,
-          'bg-gray-200 font-normal': disabled,
           'dark:bg-gray-700 dark:font-normal dark:text-gray-500': disabled && isDark,
         },
         className,
