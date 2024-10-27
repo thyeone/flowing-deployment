@@ -11,6 +11,7 @@ import Video from '@/components/Video';
 import Spacing from '@/components/layout/Spacing';
 import { useBottomSheet, useOverlay } from '@/hooks';
 
+import FeedDialog from './Overlay/FeedDialog';
 import SendChatRequestPopup from './Popup/Chat/SendChatRequestPopup';
 import Tooltip from './Tooltip';
 import Flex from './layout/Flex';
@@ -29,6 +30,29 @@ export default function ChatRequestBottomSheet({
 
   const { mutate: postChatRequest } = usePostChatRequest();
   const { data: getRemainCoversation } = useGetRemainCoversation(sendProfileId);
+
+  const handleChatRequest = () => {
+    if (getRemainCoversation === 0) {
+      onClose();
+      open(({ isOpen, close }) => <FeedDialog isOpen={isOpen} onClose={close} />);
+      return;
+    }
+
+    postChatRequest(
+      {
+        sendProfileId,
+        receiveProfileId,
+      },
+      {
+        onSuccess: (data) => {
+          onClose();
+          open(({ isOpen, close }) => (
+            <SendChatRequestPopup isOpen={isOpen} onClose={close} {...data} />
+          ));
+        },
+      },
+    );
+  };
 
   return (
     <BottomSheet ref={ref} isOpen={isOpen} onClose={onClose}>
@@ -54,25 +78,7 @@ export default function ChatRequestBottomSheet({
       </Flex>
       <Spacing size={20} />
       <BottomSheet.Footer>
-        <Button
-          onClick={() => {
-            postChatRequest(
-              {
-                sendProfileId,
-                receiveProfileId,
-              },
-              {
-                onSuccess: (data) => {
-                  open(({ isOpen, close }) => (
-                    <SendChatRequestPopup isOpen={isOpen} onClose={close} {...data} />
-                  ));
-                },
-              },
-            );
-          }}
-        >
-          대화 신청하기
-        </Button>
+        <Button onClick={handleChatRequest}>대화 신청하기</Button>
       </BottomSheet.Footer>
     </BottomSheet>
   );
