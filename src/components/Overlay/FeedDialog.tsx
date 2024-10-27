@@ -10,7 +10,7 @@ export default function FeedDialog({ isOpen, onClose }: OverlayProps) {
 
   return (
     <AnimatePortal isOpen={isOpen}>
-      <BottomDim className="px-10">
+      <BottomDim>
         <Dialog ref={ref}>
           <Dialog.Title>{`오늘 가능한 대화 신청은\n모두 사용하셨습니다.`}</Dialog.Title>
           <Dialog.Footer>
