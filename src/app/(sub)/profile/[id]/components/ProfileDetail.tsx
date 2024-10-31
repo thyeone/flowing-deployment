@@ -41,12 +41,12 @@ export default function ProfileDetail({ id }: { id: string }) {
         <Divider isDark />
         <Spacing size={64} />
       </div>
-      {
+      {id !== myProfileData.profile.memberId && (
         <FloatingChatButton
           profileData={profileDetailData.profile}
           sendProfileId={myProfileData.profile.id}
         />
-      }
+      )}
     </>
   );
 }

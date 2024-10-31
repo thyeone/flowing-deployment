@@ -14,3 +14,9 @@ export const useGetReceiveChat = (profileId: string) =>
     queryKey: queryKeys.getReceiveChat(),
     queryFn: () => chatApi.getReceiveChat(profileId),
   });
+
+export const useGetRemainCoversation = (profileId: string) =>
+  useSuspenseQuery({
+    queryKey: queryKeys.getRemainConversation(),
+    queryFn: () => chatApi.getRemainCoversation(profileId),
+  });

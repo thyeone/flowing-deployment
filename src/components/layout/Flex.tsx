@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import { cn } from '@/utils/cn';
 
-type FlexProps<T extends React.ElementType> = React.ComponentPropsWithRef<T> & {
+type FlexProps<T extends React.ElementType = 'div'> = React.ComponentPropsWithRef<T> & {
   as?: T;
   children?: React.ReactNode;
   isCentered?: boolean;
@@ -14,7 +14,7 @@ type FlexProps<T extends React.ElementType> = React.ComponentPropsWithRef<T> & {
   gap?: number;
 };
 
-export default forwardRef(function Flex<T extends React.ElementType>(
+function Flex<T extends React.ElementType = 'div'>(
   {
     as,
     children,
@@ -26,10 +26,10 @@ export default forwardRef(function Flex<T extends React.ElementType>(
     gap,
     isCentered,
     ...props
-  }: PropsWithStrictChildren<FlexProps<T> & React.ComponentPropsWithoutRef<T>>,
-  ref: React.ComponentPropsWithRef<T>['ref'],
+  }: FlexProps<T>,
+  ref: React.Ref<Element>,
 ) {
-  const Element = as ?? 'div';
+  const Element = as || 'div';
 
   return (
     <Element
@@ -72,8 +72,8 @@ export default forwardRef(function Flex<T extends React.ElementType>(
       {children}
     </Element>
   );
-}) as <T extends React.ElementType>(
-  props: PropsWithStrictChildren<FlexProps<T> & React.ComponentPropsWithoutRef<T>> & {
-    ref?: React.ComponentPropsWithRef<T>['ref'];
-  },
+}
+
+export default forwardRef(Flex) as <T extends React.ElementType = 'div'>(
+  props: FlexProps<T>,
 ) => JSX.Element;
