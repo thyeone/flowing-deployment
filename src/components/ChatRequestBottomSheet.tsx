@@ -56,7 +56,7 @@ export default function ChatRequestBottomSheet({
 
   return (
     <BottomSheet ref={ref} isOpen={isOpen} onClose={onClose}>
-      <Video src="/video/chat-request.mp4" className="h-[250px] w-full" />
+      <Video src="/video/chat-request.mp4" className="aspect-video w-full" />
       <p className="mb-3 text-center text-[22px] font-bold text-gray-900">{`${selfIntro.nickname}님께 대화 요청할까요?`}</p>
       <p className="text-center text-sm text-gray-500">
         대화 신청하고 상대방이 승인하면 대화를 할 수 있어요
