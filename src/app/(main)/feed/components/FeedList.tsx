@@ -25,7 +25,10 @@ export default function FeedList() {
     ...feedsParams,
     enabled: selectedTab === 'latest',
   });
-  const feedRecommendQuery = useGetFeedRecommend({ enabled: selectedTab === 'recommend' });
+  const feedRecommendQuery = useGetFeedRecommend({
+    ...feedsParams,
+    enabled: selectedTab === 'recommend',
+  });
   const feedMatchCrushQuery = useGetFeedMatchCrush({ enabled: selectedTab === 'matched' });
 
   const feedListQuery = {

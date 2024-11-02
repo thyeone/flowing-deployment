@@ -8,13 +8,13 @@ const useInvalidateFeedQuries = () => {
 
   const invalidateFeedQuries = () => {
     queryClient.invalidateQueries({
-      queryKey: queryKeys.getFeeds(),
+      queryKey: [queryKeys.getFeeds],
     });
     queryClient.invalidateQueries({
-      queryKey: queryKeys.getFeedsRecommend(),
+      queryKey: [queryKeys.getFeedsRecommend],
     });
     queryClient.invalidateQueries({
-      queryKey: queryKeys.getFeedsMatchCrush(),
+      queryKey: [queryKeys.getFeedsMatchCrush],
     });
   };
   return {
@@ -51,7 +51,7 @@ export const usePostFeedsCommentsLike = ({ feedId }: { feedId: number }) => {
     mutationFn: feedApi.postFeedsCommentsLike,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: queryKeys.getFeedsComments(feedId),
+        queryKey: [queryKeys.getFeedsComments, feedId],
       });
     },
   });

@@ -49,7 +49,7 @@ export const feedApi = {
   postFeedsLike: async ({ feedId }: { feedId: number }) => {
     return await http.post(`/feeds/${feedId}/like`);
   },
-  getFeedsRecommend: async (params: FeedsPageParams) => {
+  getFeedsRecommend: async (params: FeedsParams & FeedsPageParams) => {
     return await http.get<FeedResponse[]>(`/feeds/recommend`, {
       params,
     });
