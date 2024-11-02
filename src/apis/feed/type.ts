@@ -21,14 +21,20 @@ export type FeedContentsType = {
   updateAt: string;
 };
 
+type FeedLikeType = {
+  memberId: string;
+  feedLikeId: number;
+};
+
 export type FeedResponse = {
   id: number;
   contents: FeedContentsType;
+  feedLikeDtos: FeedLikeType[];
   images: string[];
 };
 
 export type FeedsPageParams = {
-  feedId: number;
+  feedId: number | null;
   size: number;
 };
 

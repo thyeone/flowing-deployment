@@ -7,15 +7,10 @@ type LikeCountProps = {
   feedId: number;
   commentId: number;
   count: number;
-  clickedLike: boolean;
+  isLiked: boolean;
 };
 
-export default function CommentLikeCount({
-  feedId,
-  commentId,
-  count,
-  clickedLike,
-}: LikeCountProps) {
+export default function CommentLikeCount({ feedId, commentId, count, isLiked }: LikeCountProps) {
   const { mutate } = usePostFeedsCommentsLike({ feedId });
 
   return (
@@ -32,8 +27,8 @@ export default function CommentLikeCount({
         width={13}
         height={13}
         className={cn({
-          'fill-primary-300 stroke-primary-300': clickedLike,
-          'fill-none stroke-gray-600': !clickedLike,
+          'fill-primary-300 stroke-primary-300': isLiked,
+          'fill-none stroke-gray-600': !isLiked,
         })}
       />
       <span>좋아요</span>

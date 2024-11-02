@@ -4,7 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import type { FeedResponse } from '@/apis/feed';
-import { cn } from '@/utils';
+import { useGetMember } from '@/apis/member';
+import { cn, decodeAccessToken } from '@/utils';
 
 import ChannelBadge from './ChannelBadge';
 import CommentCount from './CommentCount';
@@ -15,10 +16,17 @@ type FeedItemProps = {
   className?: string;
   contents: FeedResponse['contents'];
   images: FeedResponse['images'];
+  feedLikes: FeedResponse['feedLikeDtos'];
 };
 
-export default function FeedItem({ id, className, contents, images }: FeedItemProps) {
+export default function FeedItem({ id, className, contents, images, feedLikes }: FeedItemProps) {
+  const { data: myData } = useGetMember(decodeAccessToken());
+
   const DateFormat = (date: string) => date.split('T')[0].replace(/-/g, '.');
+
+  const isLiked = feedLikes.some(
+    ({ memberId }: { memberId: string }) => myData?.profile.memberId === memberId,
+  );
 
   return (
     <div className={cn(`flex flex-col gap-4 px-5 py-4`, className)}>
@@ -45,7 +53,7 @@ export default function FeedItem({ id, className, contents, images }: FeedItemPr
 
       <div className="flex items-center justify-between">
         <div className="flex gap-[12px]">
-          <LikeCount id={id} count={contents.likeCount} />
+          <LikeCount id={id} count={contents.likeCount} isLiked={isLiked} />
           <CommentCount id={id} count={contents.commentCount} />
         </div>
         <p className="text-[12px] text-gray-600">{contents.viewCount}명 조회</p>

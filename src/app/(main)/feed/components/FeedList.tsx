@@ -43,13 +43,14 @@ export default function FeedList() {
     <>
       <ul className="mb-[60px]">
         {feedListQuery?.data?.pages.map((group) =>
-          group.map(({ id, contents, images }) => (
+          group.map(({ id, contents, images, feedLikeDtos }) => (
             <li key={id}>
               <FeedItem
                 id={id}
                 className="border-b border-gray-200 py-5"
                 contents={contents}
                 images={images}
+                feedLikes={feedLikeDtos}
               />
             </li>
           )),

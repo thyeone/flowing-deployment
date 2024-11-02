@@ -20,7 +20,7 @@ export default function Comment({ feedId, commentData }: CommentProps) {
 
   const myMemberId = myData?.profile.memberId;
   const isMyComment = commentData.member.memberId === myMemberId;
-  const clickedLike = commentData.likes.some(
+  const isLiked = commentData.likes.some(
     ({ memberId }: { memberId: string }) => myData?.profile.memberId === memberId,
   );
 
@@ -46,7 +46,7 @@ export default function Comment({ feedId, commentData }: CommentProps) {
             feedId={feedId}
             commentId={commentData.id}
             count={commentData.likes.length}
-            clickedLike={clickedLike}
+            isLiked={isLiked}
           />
           <button type="button" className="flex items-center gap-1 text-xs text-gray-600">
             <CommentIcon width={12} height={12} />
