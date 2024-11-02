@@ -1,7 +1,7 @@
 import Spacing from '@/components/layout/Spacing';
 import { cn } from '@/utils';
 
-import { useFeedFilterContext } from './FeedFilterProvider';
+import { useFeedFilterContext } from './FeedFilterContext';
 
 const ADDRESS = [
   { id: 1, label: '서울' },

@@ -6,7 +6,7 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { ageToDateString } from '@/utils';
 
 import FeedItem from './FeedItem';
-import { useFeedFilterContext } from './Filter/FeedFilterProvider';
+import { useFeedFilterContext } from './Filter/FeedFilterContext';
 
 export default function FeedList() {
   const { selectedTab } = useTabContext();

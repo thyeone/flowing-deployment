@@ -6,7 +6,7 @@ import { useTabContext } from '@/components/TabBar/TabProvider';
 
 import ChannelList from './ChannelList';
 import FeedFilter from './Filter/FeedFilter';
-import { useFeedFilterContext } from './Filter/FeedFilterProvider';
+import { useFeedFilterContext } from './Filter/FeedFilterContext';
 
 export default function FeedFilterBar() {
   const { selectedTab } = useTabContext();

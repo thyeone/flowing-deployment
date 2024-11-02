@@ -7,7 +7,7 @@ import FeedFilterBar from './components/FeedFilterBar';
 import FeedHeader from './components/FeedHeader';
 import FeedList from './components/FeedList';
 import FeedTabs from './components/FeedTabs';
-import FeedFilterProvider from './components/Filter/FeedFilterProvider';
+import FeedFilterProvider from './components/Filter/FeedFilterContext';
 
 export default function Feed() {
   return (

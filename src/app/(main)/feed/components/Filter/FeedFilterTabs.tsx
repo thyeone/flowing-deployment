@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 import { cn } from '@/utils';
 
-import { useFeedFilterContext } from './FeedFilterProvider';
+import { useFeedFilterContext } from './FeedFilterContext';
 
 const TABS = [
   { id: 1, name: '성별', value: 'gender' },

@@ -2,7 +2,7 @@ import GenderAvatar from '@/components/Avatar/GenderAvatar';
 import Spacing from '@/components/layout/Spacing';
 import { cn } from '@/utils';
 
-import { useFeedFilterContext } from './FeedFilterProvider';
+import { useFeedFilterContext } from './FeedFilterContext';
 
 export default function FeedFilterGender() {
   const { filterState, setGender } = useFeedFilterContext();

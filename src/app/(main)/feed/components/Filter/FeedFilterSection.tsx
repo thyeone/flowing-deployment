@@ -1,7 +1,7 @@
 import FeedFilterAddress from './FeedFilterAddress';
 import FeedFilterAge from './FeedFilterAge';
+import { useFeedFilterContext } from './FeedFilterContext';
 import FeedFilterGender from './FeedFilterGender';
-import { useFeedFilterContext } from './FeedFilterProvider';
 
 export default function FeedFilterSection() {
   const { filterState } = useFeedFilterContext();

@@ -1,7 +1,7 @@
 import RangeSlider from '@/components/RangeSlider';
 import Spacing from '@/components/layout/Spacing';
 
-import { useFeedFilterContext } from './FeedFilterProvider';
+import { useFeedFilterContext } from './FeedFilterContext';
 
 export default function FeedFilterAge() {
   const { filterState, setAge } = useFeedFilterContext();

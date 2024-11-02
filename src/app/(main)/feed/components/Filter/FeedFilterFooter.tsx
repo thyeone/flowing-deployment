@@ -1,7 +1,7 @@
 import { Button } from '@/components/Button';
 import { BottomSheet } from '@/components/Overlay';
 
-import { useFeedFilterContext } from './FeedFilterProvider';
+import { useFeedFilterContext } from './FeedFilterContext';
 
 export default function FeedFilterFooter({ onClose }: { onClose: () => void }) {
   const { reset, setFilterResult } = useFeedFilterContext();
