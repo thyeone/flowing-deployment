@@ -31,7 +31,7 @@ export const feedApi = {
       params,
     });
   },
-  postFeedsComments: async (feedId: number, data: FeedsCommentsRequest) => {
+  postFeedsComments: async ({ feedId, data }: { feedId: number; data: FeedsCommentsRequest }) => {
     return await http.post(`/feeds/${feedId}/comments`, data);
   },
   deleteFeedsComments: async (feedId: number, commentId: number) => {
@@ -43,8 +43,16 @@ export const feedApi = {
   postFeedsCommentsLike: async ({ feedId, commentId }: { feedId: number; commentId: number }) => {
     return await http.post(`/feeds/${feedId}/comments/${commentId}/like`);
   },
-  postFeedsCommentsReply: async (feedId: number, commentId: number, data: FeedsCommentsRequest) => {
-    return await http.post(`/feeds/${feedId}/comments/${commentId}/reply`);
+  postFeedsCommentsReply: async ({
+    feedId,
+    commentId,
+    data,
+  }: {
+    feedId: number;
+    commentId: number;
+    data: FeedsCommentsRequest;
+  }) => {
+    return await http.post(`/feeds/${feedId}/comments/${commentId}/reply`, data);
   },
   postFeedsLike: async ({ feedId }: { feedId: number }) => {
     return await http.post(`/feeds/${feedId}/like`);

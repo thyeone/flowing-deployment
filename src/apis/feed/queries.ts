@@ -23,10 +23,10 @@ export const useGetFeedsComments = (feedId: number) => {
   return useInfiniteQuery({
     queryKey: [queryKeys.getFeedsComments, feedId],
     queryFn: ({ pageParam }) =>
-      feedApi.getFeedsComments(feedId, { commentId: pageParam, size: 10 }),
+      feedApi.getFeedsComments(feedId, { commentId: pageParam, size: 100 }),
     initialPageParam: 0,
     // TODO: Fix the type of lastPage
-    getNextPageParam: (lastPage: any) => lastPage.at(-1)?.id,
+    getNextPageParam: (lastPage: any) => lastPage.at(0)?.id,
   });
 };
 export const useGetFeedRecommend = (params: FeedsParams & { enabled: boolean }) => {
