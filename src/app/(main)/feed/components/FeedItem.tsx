@@ -12,19 +12,18 @@ import CommentCount from './CommentCount';
 import LikeCount from './LikeCount';
 
 type FeedItemProps = {
-  id: number;
+  feedData: FeedResponse;
   className?: string;
-  contents: FeedResponse['contents'];
-  images: FeedResponse['images'];
-  feedLikes: FeedResponse['feedLikeDtos'];
 };
 
-export default function FeedItem({ id, className, contents, images, feedLikes }: FeedItemProps) {
+export default function FeedItem({ feedData, className }: FeedItemProps) {
+  const { id, contents, feedLikeDtos = [] } = feedData;
+
   const { data: myData } = useGetMember(decodeAccessToken());
 
   const DateFormat = (date: string) => date.split('T')[0].replace(/-/g, '.');
 
-  const isLiked = feedLikes.some(
+  const isLiked = feedLikeDtos.some(
     ({ memberId }: { memberId: string }) => myData?.profile.memberId === memberId,
   );
 

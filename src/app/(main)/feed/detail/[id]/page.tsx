@@ -64,12 +64,7 @@ export default function FeedDetailPage() {
         </Header.Left>
         <Header.Center>{`${feedData.contents.nickname}, ${feedData.contents.age}`}</Header.Center>
       </Header>
-      <FeedItem
-        id={feedData.id}
-        contents={feedData.contents}
-        images={feedData.images}
-        feedLikes={[]}
-      />
+      <FeedItem feedData={feedData} />
       <div className="h-2 w-full bg-gray-100" />
       <div className="h-full w-full pb-16" id="comment">
         {commentsQuery?.data?.pages.map((group: any) =>
