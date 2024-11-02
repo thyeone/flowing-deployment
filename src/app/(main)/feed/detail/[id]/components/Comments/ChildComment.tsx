@@ -4,36 +4,23 @@ import Image from 'next/image';
 
 import { useGetMember } from '@/apis/member';
 import { cn, decodeAccessToken } from '@/utils';
+import { DateFormat } from '@/utils/date';
 
+import { useFeedDetailContext } from '../FeedDetailContext';
 import CommentLikeCount from './CommentLikeCount';
 
-type CommentProps = {
-  feedId: number;
+type ChildCommentProps = {
   commentData: any;
-  mentionTargetCommentUser: ({
-    nickname,
-    memberId,
-    commentId,
-  }: {
-    nickname: string;
-    memberId: string;
-    commentId: number;
-  }) => void;
-  posterId: string;
 };
 
-export default function ChildComment({
-  feedId,
-  commentData,
-  mentionTargetCommentUser,
-  posterId,
-}: CommentProps) {
-  const { data: myData } = useGetMember(decodeAccessToken());
+export default function ChildComment({ commentData }: ChildCommentProps) {
+  const { feedId, feedData } = useFeedDetailContext();
 
-  const DateFormat = (date: string) => date.split('T')[0].replace(/-/g, '.');
-
-  const myMemberId = myData?.profile.memberId;
+  const posterId = feedData.contents.memberId;
   const isCommentByPoster = commentData.member.memberId === posterId;
+
+  const { data: myData } = useGetMember(decodeAccessToken());
+  const myMemberId = myData?.profile.memberId;
   const isLiked = commentData.likes.some(
     ({ memberId }: { memberId: string }) => myMemberId === memberId,
   );

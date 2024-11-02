@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { FeedResponse } from '@/apis/feed';
 import { useGetMember } from '@/apis/member';
 import { cn, decodeAccessToken } from '@/utils';
+import { DateFormat } from '@/utils/date';
 
 import ChannelBadge from './ChannelBadge';
 import CommentCount from './CommentCount';
@@ -20,8 +21,6 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
   const { id, contents, feedLikeDtos = [] } = feedData;
 
   const { data: myData } = useGetMember(decodeAccessToken());
-
-  const DateFormat = (date: string) => date.split('T')[0].replace(/-/g, '.');
 
   const isLiked = feedLikeDtos.some(
     ({ memberId }: { memberId: string }) => myData?.profile.memberId === memberId,

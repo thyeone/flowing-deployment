@@ -8,10 +8,10 @@ import { Button } from './Button';
 
 type BottomInputFieldParams = {
   action: () => any;
-  isPending: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
   inputValue: string;
   setInputValue: Dispatch<React.SetStateAction<string>>;
-  inputRef: React.RefObject<HTMLInputElement>;
+  isPending?: boolean;
 };
 
 const style = {
@@ -50,10 +50,10 @@ const style = {
 
 export default function BottomInputField({
   action,
-  isPending,
+  inputRef,
   inputValue,
   setInputValue,
-  inputRef,
+  isPending,
 }: BottomInputFieldParams) {
   const handleClickRegisterButton = () => {
     action();

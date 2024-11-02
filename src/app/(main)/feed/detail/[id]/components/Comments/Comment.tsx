@@ -5,37 +5,24 @@ import Image from 'next/image';
 
 import { useGetMember } from '@/apis/member';
 import { cn, decodeAccessToken } from '@/utils';
+import { DateFormat } from '@/utils/date';
 
+import { useFeedDetailContext } from '../FeedDetailContext';
 import ChildComment from './ChildComment';
 import CommentLikeCount from './CommentLikeCount';
 
 type CommentProps = {
-  feedId: number;
   commentData: any;
-  mentionTargetCommentUser: ({
-    nickname,
-    memberId,
-    commentId,
-  }: {
-    nickname: string;
-    memberId: string;
-    commentId: number;
-  }) => void;
-  posterId: string;
 };
 
-export default function Comment({
-  feedId,
-  commentData,
-  mentionTargetCommentUser,
-  posterId,
-}: CommentProps) {
-  const { data: myData } = useGetMember(decodeAccessToken());
+export default function Comment({ commentData }: CommentProps) {
+  const { feedId, feedData, mentionTargetCommentUser } = useFeedDetailContext();
 
-  const DateFormat = (date: string) => date.split('T')[0].replace(/-/g, '.');
-
-  const myMemberId = myData?.profile.memberId;
+  const posterId = feedData.contents.memberId;
   const isCommentByPoster = commentData.member.memberId === posterId;
+
+  const { data: myData } = useGetMember(decodeAccessToken());
+  const myMemberId = myData?.profile.memberId;
   const isLiked = commentData.likes.some(
     ({ memberId }: { memberId: string }) => myMemberId === memberId,
   );
@@ -85,13 +72,7 @@ export default function Comment({
         </div>
       </div>
       {commentData.childComments.map((childComment: any) => (
-        <ChildComment
-          key={childComment.id}
-          feedId={feedId}
-          commentData={childComment}
-          mentionTargetCommentUser={mentionTargetCommentUser}
-          posterId={posterId}
-        />
+        <ChildComment key={childComment.id} commentData={childComment} />
       ))}
     </>
   );

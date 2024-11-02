@@ -34,13 +34,17 @@ export const usePostFeed = () => {
   });
 };
 
-export const usePostFeedsLike = () => {
+export const usePostFeedsLike = ({ feedId }: { feedId: number }) => {
   const { invalidateFeedQuries } = useInvalidateFeedQuries();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: feedApi.postFeedsLike,
     onSuccess: () => {
       invalidateFeedQuries();
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.getFeed, feedId],
+      });
     },
   });
 };
