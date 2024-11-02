@@ -20,7 +20,7 @@ export default function ImageSection() {
   });
   const images = watch('images');
   const swiperRef = useRef<SwiperRef>(null);
-  const { mutateAsync: postFile } = usePostFile();
+  const { mutateAsync: postFile } = usePostFile({ object: 'feed' });
 
   const { openToast } = useToast();
 

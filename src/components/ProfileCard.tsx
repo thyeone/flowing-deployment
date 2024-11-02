@@ -19,7 +19,7 @@ const ProfileCard = ({ profileData, fileArrayContext }: ProfileCardProps) => {
   const { append, remove, fields, replace } = fileArrayContext;
 
   const { openToast } = useToast();
-  const { mutate: postFile } = usePostFile();
+  const { mutate: postFile } = usePostFile({ object: 'profile' });
 
   const imageSrc = (index: number) => {
     const path = fields[index];
