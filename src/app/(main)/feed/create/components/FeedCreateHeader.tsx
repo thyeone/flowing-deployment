@@ -3,6 +3,7 @@ import { SubmitHandler } from 'react-hook-form';
 
 import { usePostFeed } from '@/apis/feed/mutation';
 import { BackButton, Header } from '@/components/Header';
+import { useToast } from '@/hooks';
 
 import { FeedCreateForm, useFeedCreateFormContext } from './FeedCreateFormContext';
 
@@ -10,11 +11,13 @@ export default function FeedCreateHeader() {
   const router = useRouter();
   const { handleSubmit } = useFeedCreateFormContext();
   const { mutate: postFeed } = usePostFeed();
+  const { openToast } = useToast();
 
   const onSubmit: SubmitHandler<FeedCreateForm> = async (data) => {
     const submitData = { ...data, feedImageIds: data.images.map(({ id }) => id) };
     postFeed(submitData, {
       onSuccess: () => {
+        openToast({ message: '피드가 등록되었어요!' });
         router.push('/feed');
       },
     });
