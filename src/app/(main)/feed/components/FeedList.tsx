@@ -3,23 +3,13 @@ import NoContentIcon from '@public/svg/no-content.svg';
 import { useGetFeedMatchCrush, useGetFeedRecommend, useGetFeeds } from '@/apis/feed';
 import { useTabContext } from '@/components/TabBar/TabProvider';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { ageToDateString } from '@/utils';
 
 import FeedItem from './FeedItem';
 import { useFeedFilterContext } from './Filter/FeedFilterContext';
 
 export default function FeedList() {
   const { selectedTab } = useTabContext();
-  const { filter } = useFeedFilterContext();
-  const feedsParams = {
-    channelId: filter.channelId,
-    gender: Object.keys(filter.gender).filter(
-      (key) => filter.gender[key as GenderType],
-    ) as GenderType[],
-    address: filter.address.join(', '),
-    maxAge: ageToDateString({ age: filter.age.min }),
-    minAge: ageToDateString({ age: filter.age.max, firstDay: true }),
-  };
+  const { feedsParams } = useFeedFilterContext();
 
   const feedLatestQuery = useGetFeeds({
     ...feedsParams,

@@ -18,7 +18,6 @@ export default function Feed() {
         <FeedFilterBar />
         <FeedList />
       </FeedFilterProvider>
-
       <BottomTabBar />
     </TabProvider>
   );

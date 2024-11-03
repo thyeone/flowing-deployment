@@ -24,7 +24,7 @@ const ADDRESS = [
 export default function FeedFilterAddress() {
   const { filterState, setAddress } = useFeedFilterContext();
 
-  const checkRegionIncluded = (id: number) => filterState.address.includes(id);
+  const checkRegionIncluded = (label: string) => filterState.address.includes(label);
 
   return (
     <>
@@ -40,23 +40,23 @@ export default function FeedFilterAddress() {
             onClick={() => {
               const prevRegion = filterState.address;
               let newRegion;
-              if (checkRegionIncluded(id)) {
-                newRegion = prevRegion.filter((address) => address !== id);
+              if (checkRegionIncluded(label)) {
+                newRegion = prevRegion.filter((address) => address !== label);
               } else {
-                newRegion = [...prevRegion, id];
+                newRegion = [...prevRegion, label];
               }
               setAddress(newRegion);
             }}
             className={cn(
               `col-span-1 flex w-full flex-col items-center justify-center gap-3 rounded-xl border border-gray-300 py-4`,
               {
-                'border-primary-400 text-primary-400': checkRegionIncluded(id),
+                'border-primary-400 text-primary-400': checkRegionIncluded(label),
               },
             )}
           >
             <span
               className={cn(`text-sm font-normal text-gray-700`, {
-                'text-primary-400': checkRegionIncluded(id),
+                'text-primary-400': checkRegionIncluded(label),
               })}
             >
               {label}

@@ -4,10 +4,10 @@ import { BottomSheet } from '@/components/Overlay';
 import { useFeedFilterContext } from './FeedFilterContext';
 
 export default function FeedFilterFooter({ onClose }: { onClose: () => void }) {
-  const { reset, setFilterResult } = useFeedFilterContext();
+  const { reset, setFeedsParams } = useFeedFilterContext();
 
   const handleClickApplyButton = () => {
-    setFilterResult();
+    setFeedsParams();
     onClose();
   };
 

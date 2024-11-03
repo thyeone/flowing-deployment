@@ -1,6 +1,8 @@
 'use client';
 
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo } from 'react';
+
+import useCustomSearchParams from '@/hooks/useCustomSearchParams';
 
 type TabContextValue = {
   selectedTab: string;
@@ -17,14 +19,19 @@ export default function TabProvider({
   children,
   initialValue,
 }: PropsWithStrictChildren<TabProviderProps>) {
-  const [selectedTab, setSelectedTab] = useState<string>(initialValue);
+  const { searchParams, setSearchParams } = useCustomSearchParams();
+  const selectedTab = (searchParams.tab as string) || initialValue;
+
+  const setSelectedTab = (value: string) => {
+    setSearchParams({ ...searchParams, tab: value });
+  };
 
   const memoizedValue = useMemo(
     () => ({
       selectedTab,
       setSelectedTab,
     }),
-    [selectedTab],
+    [selectedTab, setSelectedTab],
   );
 
   return <TabContext.Provider value={memoizedValue}>{children}</TabContext.Provider>;

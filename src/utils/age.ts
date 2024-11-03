@@ -51,3 +51,9 @@ export const ageToDateString = ({ age, firstDay = false }: { age: number; firstD
   }
   return date.toISOString().split('T')[0];
 };
+
+export const birthToAge = ({ birth }: { birth: string }) => {
+  const date = new Date(birth);
+  const today = new Date();
+  return today.getFullYear() - date.getFullYear();
+};

@@ -10,7 +10,7 @@ import { useFeedFilterContext } from './Filter/FeedFilterContext';
 
 export default function FeedFilterBar() {
   const { selectedTab } = useTabContext();
-  const { filter, setChannelId } = useFeedFilterContext();
+  const { feedsParams, setChannelId } = useFeedFilterContext();
 
   const [open, setOpen] = useState(false);
 
@@ -29,7 +29,10 @@ export default function FeedFilterBar() {
 
           <div className="h-4 w-px bg-gray-200" />
 
-          <ChannelList selectedChannelId={filter.channelId} setSelectedChannelId={setChannelId} />
+          <ChannelList
+            selectedChannelId={Number(feedsParams.channelId) || null}
+            setSelectedChannelId={setChannelId}
+          />
         </div>
         <FeedFilter open={open} onClose={() => setOpen(false)} />
       </>

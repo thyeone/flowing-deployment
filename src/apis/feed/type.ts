@@ -40,7 +40,7 @@ export type FeedsPageParams = {
 
 export type FeedsParams = {
   channelId: number | null;
-  gender: GenderType[];
+  gender: string;
   address: string;
   minAge: string;
   maxAge: string;
