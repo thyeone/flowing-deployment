@@ -99,7 +99,7 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
         <p
           ref={textRef}
           className={cn(`whitespace-pre-line`, {
-            [`max-h-[${THREE_LINES_MAX_HEIGHT}px] overflow-hidden`]: !isExpanded,
+            [`max-h-[72px] overflow-hidden`]: isOverflowed && !isExpanded,
           })}
         >
           {contents.content}
