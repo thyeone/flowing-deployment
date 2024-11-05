@@ -21,15 +21,30 @@ type FeedItemProps = {
   className?: string;
 };
 
+const THREE_LINES_MAX_HEIGHT = 72;
+
 export default function FeedItem({ feedData, className }: FeedItemProps) {
   const { id, contents, feedLikeDtos = [] } = feedData;
 
   const { data: myData } = useGetMember(decodeAccessToken());
 
   const swiperRef = useRef<SwiperRef>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
+
+  const [isOverflowed, setIsOverflowed] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const isLiked = feedLikeDtos.some(
     ({ memberId }: { memberId: string }) => myData?.profile.memberId === memberId,
   );
+
+  useEffect(() => {
+    if (textRef.current) {
+      if (textRef.current.scrollHeight > THREE_LINES_MAX_HEIGHT) {
+        setIsOverflowed(true);
+      }
+    }
+  }, [feedData.contents.content]);
 
   return (
     <div className={cn(`flex flex-col gap-4 px-5 py-4`, className)}>
@@ -50,8 +65,6 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
             </p>
           </div>
         </div>
-
-        <p>{contents.content}</p>
       </Link>
 
       <Swiper
@@ -81,6 +94,22 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
           );
         })}
       </Swiper>
+
+      <div>
+        <p
+          ref={textRef}
+          className={cn(`whitespace-pre-line`, {
+            [`max-h-[${THREE_LINES_MAX_HEIGHT}px] overflow-hidden`]: !isExpanded,
+          })}
+        >
+          {contents.content}
+        </p>
+        {isOverflowed && !isExpanded && (
+          <span className="cursor-pointer text-gray-600" onClick={() => setIsExpanded(true)}>
+            ...더보기
+          </span>
+        )}
+      </div>
       <div className="flex items-center justify-between">
         <div className="flex gap-[12px]">
           <LikeCount id={id} count={contents.likeCount} isLiked={isLiked} />
