@@ -30,7 +30,7 @@ export type FeedResponse = {
   id: number;
   contents: FeedContentsType;
   feedLikeDtos: FeedLikeType[];
-  images: string[];
+  images: (string | { id: string; url: string })[];
 };
 
 export type FeedsPageParams = {
