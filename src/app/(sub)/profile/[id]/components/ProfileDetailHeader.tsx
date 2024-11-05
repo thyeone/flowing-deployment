@@ -1,11 +1,10 @@
 'use client';
 
 import clsx from 'clsx';
-import { useInView } from 'framer-motion';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-import { BackButton, Header, MoreHorizButton } from '@/components/Header';
+import { BackButton, Header, MenuButton } from '@/components/Header';
 
 type ProfileDetailHeaderProps = {
   nickname: string;
@@ -28,7 +27,7 @@ export default function ProfileDetailHeader({ nickname, age }: ProfileDetailHead
         </Header.Left>
         <Header.Center>{!isInView && <p>{`${nickname}. ${age}`}</p>}</Header.Center>
         <Header.Right>
-          <MoreHorizButton isDark />
+          <MenuButton isDark />
         </Header.Right>
       </Header>
       <motion.div
