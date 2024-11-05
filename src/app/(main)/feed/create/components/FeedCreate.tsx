@@ -10,7 +10,7 @@ const FeedCreate = () => {
   const { watch, setValue } = useFeedCreateFormContext();
 
   return (
-    <>
+    <div className="flex h-full flex-col">
       <FeedCreateHeader />
       <div className="flex items-center py-3 pl-4">
         <ChannelList
@@ -24,7 +24,7 @@ const FeedCreate = () => {
       <ImageSection />
       <Divider size="xs" />
       <ContentSection />
-    </>
+    </div>
   );
 };
 
