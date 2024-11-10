@@ -32,6 +32,7 @@ export default function FeedDetailMoreMenu({ open }: FeedDetailMoreDropdownProps
     router.push(`/feed/write/${feedId}`);
   };
   const handleClickDeleteButton = () => {
+    openDeleteDialog(({ isOpen, close }) => <FeedDeleteDialog isOpen={isOpen} onClose={close} />);
   };
 
   const listItem = [

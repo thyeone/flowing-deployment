@@ -34,6 +34,17 @@ export const usePostFeed = () => {
   });
 };
 
+export const useDeleteFeed = () => {
+  const { invalidateFeedQuries } = useInvalidateFeedQuries();
+
+  return useMutation({
+    mutationFn: feedApi.deleteFeed,
+    onSuccess: () => {
+      invalidateFeedQuries();
+    },
+  });
+};
+
 export const usePatchFeed = () => {
   const { invalidateFeedQuries } = useInvalidateFeedQuries();
 
