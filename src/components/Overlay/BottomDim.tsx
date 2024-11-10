@@ -1,10 +1,19 @@
 import { motion } from 'framer-motion';
 
-export default function BottomDim({ children }: PropsWithStrictChildren) {
+import { fadeInOut } from '@/constants';
+import { cn } from '@/utils';
+
+export default function BottomDim({
+  children,
+  className,
+}: PropsWithStrictChildren<{ className?: string }>) {
   return (
     <motion.div
-      exit={{ opacity: 0 }}
-      className="max-width fixed inset-x-0 top-0 z-bottomDim mx-auto h-[100dvh] w-screen bg-[rgba(0,0,0,0.6)]"
+      {...fadeInOut}
+      className={cn(
+        'max-width fixed inset-x-0 top-0 z-bottomDim mx-auto flex h-[100dvh] w-screen items-center justify-center bg-[rgba(0,0,0,0.6)] px-10',
+        className,
+      )}
     >
       {children}
     </motion.div>

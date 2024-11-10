@@ -18,7 +18,7 @@ export default function Step6() {
       <Spacing size={12} />
       <p className="whitespace-pre-wrap text-center text-sm font-medium text-gray-500">{`회원님의 정보를 위해\n플로잉에서 확인하고 있습니다`}</p>
       <Spacing size={32} />
-      <div className="flex size-full max-h-[460px] shrink flex-col items-center justify-center rounded-2xl bg-white p-3.5">
+      <div className="my-auto flex size-full max-h-[460px] shrink flex-col items-center justify-center rounded-2xl bg-white p-3.5">
         <div className="relative size-full rounded-2xl">
           <Image
             src={data?.profile.images[0]?.path as string}
