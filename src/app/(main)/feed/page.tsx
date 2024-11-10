@@ -1,5 +1,7 @@
 'use client';
 
+import { Suspense } from 'react';
+
 import { TabProvider } from '@/components/TabBar';
 import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
@@ -11,14 +13,16 @@ import FeedFilterProvider from './components/Filter/FeedFilterContext';
 
 export default function Feed() {
   return (
-    <TabProvider initialValue="recommend">
-      <FeedHeader />
-      <FeedTabs />
-      <FeedFilterProvider>
-        <FeedFilterBar />
-        <FeedList />
-      </FeedFilterProvider>
-      <BottomTabBar />
-    </TabProvider>
+    <Suspense>
+      <TabProvider initialValue="recommend">
+        <FeedHeader />
+        <FeedTabs />
+        <FeedFilterProvider>
+          <FeedFilterBar />
+          <FeedList />
+        </FeedFilterProvider>
+        <BottomTabBar />
+      </TabProvider>
+    </Suspense>
   );
 }

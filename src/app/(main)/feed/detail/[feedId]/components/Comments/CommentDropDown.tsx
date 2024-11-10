@@ -26,7 +26,7 @@ export default function CommentDropDown({ open, commentId }: CommentDropDownProp
   return (
     <DropDown open={open}>
       {listItem.map(({ text, icon, onClick }) => (
-        <DropDown.Option>
+        <DropDown.Option key={text}>
           <button
             type="button"
             onClick={onClick}

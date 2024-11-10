@@ -1,5 +1,7 @@
+import { Suspense } from 'react';
+
 import { SSRSafeSuspense } from '@/components/Async';
-import { TabProvider, Tabs } from '@/components/TabBar';
+import { TabProvider } from '@/components/TabBar';
 import BottomTabBar from '@/components/TabBar/BottomTabBar';
 
 import LikeHeader from './components/LikeHeader';
@@ -8,13 +10,15 @@ import LikeTabs from './components/LikeTabs';
 
 export default function Like() {
   return (
-    <TabProvider initialValue="receive">
-      <LikeHeader />
-      <LikeTabs />
-      <SSRSafeSuspense>
-        <LikeSection />
-      </SSRSafeSuspense>
-      <BottomTabBar />
-    </TabProvider>
+    <Suspense>
+      <TabProvider initialValue="receive">
+        <LikeHeader />
+        <LikeTabs />
+        <SSRSafeSuspense>
+          <LikeSection />
+        </SSRSafeSuspense>
+        <BottomTabBar />
+      </TabProvider>
+    </Suspense>
   );
 }

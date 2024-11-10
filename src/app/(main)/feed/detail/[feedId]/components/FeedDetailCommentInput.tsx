@@ -3,7 +3,7 @@ import BottomInputField from '@/components/BottomInputField';
 
 import { useFeedDetailContext } from './FeedDetailContext';
 
-const mentionPattern = /^@\[(.+?)\]\(user:(.+?)\,comment:(\d+)\)\s*(.*)/;
+const mentionPattern = /^@\[(.+?)\]\(user:(.+?),comment:(\d+)\)\s*(.*)/;
 
 export default function FeedDetailCommentInput() {
   const { feedId, inputElement, inputValue, setInputvalue } = useFeedDetailContext();

@@ -33,7 +33,7 @@ export default function FeedDetailDropDown({ open }: FeedDetailDropDownProps) {
     <DropDown open={open}>
       <DropDown.Title>더보기</DropDown.Title>
       {listItem.map(({ text, icon, onClick }) => (
-        <DropDown.Option>
+        <DropDown.Option key={text}>
           <button
             type="button"
             onClick={onClick}

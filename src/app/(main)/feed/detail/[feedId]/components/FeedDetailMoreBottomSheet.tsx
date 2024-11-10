@@ -28,6 +28,7 @@ export default function FeedDetailMoreBottomSheet({
       <div className="mb-16">
         {listItem.map(({ text, icon }) => (
           <button
+            key={text}
             type="button"
             className="flex h-12 w-full items-center gap-2 text-sm text-black"
             onClick={() => {}}
