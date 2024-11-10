@@ -32,7 +32,7 @@ export default function FeedDetailHeader() {
               isMyFeed ? setOpenDropdown(!openDropdown) : setOpenBottomSheet(true);
             }}
           />
-          <FeedDetailMoreMenu open={openDropdown} feedId={feedData.id} />
+          <FeedDetailMoreMenu open={openDropdown} />
         </div>
         <FeedDetailMoreBottomSheet
           open={openBottomSheet}

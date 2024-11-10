@@ -1,11 +1,14 @@
 import DeleteCircleIcon from '@public/svg/delete-circle.svg';
 import EditIcon from '@public/svg/edit.svg';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+
+import { useOverlay } from '@/hooks';
+
+import FeedDeleteDialog from './FeedDeleteDialog';
 
 type FeedDetailMoreDropdownProps = {
   open: boolean;
-  feedId: number;
 };
 
 const wrapperVariants = {
@@ -19,13 +22,17 @@ const wrapperVariants = {
   },
 };
 
-export default function FeedDetailMoreMenu({ open, feedId }: FeedDetailMoreDropdownProps) {
+export default function FeedDetailMoreMenu({ open }: FeedDetailMoreDropdownProps) {
   const router = useRouter();
+  const params = useParams();
+  const { feedId } = params;
+  const { open: openDeleteDialog } = useOverlay();
 
   const handleClickEditButton = () => {
     router.push(`/feed/write/${feedId}`);
   };
-  const handleClickDeleteButton = () => {};
+  const handleClickDeleteButton = () => {
+  };
 
   const listItem = [
     { text: '피드 수정', icon: <EditIcon />, onClick: handleClickEditButton },

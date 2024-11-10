@@ -9,8 +9,8 @@ import FeedDetailProvider from './components/FeedDetailContext';
 import FeedDetailHeader from './components/FeedDetailHeader';
 
 export default function FeedDetailPage() {
-  const { id } = useParams();
-  const feedId = Number(id);
+  const params = useParams();
+  const feedId = Number(params.feedId);
 
   return (
     <FeedDetailProvider feedId={feedId}>
