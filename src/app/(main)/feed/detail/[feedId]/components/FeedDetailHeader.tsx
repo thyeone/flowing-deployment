@@ -6,8 +6,8 @@ import useDropdown from '@/hooks/useDropdown';
 import { decodeAccessToken } from '@/utils';
 
 import { useFeedDetailContext } from './FeedDetailContext';
+import FeedDetailDropDown from './FeedDetailDropDown';
 import FeedDetailMoreBottomSheet from './FeedDetailMoreBottomSheet';
-import FeedDetailMoreMenu from './FeedDetailMoreMenu';
 
 export default function FeedDetailHeader() {
   const { feedData } = useFeedDetailContext();
@@ -32,7 +32,7 @@ export default function FeedDetailHeader() {
               isMyFeed ? setOpenDropdown(!openDropdown) : setOpenBottomSheet(true);
             }}
           />
-          <FeedDetailMoreMenu open={openDropdown} />
+          <FeedDetailDropDown open={openDropdown} />
         </div>
         <FeedDetailMoreBottomSheet
           open={openBottomSheet}

@@ -7,11 +7,11 @@ import { useOverlay } from '@/hooks';
 
 import FeedDeleteDialog from './FeedDeleteDialog';
 
-type FeedDetailMoreMenuProps = {
+type FeedDetailDropDownProps = {
   open: boolean;
 };
 
-export default function FeedDetailMoreMenu({ open }: FeedDetailMoreMenuProps) {
+export default function FeedDetailDropDown({ open }: FeedDetailDropDownProps) {
   const router = useRouter();
   const params = useParams();
   const { feedId } = params;
