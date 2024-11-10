@@ -4,7 +4,7 @@ import { cn } from '@/utils/cn';
 
 type ButtonProps<T extends React.ElementType = 'button'> = React.ComponentProps<T> & {
   as?: T;
-  variant?: 'brand' | 'black' | 'outline';
+  variant?: 'brand' | 'black' | 'outline' | 'text';
   isDark?: boolean;
   disabled?: boolean;
 };
@@ -29,6 +29,7 @@ export default function Button<T extends React.ElementType = 'button'>({
           'border border-gray-300 bg-white text-gray-900 hover:border-primary-300 hover:text-primary-300 disabled:border-gray-300 disabled:text-gray-300':
             variant === 'outline',
           'bg-gray-900 text-white hover:bg-gray-800 disabled:bg-gray-400': variant === 'black',
+          'text-primary-300 disabled:text-gray-400': variant === 'text',
           'dark:text-white': isDark,
           'dark:bg-gray-700 dark:font-normal dark:text-gray-500': disabled && isDark,
         },
