@@ -1,11 +1,11 @@
 import type { CrushResponse } from '../crush/type';
 
-export type ChatRequest = {
+export type ConversationRequest = {
   sendProfileId: string;
   receiveProfileId: string;
 };
 
-export type ChatResponse = Pick<
+export type ConversationResponse = Pick<
   CrushResponse,
   'address' | 'ddayTime' | 'profileImagePaths' | 'selfIntro' | 'profileId'
 > & {

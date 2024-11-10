@@ -2,13 +2,12 @@
 
 import ChatIcon from '@public/svg/chat-16.svg';
 
-import type { ChatRequest } from '@/apis/chat/type';
 import type { MemberResponse } from '@/apis/member';
 import { useOverlay } from '@/hooks';
 
-import ChatRequestBottomSheet from './ChatRequestBottomSheet';
+import ConversationRequestBottomSheet from './ConversationRequestBottomSheet';
 
-export default function FloatingChatButton({
+export default function FloatingConversationButton({
   profileData,
   sendProfileId,
 }: {
@@ -25,7 +24,7 @@ export default function FloatingChatButton({
         className="fixed bottom-5 z-float flex h-[52px] w-[132px] items-center justify-center gap-x-2 rounded-[62px_48px_2px_62px] bg-primary-300 font-bold text-white"
         onClick={() =>
           open(({ isOpen, close }) => (
-            <ChatRequestBottomSheet
+            <ConversationRequestBottomSheet
               isOpen={isOpen}
               onClose={close}
               profileData={profileData}

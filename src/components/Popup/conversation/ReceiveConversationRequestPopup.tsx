@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import type { ChatResponse, ConversationType } from '@/apis/chat';
+import type { ConversationResponse, ConversationType } from '@/apis/conversation';
 import AcceptRejectButton from '@/app/(main)/like/components/AcceptRejectButton';
 import Dday from '@/app/(main)/like/components/Dday';
 import { Button, ButtonWrapper } from '@/components/Button';
@@ -24,7 +24,7 @@ import { calculateAge, cn } from '@/utils';
 
 type MatchType = 'PENDING' | ConversationType;
 
-export default function ReceiveChatRequestPopup({
+export default function ReceiveConversationRequestPopup({
   isOpen,
   onClose,
   profileImagePaths,
@@ -34,7 +34,7 @@ export default function ReceiveChatRequestPopup({
   conversationId,
   memberId,
   message,
-}: OverlayProps & Omit<ChatResponse, 'profileId'>) {
+}: OverlayProps & Omit<ConversationResponse, 'profileId'>) {
   const [matchType, setMatchType] = useState<MatchType>('PENDING');
   const [isFlipped, setIsFlipped] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

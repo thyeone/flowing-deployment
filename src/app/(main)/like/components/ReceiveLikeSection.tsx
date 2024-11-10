@@ -2,24 +2,24 @@
 
 import NonLikeable from '@public/svg/non-likeable-80.svg';
 
-import { useGetReceiveChat } from '@/apis/chat';
+import { useGetReceiveConversation } from '@/apis/conversation';
 import { useGetReceiveCrush } from '@/apis/crush';
 import EmblaCarousel from '@/components/EmblaCarousel';
 import Col from '@/components/layout/Col';
 import Divider from '@/components/layout/Divider';
 import Spacing from '@/components/layout/Spacing';
 
-import ChatRequestSection from './ChatRequestSection';
+import ChatRequestSection from './ConversationRequestSection';
 import CrushPointSection from './CrushPointSection';
 
 export default function ReceiveLikeSection({ profileId }: { profileId: string }) {
   const { data: receiveCrushData } = useGetReceiveCrush(profileId);
-  const { data: receiveChatData } = useGetReceiveChat(profileId);
+  const { data: receiveConversationData } = useGetReceiveConversation(profileId);
 
-  return receiveCrushData.length > 0 || receiveChatData.length > 0 ? (
+  return receiveCrushData.length > 0 || receiveConversationData.length > 0 ? (
     <>
       <EmblaCarousel>
-        <ChatRequestSection chatData={receiveChatData} />
+        <ChatRequestSection conversationData={receiveConversationData} />
       </EmblaCarousel>
       <Spacing size={40} />
       <Divider />

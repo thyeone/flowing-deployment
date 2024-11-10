@@ -1,8 +1,8 @@
 'use client';
 
-import { useGetRemainCoversation } from '@/apis/chat';
-import { usePostChatRequest } from '@/apis/chat/mutations';
-import type { ChatRequest } from '@/apis/chat/type';
+import { useGetRemainCoversation } from '@/apis/conversation';
+import { usePostConversationRequest } from '@/apis/conversation/mutations';
+import type { ConversationRequest } from '@/apis/conversation/type';
 import { MemberResponse } from '@/apis/member';
 import InfoIcon from '@/assets/InfoIcon';
 import { Button } from '@/components/Button';
@@ -12,23 +12,23 @@ import Spacing from '@/components/layout/Spacing';
 import { useBottomSheet, useOverlay } from '@/hooks';
 
 import FeedDialog from './Overlay/FeedDialog';
-import SendChatRequestPopup from './Popup/Chat/SendChatRequestPopup';
+import SendChatRequestPopup from './Popup/conversation/SendConversationRequestPopup';
 import Tooltip from './Tooltip';
 import Flex from './layout/Flex';
 
-export default function ChatRequestBottomSheet({
+export default function ConversationBottomSheet({
   isOpen,
   onClose,
   sendProfileId,
   receiveProfileId,
   profileData,
-}: OverlayProps & ChatRequest & { profileData: MemberResponse['profile'] }) {
+}: OverlayProps & ConversationRequest & { profileData: MemberResponse['profile'] }) {
   const { ref } = useBottomSheet(() => onClose());
   const { open } = useOverlay();
 
   const { selfIntro } = profileData;
 
-  const { mutate: postChatRequest } = usePostChatRequest();
+  const { mutate: postConversationRequest } = usePostConversationRequest();
   const { data: getRemainCoversation } = useGetRemainCoversation(sendProfileId);
 
   const handleChatRequest = () => {
@@ -38,7 +38,7 @@ export default function ChatRequestBottomSheet({
       return;
     }
 
-    postChatRequest(
+    postConversationRequest(
       {
         sendProfileId,
         receiveProfileId,
