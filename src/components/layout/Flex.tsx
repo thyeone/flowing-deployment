@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import { cn } from '@/utils/cn';
 
-type FlexProps<T extends React.ElementType = 'div'> = React.ComponentPropsWithRef<T> & {
+export type FlexProps<T extends React.ElementType = 'div'> = React.ComponentPropsWithRef<T> & {
   as?: T;
   children?: React.ReactNode;
   isCentered?: boolean;

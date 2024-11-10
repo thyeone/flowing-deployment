@@ -1,0 +1,18 @@
+export default function GalleryIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1.75 4.5C1.75 4.36193 1.86193 4.25 2 4.25H22C22.1381 4.25 22.25 4.36193 22.25 4.5V20.5C22.25 20.6381 22.1381 20.75 22 20.75H5C3.20507 20.75 1.75 19.2949 1.75 17.5V4.5Z"
+        stroke="#424245"
+        strokeWidth="1.5"
+      />
+      <circle cx="15.5" cy="9" r="1.5" fill="#424245" />
+      <path
+        d="M2 16.8L7 10.5L12.5556 16.8L17 13.3L22 17.5"
+        stroke="#424245"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
