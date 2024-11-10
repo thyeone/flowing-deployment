@@ -21,7 +21,7 @@ export default function SendLikeSection({ profileId }: { profileId: string }) {
         <ConversationRequestSection conversationData={requestConversationData} />
       </EmblaCarousel>
       <Spacing size={40} />
-      <Divider />
+      <Divider thickness="thick" />
       <Spacing size={40} />
       <CrushPointSection crushData={sendCrushData} title="보낸 호감지수" />
       <Spacing size={40} />

@@ -22,7 +22,7 @@ export default function ReceiveLikeSection({ profileId }: { profileId: string })
         <ChatRequestSection conversationData={receiveConversationData} />
       </EmblaCarousel>
       <Spacing size={40} />
-      <Divider />
+      <Divider thickness="thick" />
       <Spacing size={40} />
       <CrushPointSection crushData={receiveCrushData} title="받은 호감지수" />
       <Spacing size={40} />
