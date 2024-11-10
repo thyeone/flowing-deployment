@@ -4,11 +4,14 @@ import MaleAvatar from '@public/svg/male.svg?url';
 import Image from 'next/image';
 
 import { useGetMember } from '@/apis/member';
+import { MenuButton } from '@/components/Header';
+import useDropdown from '@/hooks/useDropdown';
 import { cn, decodeAccessToken } from '@/utils';
 import { DateFormat } from '@/utils/date';
 
 import { useFeedDetailContext } from '../FeedDetailContext';
 import ChildComment from './ChildComment';
+import CommentDropDown from './CommentDropDown';
 import CommentLikeCount from './CommentLikeCount';
 
 type CommentProps = {
@@ -26,6 +29,8 @@ export default function Comment({ commentData }: CommentProps) {
   const isLiked = commentData.likes.some(
     ({ memberId }: { memberId: string }) => myMemberId === memberId,
   );
+
+  const { ref, open: openDropdown, setOpen: setOpenDropdown } = useDropdown();
 
   return (
     <>
@@ -70,6 +75,17 @@ export default function Comment({ commentData }: CommentProps) {
             </button>
           </div>
         </div>
+        {isCommentByPoster && (
+          <div ref={ref} className="relative ml-auto">
+            <MenuButton
+              variant="vertical"
+              onClick={(e) => {
+                setOpenDropdown(!openDropdown);
+              }}
+            />
+            <CommentDropDown open={openDropdown} commentId={commentData.id} />
+          </div>
+        )}
       </div>
       {commentData.childComments.map((childComment: any) => (
         <ChildComment key={childComment.id} commentData={childComment} />

@@ -35,7 +35,7 @@ export const feedApi = {
   postFeedsComments: async ({ feedId, data }: { feedId: number; data: FeedsCommentsRequest }) => {
     return await http.post(`/feeds/${feedId}/comments`, data);
   },
-  deleteFeedsComments: async (feedId: number, commentId: number) => {
+  deleteFeedsComments: async ({ feedId, commentId }: { feedId: number; commentId: number }) => {
     return await http.delete(`/feeds/${feedId}/comments/${commentId}`);
   },
   patchFeedsComments: async (feedId: number, commentId: number, data: FeedsCommentsRequest) => {

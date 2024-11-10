@@ -83,6 +83,20 @@ export const usePostFeedsComments = ({ feedId }: { feedId: number }) => {
   });
 };
 
+export const useDeleteFeedsComments = ({ feedId }: { feedId: number }) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ commentId }: { commentId: number }) =>
+      feedApi.deleteFeedsComments({ feedId, commentId }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.getFeedsComments, feedId],
+      });
+    },
+  });
+};
+
 export const usePostFeedsCommentsReply = ({ feedId }: { feedId: number }) => {
   const queryClient = useQueryClient();
 
