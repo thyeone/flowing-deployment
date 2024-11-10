@@ -8,11 +8,9 @@ type DropDownProps = {
 
 const wrapperVariants = {
   open: {
-    scaleY: 1,
     opacity: 1,
   },
   closed: {
-    scaleY: 0,
     opacity: 0,
   },
 };
@@ -23,7 +21,7 @@ function DropDown({ children, open }: PropsWithStrictChildren<DropDownProps>) {
       animate={open ? 'open' : 'closed'}
       initial={wrapperVariants.closed}
       variants={wrapperVariants}
-      className="absolute right-0 top-full min-w-[148px] origin-top overflow-hidden rounded-xl bg-white shadow-md"
+      className="absolute right-0 top-full z-10 min-w-[148px] origin-top overflow-hidden rounded-xl bg-white shadow-md"
     >
       {children}
     </motion.div>
