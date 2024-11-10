@@ -2,16 +2,16 @@ import Divider from '@/components/layout/Divider';
 
 import ChannelList from '../../components/ChannelList';
 import ContentSection from './ContentSection';
-import { useFeedCreateFormContext } from './FeedCreateFormContext';
-import FeedCreateHeader from './FeedCreateHeader';
+import { useFeedWriteFormContext } from './FeedWriteFormContext';
+import FeedWriteHeader from './FeedWriteHeader';
 import ImageSection from './ImageSection';
 
-const FeedCreate = () => {
-  const { watch, setValue } = useFeedCreateFormContext();
+const FeedWrite = () => {
+  const { watch, setValue } = useFeedWriteFormContext();
 
   return (
     <div className="flex h-full flex-col">
-      <FeedCreateHeader />
+      <FeedWriteHeader />
       <div className="flex items-center py-3 pl-4">
         <ChannelList
           selectedChannelId={watch('channel')}
@@ -28,4 +28,4 @@ const FeedCreate = () => {
   );
 };
 
-export default FeedCreate;
+export default FeedWrite;

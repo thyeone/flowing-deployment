@@ -10,10 +10,10 @@ import { usePostFile } from '@/apis/file/mutations';
 import { useToast } from '@/hooks';
 import { compressImage } from '@/utils';
 
-import { useFeedCreateFormContext } from './FeedCreateFormContext';
+import { useFeedWriteFormContext } from './FeedWriteFormContext';
 
 export default function ImageSection() {
-  const { control, watch } = useFeedCreateFormContext();
+  const { control, watch } = useFeedWriteFormContext();
   const { fields, append, remove, update } = useFieldArray({
     control: control,
     name: 'images',

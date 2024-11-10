@@ -1,7 +1,7 @@
-import { useFeedCreateFormContext } from './FeedCreateFormContext';
+import { useFeedWriteFormContext } from './FeedWriteFormContext';
 
 export default function ContentSection() {
-  const { register } = useFeedCreateFormContext();
+  const { register } = useFeedWriteFormContext();
 
   return (
     <div className="flex-auto px-5 py-4">

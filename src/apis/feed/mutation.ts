@@ -34,6 +34,17 @@ export const usePostFeed = () => {
   });
 };
 
+export const usePatchFeed = () => {
+  const { invalidateFeedQuries } = useInvalidateFeedQuries();
+
+  return useMutation({
+    mutationFn: feedApi.patchFeed,
+    onSuccess: () => {
+      invalidateFeedQuries();
+    },
+  });
+};
+
 export const usePostFeedsLike = ({ feedId }: { feedId: number }) => {
   const { invalidateFeedQuries } = useInvalidateFeedQuries();
   const queryClient = useQueryClient();
