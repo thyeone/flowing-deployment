@@ -37,7 +37,7 @@ export default function FeedDetailMoreMenu({ open, feedId }: FeedDetailMoreDropd
       animate={open ? 'open' : 'closed'}
       initial={wrapperVariants.closed}
       variants={wrapperVariants}
-      className="absolute right-0 top-full min-w-[148px] origin-top overflow-hidden rounded-xl shadow-md"
+      className="absolute right-0 top-full min-w-[148px] origin-top overflow-hidden rounded-xl bg-white shadow-md"
     >
       <div className="py-2 text-center text-xs text-gray-500">더보기</div>
       <motion.ul className="w-full">
