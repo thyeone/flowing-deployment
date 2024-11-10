@@ -5,7 +5,8 @@ import type {
   FeedsCommentsRequest,
   FeedsPageParams,
   FeedsParams,
-  FeedsRequest,
+  PatchFeedsRequest,
+  PostFeedsRequest,
 } from './type';
 
 export const feedApi = {
@@ -14,7 +15,7 @@ export const feedApi = {
       params,
     });
   },
-  postFeed: async ({ data }: { data: FeedsRequest }) => {
+  postFeed: async ({ data }: { data: PostFeedsRequest }) => {
     return await http.post(`/feeds`, data);
   },
   getFeed: async (feedId: number) => {
@@ -23,7 +24,7 @@ export const feedApi = {
   deleteFeed: async (feedId: number) => {
     return await http.delete(`/feeds/${feedId}`);
   },
-  patchFeed: async ({ feedId, data }: { feedId: number; data: FeedsRequest }) => {
+  patchFeed: async ({ feedId, data }: { feedId: number; data: PatchFeedsRequest }) => {
     return await http.patch(`/feeds/${feedId}`, data);
   },
   getFeedsComments: async (feedId: number, params: FeedsCommentsParams) => {

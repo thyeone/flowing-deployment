@@ -46,10 +46,16 @@ export type FeedsParams = {
   maxAge: string;
 };
 
-export type FeedsRequest = {
+export type PostFeedsRequest = {
   channel: number;
   content: string;
   feedImageIds: string[];
+};
+
+export type PatchFeedsRequest = {
+  channel: number;
+  content: string;
+  newFeedImageIds: string[];
 };
 
 export type FeedsCommentsParams = {

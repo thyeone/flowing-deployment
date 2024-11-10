@@ -1,7 +1,6 @@
 import { useParams, useRouter } from 'next/navigation';
 import { SubmitHandler } from 'react-hook-form';
 
-import { FeedsRequest } from '@/apis/feed';
 import { usePatchFeed, usePostFeed } from '@/apis/feed/mutation';
 import { BackButton, Header } from '@/components/Header';
 import { useToast } from '@/hooks';
@@ -20,9 +19,11 @@ export default function FeedWriteHeader() {
 
   const { openToast } = useToast();
 
-  const createFeed = (data: FeedsRequest) => {
+  const createFeed = (data: FeedWriteForm) => {
+    const submitData = { ...data, feedImageIds: data.images.map(({ id }) => id) };
+
     postFeed(
-      { data },
+      { data: submitData },
       {
         onSuccess: () => {
           openToast({ message: '피드가 등록되었어요!' });
@@ -32,9 +33,10 @@ export default function FeedWriteHeader() {
     );
   };
 
-  const editFeed = (data: FeedsRequest) => {
+  const editFeed = (data: FeedWriteForm) => {
+    const submitData = { ...data, newFeedImageIds: data.images.map(({ id }) => id) };
     patchFeed(
-      { feedId: Number(feedId), data },
+      { feedId: Number(feedId), data: submitData },
       {
         onSuccess: () => {
           openToast({ message: '피드가 수정되었어요!' });
@@ -45,8 +47,7 @@ export default function FeedWriteHeader() {
   };
 
   const onSubmit: SubmitHandler<FeedWriteForm> = async (data) => {
-    const submitData = { ...data, feedImageIds: data.images.map(({ id }) => id) };
-    isEdit ? editFeed(submitData) : createFeed(submitData);
+    isEdit ? editFeed(data) : createFeed(data);
   };
 
   return (
