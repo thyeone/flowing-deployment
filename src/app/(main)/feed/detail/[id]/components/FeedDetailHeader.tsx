@@ -16,6 +16,7 @@ export default function FeedDetailHeader() {
   const isMyFeed = myData?.profile.memberId === feedData.contents.memberId;
 
   const [openBottomSheet, setOpenBottomSheet] = useState(false);
+  const { ref, open: openDropdown, setOpen: setOpenDropdown } = useDropdown();
 
   return (
     <Header>
@@ -24,6 +25,7 @@ export default function FeedDetailHeader() {
       </Header.Left>
       <Header.Center>{`${feedData.contents.nickname}, ${feedData.contents.age}`}</Header.Center>
       <Header.Right>
+        <div ref={ref} className="relative">
           <MenuButton
             variant="vertical"
             onClick={(e) => {
@@ -32,6 +34,10 @@ export default function FeedDetailHeader() {
           />
           <FeedDetailMoreMenu open={openDropdown} feedId={feedData.id} />
         </div>
+        <FeedDetailMoreBottomSheet
+          open={openBottomSheet}
+          onClose={() => setOpenBottomSheet(false)}
+        />
       </Header.Right>
     </Header>
   );
