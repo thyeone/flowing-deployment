@@ -1,6 +1,7 @@
 'use client';
 
 import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
@@ -14,8 +15,6 @@ import Bubble from './components/Bubble';
 import ChatRoomHeader from './components/ChatRoomHeader';
 import SendField from './components/SendField';
 
-dayjs().locale('ko');
-
 const chatData = {
   avatarSrc:
     'https://gyeol-imagebucket.s3.ap-northeast-2.amazonaws.com/profile/2_b45e3ca2-325b-433b-9bec-eddc3bc00633.png',
@@ -24,6 +23,8 @@ const chatData = {
     '오늘 아침에 또 이프 온리 영화보고 울었어요 이 영화는 어느 시기에 보느냐에 따라감성터지는듯',
   ],
 };
+
+dayjs().locale('ko');
 
 export default function ChatRoomPage() {
   const { register, watch } = useForm();
