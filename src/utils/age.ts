@@ -40,3 +40,20 @@ export const getRangeOfAge = (birth: string) => {
 
   return `${age}세`;
 };
+
+export const ageToDateString = ({ age, firstDay = false }: { age: number; firstDay?: boolean }) => {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() - age);
+
+  if (firstDay) {
+    date.setMonth(0);
+    date.setDate(1);
+  }
+  return date.toISOString().split('T')[0];
+};
+
+export const birthToAge = ({ birth }: { birth: string }) => {
+  const date = new Date(birth);
+  const today = new Date();
+  return today.getFullYear() - date.getFullYear();
+};

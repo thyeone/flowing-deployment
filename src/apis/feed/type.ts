@@ -21,8 +21,48 @@ export type FeedContentsType = {
   updateAt: string;
 };
 
+type FeedLikeType = {
+  memberId: string;
+  feedLikeId: number;
+};
+
 export type FeedResponse = {
   id: number;
   contents: FeedContentsType;
-  images: string[];
+  feedLikeDtos: FeedLikeType[];
+  images: (string | { id: string; url: string })[];
+};
+
+export type FeedsPageParams = {
+  feedId: number | null;
+  size: number;
+};
+
+export type FeedsParams = {
+  channelId: number | null;
+  gender: string;
+  address: string;
+  minAge: string;
+  maxAge: string;
+};
+
+export type PostFeedsRequest = {
+  channel: number;
+  content: string;
+  feedImageIds: string[];
+};
+
+export type PatchFeedsRequest = {
+  channel: number;
+  content: string;
+  newFeedImageIds: string[];
+};
+
+export type FeedsCommentsParams = {
+  commentId?: number | null;
+  size?: number;
+};
+
+export type FeedsCommentsRequest = {
+  content: string;
 };
