@@ -10,7 +10,7 @@ export default function FeedHeader() {
       <Header>
         <Header.Left className="text-[22px] font-bold">피드</Header.Left>
         <Header.Right className="gap-4">
-          <Link href="/feed/create">
+          <Link href="/feed/write/0">
             <CreateIcon />
           </Link>
           <AlarmIcon />

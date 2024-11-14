@@ -1,17 +1,33 @@
 import LikeOff from '@public/svg/like-off.svg';
-import LikeOn from '@public/svg/like-on.svg';
+
+import { usePostFeedsLike } from '@/apis/feed/mutation';
+import { cn } from '@/utils';
 
 type LikeCountProps = {
   id: number;
   count: number;
+  isLiked: boolean;
 };
 
-/* todo: 좋아요 기능 구현 */
-export default function LikeCount({ id, count }: LikeCountProps) {
+export default function LikeCount({ id, count, isLiked }: LikeCountProps) {
+  const { mutate } = usePostFeedsLike({ feedId: id });
+
   return (
-    <div className="flex items-center gap-[6px] text-[14px] text-gray-600">
-      <LikeOff />
-      <p>{count}</p>
-    </div>
+    <button
+      className="flex items-center gap-[6px] text-gray-600"
+      onClick={() => {
+        mutate({ feedId: id });
+      }}
+    >
+      <LikeOff
+        width={16}
+        height={16}
+        className={cn({
+          'fill-primary-300 stroke-primary-300': isLiked,
+          'fill-none stroke-gray-600': !isLiked,
+        })}
+      />
+      <p className="text-[13px]">{count}</p>
+    </button>
   );
 }
