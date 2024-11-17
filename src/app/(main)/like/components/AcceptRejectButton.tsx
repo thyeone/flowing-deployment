@@ -1,7 +1,7 @@
 import CloseIcon from '@public/svg/close-24.svg';
 import HeartIcon from '@public/svg/fill-heart-24.svg';
 
-import { type ConversationType, usePostChatType } from '@/apis/chat';
+import { type ConversationType, usePostConversationType } from '@/apis/conversation';
 
 export default function AcceptRejectButton({
   conversationId,
@@ -10,14 +10,14 @@ export default function AcceptRejectButton({
   conversationId: number;
   handleOnClick?: (type: ConversationType) => void;
 }) {
-  const { mutate: postChatType } = usePostChatType();
+  const { mutate: postConversationType } = usePostConversationType();
 
   return (
     <div className="flex justify-center gap-x-6">
       <button
         className="flex size-[60px] items-center justify-center rounded-full bg-white"
         onClick={() => {
-          postChatType({ conversationId, conversationType: 'REFUSE' });
+          postConversationType({ conversationId, conversationType: 'REFUSE' });
           handleOnClick?.('REFUSE');
         }}
       >
@@ -26,7 +26,7 @@ export default function AcceptRejectButton({
       <button
         className="flex size-[60px] items-center justify-center rounded-full bg-primary-300"
         onClick={() => {
-          postChatType({ conversationId, conversationType: 'ACCEPT' });
+          postConversationType({ conversationId, conversationType: 'ACCEPT' });
           handleOnClick?.('ACCEPT');
         }}
       >

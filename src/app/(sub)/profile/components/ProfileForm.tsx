@@ -109,46 +109,50 @@ export default function ProfileForm() {
   }
 
   return (
-    <form className="px-5 pt-4" onSubmit={handleSubmit(onSubmit)}>
-      <ProfileCard profileData={member as MemberResponse} fileArrayContext={fileArrayContext} />
+    <form className="pt-4" onSubmit={handleSubmit(onSubmit)}>
+      <div className="px-5">
+        <ProfileCard profileData={member as MemberResponse} fileArrayContext={fileArrayContext} />
+        <Spacing size={32} />
+        <TextField
+          register={register('introduction', {
+            required: true,
+          })}
+          label="한줄 자기소개"
+          id="one-line-introduce"
+          placeholder="자기소개를 입력해주세요."
+          required={!!introduction.length}
+        />
+        <Spacing size={32} />
+        <SelfIntro profileData={member as MemberResponse} />
+        <Spacing size={32} />
+        <MyKeyword />
+        <Spacing size={32} />
+      </div>
+      <Divider thickness="thick" />
       <Spacing size={32} />
-      <TextField
-        register={register('introduction', {
-          required: true,
-        })}
-        label="한줄 자기소개"
-        id="one-line-introduce"
-        placeholder="자기소개를 입력해주세요."
-        required={!!introduction.length}
-      />
-      <Spacing size={32} />
-      <SelfIntro profileData={member as MemberResponse} />
-      <Spacing size={32} />
-      <MyKeyword />
-      <Spacing size={32} />
-      <Divider />
-      <Spacing size={32} />
-      <ValueResponseList
-        valueResponses={
-          member.profile.valueResponses.filter(({ type }) => type === '인생') as ValueResponse[]
-        }
-        label="라이프 가치관"
-      />
-      <Spacing size={16} />
-      <ValueResponseList
-        valueResponses={
-          member.profile.valueResponses.filter(({ type }) => type === '사랑') as ValueResponse[]
-        }
-        label="연애관"
-      />
-      <Spacing size={16} />
-      <ValueResponseList
-        valueResponses={
-          member.profile.valueResponses.filter(({ type }) => type === '일') as ValueResponse[]
-        }
-        label="직업 가치관"
-      />
-      <Spacing size={32} />
+      <div className="px-5">
+        <ValueResponseList
+          valueResponses={
+            member.profile.valueResponses.filter(({ type }) => type === '인생') as ValueResponse[]
+          }
+          label="라이프 가치관"
+        />
+        <Spacing size={16} />
+        <ValueResponseList
+          valueResponses={
+            member.profile.valueResponses.filter(({ type }) => type === '사랑') as ValueResponse[]
+          }
+          label="연애관"
+        />
+        <Spacing size={16} />
+        <ValueResponseList
+          valueResponses={
+            member.profile.valueResponses.filter(({ type }) => type === '일') as ValueResponse[]
+          }
+          label="직업 가치관"
+        />
+        <Spacing size={32} />
+      </div>
       <ButtonWrapper>
         <Button
           type="submit"
