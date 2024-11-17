@@ -5,13 +5,17 @@ export type FeedChannelType = {
   subTitle: string;
 };
 
-export type FeedContentsType = {
+type ProfileType = {
   memberId: string;
   profilePic: string;
   nickname: string;
   age: number;
   region: string;
   gender: GenderType;
+};
+
+export type FeedContentsType = {
+  simpleProfileDto: ProfileType;
   content: string;
   channel: FeedChannelType;
   viewCount: number;

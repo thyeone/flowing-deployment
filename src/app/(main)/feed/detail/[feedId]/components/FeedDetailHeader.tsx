@@ -13,7 +13,7 @@ export default function FeedDetailHeader() {
   const { feedData } = useFeedDetailContext();
   const { data: myData } = useGetMember(decodeAccessToken());
 
-  const isMyFeed = myData?.profile.memberId === feedData.contents.memberId;
+  const isMyFeed = myData?.profile.memberId === feedData.contents.simpleProfileDto.memberId;
 
   const [openBottomSheet, setOpenBottomSheet] = useState(false);
   const { ref, open: openDropdown, setOpen: setOpenDropdown } = useDropdown();
@@ -23,7 +23,7 @@ export default function FeedDetailHeader() {
       <Header.Left>
         <BackButton />
       </Header.Left>
-      <Header.Center>{`${feedData.contents.nickname}, ${feedData.contents.age}`}</Header.Center>
+      <Header.Center>{`${feedData.contents.simpleProfileDto.nickname}, ${feedData.contents.simpleProfileDto.age}`}</Header.Center>
       <Header.Right>
         <div ref={ref} className="relative">
           <MenuButton

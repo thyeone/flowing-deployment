@@ -21,7 +21,7 @@ type CommentProps = {
 export default function Comment({ commentData }: CommentProps) {
   const { feedId, feedData, mentionTargetCommentUser } = useFeedDetailContext();
 
-  const posterId = feedData.contents.memberId;
+  const posterId = feedData.contents.simpleProfileDto.memberId;
   const isCommentByPoster = commentData.member.memberId === posterId;
 
   const { data: myData } = useGetMember(decodeAccessToken());

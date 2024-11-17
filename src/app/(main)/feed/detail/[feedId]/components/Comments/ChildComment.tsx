@@ -16,7 +16,7 @@ type ChildCommentProps = {
 export default function ChildComment({ commentData }: ChildCommentProps) {
   const { feedId, feedData } = useFeedDetailContext();
 
-  const posterId = feedData.contents.memberId;
+  const posterId = feedData.contents.simpleProfileDto.memberId;
   const isCommentByPoster = commentData.member.memberId === posterId;
 
   const { data: myData } = useGetMember(decodeAccessToken());
