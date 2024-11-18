@@ -15,10 +15,8 @@ export default function FeedDetailComments() {
 
   return (
     <div className="h-fit w-full pb-16" id="comment">
-      {commentsQuery?.data?.pages.map((group: any) =>
-        [...group]
-          .reverse()
-          .map((comment: any) => <Comment key={comment.id} commentData={comment} />),
+      {commentsQuery?.data?.pages.map((group) =>
+        group.map((comment) => <Comment key={comment.id} commentData={comment} />),
       )}
 
       <div ref={setTarget} className="h-px" />
