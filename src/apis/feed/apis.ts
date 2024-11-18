@@ -3,6 +3,7 @@ import type {
   FeedResponse,
   FeedsCommentsParams,
   FeedsCommentsRequest,
+  FeedsCommentsResponse,
   FeedsPageParams,
   FeedsParams,
   PatchFeedsRequest,
@@ -28,7 +29,7 @@ export const feedApi = {
     return await http.patch(`/feeds/${feedId}`, data);
   },
   getFeedsComments: async (feedId: number, params: FeedsCommentsParams) => {
-    return await http.get(`/feeds/${feedId}/comments`, {
+    return await http.get<FeedsCommentsResponse>(`/feeds/${feedId}/comments`, {
       params,
     });
   },

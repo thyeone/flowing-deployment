@@ -70,3 +70,15 @@ export type FeedsCommentsParams = {
 export type FeedsCommentsRequest = {
   content: string;
 };
+
+export type FeedsComment = {
+  childComments: FeedsComment[];
+  content: string;
+  createdAt: string;
+  id: number;
+  likes: { id: number; memberId: string }[];
+  member: ProfileType;
+  updatedAt: string;
+};
+
+export type FeedsCommentsResponse = FeedsComment[];
