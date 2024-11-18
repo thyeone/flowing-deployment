@@ -88,6 +88,13 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
           return (
             <SwiperSlide key={index} className="aspect-video">
               <div className="relative size-full rounded-xl bg-gray-800">
+                <Image
+                  src={url}
+                  alt="upload-image-backdrop"
+                  fill
+                  objectFit="cover"
+                  className="blur-lg"
+                />
                 <Image src={url} alt="upload-image" fill objectFit="contain" />
               </div>
             </SwiperSlide>
