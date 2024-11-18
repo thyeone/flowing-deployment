@@ -19,15 +19,19 @@ type ChildCommentProps = {
 
 export default function ChildComment({ commentData }: ChildCommentProps) {
   const { feedId, feedData } = useFeedDetailContext();
+  const { data: myData } = useGetMember(decodeAccessToken());
 
   const posterId = feedData.contents.simpleProfileDto.memberId;
   const isCommentByPoster = commentData.member.memberId === posterId;
 
-  const { data: myData } = useGetMember(decodeAccessToken());
   const myMemberId = myData?.profile.memberId;
+  const isCommentByLoggedInUser = commentData.member.memberId === myMemberId;
+
   const isLiked = commentData.likes.some(
     ({ memberId }: { memberId: string }) => myMemberId === memberId,
   );
+
+  const { ref, open: openDropdown, setOpen: setOpenDropdown } = useDropdown();
 
   return (
     <div className={cn(`flex items-start gap-2 border-b border-gray-200 bg-gray-50 p-5 pl-[60px]`)}>
@@ -54,6 +58,17 @@ export default function ChildComment({ commentData }: ChildCommentProps) {
           />
         </div>
       </div>
+      {isCommentByLoggedInUser && (
+        <div ref={ref} className="relative ml-auto">
+          <MenuButton
+            variant="vertical"
+            onClick={(e) => {
+              setOpenDropdown(!openDropdown);
+            }}
+          />
+          <CommentDropDown open={openDropdown} commentId={commentData.id} />
+        </div>
+      )}
     </div>
   );
 }

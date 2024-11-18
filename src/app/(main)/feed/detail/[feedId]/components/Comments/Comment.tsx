@@ -21,12 +21,14 @@ type CommentProps = {
 
 export default function Comment({ commentData }: CommentProps) {
   const { feedId, feedData, mentionTargetCommentUser } = useFeedDetailContext();
+  const { data: myData } = useGetMember(decodeAccessToken());
 
   const posterId = feedData.contents.simpleProfileDto.memberId;
   const isCommentByPoster = commentData.member.memberId === posterId;
 
-  const { data: myData } = useGetMember(decodeAccessToken());
   const myMemberId = myData?.profile.memberId;
+  const isCommentByLoggedInUser = commentData.member.memberId === myMemberId;
+
   const isLiked = commentData.likes.some(
     ({ memberId }: { memberId: string }) => myMemberId === memberId,
   );
@@ -75,7 +77,7 @@ export default function Comment({ commentData }: CommentProps) {
             </button>
           </div>
         </div>
-        {isCommentByPoster && (
+        {isCommentByLoggedInUser && (
           <div ref={ref} className="relative ml-auto">
             <MenuButton
               variant="vertical"
