@@ -123,18 +123,22 @@ export default function FeedFilterProvider({ children }: { children: React.React
   };
 
   const setChannelId = (channelId: number | null) => {
-    setSearchParams({ ...searchParams, channelId: channelId ? String(channelId) : '' });
+    setSearchParams({
+      newParams: { ...searchParams, channelId: channelId ? String(channelId) : '' },
+    });
   };
 
   const setFeedsParams = () => {
     setSearchParams({
-      ...searchParams,
-      gender: Object.keys(filterState.gender).filter(
-        (key) => filterState.gender[key as GenderType],
-      ),
-      address: filterState.address,
-      maxAge: ageToDateString({ age: filterState.age.min }),
-      minAge: ageToDateString({ age: filterState.age.max, firstDay: true }),
+      newParams: {
+        ...searchParams,
+        gender: Object.keys(filterState.gender).filter(
+          (key) => filterState.gender[key as GenderType],
+        ),
+        address: filterState.address,
+        maxAge: ageToDateString({ age: filterState.age.min }),
+        minAge: ageToDateString({ age: filterState.age.max, firstDay: true }),
+      },
     });
   };
 

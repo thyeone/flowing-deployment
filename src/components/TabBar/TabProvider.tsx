@@ -23,7 +23,7 @@ export default function TabProvider({
   const selectedTab = (searchParams.tab as string) || initialValue;
 
   const setSelectedTab = (value: string) => {
-    setSearchParams({ ...searchParams, tab: value });
+    setSearchParams({ newParams: { ...searchParams, tab: value } });
   };
 
   const memoizedValue = useMemo(

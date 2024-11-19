@@ -52,16 +52,16 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
         <ChannelBadge name={contents.channel.name} />
         <div className="flex items-center gap-2">
           <Image
-            src={contents.gender === 'MALE' ? MaleAvatar : FemaleAvatar}
+            src={contents.simpleProfileDto.gender === 'MALE' ? MaleAvatar : FemaleAvatar}
             alt="genderAvatar"
             width={40}
           />
           <div>
             <p className="text-[14px] font-bold">
-              {contents.nickname}. {contents.age}
+              {contents.simpleProfileDto.nickname}. {contents.simpleProfileDto.age}
             </p>
             <p className="text-[12px] text-gray-600">
-              {contents.region} · {DateFormat(contents.createdAt)}
+              {contents.simpleProfileDto.region} · {DateFormat(contents.createdAt)}
             </p>
           </div>
         </div>
@@ -88,6 +88,13 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
           return (
             <SwiperSlide key={index} className="aspect-video">
               <div className="relative size-full rounded-xl bg-gray-800">
+                <Image
+                  src={url}
+                  alt="upload-image-backdrop"
+                  fill
+                  objectFit="cover"
+                  className="blur-lg"
+                />
                 <Image src={url} alt="upload-image" fill objectFit="contain" />
               </div>
             </SwiperSlide>
