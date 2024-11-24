@@ -67,8 +67,8 @@ instance.interceptors.response.use(
   },
 );
 
-instance.defaults.paramsSerializer = (parmas) => {
-  return qs.stringify(parmas, { arrayFormat: 'repeat' });
+instance.defaults.paramsSerializer = (params) => {
+  return qs.stringify(params, { arrayFormat: 'repeat' });
 };
 
 const http = {

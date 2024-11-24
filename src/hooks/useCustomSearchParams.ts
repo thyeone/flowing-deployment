@@ -24,15 +24,19 @@ const useCustomSearchParams = () => {
     return searchParams.toString();
   };
 
-  const setSearchParams = (
-    newParams: NewParamsType | ((prev: NewParamsType) => NewParamsType),
-    isReplace?: boolean,
-  ) => {
+  const setSearchParams = ({
+    newParams,
+    isPush,
+  }: {
+    newParams: NewParamsType | ((prev: NewParamsType) => NewParamsType);
+    isPush?: boolean;
+  }) => {
     const _newParams =
       typeof newParams === 'function' ? newParams(Object.fromEntries(searchParams)) : newParams;
 
-    if (isReplace) return router.replace(`${pathname}?${setNewParams(_newParams)}`);
-    return router.push(`${pathname}?${setNewParams(_newParams)}`);
+    if (isPush) return router.push(`${pathname}?${setNewParams(_newParams)}`);
+
+    return router.replace(`${pathname}?${setNewParams(_newParams)}`);
   };
 
   return {
