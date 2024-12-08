@@ -45,7 +45,7 @@ export default function Comment({ commentData }: CommentProps) {
         />
         <div className="flex flex-col">
           <p className="text-sm font-bold">
-            {commentData.member.nickname}. {'00'}
+            {commentData.member.nickname}. {commentData.member.age}
             {isCommentByPoster && (
               <span className="ml-1.5 font-normal text-primary-400">작성자</span>
             )}
