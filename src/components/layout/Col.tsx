@@ -1,20 +1,20 @@
 import { forwardRef } from 'react';
 
-import Flex, { type FlexProps } from './Flex';
+import Flex, { FlexProps, TagName } from './Flex';
 
-type ColProps<T extends React.ElementType> = Omit<FlexProps<T>, 'direction'>;
+type Props<K extends TagName> = Omit<FlexProps<K>, 'direction'> & {
+  direction?: never;
+};
 
-function Col<T extends React.ElementType = 'div'>(
-  { children, ...rest }: ColProps<T>,
-  ref: React.ForwardedRef<React.ElementRef<T>>,
-) {
+const Col = <K extends TagName = 'div'>(
+  { children, ...props }: Props<K>,
+  ref: React.ForwardedRef<React.ElementRef<K>>,
+) => {
   return (
-    <Flex {...rest} ref={ref} direction="column">
+    <Flex ref={ref} direction="col" {...props}>
       {children}
     </Flex>
   );
-}
+};
 
-export default forwardRef(Col) as <T extends React.ElementType = 'div'>(
-  props: ColProps<T> & { ref?: React.Ref<Element> },
-) => JSX.Element;
+export default forwardRef(Col);
