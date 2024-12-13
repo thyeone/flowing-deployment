@@ -1,6 +1,9 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import Link from 'next/link';
 
+import { ChatRoomResponse } from '@/apis/chatroom/type';
 import Avatar from '@/components/Avatar/Avatar';
 import Col from '@/components/layout/Col';
 import Flex from '@/components/layout/Flex';
@@ -8,67 +11,44 @@ import { cn } from '@/utils';
 
 import AlertBadge from './AlertBadge';
 
-type ChatItemProps = {
-  id: string;
-  name: string;
-  age: number;
-  avatarSrc: string;
-  address: string;
-  createdAt: string;
-  messages: string[];
-  lastMessage: string;
-};
+dayjs.extend(relativeTime);
+dayjs.locale('ko');
+
+type ChatItemProps = ChatRoomResponse;
+
+const messages = ['메세지1', '메세지2'];
 
 export default function ChatItem({
-  id,
-  name,
-  age,
-  avatarSrc,
-  address,
+  chatRoomId,
+  opponentProfileId,
+  simpleProfileDto,
   createdAt,
-  messages,
   lastMessage,
+  unReadCount,
 }: ChatItemProps) {
+  const { profilePic, nickname, age, region } = simpleProfileDto;
   return (
-    <Link href={`/chat/${id}`} className="flex h-12 cursor-pointer items-center px-5">
-      <Avatar size="md" imageSrc={avatarSrc} />
-      <Col gap={6} className="ml-2 mr-5 truncate">
+    <Link href={`/chat/${chatRoomId}`} className="flex h-12 cursor-pointer items-center px-5">
+      <Avatar size="md" imageSrc={profilePic} />
+      <Col gap={6} className="ml-2 mr-auto truncate">
         <Flex align="center" gap={8}>
           <div className="text-[14px] font-bold leading-[14px]">
-            <span>{name}. </span>
+            <span>{nickname}. </span>
             <span>{age}</span>
           </div>
           <span className="text-[12px] leading-4 text-gray-500">
-            {address} · {getTime(createdAt)}
+            {region} · {dayjs(dayjs(createdAt).format('YYYY-MM-DD')).fromNow()}
           </span>
         </Flex>
         <p
-          className={cn('truncate text-[12px] leading-3', {
+          className={cn('h-3 truncate text-[12px] leading-3', {
             'text-gray-500': !messages.length,
           })}
         >
           {lastMessage}
         </p>
       </Col>
-      {messages.length > 0 && <AlertBadge>{messages.length}</AlertBadge>}
+      {unReadCount > 0 && <AlertBadge>{unReadCount}</AlertBadge>}
     </Link>
   );
-}
-
-function getTime(createdAt: string) {
-  const miniute = dayjs().diff(createdAt, 'minute');
-
-  if (miniute < 1) {
-    return `${dayjs().diff(createdAt, 's')}초`;
-  }
-
-  if (miniute > 1 && miniute < 60) {
-    return `${miniute}분전`;
-  }
-
-  if (miniute > 60 && miniute < 1440) {
-    return `${dayjs().diff(createdAt, 'h')}시간`;
-  }
-
-  return `${dayjs().diff(createdAt, 'd')}일`;
 }

@@ -1,3 +1,4 @@
+import { SSRSafeSuspense } from '@/components/Async';
 import { BottomTabBar } from '@/components/TabBar';
 
 import ChatHeader from './components/ChatHeader';
@@ -7,7 +8,9 @@ export default function ChatPage() {
   return (
     <>
       <ChatHeader />
-      <ChatSection />
+      <SSRSafeSuspense>
+        <ChatSection />
+      </SSRSafeSuspense>
       <BottomTabBar />
     </>
   );
