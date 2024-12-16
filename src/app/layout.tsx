@@ -8,6 +8,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Flowing | 플로잉',
   description: 'Flowing, 플로잉',
+  icons: {
+    icon: '/favicon/favicon.png',
+  },
 };
 
 export const viewport: Viewport = {
