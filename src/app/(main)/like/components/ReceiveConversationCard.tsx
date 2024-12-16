@@ -19,7 +19,7 @@ export default function ReceiveConversationCard({
 }: ConversationResponse & { isBlur: boolean }) {
   const { open } = useOverlay({ exitOnUnmount: false });
 
-  const { conversationId, selfIntro, profileImagePaths, ddayTime, address } = props;
+  const { conversationId, selfIntro, profileImagePaths, ddayTime, address, profileId } = props;
 
   return (
     <EmblaCarousel.Item
@@ -51,7 +51,7 @@ export default function ReceiveConversationCard({
           {address.sido} {address.sigungu}
         </p>
         <Spacing size={24} />
-        <AcceptRejectButton conversationId={conversationId} />
+        <AcceptRejectButton profileId={profileId} conversationId={conversationId} />
       </div>
     </EmblaCarousel.Item>
   );

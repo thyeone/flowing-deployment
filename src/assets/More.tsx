@@ -1,9 +1,10 @@
 import { cn } from '@/utils';
 
-export default function MoreHoriz({
+export default function More({
   isDark,
+  variant,
   ...rest
-}: React.SVGProps<SVGSVGElement> & { isDark?: boolean }) {
+}: React.SVGProps<SVGSVGElement> & { isDark?: boolean; variant?: 'horizontal' | 'vertical' }) {
   return (
     <svg
       width="24"
@@ -13,6 +14,7 @@ export default function MoreHoriz({
       xmlns="http://www.w3.org/2000/svg"
       className={cn('text-black', {
         'dark:text-white': isDark,
+        'rotate-90': variant === 'vertical',
       })}
       {...rest}
     >

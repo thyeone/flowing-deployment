@@ -7,7 +7,7 @@ type ItemListProps<T> = Omit<React.ComponentProps<typeof Flex>, 'children'> & {
   data: T[];
   renderItem: (data: T, index: number) => JSX.Element | boolean | null | undefined;
   renderEmpty?: () => JSX.Element | boolean | null | undefined;
-  direction?: 'row' | 'column';
+  direction?: 'row' | 'col';
   className?: string;
   divider?: JSX.Element;
   hasDivider?: boolean;
@@ -17,7 +17,7 @@ export default function ItemList<T>({
   data,
   renderItem,
   renderEmpty,
-  direction = 'column',
+  direction = 'col',
   className,
   divider,
   hasDivider,

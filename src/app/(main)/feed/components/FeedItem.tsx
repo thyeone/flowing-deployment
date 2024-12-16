@@ -1,27 +1,54 @@
 import FemaleAvatar from '@public/svg/female.svg?url';
 import MaleAvatar from '@public/svg/male.svg?url';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import 'swiper/css';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 
 import type { FeedResponse } from '@/apis/feed';
-import { cn } from '@/utils';
+import { useGetMember } from '@/apis/member';
+import { cn, decodeAccessToken } from '@/utils';
+import { DateFormat } from '@/utils/date';
 
 import ChannelBadge from './ChannelBadge';
 import CommentCount from './CommentCount';
 import LikeCount from './LikeCount';
 
 type FeedItemProps = {
-  id: number;
+  feedData: FeedResponse;
   className?: string;
-  contents: FeedResponse['contents'];
-  images: FeedResponse['images'];
 };
 
-export default function FeedItem({ id, className, contents, images }: FeedItemProps) {
-  const DateFormat = (date: string) => date.split('T')[0].replace(/-/g, '.');
+const THREE_LINES_MAX_HEIGHT = 72;
+
+export default function FeedItem({ feedData, className }: FeedItemProps) {
+  const { id, contents, feedLikeDtos = [] } = feedData;
+
+  const { data: myData } = useGetMember(decodeAccessToken());
+
+  const swiperRef = useRef<SwiperRef>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
+
+  const [isOverflowed, setIsOverflowed] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const isLiked = feedLikeDtos.some(
+    ({ memberId }: { memberId: string }) => myData?.profile.memberId === memberId,
+  );
+
+  useEffect(() => {
+    if (textRef.current) {
+      if (textRef.current.scrollHeight > THREE_LINES_MAX_HEIGHT) {
+        setIsOverflowed(true);
+      }
+    }
+  }, [feedData.contents.content]);
 
   return (
-    <div className={cn(`px-5`, className)}>
-      <div className="mb-5 flex flex-col gap-4">
+    <div className={cn(`flex flex-col gap-4 px-5 py-4`, className)}>
+      <Link href={`/feed/detail/${id}`} className="flex flex-col gap-4">
         <ChannelBadge name={contents.channel.name} />
         <div className="flex items-center gap-2">
           <Image
@@ -38,14 +65,55 @@ export default function FeedItem({ id, className, contents, images }: FeedItemPr
             </p>
           </div>
         </div>
+      </Link>
 
-        <p>{contents.content}</p>
+      <Swiper
+        ref={swiperRef}
+        slidesPerView={'auto'}
+        centeredSlides
+        modules={[Pagination]}
+        pagination={{
+          type: 'custom',
+          renderCustom: (_, current, total) =>
+            `<span class="absolute z-50 bottom-4 right-4 rounded-xl bg-gray-900 px-2 py-1 text-xs text-white">
+              ${current}/${total}
+            </span>`,
+        }}
+        spaceBetween={8}
+        className="w-full rounded-xl"
+      >
+        {feedData.images.map((image, index) => {
+          const url = typeof image === 'string' ? image : image.url;
+
+          return (
+            <SwiperSlide key={index} className="aspect-video">
+              <div className="relative size-full rounded-xl bg-gray-800">
+                <Image src={url} alt="upload-image" fill objectFit="contain" />
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+
+      <div>
+        <p
+          ref={textRef}
+          className={cn(`whitespace-pre-line`, {
+            [`max-h-[72px] overflow-hidden`]: isOverflowed && !isExpanded,
+          })}
+        >
+          {contents.content}
+        </p>
+        {isOverflowed && !isExpanded && (
+          <span className="cursor-pointer text-gray-600" onClick={() => setIsExpanded(true)}>
+            ...더보기
+          </span>
+        )}
       </div>
-
       <div className="flex items-center justify-between">
         <div className="flex gap-[12px]">
-          <LikeCount id={id} count={contents.likeCount} />
-          <CommentCount count={contents.commentCount} />
+          <LikeCount id={id} count={contents.likeCount} isLiked={isLiked} />
+          <CommentCount id={id} count={contents.commentCount} />
         </div>
         <p className="text-[12px] text-gray-600">{contents.viewCount}명 조회</p>
       </div>

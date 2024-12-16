@@ -5,12 +5,13 @@ import Flex from '@/components/layout/Flex';
 import Spacing from '@/components/layout/Spacing';
 import { cn } from '@/utils';
 
-type SendFieldProps = React.ComponentPropsWithoutRef<'input'> & {
+type SendFieldProps = Omit<React.ComponentPropsWithoutRef<'input'>, 'onSubmit'> & {
   register?: UseFormRegisterReturn;
   onFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: VoidFunction;
 };
 
-export default function SendField({ register, value, onFile, ...rest }: SendFieldProps) {
+export default function SendField({ register, value, onFile, onSubmit, ...rest }: SendFieldProps) {
   return (
     <>
       <Spacing size={64} />
@@ -32,12 +33,23 @@ export default function SendField({ register, value, onFile, ...rest }: SendFiel
           value={value}
           className="h-10 flex-1 rounded-lg bg-gray-100 px-3 text-[14px] leading-[14px] outline-none placeholder:text-gray-500"
           placeholder="메세지 입력"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && e.nativeEvent.isComposing === false) {
+              onSubmit();
+            }
+          }}
           {...register}
           {...rest}
         />
         <Flex
           as="button"
           isCentered
+          onClick={() => {
+            onSubmit();
+            window.scrollTo({
+              top: 0,
+            });
+          }}
           className={cn('h-65 px-5 text-[14px] font-bold leading-[14px] text-gray-400', {
             'text-primary-400': value,
           })}
