@@ -43,7 +43,7 @@ export default function SendField({ register, value, onFile, onSubmit, ...rest }
         />
         <Flex
           as="button"
-          isCentered
+          centered
           onClick={() => {
             onSubmit();
             window.scrollTo({

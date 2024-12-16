@@ -18,7 +18,7 @@ export default function ChatSection() {
       data={chatRoomData}
       renderItem={(data, index) => <ChatItem key={index} {...data} />}
       renderEmpty={() => (
-        <Col isCentered gap={24} className="h-[calc(100dvh-116px)]">
+        <Col centered gap={24} className="h-[calc(100dvh-116px)]">
           <EmptyChatIcon />
           <p className="text-[16px] leading-4 text-gray-500">진행중인 대화가 없어요</p>
         </Col>

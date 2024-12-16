@@ -63,7 +63,7 @@ export default function ConversationBottomSheet({
       </p>
       <Flex
         as="button"
-        isCentered
+        centered
         className="mx-auto mt-3 h-7 w-fit rounded-[40px] bg-primary-50 bg-opacity-50 px-3 py-[6px]"
         gap={6}
       >

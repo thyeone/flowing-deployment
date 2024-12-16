@@ -70,7 +70,7 @@ const BottomSheet = (
 
 function Footer({ children, className }: PropsWithStrictChildren<{ className?: string }>) {
   return (
-    <Flex as="footer" isCentered className={cn('mt-auto h-[92px] w-full bg-white', className)}>
+    <Flex as="footer" centered className={cn('mt-auto h-[92px] w-full bg-white', className)}>
       {children}
     </Flex>
   );

@@ -97,7 +97,7 @@ export default function ProfileForm() {
 
   if (isLoading) {
     return (
-      <Col isCentered className="h-dvh">
+      <Col centered className="h-dvh">
         <Lottie animationData={LoadingBox} />
         <Spacing size={40} />
         <p className="text-xl font-bold">프로필 생성중이에요</p>
