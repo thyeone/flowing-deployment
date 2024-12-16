@@ -3,7 +3,6 @@
 import { Client, Stomp } from '@stomp/stompjs';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import 'dayjs/locale/ko';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
