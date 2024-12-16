@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 
-import type { ChatResponse } from '@/apis/chat';
+import type { ConversationResponse } from '@/apis/conversation';
 import { Button } from '@/components/Button';
-import SendChatRequestPopup from '@/components/Popup/Chat/SendChatRequestPopup';
+import SendChatRequestPopup from '@/components/Popup/conversation/SendConversationRequestPopup';
 import Spacing from '@/components/layout/Spacing';
 import { S3_BASE_URL } from '@/constants';
 import { useOverlay } from '@/hooks';
@@ -12,7 +12,10 @@ import { calculateAge, cn } from '@/utils';
 
 import Dday from './Dday';
 
-export default function ChatRequestCard({ isBlur, ...props }: ChatResponse & { isBlur: boolean }) {
+export default function ConversationRequestCard({
+  isBlur,
+  ...props
+}: ConversationResponse & { isBlur: boolean }) {
   const { open } = useOverlay();
 
   const { conversationId, selfIntro, profileImagePaths, ddayTime, address } = props;

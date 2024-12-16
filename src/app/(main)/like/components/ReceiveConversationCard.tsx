@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 
-import { ChatResponse } from '@/apis/chat';
+import { ConversationResponse } from '@/apis/conversation';
 import EmblaCarousel from '@/components/EmblaCarousel';
-import ReceiveChatRequestPopup from '@/components/Popup/Chat/ReceiveChatRequestPopup';
+import ReceiveChatRequestPopup from '@/components/Popup/conversation/ReceiveConversationRequestPopup';
 import Spacing from '@/components/layout/Spacing';
 import { S3_BASE_URL } from '@/constants';
 import { useOverlay } from '@/hooks';
@@ -13,10 +13,13 @@ import { calculateAge, cn } from '@/utils';
 import AcceptRejectButton from './AcceptRejectButton';
 import Dday from './Dday';
 
-export default function ReceiveChatCard({ isBlur, ...props }: ChatResponse & { isBlur: boolean }) {
+export default function ReceiveConversationCard({
+  isBlur,
+  ...props
+}: ConversationResponse & { isBlur: boolean }) {
   const { open } = useOverlay({ exitOnUnmount: false });
 
-  const { conversationId, selfIntro, profileImagePaths, ddayTime, address } = props;
+  const { conversationId, selfIntro, profileImagePaths, ddayTime, address, profileId } = props;
 
   return (
     <EmblaCarousel.Item
@@ -48,7 +51,7 @@ export default function ReceiveChatCard({ isBlur, ...props }: ChatResponse & { i
           {address.sido} {address.sigungu}
         </p>
         <Spacing size={24} />
-        <AcceptRejectButton conversationId={conversationId} />
+        <AcceptRejectButton profileId={profileId} conversationId={conversationId} />
       </div>
     </EmblaCarousel.Item>
   );

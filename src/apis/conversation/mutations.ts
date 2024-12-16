@@ -1,20 +1,19 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useToast } from '@/hooks';
-import { decodeAccessToken } from '@/utils';
 
-import { chatApi } from './apis';
+import { conversationApi } from './apis';
 import { queryKeys } from './keys';
 
-export const usePostChatRequest = () => {
+export const usePostConversationRequest = () => {
   const queryClient = useQueryClient();
   const { openToast } = useToast();
 
   return useMutation({
-    mutationFn: chatApi.postChatRequest,
+    mutationFn: conversationApi.postConversationRequest,
     onSuccess: () => {
       openToast({ message: '대화 신청에 성공했어요.' });
-      queryClient.invalidateQueries({ queryKey: queryKeys.getRequestChat() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.getRequestConversation() });
       queryClient.invalidateQueries({
         queryKey: queryKeys.getRemainConversation(),
       });
@@ -22,15 +21,15 @@ export const usePostChatRequest = () => {
   });
 };
 
-export const usePostChatType = () => {
+export const usePostConversationType = () => {
   const queryClient = useQueryClient();
   const { openToast } = useToast();
 
   return useMutation({
-    mutationFn: chatApi.postChatType,
+    mutationFn: conversationApi.postConversationType,
     onSuccess: (_, { conversationType }) => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.getReceiveChat() });
-      queryClient.invalidateQueries({ queryKey: queryKeys.getRequestChat() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.getReceiveConversation() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.getRequestConversation() });
       conversationType === 'ACCEPT'
         ? openToast({ message: '대화 신청을 승인했어요' })
         : openToast({ message: '대화 신청을 거절했어요' });
@@ -38,17 +37,17 @@ export const usePostChatType = () => {
   });
 };
 
-export const usePostChatMessage = (nickname: string) => {
+export const usePostConversationMessage = (nickname: string) => {
   const { openToast } = useToast();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: chatApi.postChatMessage,
+    mutationFn: conversationApi.postConversationMessage,
 
     onSuccess: () => {
       openToast({ message: `${nickname}님께 메세지를 보냈어요!` });
       queryClient.invalidateQueries({
-        queryKey: queryKeys.getRequestChat(),
+        queryKey: queryKeys.getRequestConversation(),
       });
     },
   });

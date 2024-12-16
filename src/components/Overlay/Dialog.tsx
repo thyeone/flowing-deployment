@@ -47,7 +47,7 @@ function Description({ children, className }: PropsWithStrictChildren<{ classNam
 
 function Footer({ children }: PropsWithStrictChildren) {
   return (
-    <Flex isCentered className="mt-2 h-[84px] gap-2">
+    <Flex centered className="mt-2 h-[84px] gap-2">
       {children}
     </Flex>
   );
