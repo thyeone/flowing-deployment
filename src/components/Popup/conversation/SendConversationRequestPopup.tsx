@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { type ChatResponse, usePostChatMessage } from '@/apis/chat';
+import { type ConversationResponse, usePostConversationMessage } from '@/apis/conversation';
 import Dday from '@/app/(main)/like/components/Dday';
 import { Header } from '@/components/Header';
 import { PopupContainer } from '@/components/Overlay';
@@ -33,12 +33,12 @@ export default function SendChatRequestPopup({
   conversationId,
   memberId,
   message,
-}: OverlayProps & ChatResponse) {
+}: OverlayProps & ConversationResponse) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [messageState, setMessageState] = useState(message || '');
 
-  const { mutate: postChatMessage } = usePostChatMessage(selfIntro.nickname);
+  const { mutate: postConversationMessage } = usePostConversationMessage(selfIntro.nickname);
 
   const { openToast } = useToast();
 
@@ -53,7 +53,7 @@ export default function SendChatRequestPopup({
   const handleSubmitButton = () => {
     if (!value) return;
 
-    postChatMessage({ conversationId, message: value });
+    postConversationMessage({ conversationId, message: value });
     setMessageState(value);
 
     setIsLoading(true);

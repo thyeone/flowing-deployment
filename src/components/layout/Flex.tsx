@@ -1,79 +1,70 @@
-import { forwardRef } from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import React, { forwardRef } from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
-type FlexProps<T extends React.ElementType = 'div'> = React.ComponentPropsWithRef<T> & {
-  as?: T;
-  children?: React.ReactNode;
-  isCentered?: boolean;
-  direction?: 'row' | 'column';
-  justify?: 'center' | 'start' | 'end' | 'between' | 'around' | 'evenly' | 'stretch';
-  align?: 'center' | 'start' | 'end' | 'between' | 'around' | 'evenly' | 'stretch';
-  wrap?: 'wrap' | 'nowrap' | 'wrap-reverse';
-  className?: string;
+export type TagName = keyof React.JSX.IntrinsicElements;
+
+export type FlexProps<K extends TagName = 'div'> = Omit<
+  React.ComponentPropsWithoutRef<K>,
+  'classID'
+> & {
+  as?: K;
+  asChild?: boolean;
   gap?: number;
+  direction?: 'row' | 'col';
+  centered?: boolean;
+  align?: 'start' | 'center' | 'end';
+  justify?: 'start' | 'center' | 'end' | 'between';
 };
 
-function Flex<T extends React.ElementType = 'div'>(
+const Flex = <K extends TagName = 'div'>(
   {
     as,
+    asChild,
     children,
-    direction,
-    justify,
-    align,
-    wrap,
     className,
+    direction = 'row',
+    centered = false,
+    align,
+    justify,
     gap,
-    isCentered,
     ...props
-  }: FlexProps<T>,
-  ref: React.Ref<Element>,
-) {
+  }: FlexProps<K>,
+  ref: React.ForwardedRef<React.ElementRef<K>>,
+) => {
   const Element = as || 'div';
 
-  return (
-    <Element
-      ref={ref}
-      className={cn(
-        'flex',
-        {
-          'justify-center': justify === 'center',
-          'justify-start': justify === 'start',
-          'justify-end': justify === 'end',
-          'justify-between': justify === 'between',
-          'justify-around': justify === 'around',
-          'justify-evenly': justify === 'evenly',
-          'justify-stretch': justify === 'stretch',
-        },
-        {
-          'items-center': align === 'center',
-          'items-start': align === 'start',
-          'items-end': align === 'end',
-          'items-between': align === 'between',
-          'items-around': align === 'around',
-          'items-evenly': align === 'evenly',
-          'items-stretch': align === 'stretch',
-        },
-        {
-          'flex-row': direction === 'row',
-          'flex-col': direction === 'column',
-        },
-        {
-          'flex-wrap': wrap === 'wrap',
-          'flex-nowrap': wrap === 'nowrap',
-          'flex-wrap-reverse': wrap === 'wrap-reverse',
-        },
-        { 'items-center justify-center': isCentered },
-        className,
-      )}
-      style={{ gap }}
-      {...props}
-    >
-      {children}
-    </Element>
+  const flexClasses = cn(
+    'flex',
+    { 'flex-row': direction === 'row' },
+    { 'flex-col': direction === 'col' },
+    { 'items-start': align === 'start' },
+    { 'items-center': align === 'center' },
+    { 'items-end': align === 'end' },
+    { 'justify-start': justify === 'start' },
+    { 'justify-center': justify === 'center' },
+    { 'justify-end': justify === 'end' },
+    { 'justify-between': justify === 'between' },
+    { 'justify-center items-center': centered },
+    className,
   );
-}
 
-export default forwardRef(Flex) as <T extends React.ElementType = 'div'>(
-  props: FlexProps<T>,
+  const componentProps = {
+    ...(as === 'button' && { type: 'button' }),
+    style: { gap },
+    className: flexClasses,
+    ref,
+    ...props,
+  };
+
+  if (asChild) {
+    return <Slot {...(componentProps as React.HTMLAttributes<HTMLElement>)}>{children}</Slot>;
+  }
+
+  return React.createElement(Element, componentProps, children);
+};
+
+export default forwardRef(Flex) as <K extends TagName = 'div'>(
+  props: FlexProps<K> & { ref?: React.ForwardedRef<React.ElementRef<K>> },
 ) => JSX.Element;

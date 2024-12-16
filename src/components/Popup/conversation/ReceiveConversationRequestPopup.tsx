@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import type { ChatResponse, ConversationType } from '@/apis/chat';
+import type { ConversationResponse, ConversationType } from '@/apis/conversation';
 import AcceptRejectButton from '@/app/(main)/like/components/AcceptRejectButton';
 import Dday from '@/app/(main)/like/components/Dday';
 import { Button, ButtonWrapper } from '@/components/Button';
@@ -24,7 +24,7 @@ import { calculateAge, cn } from '@/utils';
 
 type MatchType = 'PENDING' | ConversationType;
 
-export default function ReceiveChatRequestPopup({
+export default function ReceiveConversationRequestPopup({
   isOpen,
   onClose,
   profileImagePaths,
@@ -33,8 +33,9 @@ export default function ReceiveChatRequestPopup({
   address,
   conversationId,
   memberId,
+  profileId,
   message,
-}: OverlayProps & Omit<ChatResponse, 'profileId'>) {
+}: OverlayProps & ConversationResponse) {
   const [matchType, setMatchType] = useState<MatchType>('PENDING');
   const [isFlipped, setIsFlipped] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -80,7 +81,9 @@ export default function ReceiveChatRequestPopup({
       <div className="flex h-full flex-col">
         <div className="mt-14 flex w-full flex-col items-center gap-y-3">
           {matchType === 'REFUSE' ? <FailedHeartIcon /> : <SuccessHeartIcon />}
-          <p className="text-xl font-bold">{getMatchStateTitle(matchType, selfIntro.nickname)}</p>
+          <p className="text-xl font-bold text-gray-900">
+            {getMatchStateTitle(matchType, selfIntro.nickname)}
+          </p>
         </div>
         <div
           className={cn(
@@ -188,6 +191,7 @@ export default function ReceiveChatRequestPopup({
           matchType,
           onClose,
           conversationId,
+          profileId,
           handleOnClick: (type: ConversationType) => handleButtonClick(type),
         })}
       </div>
@@ -198,11 +202,13 @@ export default function ReceiveChatRequestPopup({
 function renderCardFooter({
   matchType,
   onClose,
+  profileId,
   conversationId,
   handleOnClick,
 }: {
   matchType: MatchType;
   onClose: VoidFunction;
+  profileId: string;
   conversationId: number;
   handleOnClick: (type: ConversationType) => void;
 }) {
@@ -210,13 +216,17 @@ function renderCardFooter({
     <>
       {matchType === 'PENDING' && (
         <div className="mb-6">
-          <AcceptRejectButton conversationId={conversationId} handleOnClick={handleOnClick} />
+          <AcceptRejectButton
+            conversationId={conversationId}
+            profileId={profileId}
+            handleOnClick={handleOnClick}
+          />
         </div>
       )}
 
       {matchType === 'ACCEPT' && (
-        <Link href="/chatting" onClick={() => onClose()}>
-          <ButtonWrapper>
+        <Link href="/chat" onClick={() => onClose()}>
+          <ButtonWrapper className="bg-transparent">
             <Button>대화 시작하기</Button>
           </ButtonWrapper>
         </Link>
@@ -224,7 +234,7 @@ function renderCardFooter({
 
       {matchType === 'REFUSE' && (
         <Link href="/feed" onClick={() => onClose()}>
-          <ButtonWrapper>
+          <ButtonWrapper className="bg-transparent">
             <button className="h-14 w-full rounded-xl border border-gray-300">
               피드로 돌아가기
             </button>

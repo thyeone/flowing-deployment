@@ -5,6 +5,7 @@ import Spacing from '@/components/layout/Spacing';
 import { cn } from '@/utils/cn';
 
 import { MotionHeader } from '../Motion';
+import Flex from '../layout/Flex';
 
 export default function Header({
   children,
@@ -29,7 +30,11 @@ export default function Header({
 }
 
 function Left({ children, className }: PropsWithChildren<{ className?: string }>) {
-  return <div className={cn('mr-auto flex items-center', className)}>{children}</div>;
+  return (
+    <Flex align="center" gap={8} className={cn('z-10 mr-auto', className)}>
+      {children}
+    </Flex>
+  );
 }
 
 function Center({ children, className }: PropsWithChildren<{ className?: string }>) {
@@ -41,7 +46,11 @@ function Center({ children, className }: PropsWithChildren<{ className?: string 
 }
 
 function Right({ children, className }: PropsWithChildren<{ className?: string }>) {
-  return <div className={cn('z-10 ml-auto flex items-center', className)}>{children}</div>;
+  return (
+    <Flex align="center" gap={16} className={cn('z-10 ml-auto', className)}>
+      {children}
+    </Flex>
+  );
 }
 
 Header.Left = Left;
