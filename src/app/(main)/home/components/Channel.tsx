@@ -9,7 +9,6 @@ type Channel = {
   title: string;
   subTitle: string;
   image: string;
-  path: string;
 };
 
 type ChannelProps = {
@@ -26,7 +25,7 @@ export default function Channel({ channelData }: ChannelProps) {
           <h2 className="whitespace-pre-wrap text-xl font-bold text-white">{channelData.title}</h2>
           <p className="text-xs text-gray-300">{channelData.subTitle}</p>
         </div>
-        <Link href={`/feed/${channelData.path}`}>
+        <Link href={`/feed?channelId=${channelData.id}`}>
           <div className="h-12 w-full bg-[rgba(255,255,255,0.12)]">
             <div className="flex size-full items-center justify-end gap-2 px-5">
               <p className="text-xs text-white">자세히 보기</p>
