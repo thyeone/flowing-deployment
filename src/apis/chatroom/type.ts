@@ -32,7 +32,7 @@ export type MemberAddressDto = {
 export type ChatRoomResponse = {
   chatRoomId: number;
   opponentProfileId: string;
-  simpleProfileDto: SimpleProfileDto;
+  simpleProfileDto: SimpleProfileDto | null;
   createdAt: string;
   lastMessage: string | null;
   unReadCount: number;

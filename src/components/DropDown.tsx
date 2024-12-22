@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { cn } from '@/utils';
 
 type DropDownProps = {
-  open: boolean;
+  open?: boolean;
+  className?: string;
 };
 
 const wrapperVariants = {
@@ -15,13 +16,16 @@ const wrapperVariants = {
   },
 };
 
-function DropDown({ children, open }: PropsWithStrictChildren<DropDownProps>) {
+function DropDown({ children, open = true, className }: PropsWithStrictChildren<DropDownProps>) {
   return (
     <motion.div
       animate={open ? 'open' : 'closed'}
       initial={wrapperVariants.closed}
       variants={wrapperVariants}
-      className="absolute right-0 top-full z-10 min-w-[148px] origin-top overflow-hidden rounded-xl bg-white shadow-md"
+      className={cn(
+        'absolute right-0 top-full z-10 min-w-[148px] origin-top overflow-hidden rounded-xl bg-white shadow-[0_10px_40px_0_#0000001F]',
+        className,
+      )}
     >
       {children}
     </motion.div>

@@ -2,6 +2,10 @@ type PropsWithStrictChildren<P = unknown, T extends React.ReactNode = ReactNode>
   children: T;
 };
 
+type RenderPropsChildren<P = unknown, T = unknown> = P & {
+  children: ((props: T) => React.ReactNode) | React.ReactNode;
+};
+
 type CommonResponse<T = any> = {
   code: string;
   message: string;
