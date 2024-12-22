@@ -33,7 +33,7 @@
   }
 
   .main-layout {
-    @apply relative h-full w-full max-w-[var(--layout-max-w)] overflow-x-hidden overflow-y-scroll bg-white tracking-[-0.2%] text-gray-900;
+    @apply relative h-full w-full max-w-[var(--layout-max-w)] overflow-y-auto overflow-x-hidden bg-white tracking-[-0.2%] text-gray-900;
   }
 
   .dark-mode {
@@ -59,10 +59,6 @@
     sans-serif;
   user-select: none;
   -webkit-user-drag: none;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 html {
