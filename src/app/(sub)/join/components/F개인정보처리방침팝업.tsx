@@ -16,10 +16,10 @@ export default function F개인정보처리방침팝업({ isOpen, onClose }: Ove
       </Header>
       <div className="py-4">
         <p className="whitespace-pre-wrap text-[14px] leading-[19.6px]">
-          팀토핑(이하 "회사")는 이용자의 개인정보를 중요하게 생각하며, 『개인정보 보호법』,
+          {`팀토핑(이하 "회사")는 이용자의 개인정보를 중요하게 생각하며, 『개인정보 보호법』,
           『정보통신망 이용촉진 및 정보보호 등에 관한 법률』 등 관련 법령을 준수하고 있습니다. 본
           개인정보 처리방침은 회사가 제공하는 플로잉(이하 "서비스")와 관련하여 이용자의 개인정보를
-          어떻게 수집, 이용, 보호하는지에 대해 설명합니다.
+          어떻게 수집, 이용, 보호하는지에 대해 설명합니다.`}
         </p>
         <p className="mt-4 text-[14px] leading-[19.6px]">1. 개인정보 수집 항목 및 수집 방법</p>
         <p className="text-[14px] leading-[19.6px]">A. 수집 항목</p>
