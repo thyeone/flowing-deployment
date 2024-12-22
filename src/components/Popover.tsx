@@ -12,6 +12,8 @@ import React, {
   useState,
 } from 'react';
 
+import { fadeInOut } from '@/constants';
+
 import { AnimatePortal } from './Overlay';
 
 type DropdownPosition = {
@@ -254,6 +256,7 @@ function Content({ children }: PropsWithStrictChildren) {
   return (
     <AnimatePortal isOpen={isOpen}>
       <m.div
+        {...fadeInOut}
         ref={contentRef}
         onClick={() => setIsOpen(false)}
         style={{
