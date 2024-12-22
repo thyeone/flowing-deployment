@@ -15,7 +15,7 @@ export default function PopupContainer({
       <motion.div
         {...fadeInOut}
         className={cn(
-          'max-width fixed inset-x-0 z-modal mx-auto size-full overflow-auto bg-white',
+          'max-width fixed inset-x-0 z-modal mx-auto size-full overflow-y-auto bg-white',
           {
             'px-5': isPadding,
           },
