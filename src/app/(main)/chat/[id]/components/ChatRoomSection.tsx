@@ -11,7 +11,6 @@ import { getChatList, getChatProfile } from '@/apis/chatroom/queries';
 import { MessageResponse } from '@/apis/chatroom/type';
 import { useGetMember } from '@/apis/member';
 import Avatar from '@/components/Avatar/Avatar';
-import GenderAvatar from '@/components/Avatar/GenderAvatar';
 import ItemList from '@/components/ItemList';
 import Col from '@/components/layout/Col';
 import Flex from '@/components/layout/Flex';
@@ -30,7 +29,7 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
   const { data: myChat } = useSuspenseQuery(getChatList(chatRoomId, myData.profile.id));
   const { data: profile } = useSuspenseQuery(getChatProfile(chatRoomId, myData.profile.id));
 
-  const distance = useGetDistanceFromAddress(profile.memberAddressDto.roadAddress);
+  const distance = useGetDistanceFromAddress(profile?.memberAddressDto.roadAddress);
 
   const socket = useRef<Client>();
   const [messages, setMessages] = useState<MessageResponse[]>(myChat);
@@ -79,29 +78,35 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
     <>
       <div className="px-5 py-6">
         <Col align="center">
-          <Avatar
-            size="xl"
-            imageSrc="https://gyeol-imagebucket.s3.ap-northeast-2.amazonaws.com/profile/2_b45e3ca2-325b-433b-9bec-eddc3bc00633.png"
-          />
+          <Avatar size="xl" imageSrc={profile?.simpleProfileDto?.profilePic ?? undefined} />
           <Flex align="center" gap={4} className="mt-3">
-            <span className="text-[16px] font-bold leading-[22px]">
-              {profile.simpleProfileDto.nickname}
-            </span>
-            <GenderAvatar gender={profile.simpleProfileDto.gender as GenderType} size="xs" />
+            {profile?.simpleProfileDto ? (
+              <span className="text-[16px] font-bold leading-[22px]">
+                {profile?.simpleProfileDto?.nickname}
+              </span>
+            ) : (
+              <span className="text-[16px] font-bold leading-[22px] text-gray-700">
+                상대방 없음
+              </span>
+            )}
           </Flex>
-          <Flex align="center" className="mt-1 whitespace-pre-wrap">
-            <span className="text-[12px] leading-4 text-gray-700">
-              {profile.memberAddressDto.sido + ' ' + profile.memberAddressDto.sigungu}{' '}
-            </span>
-            <span className="text-[12px] leading-4 text-gray-700">· </span>
-            <span className="text-[12px] leading-4 text-primary-400">{distance}km</span>
-          </Flex>
-          <Link
-            href={`/profile/${profile.memberAddressDto.id}`}
-            className="mb-[25px] mt-3 flex h-10 w-fit items-center justify-center rounded-[28px] border border-gray-300 px-4 text-[14px] leading-[14px]"
-          >
-            프로필 보기
-          </Link>
+          {profile && (
+            <>
+              <Flex align="center" className="mt-1 whitespace-pre-wrap">
+                <span className="text-[12px] leading-4 text-gray-700">
+                  {profile.memberAddressDto.sido + ' ' + profile.memberAddressDto.sigungu}{' '}
+                </span>
+                <span className="text-[12px] leading-4 text-gray-700">· </span>
+                <span className="text-[12px] leading-4 text-primary-400">{distance}km</span>
+              </Flex>
+              <Link
+                href={`/profile/${profile.memberAddressDto.id}`}
+                className="mb-[25px] mt-3 flex h-10 w-fit items-center justify-center rounded-[28px] border border-gray-300 px-4 text-[14px] leading-[14px]"
+              >
+                프로필 보기
+              </Link>
+            </>
+          )}
         </Col>
         <ItemList
           data={messages.sort(
@@ -125,7 +130,7 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
                     messages[index + 1]?.sendProfileId !== sendProfileId ||
                     index === message.length - 1
                   }
-                  avatarSrc="https://gyeol-imagebucket.s3.ap-northeast-2.amazonaws.com/profile/2_b45e3ca2-325b-433b-9bec-eddc3bc00633.png"
+                  avatarSrc={profile?.simpleProfileDto?.profilePic ?? undefined}
                   isMe={sendProfileId === myData.profile.id}
                   createdAt={createdAt}
                 >
@@ -136,6 +141,14 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
           }}
         />
         <div ref={bottomRef} />
+        {!profile && (
+          <Flex
+            centered
+            className="mb-[88px] mt-6 h-8 rounded-xl bg-gray-100 text-[12px] leading-3 text-gray-500"
+          >
+            상대방이 채팅방을 나갔습니다.
+          </Flex>
+        )}
       </div>
       <SendField
         register={register('chat')}

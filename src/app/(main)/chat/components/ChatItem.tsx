@@ -20,24 +20,35 @@ const messages = ['메세지1', '메세지2'];
 
 export default function ChatItem({
   chatRoomId,
-  opponentProfileId,
   simpleProfileDto,
   createdAt,
   lastMessage,
   unReadCount,
 }: ChatItemProps) {
-  const { profilePic, nickname, age, region } = simpleProfileDto;
+  if (!simpleProfileDto)
+    return (
+      <Link href={`/chat/${chatRoomId}`} className="flex h-12 cursor-pointer items-center px-5">
+        <Avatar size="md" />
+        <Col gap={6} className="ml-2 mr-auto truncate">
+          <Flex align="center" gap={8}>
+            <div className="text-[14px] font-bold leading-[14px]">조용한 채팅방</div>
+          </Flex>
+          <p className={cn('h-3 truncate text-[12px] leading-3 text-gray-500')}>{lastMessage}</p>
+        </Col>
+      </Link>
+    );
+
   return (
     <Link href={`/chat/${chatRoomId}`} className="flex h-12 cursor-pointer items-center px-5">
-      <Avatar size="md" imageSrc={profilePic} />
+      <Avatar size="md" imageSrc={simpleProfileDto.profilePic} />
       <Col gap={6} className="ml-2 mr-auto truncate">
         <Flex align="center" gap={8}>
           <div className="text-[14px] font-bold leading-[14px]">
-            <span>{nickname}. </span>
-            <span>{age}</span>
+            <span>{simpleProfileDto.nickname}. </span>
+            <span>{simpleProfileDto.age}</span>
           </div>
           <span className="text-[12px] leading-4 text-gray-500">
-            {region} · {dayjs(dayjs(createdAt).format('YYYY-MM-DD')).fromNow()}
+            {simpleProfileDto.region} · {dayjs(dayjs(createdAt).format('YYYY-MM-DD')).fromNow()}
           </span>
         </Flex>
         <p
