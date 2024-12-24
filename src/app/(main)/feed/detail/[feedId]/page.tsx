@@ -6,6 +6,7 @@ import FeedDetailCommentInput from './components/FeedDetailCommentInput';
 import FeedDetailComments from './components/FeedDetailComments';
 import FeedDetailContent from './components/FeedDetailContent';
 import FeedDetailProvider from './components/FeedDetailContext';
+import FeedDetailConversationRequest from './components/FeedDetailConversationRequest';
 import FeedDetailHeader from './components/FeedDetailHeader';
 
 export default function FeedDetailPage() {
@@ -18,6 +19,7 @@ export default function FeedDetailPage() {
       <FeedDetailContent />
       <div className="h-2 w-full bg-gray-100" />
       <FeedDetailComments />
+      <FeedDetailConversationRequest />
       <FeedDetailCommentInput />
     </FeedDetailProvider>
   );
