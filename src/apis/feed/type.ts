@@ -7,6 +7,7 @@ export type FeedChannelType = {
 
 type ProfileType = {
   memberId: string;
+  profileId: string;
   profilePic: string;
   nickname: string;
   age: number;
