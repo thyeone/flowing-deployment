@@ -12,6 +12,8 @@ import Spacing from '@/components/layout/Spacing';
 import { BASE_DOMAIN } from '@/constants';
 import { cn, deleteToken } from '@/utils';
 
+import SplashScreen from './_components/SplashScreen';
+
 const CAROUSEL_LIST = [
   {
     id: 0,
@@ -37,6 +39,7 @@ const CAROUSEL_LIST = [
 export default function Login() {
   const [slideIndex, setSlideIndex] = useState(0);
   const x = useMotionValue(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onDragEnd = () => {
     if (x.get() < -20) {
@@ -49,61 +52,75 @@ export default function Login() {
   };
 
   useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(true), 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     deleteToken();
   }, []);
 
   return (
-    <main className="main-layout">
-      <Slider className="h-2/3 items-center" style={{ x }} index={slideIndex} onDragEnd={onDragEnd}>
-        {CAROUSEL_LIST.map(({ id, src, title, description }) => (
-          <div
-            className="flex size-full shrink-0 flex-col"
-            style={{ left: `${id * 100}%`, right: `${id * 100}%` }}
-            key={id}
+    <>
+      <SplashScreen isLoading={isLoading} />
+      <main className="main-layout">
+        <Slider
+          className="h-2/3 items-center"
+          style={{ x }}
+          index={slideIndex}
+          onDragEnd={onDragEnd}
+        >
+          {CAROUSEL_LIST.map(({ id, src, title, description }) => (
+            <div
+              className="flex size-full shrink-0 flex-col"
+              style={{ left: `${id * 100}%`, right: `${id * 100}%` }}
+              key={id}
+            >
+              <div className="relative flex size-full flex-[2] items-center justify-center overflow-hidden pb-10">
+                <Video src={src} className="w-full object-cover" />
+              </div>
+              <Spacing size={40} />
+              <div className="flex flex-1 flex-col gap-y-4 whitespace-pre-wrap text-center">
+                <h1 className="text-[22px] font-bold">{title}</h1>
+                <p className="text-sm text-gray-500">{description}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
+        <Spacing size={32} />
+        <ul className="flex items-center justify-center gap-x-1">
+          {CAROUSEL_LIST.map(({ id }) => (
+            <li
+              key={id}
+              onClick={() => setSlideIndex(id)}
+              className={cn('z-10 h-0.5 w-3 cursor-pointer rounded-[10px] bg-gray-300', {
+                'bg-primary-300': id === slideIndex,
+              })}
+            />
+          ))}
+        </ul>
+        <Spacing size={73} />
+        <div className="max-width fixed inset-x-0 bottom-0 mx-auto mb-5 flex w-full flex-col gap-y-2 px-5">
+          <Spacing size={72} />
+          <Link
+            href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${BASE_DOMAIN}/auth/kakao&response_type=code`}
           >
-            <div className="relative flex size-full flex-[2] items-center justify-center overflow-hidden pb-10">
-              <Video src={src} className="w-full object-cover" />
-            </div>
-            <Spacing size={40} />
-            <div className="flex flex-1 flex-col gap-y-4 whitespace-pre-wrap text-center">
-              <h1 className="text-[22px] font-bold">{title}</h1>
-              <p className="text-sm text-gray-500">{description}</p>
-            </div>
-          </div>
-        ))}
-      </Slider>
-      <Spacing size={32} />
-      <ul className="flex items-center justify-center gap-x-1">
-        {CAROUSEL_LIST.map(({ id }) => (
-          <li
-            key={id}
-            onClick={() => setSlideIndex(id)}
-            className={cn('z-10 h-0.5 w-3 cursor-pointer rounded-[10px] bg-gray-300', {
-              'bg-primary-300': id === slideIndex,
-            })}
-          />
-        ))}
-      </ul>
-      <Spacing size={73} />
-      <div className="max-width fixed inset-x-0 bottom-0 mx-auto mb-5 flex w-full flex-col gap-y-2 px-5">
-        <Spacing size={72} />
-        <Link
-          href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${BASE_DOMAIN}/auth/kakao&response_type=code`}
-        >
-          <button className="flex h-[52px] w-full items-center justify-center gap-x-2 rounded-xl bg-[#F9E000] font-medium">
-            <KakaoIcon />
-            카카오로 시작하기
-          </button>
-        </Link>
-        <Link
-          href={`https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${BASE_DOMAIN}/auth/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile`}
-        >
-          <button className="flex h-[52px] w-full items-center justify-center gap-x-2 rounded-xl border border-gray-200 bg-white font-medium">
-            <GoogleIcon />
-            구글로 시작하기
-          </button>
-        </Link>
-      </div>
-    </main>
+            <button className="flex h-[52px] w-full items-center justify-center gap-x-2 rounded-xl bg-[#F9E000] font-medium">
+              <KakaoIcon />
+              카카오로 시작하기
+            </button>
+          </Link>
+          <Link
+            href={`https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${BASE_DOMAIN}/auth/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile`}
+          >
+            <button className="flex h-[52px] w-full items-center justify-center gap-x-2 rounded-xl border border-gray-200 bg-white font-medium">
+              <GoogleIcon />
+              구글로 시작하기
+            </button>
+          </Link>
+        </div>
+      </main>
+    </>
   );
 }

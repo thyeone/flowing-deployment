@@ -18,7 +18,7 @@ import Spacing from '../layout/Spacing';
 const tabs = [
   { name: '홈', href: '/home', icon: <HomeOffIcon />, checkedIcon: <HomeOnIcon /> },
   { name: '피드', href: '/feed', icon: <FeedOffIcon />, checkedIcon: <FeedOnIcon /> },
-  { name: '메세지', href: '/chatting', icon: <ChattingOffIcon />, checkedIcon: <ChattingOnIcon /> },
+  { name: '메세지', href: '/chat', icon: <ChattingOffIcon />, checkedIcon: <ChattingOnIcon /> },
   { name: '호감', href: '/like', icon: <LikeOffIcon />, checkedIcon: <LikeOnIcon /> },
   { name: '마이', href: '/my', icon: <MyOffIcon />, checkedIcon: <MyOnIcon /> },
 ];

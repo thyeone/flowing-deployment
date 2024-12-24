@@ -3,12 +3,14 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { type MemberResponse, useGetMember } from '@/apis/member';
+import { MemberResponse, useGetMember } from '@/apis/member';
 import { Button, ButtonWrapper } from '@/components/Button';
 import Video from '@/components/Video';
+import { useOverlay } from '@/hooks';
 import { decodeAccessToken, getEmptyProfile } from '@/utils';
 
 import { useFunnelContext } from '../../components/FunnelContext';
+import TermsSheet from '../../components/TermsSheet';
 
 export default function Step1({
   nextStep,
@@ -17,6 +19,7 @@ export default function Step1({
   const router = useRouter();
   const memberId = decodeAccessToken() || '';
   const { data: profile } = useGetMember(memberId);
+  const { open } = useOverlay();
 
   useEffect(() => {
     if (profile.status === 'ACTIVE') router.replace('/home');
@@ -38,7 +41,15 @@ export default function Step1({
         <p className="mt-3 text-sm text-gray-500">상세 프로필 작성하고 플로잉을 시작해보세요</p>
       </div>
       <ButtonWrapper>
-        <Button onClick={nextStep}>상세 프로필 작성</Button>
+        <Button
+          onClick={() =>
+            open(({ isOpen, close }) => (
+              <TermsSheet isOpen={isOpen} onClose={close} onNext={nextStep} />
+            ))
+          }
+        >
+          상세 프로필 작성
+        </Button>
       </ButtonWrapper>
     </>
   );

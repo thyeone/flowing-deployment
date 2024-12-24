@@ -1,7 +1,7 @@
 'use client';
 
 import { useGetMember } from '@/apis/member';
-import FloatingChatButton from '@/components/FloatingChatButton';
+import FloatingConversationButton from '@/components/FloatingConversationButton';
 import Divider from '@/components/layout/Divider';
 import Spacing from '@/components/layout/Spacing';
 import useSetCoords from '@/hooks/useSetCoords';
@@ -42,7 +42,7 @@ export default function ProfileDetail({ id }: { id: string }) {
         <Spacing size={64} />
       </div>
       {id !== myProfileData.profile.memberId && (
-        <FloatingChatButton
+        <FloatingConversationButton
           profileData={profileDetailData.profile}
           sendProfileId={myProfileData.profile.id}
         />

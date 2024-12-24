@@ -1,4 +1,4 @@
-import type { Axios, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type { Axios, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -6,11 +6,10 @@ import { getToken, setToken } from '@/utils';
 
 import { authApi } from '../auth';
 import { getResponseFromBody } from './common';
-import { ApiError } from './error';
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  timeout: 3000,
+  timeout: 10000,
 });
 
 instance.interceptors.request.use(
@@ -29,8 +28,8 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => {
     return response;
   },
-  async (error: AxiosError<ApiError, InternalAxiosRequestConfig>) => {
-    if (!error.response || !error.config) return Promise.reject(error);
+  async (error) => {
+    if (!error.response) return Promise.reject(error);
 
     const {
       config: originalRequest,
@@ -58,7 +57,7 @@ instance.interceptors.response.use(
 
           return instance.request(originalRequest);
         } catch (error) {
-          return Promise.reject(data);
+          return Promise.reject(error);
         }
       }
     }

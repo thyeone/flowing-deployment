@@ -1,24 +1,24 @@
 import http from '../config/instance';
-import type { ChatRequest, ChatResponse, ConversationType } from './type';
+import type { ConversationRequest, ConversationResponse, ConversationType } from './type';
 
-export const chatApi = {
-  getRequestChat: async (profileId: string) =>
-    await http.get<ChatResponse[]>(`/conversation/send/${profileId}`),
+export const conversationApi = {
+  getRequestConversation: async (profileId: string) =>
+    await http.get<ConversationResponse[]>(`/conversation/send/${profileId}`),
 
-  getReceiveChat: async (profileId: string) =>
-    await http.get<ChatResponse[]>(`/conversation/receive/${profileId}`),
+  getReceiveConversation: async (profileId: string) =>
+    await http.get<ConversationResponse[]>(`/conversation/receive/${profileId}`),
 
   getRemainCoversation: async (profileId: string) =>
     await http.get<number>(`/conversation/remain/${profileId}`),
 
-  postChatRequest: async (chatRequestData: ChatRequest) =>
-    await http.post<ChatResponse>('/conversation/send', {
-      ...chatRequestData,
+  postConversationRequest: async (conversationRequestData: ConversationRequest) =>
+    await http.post<ConversationResponse>('/conversation/send', {
+      ...conversationRequestData,
       // message: '',
       // null값 허용돼서 일단 주석
     }),
 
-  postChatMessage: async ({
+  postConversationMessage: async ({
     conversationId,
     message,
   }: {
@@ -27,7 +27,7 @@ export const chatApi = {
   }) =>
     await http.post(`/conversation/message?conversationId=${conversationId}&message=${message}`),
 
-  postChatType: async ({
+  postConversationType: async ({
     conversationId,
     conversationType,
   }: {
