@@ -47,15 +47,21 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
   }, [feedData.contents.content]);
 
   return (
-    <div className={cn(`flex flex-col gap-4 px-5 py-4`, className)}>
-      <Link href={`/feed/detail/${id}`} className="flex flex-col gap-4">
+    <Link href={`/feed/detail/${id}`} className={cn(`flex flex-col gap-4 px-5 py-4`, className)}>
+      <div className="flex flex-col gap-4">
         <ChannelBadge name={contents.channel.name} />
-        <div className="flex items-center gap-2">
-          <Image
-            src={contents.simpleProfileDto.gender === 'MALE' ? MaleAvatar : FemaleAvatar}
-            alt="genderAvatar"
-            width={40}
-          />
+        <Link
+          href={`/profile/${feedData.contents.simpleProfileDto.memberId}`}
+          className="flex items-center gap-2"
+        >
+          <div className="relative size-10 overflow-hidden rounded-full">
+            <Image
+              src={contents.simpleProfileDto.gender === 'MALE' ? MaleAvatar : FemaleAvatar}
+              alt="genderAvatar"
+              className="absolute object-cover"
+              fill
+            />
+          </div>
           <div>
             <p className="text-[14px] font-bold">
               {contents.simpleProfileDto.nickname}. {contents.simpleProfileDto.age}
@@ -64,8 +70,8 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
               {contents.simpleProfileDto.region} · {DateFormat(contents.createdAt)}
             </p>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
 
       <Swiper
         ref={swiperRef}
@@ -112,18 +118,29 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
           {contents.content}
         </p>
         {isOverflowed && !isExpanded && (
-          <span className="cursor-pointer text-gray-600" onClick={() => setIsExpanded(true)}>
+          <span
+            className="cursor-pointer text-gray-600"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsExpanded(true);
+            }}
+          >
             ...더보기
           </span>
         )}
       </div>
       <div className="flex items-center justify-between">
-        <div className="flex gap-[12px]">
+        <div
+          className="flex gap-[12px]"
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+        >
           <LikeCount id={id} count={contents.likeCount} isLiked={isLiked} />
           <CommentCount id={id} count={contents.commentCount} />
         </div>
         <p className="text-[12px] text-gray-600">{contents.viewCount}명 조회</p>
       </div>
-    </div>
+    </Link>
   );
 }
