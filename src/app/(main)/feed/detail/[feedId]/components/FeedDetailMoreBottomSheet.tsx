@@ -115,7 +115,7 @@ export default function FeedDetailMoreBottomSheet({
 
   return (
     <BottomSheet ref={ref} isOpen={open} onClose={onClose} headerTitle="더보기">
-      <div className="mb-16">
+      <div className="mb-10">
         {MORE_LIST.map(({ text, icon, action }) => (
           <button
             key={text}
