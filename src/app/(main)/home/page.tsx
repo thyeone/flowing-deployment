@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import BottomTabBar from '@/components/TabBar/BottomTabBar';
 import Spacing from '@/components/layout/Spacing';
 
@@ -11,7 +13,9 @@ export default function Home() {
     <>
       <HomeHeader />
       <div className="px-5">
-        <RecommendationProfileSection />
+        <Suspense>
+          <RecommendationProfileSection />
+        </Suspense>
         <Banner />
         <InterestChannelSection />
         <Spacing size={32} />

@@ -13,9 +13,8 @@ const MY_TABS = [
   {
     id: 1,
     name: '나와 매칭된 모먼트',
+    href: '/like',
   },
-  { id: 2, name: '고객센터' },
-  { id: 3, name: '카카오톡 문의하기' },
 ];
 
 export default function MySection() {
@@ -48,13 +47,13 @@ export default function MySection() {
       <Divider thickness="thick" />
       <Spacing size={16} />
       <div className="px-5">
-        {MY_TABS.map(({ id, name }) => (
-          <div key={id} className="flex justify-between border-b border-gray-50 py-4">
+        {MY_TABS.map(({ id, name, href }) => (
+          <Link key={id} href={href} className="flex justify-between border-b border-gray-50 py-4">
             <span className="font-bold">{name}</span>
             <button>
               <RightArrowIcon width={24} height={24} />
             </button>
-          </div>
+          </Link>
         ))}
       </div>
     </>

@@ -39,7 +39,7 @@ export default function LikeAbillitySeciton({ isMe, profile, nickname }: LikeAbi
     mutate({
       sendProfileId: my.profile.id,
       receiveProfileId: profile.id,
-      crushScore: index.toString() as CrushScore,
+      crushScore: (index + 1).toString() as CrushScore,
     });
   };
 

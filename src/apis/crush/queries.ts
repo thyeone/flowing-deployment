@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
 import { crushApi } from './apis';
 import { queryKeys } from './keys';
@@ -10,9 +10,8 @@ export const useGetSendCrush = (profileId: string) => {
   });
 };
 
-export const useGetReceiveCrush = (profileId: string) => {
-  return useSuspenseQuery({
+export const useGetReceiveCrush = (profileId: string) =>
+  queryOptions({
     queryKey: queryKeys.getReceiveCrush(profileId),
     queryFn: () => crushApi.getReceiveCrush(profileId),
   });
-};

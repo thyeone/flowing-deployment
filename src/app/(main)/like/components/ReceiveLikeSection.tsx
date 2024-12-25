@@ -1,6 +1,7 @@
 'use client';
 
 import NonLikeable from '@public/svg/non-likeable-80.svg';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useGetReceiveConversation } from '@/apis/conversation';
 import { useGetReceiveCrush } from '@/apis/crush';
@@ -13,7 +14,7 @@ import ChatRequestSection from './ConversationRequestSection';
 import CrushPointSection from './CrushPointSection';
 
 export default function ReceiveLikeSection({ profileId }: { profileId: string }) {
-  const { data: receiveCrushData } = useGetReceiveCrush(profileId);
+  const { data: receiveCrushData } = useSuspenseQuery(useGetReceiveCrush(profileId));
   const { data: receiveConversationData } = useGetReceiveConversation(profileId);
 
   return receiveCrushData.length > 0 || receiveConversationData.length > 0 ? (

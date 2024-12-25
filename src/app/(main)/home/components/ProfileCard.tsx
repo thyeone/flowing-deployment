@@ -37,7 +37,6 @@ export default function ProfileCard({ profileData, isBlur }: ProfileCardProps) {
                   {'프로필에서\n가치관을 볼 수 있어요'}
                 </p>
               </div>
-              ` `
             </div>
           ) : (
             <div className="relative h-[208px] overflow-hidden rounded-t-xl">

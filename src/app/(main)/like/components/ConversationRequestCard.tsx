@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import type { ConversationResponse } from '@/apis/conversation';
 import { Button } from '@/components/Button';
@@ -18,11 +19,12 @@ export default function ConversationRequestCard({
 }: ConversationResponse & { isBlur: boolean }) {
   const { open } = useOverlay();
 
-  const { conversationId, selfIntro, profileImagePaths, ddayTime, address } = props;
+  const { conversationId, selfIntro, profileImagePaths, ddayTime, address, memberId } = props;
 
   return (
-    <li
+    <Link
       key={conversationId}
+      href={`/profile/${memberId}`}
       className={cn(
         'relative z-20 flex h-[443px] w-full shrink-0 flex-col justify-between overflow-hidden rounded-xl bg-gray-200 p-4',
         { 'bg-gradient-to-t from-[rgba(0,0,0,0.6)] to-[rgba(0,0,0,0)]': isBlur },
@@ -55,6 +57,6 @@ export default function ConversationRequestCard({
           메시지 보내기
         </Button>
       </div>
-    </li>
+    </Link>
   );
 }
