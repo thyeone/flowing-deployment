@@ -101,7 +101,7 @@ export default function FeedItem({ feedData, className }: FeedItemProps) {
                   objectFit="cover"
                   className="blur-lg"
                 />
-                <Image src={url} alt="upload-image" fill objectFit="contain" />
+                <Image src={url} alt="upload-image" fill objectFit="cover" />
               </div>
             </SwiperSlide>
           );
