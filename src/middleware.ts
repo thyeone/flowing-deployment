@@ -61,17 +61,17 @@ export async function middleware(req: NextRequest) {
   }
 
   // 가입중인 유저가 서비스 내부에 접근했을 경우 가입페이지로 리다이렉션
-  // if (pathname !== '/' && !pathname.includes('auth') && !JOIN_PAGES.test(pathname)) {
-  //   try {
-  //     const res = await getMember(accessToken as string, memberId as string);
+  if (pathname !== '/' && !pathname.includes('auth') && !JOIN_PAGES.test(pathname)) {
+    try {
+      const res = await getMember(accessToken as string, memberId as string);
 
-  //     if (res.data.status === 'IN_SING_UP') {
-  //       return NextResponse.redirect(new URL('/join', req.url));
-  //     }
-  //   } catch (error) {
-  //     return NextResponse.redirect(new URL('/', req.url));
-  //   }
-  // }
+      if (res.data.status === 'IN_SING_UP') {
+        return NextResponse.redirect(new URL('/join', req.url));
+      }
+    } catch (error) {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+  }
 
   return NextResponse.next();
 }
