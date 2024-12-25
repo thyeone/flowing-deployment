@@ -32,8 +32,10 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
   const distance = useGetDistanceFromAddress(profile?.memberAddressDto.roadAddress);
 
   const socket = useRef<Client>();
-  const [messages, setMessages] = useState<MessageResponse[]>(myChat);
+  const [messages, setMessages] = useState<MessageResponse[]>([]);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  console.log(messages);
 
   const onSubmit = () => {
     socket.current?.publish({
@@ -57,7 +59,9 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
       socket.current?.subscribe(`/sub/api/chat/room/${chatRoomId}`, (message) => {
         const receivedMessage = JSON.parse(message.body) as MessageResponse;
 
-        setMessages((prev) => [...prev, receivedMessage]);
+        if (receivedMessage) {
+          setMessages((prev) => [...prev, receivedMessage]);
+        }
       });
     };
 
@@ -73,6 +77,10 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
       bottomRef.current.scrollIntoView();
     }
   }, [messages]);
+
+  useEffect(() => {
+    setMessages(myChat);
+  }, [myChat]);
 
   return (
     <>
@@ -100,7 +108,7 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
                 <span className="text-[12px] leading-4 text-primary-400">{distance}km</span>
               </Flex>
               <Link
-                href={`/profile/${profile.memberAddressDto.id}`}
+                href={`/profile/${profile.simpleProfileDto.memberId}`}
                 className="mb-[25px] mt-3 flex h-10 w-fit items-center justify-center rounded-[28px] border border-gray-300 px-4 text-[14px] leading-[14px]"
               >
                 프로필 보기

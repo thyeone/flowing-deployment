@@ -10,7 +10,7 @@ import Slider from '@/components/Slider';
 import Video from '@/components/Video';
 import Spacing from '@/components/layout/Spacing';
 import { BASE_DOMAIN } from '@/constants';
-import { cn, deleteToken } from '@/utils';
+import { cn } from '@/utils';
 
 import SplashScreen from './_components/SplashScreen';
 
@@ -55,10 +55,6 @@ export default function Login() {
     const timer = setTimeout(() => setIsLoading(true), 2000);
 
     return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    deleteToken();
   }, []);
 
   return (
