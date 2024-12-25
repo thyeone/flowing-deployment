@@ -60,7 +60,7 @@ export default function BottomInputField({
   };
 
   return (
-    <div className="max-width fixed bottom-0 z-50 flex h-fit w-full items-end bg-white py-3 shadow-[0_-2px_20px_rgb(0,0,0,0.1)]">
+    <div className="max-width fixed bottom-0 z-50 flex h-[64.5px] w-full items-center bg-white shadow-[0_-2px_20px_rgb(0,0,0,0.1)]">
       <button
         type="button"
         className="flex h-10 w-[52px] flex-none items-center justify-center"
