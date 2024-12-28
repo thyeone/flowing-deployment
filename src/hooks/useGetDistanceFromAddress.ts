@@ -22,6 +22,8 @@ const useGetDistanceFromAddress = (bname: string) => {
   useEffect(() => {
     const { kakao } = window;
 
+    if (!bname) return;
+
     if (isLoaded && latitude && longitude) {
       kakao.maps.load(async () => {
         try {
