@@ -45,12 +45,13 @@ export default function ProfileDetail({ id }: { id: string }) {
         <Divider isDark />
         <Spacing size={64} />
       </div>
-      {id !== myProfileData.profile.memberId && (
-        <FloatingConversationButton
-          profileData={profileDetailData.profile}
-          sendProfileId={myProfileData.profile.id}
-        />
-      )}
+      {id !== myProfileData.profile.memberId &&
+        profileDetailData.profile.selfIntro.gender !== myProfileData.profile.selfIntro.gender && (
+          <FloatingConversationButton
+            profileData={profileDetailData.profile}
+            sendProfileId={myProfileData.profile.id}
+          />
+        )}
     </>
   );
 }
