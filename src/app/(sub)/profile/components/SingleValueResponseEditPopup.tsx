@@ -82,8 +82,6 @@ export default function ValueResponseEditPopup({
             control={useFormControl}
             rules={{
               required: true,
-              minLength: 20,
-              maxLength: 500,
             }}
             render={({ field }) => (
               <textarea

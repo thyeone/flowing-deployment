@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 import { JobBW, JobColor, LifeBW, LifeColor, LoveBW, LoveColor } from '@/assets/MyValue';
 import { cn } from '@/utils';
 
@@ -42,17 +44,24 @@ export default function TabBar() {
           const Icon = id === tab ? ICONS[name][0] : ICONS[name][1];
 
           return (
-            <li
+            <motion.li
               key={id}
               className={cn(
                 'relative flex flex-1 cursor-pointer items-center justify-center gap-x-[6px] text-sm font-bold text-gray-600 transition duration-100',
-                { 'rounded-lg bg-white text-gray-900': id === tab },
               )}
               onClick={() => setTab(id)}
             >
-              <Icon />
-              {name}
-            </li>
+              <div className="z-10 flex items-center gap-x-[6px]">
+                <Icon />
+                {name}
+              </div>
+              {id === tab && (
+                <motion.div
+                  layoutId="tab"
+                  className="absolute left-0 size-full rounded-lg bg-white"
+                />
+              )}
+            </motion.li>
           );
         })}
       </ul>
