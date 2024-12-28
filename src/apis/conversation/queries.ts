@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
 import { conversationApi } from './apis';
 import { queryKeys } from './keys';
@@ -19,4 +19,10 @@ export const useGetRemainCoversation = (profileId: string) =>
   useSuspenseQuery({
     queryKey: queryKeys.getRemainConversation(),
     queryFn: () => conversationApi.getRemainCoversation(profileId),
+  });
+
+export const getMatchMember = (memberId: string) =>
+  queryOptions({
+    queryKey: queryKeys.getMatchMember(memberId),
+    queryFn: () => conversationApi.getMatchMember(memberId),
   });

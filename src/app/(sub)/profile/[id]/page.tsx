@@ -7,13 +7,13 @@ import ProfileDetail from './components/ProfileDetail';
 
 export default function ProfileDetailPage({ params }: { params: { id: string } }) {
   return (
-    <SSRSafeSuspense>
-      <HydrationProvider
-        queryKey={queryKeys.getMember(params.id)}
-        queryFn={() => memberApi.getMember(params.id)}
-      >
+    <HydrationProvider
+      queryKey={queryKeys.getMember(params.id)}
+      queryFn={() => memberApi.getMember(params.id)}
+    >
+      <SSRSafeSuspense>
         <ProfileDetail id={params.id} />
-      </HydrationProvider>
-    </SSRSafeSuspense>
+      </SSRSafeSuspense>
+    </HydrationProvider>
   );
 }
