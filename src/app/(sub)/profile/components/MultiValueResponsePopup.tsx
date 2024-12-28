@@ -2,7 +2,7 @@
 
 import InActiveHeartIcon from '@public/svg/heart-button-off.svg';
 import ActiveHeartIcon from '@public/svg/heart-button-on.svg';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import { Controller, SubmitHandler, type UseFormReturn, useForm } from 'react-hook-form';
 
@@ -104,52 +104,65 @@ export default function MultiValueResponsePopup({
         <ul className="flex flex-col gap-y-3">
           {question?.map(({ id, question }) => (
             <motion.li
-              layout="position"
               key={id}
               className={cn(
-                'flex h-auto min-h-[52px] w-full items-start rounded-xl border border-gray-200 bg-white px-5 py-4',
+                'relative flex min-h-[57px] w-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white',
                 {
-                  'flex-col items-start justify-start border-primary-300': questionId.includes(id),
+                  'border-primary-300': questionId.includes(id),
                 },
               )}
             >
-              <div className="flex w-full items-center justify-between">
-                <div className="relative flex items-center gap-x-1 pr-3 text-sm">
+              <div className="flex w-full items-center justify-between px-5 py-[15px]">
+                <div className="relative flex items-center gap-x-1 pr-[53px] text-[16px] leading-[22.4px]">
                   <span className="absolute top-0 font-bold text-primary-400">Q.</span>
-                  <span className="ml-5 text-gray-800">{question}</span>
+                  <span className="ml-[23px] text-gray-800">{question}</span>
                 </div>
-                <button type="button" onClick={() => handleHeartButton(id)}>
+                <button
+                  type="button"
+                  className="absolute right-4 top-[10px]"
+                  onClick={() => handleHeartButton(id)}
+                >
                   {questionId.includes(id) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
                 </button>
               </div>
-              {questionId.includes(id) && (
-                <div className="relative size-full min-h-[88px]">
-                  <Spacing size={16} />
-                  <div className="h-px w-full bg-gray-200" />
-                  <Spacing size={16} />
-                  <Controller
-                    name={`${id}`}
-                    control={control}
-                    rules={{
-                      required: true,
-                      maxLength: 500,
-                    }}
-                    render={({ field }) => (
-                      <textarea
-                        {...field}
-                        ref={(e) => {
-                          textareaRef.current = e;
-                        }}
-                        placeholder="답변을 적어주세요."
-                        onFocus={handleResizeHeight}
-                        onInput={handleResizeHeight}
-                        className="h-auto w-full resize-none bg-transparent px-5 text-sm text-gray-800 outline-none placeholder:text-gray-500"
-                      />
-                    )}
-                  />
-                  <p className="absolute top-[33px] text-sm font-bold text-gray-500">A.</p>
-                </div>
-              )}
+              <AnimatePresence>
+                {questionId.includes(id) && (
+                  <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: 'auto' }}
+                    exit={{ height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="px-5 pb-[15px]">
+                      <div className="h-px w-full bg-gray-200" />
+                      <Spacing size={16} />
+                      <div className="relative">
+                        <Controller
+                          name={`${id}`}
+                          control={control}
+                          rules={{
+                            required: true,
+                            maxLength: 500,
+                          }}
+                          render={({ field }) => (
+                            <textarea
+                              {...field}
+                              ref={(e) => {
+                                textareaRef.current = e;
+                              }}
+                              placeholder="답변을 적어주세요."
+                              onFocus={handleResizeHeight}
+                              onInput={handleResizeHeight}
+                              className="h-auto min-h-[88px] w-full resize-none bg-transparent pl-5 text-sm text-gray-800 outline-none placeholder:text-gray-500"
+                            />
+                          )}
+                        />
+                        <p className="absolute top-0 text-sm font-bold text-gray-500">A.</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.li>
           ))}
         </ul>
