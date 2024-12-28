@@ -35,8 +35,6 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
   const [messages, setMessages] = useState<MessageResponse[]>([]);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  console.log(messages);
-
   const onSubmit = () => {
     socket.current?.publish({
       destination: `/pub/api/chat/message`,
