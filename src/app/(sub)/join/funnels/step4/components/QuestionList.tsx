@@ -142,10 +142,10 @@ export default function QuestionList({
             <AnimatePresence>
               {isIncludeQuestion(id, type) && (
                 <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  initial={{ height: 0 }}
+                  animate={{ height: 'auto' }}
+                  exit={{ height: 0 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <div className="px-5 pb-[15px]">
                     <div className="h-px w-full bg-gray-200" />
