@@ -1,7 +1,9 @@
 import LockIcon from '@public/svg/lock.svg?url';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { getMatchMember } from '@/apis/conversation';
 import { ProfileResponse } from '@/apis/home';
 import { useGetDistanceFromAddress } from '@/hooks';
 import useSetCoords from '@/hooks/useSetCoords';
@@ -9,18 +11,18 @@ import { calculateAge } from '@/utils';
 
 type ProfileCardProps = {
   profileData: ProfileResponse;
-  isBlur: boolean;
 };
 
-export default function ProfileCard({ profileData, isBlur }: ProfileCardProps) {
+export default function ProfileCard({ profileData }: ProfileCardProps) {
   useSetCoords();
   const distance = useGetDistanceFromAddress(profileData.address.bname);
+  const { data: isMatch } = useSuspenseQuery(getMatchMember(profileData.memberId));
 
   return (
     <>
       <Link href={`profile/${profileData.memberId}`} key={profileData.id} className="flex-1">
         <div className="flex h-[288px] flex-col rounded-xl border border-gray-100 bg-white p-1">
-          {isBlur ? (
+          {!isMatch ? (
             <div className="relative flex h-[220px] items-center justify-center overflow-hidden rounded-t-xl backdrop-blur-lg">
               <Image
                 src={profileData.images[0].path}

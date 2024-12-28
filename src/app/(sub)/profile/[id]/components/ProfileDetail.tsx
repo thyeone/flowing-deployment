@@ -1,5 +1,8 @@
 'use client';
 
+import { useSuspenseQuery } from '@tanstack/react-query';
+
+import { getMatchMember } from '@/apis/conversation';
 import { useGetMember } from '@/apis/member';
 import FloatingConversationButton from '@/components/FloatingConversationButton';
 import Divider from '@/components/layout/Divider';
@@ -17,6 +20,7 @@ import LikeAbillitySeciton from './LikeAbillitySection';
 export default function ProfileDetail({ id }: { id: string }) {
   const { data: profileDetailData } = useGetMember(id);
   const { data: myProfileData } = useGetMember(decodeAccessToken());
+  const { data: isMatch } = useSuspenseQuery(getMatchMember(id));
 
   useSetCoords();
 
@@ -28,7 +32,7 @@ export default function ProfileDetail({ id }: { id: string }) {
           age={calculateAge(profileDetailData.profile.selfIntro.birth)}
         />
         <div className="px-5">
-          <ProfileImageSlider images={profileDetailData.profile.images} isBlur={false} />
+          <ProfileImageSlider images={profileDetailData.profile.images} isBlur={!isMatch} />
           <LikeAbillitySeciton
             isMe={id === myProfileData.profile.memberId}
             profile={profileDetailData.profile}

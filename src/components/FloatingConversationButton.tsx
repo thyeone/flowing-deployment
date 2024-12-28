@@ -23,8 +23,6 @@ export default function FloatingConversationButton({
   const { data: member } = useGetMember(decodeAccessToken());
   const { data: requestConversation } = useGetRequestConversation(member.profile.id);
 
-  console.log(requestConversation);
-
   return (
     <div className="absolute bottom-5 right-[152px]">
       <button

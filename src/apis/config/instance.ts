@@ -9,7 +9,8 @@ import { getResponseFromBody } from './common';
 
 export const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  timeout: 10000,
+  timeout: 3000,
+  withCredentials: true,
 });
 
 instance.interceptors.request.use(

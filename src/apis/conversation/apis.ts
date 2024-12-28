@@ -11,6 +11,8 @@ export const conversationApi = {
   getRemainCoversation: async (profileId: string) =>
     await http.get<number>(`/conversation/remain/${profileId}`),
 
+  getMatchMember: (memberId: string) => http.get<boolean>(`/conversation/match/${memberId}`),
+
   postConversationRequest: async (conversationRequestData: ConversationRequest) =>
     await http.post<ConversationResponse>('/conversation/send', {
       ...conversationRequestData,
