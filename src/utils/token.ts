@@ -1,4 +1,4 @@
-import { deleteCookie, getCookie, setCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
 import { jwtDecode } from 'jwt-decode';
 
 import { TOKEN_KEYS } from '@/constants';
@@ -23,11 +23,6 @@ export const setToken = (accessToken: string, refreshToken: string) => {
   setCookie(TOKEN_KEYS.refreshToken, refreshToken, {
     expires: new Date(Date.now() + REFRESH_EXPIRE_TIME),
   });
-};
-
-export const deleteToken = () => {
-  deleteCookie(TOKEN_KEYS.accessToken);
-  deleteCookie(TOKEN_KEYS.refreshToken);
 };
 
 export const decodeAccessToken = () => {
