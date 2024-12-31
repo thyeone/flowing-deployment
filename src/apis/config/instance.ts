@@ -1,11 +1,13 @@
-import type { Axios, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type { Axios, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import qs from 'qs';
 
-import { getToken, setToken } from '@/utils';
+import { getCookie, setCookie } from '@/actions/cookie';
+import { TOKEN_KEYS } from '@/constants';
 
 import { authApi } from '../auth';
 import { getResponseFromBody } from './common';
+import type { ErrorResponse } from './type';
 
 export const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -15,7 +17,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig<any>) => {
-    const { accessToken } = getToken();
+    const accessToken = await getCookie(TOKEN_KEYS.accessToken);
     if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
 
     return config;
@@ -29,38 +31,45 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => {
     return response;
   },
-  async (error) => {
-    if (!error.response) return Promise.reject(error);
+  async (error: AxiosError<ErrorResponse, InternalAxiosRequestConfig>) => {
+    if (!error.response || !error.config) return Promise.reject(error);
 
     const {
       config: originalRequest,
       response: { data, status },
     } = error;
 
-    // TODO: 401 내에서도 서비스 에러 코드로 분기 처리하기
-    if (status === 401) {
-      const token = getToken();
+    const { code } = data;
 
-      if (!token) {
+    if (status === 401) {
+      const __accessToken = await getCookie(TOKEN_KEYS.accessToken);
+      const __refreshToken = await getCookie(TOKEN_KEYS.refreshToken);
+
+      if (!__accessToken || !__refreshToken) {
         window.location.href = '/';
       }
 
-      if (token) {
-        const { accessToken, refreshToken } = token;
+      if (__accessToken && __refreshToken) {
         try {
-          const { accessToken: access, refreshToken: refresh } = await authApi.postRefresh(
-            accessToken!,
-            refreshToken!,
+          const { accessToken, refreshToken } = await authApi.postRefresh(
+            __accessToken,
+            __refreshToken,
           );
-          setToken(access, refresh);
 
-          originalRequest.headers['Authorization'] = `Bearer ${access}`;
+          if (accessToken && refreshToken) {
+            setCookie(TOKEN_KEYS.accessToken, accessToken);
+            setCookie(TOKEN_KEYS.refreshToken, refreshToken);
+          }
+
+          originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
 
           return instance.request(originalRequest);
         } catch (error) {
-          return Promise.reject(error);
+          window.location.href = '/';
         }
       }
+    } else {
+      window.location.href = '/';
     }
 
     return Promise.reject(error);

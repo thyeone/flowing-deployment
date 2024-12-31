@@ -2,8 +2,17 @@
 
 import { cookies } from 'next/headers';
 
-export async function getCookie(key: string) {
-  const cookie = cookies();
+import { TOKEN_KEYS } from '@/constants';
 
-  return cookie.get(key)?.value;
+export async function getCookie(key: string) {
+  return cookies().get(key)?.value;
 }
+
+export const setCookie = async (key: string, value: string) => {
+  cookies().set(key, value);
+};
+
+export const deleteToken = async () => {
+  cookies().delete(TOKEN_KEYS.accessToken);
+  cookies().delete(TOKEN_KEYS.refreshToken);
+};

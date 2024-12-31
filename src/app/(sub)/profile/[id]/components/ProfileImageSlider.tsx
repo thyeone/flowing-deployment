@@ -35,7 +35,7 @@ export default function ProfileImageSlider({
             src={images[sliderIndex].path}
             alt="profile"
             fill
-            className="object-cover blur-[3px]"
+            className="object-cover blur-[6px]"
           />
           <div className="z-10 flex flex-col items-center gap-y-3">
             <LockIcon />

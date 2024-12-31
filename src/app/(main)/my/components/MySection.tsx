@@ -6,14 +6,25 @@ import { useGetMember } from '@/apis/member';
 import RightArrowIcon from '@/assets/RightArrow';
 import Avatar from '@/components/Avatar/Avatar';
 import Divider from '@/components/layout/Divider';
+import Flex from '@/components/layout/Flex';
 import Spacing from '@/components/layout/Spacing';
 import { calculateAge, decodeAccessToken } from '@/utils';
 
 const MY_TABS = [
   {
     id: 1,
-    name: '나와 매칭된 모먼트',
-    href: '/like',
+    name: '자주 묻는 질문',
+    href: 'https://slashpage.com/flowing',
+  },
+  {
+    id: 2,
+    name: '고객 센터',
+    href: '/inquiry',
+  },
+  {
+    id: 3,
+    name: '서비스 이용약관',
+    href: '/terms',
   },
 ];
 
@@ -48,12 +59,18 @@ export default function MySection() {
       <Spacing size={16} />
       <div className="px-5">
         {MY_TABS.map(({ id, name, href }) => (
-          <Link key={id} href={href} className="flex justify-between border-b border-gray-50 py-4">
+          <Flex
+            as="button"
+            key={id}
+            align="center"
+            justify="between"
+            className="border-b border-gray-50 py-4"
+          >
             <span className="font-bold">{name}</span>
             <button>
               <RightArrowIcon width={24} height={24} />
             </button>
-          </Link>
+          </Flex>
         ))}
       </div>
     </>
