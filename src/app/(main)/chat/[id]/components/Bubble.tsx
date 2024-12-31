@@ -4,6 +4,7 @@ import 'dayjs/locale/ko';
 import Avatar from '@/components/Avatar/Avatar';
 import SwitchRenderer from '@/components/SwitchRenderer';
 import Flex from '@/components/layout/Flex';
+import { cn } from '@/utils';
 
 dayjs.locale('ko');
 
@@ -12,7 +13,7 @@ type BubbleProps = ReceiveBubbleProps & {
 };
 
 type ReceiveBubbleProps = {
-  avatarSrc: string;
+  avatarSrc?: string;
   isLast: boolean;
   createdAt: string;
 };
@@ -51,7 +52,7 @@ function ReceiveBubble({
   isLast,
   createdAt,
 }: PropsWithStrictChildren<ReceiveBubbleProps>) {
-  if (isLast) {
+  if (isLast && !avatarSrc) {
     return (
       <Flex align="end" gap={8}>
         <Flex className="ml-[40px] max-w-[calc(100%-143px)] rounded-[4px_20px_20px_20px] bg-gray-100 px-4 py-3 text-[14px] leading-5">
@@ -67,8 +68,13 @@ function ReceiveBubble({
   }
 
   return (
-    <Flex gap={8}>
-      <Avatar size="xs" imageSrc={avatarSrc} />
+    <Flex
+      gap={8}
+      className={cn({
+        'ml-10': !avatarSrc,
+      })}
+    >
+      {avatarSrc && <Avatar size="xs" imageSrc={avatarSrc} />}
       <Flex className="max-w-[calc(100%-143px)] rounded-[4px_20px_20px_20px] bg-gray-100 px-4 py-3 text-[14px] leading-5">
         {children}
       </Flex>

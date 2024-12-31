@@ -123,6 +123,9 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
             const currentDay = dayjs(createdAt).day();
             const previousDay =
               index === 0 ? Date.now() : dayjs(messages[index - 1].createdAt).day();
+            const isFirstOfGroup =
+              index === 0 || messages[index - 1].sendProfileId !== sendProfileId;
+
             return (
               <>
                 {currentDay !== previousDay && (
@@ -134,9 +137,9 @@ export default function ChatRoomSection({ chatRoomId }: { chatRoomId: string }) 
                   key={chatId}
                   isLast={
                     messages[index + 1]?.sendProfileId !== sendProfileId ||
-                    index === message.length - 1
+                    index === messages.length - 1
                   }
-                  avatarSrc={profile?.simpleProfileDto?.profilePic ?? undefined}
+                  avatarSrc={isFirstOfGroup ? profile?.simpleProfileDto?.profilePic : undefined}
                   isMe={sendProfileId === myData.profile.id}
                   createdAt={createdAt}
                 >
