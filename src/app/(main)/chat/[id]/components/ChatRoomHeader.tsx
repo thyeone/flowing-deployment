@@ -1,6 +1,5 @@
 'use client';
 
-import AlertIcon from '@public/svg/alarm.svg';
 import BlockIcon from '@public/svg/block.svg';
 import ReportIcon from '@public/svg/report.svg';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -133,9 +132,6 @@ export default function ChatRoomHeader({ id }: { id: string }) {
         </Col>
       </Header.Left>
       <Header.Right>
-        <button>
-          <AlertIcon />
-        </button>
         <Popover trigger="click" position="bottom-right" offset={10}>
           <Popover.Trigger>
             <button className="rotate-90">
