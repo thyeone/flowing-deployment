@@ -13,7 +13,6 @@ export default function InquiryPage() {
         <Header.Center>고객센터</Header.Center>
       </Header>
       <InquirySection />
-      <BottomTabBar />
     </>
   );
 }
