@@ -1,4 +1,3 @@
-import AlarmIcon from '@public/svg/alarm.svg';
 import CreateIcon from '@public/svg/create.svg';
 import Link from 'next/link';
 
@@ -13,7 +12,6 @@ export default function FeedHeader() {
           <Link href="/feed/write/0">
             <CreateIcon />
           </Link>
-          <AlarmIcon />
         </Header.Right>
       </Header>
     </div>
