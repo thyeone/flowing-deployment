@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useGetMember } from '@/apis/member';
 import RightArrowIcon from '@/assets/RightArrow';
 import Avatar from '@/components/Avatar/Avatar';
+import ItemList from '@/components/ItemList';
 import Divider from '@/components/layout/Divider';
 import Flex from '@/components/layout/Flex';
 import Spacing from '@/components/layout/Spacing';
@@ -58,20 +59,28 @@ export default function MySection() {
       <Divider thickness="thick" />
       <Spacing size={16} />
       <div className="px-5">
-        {MY_TABS.map(({ id, name, href }) => (
-          <Flex
-            as="button"
-            key={id}
-            align="center"
-            justify="between"
-            className="border-b border-gray-50 py-4"
-          >
-            <span className="font-bold">{name}</span>
-            <button>
-              <RightArrowIcon width={24} height={24} />
-            </button>
-          </Flex>
-        ))}
+        <ItemList
+          data={MY_TABS}
+          renderItem={({ id, name, href }) => (
+            <Flex
+              as="button"
+              asChild
+              key={id}
+              align="center"
+              justify="between"
+              className="h-[58px] w-full border-b border-gray-50 py-4"
+            >
+              <Link href={href} target={href.startsWith('http') ? '_blank' : '_self'}>
+                <span className="text-[16px] leading-4">{name}</span>
+                <button>
+                  <RightArrowIcon width={24} height={24} />
+                </button>
+              </Link>
+            </Flex>
+          )}
+          hasDivider
+          divider={<div className="h-px w-full bg-gray-50" />}
+        />
       </div>
     </>
   );

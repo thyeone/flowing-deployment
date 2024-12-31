@@ -1,6 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 import { TOKEN_KEYS } from '@/constants';
 
@@ -15,4 +16,9 @@ export const setCookie = async (key: string, value: string) => {
 export const deleteToken = async () => {
   cookies().delete(TOKEN_KEYS.accessToken);
   cookies().delete(TOKEN_KEYS.refreshToken);
+};
+
+export const logoutAction = async () => {
+  await deleteToken();
+  redirect('/');
 };
