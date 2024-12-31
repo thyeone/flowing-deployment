@@ -23,9 +23,9 @@ export default function ConversationRequestSection({
       <EmblaCarousel.Content className="mx-5 gap-x-2">
         {conversationData.map((data) =>
           selectedTab === 'receive' ? (
-            <ReceiveChatCard key={data.conversationId} {...data} isBlur={false} />
+            <ReceiveChatCard key={data.conversationId} {...data} />
           ) : (
-            <ConversationRequestCard key={data.conversationId} {...data} isBlur={false} />
+            <ConversationRequestCard key={data.conversationId} {...data} />
           ),
         )}
       </EmblaCarousel.Content>
