@@ -2,7 +2,7 @@ import type { Axios, AxiosError, AxiosResponse, InternalAxiosRequestConfig } fro
 import axios from 'axios';
 import qs from 'qs';
 
-import { getCookie, setCookie } from '@/actions/cookie';
+import { getCookie, logoutAction, setCookie } from '@/actions/cookie';
 import { TOKEN_KEYS } from '@/constants';
 
 import { authApi } from '../auth';
@@ -65,7 +65,7 @@ instance.interceptors.response.use(
 
           return instance.request(originalRequest);
         } catch (error) {
-          window.location.href = '/';
+          await logoutAction();
         }
       }
     } else {
