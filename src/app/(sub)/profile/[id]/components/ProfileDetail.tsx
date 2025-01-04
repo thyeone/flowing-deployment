@@ -5,8 +5,6 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { getMatchMember } from '@/apis/conversation';
 import { useGetMember } from '@/apis/member';
 import FloatingConversationButton from '@/components/FloatingConversationButton';
-import Divider from '@/components/layout/Divider';
-import Spacing from '@/components/layout/Spacing';
 import useSetCoords from '@/hooks/useSetCoords';
 import { calculateAge, decodeAccessToken } from '@/utils';
 
@@ -42,8 +40,6 @@ export default function ProfileDetail({ id }: { id: string }) {
         <DefaultInformationSection selfIntro={profileDetailData.profile.selfIntro} />
         <InterestSection keywords={profileDetailData.profile.selfIntro.keywords} />
         <ValueQnASection valueResponses={profileDetailData.profile.valueResponses} />
-        <Divider isDark />
-        <Spacing size={64} />
       </div>
       {id !== myProfileData.profile.memberId &&
         profileDetailData.profile.selfIntro.gender !== myProfileData.profile.selfIntro.gender && (

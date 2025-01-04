@@ -19,7 +19,6 @@ type EmblaContextValue = {
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
   scrollTo: (index: number) => void;
-  setIsDragging: React.Dispatch<React.SetStateAction<boolean>>;
 } & Pick<CarouselProps, 'direction'>;
 
 type CarouselProps = {
@@ -53,6 +52,8 @@ type CarouselProps = {
    *
    */
   enableScrollIndexTracking?: boolean;
+
+  enableKeyboardEvent?: boolean;
 };
 
 const EmblaContext = createContext<EmblaContextValue | null>(null);
@@ -66,6 +67,7 @@ export default function EmblaCarousel({
   isAutoPlay,
   isAutoHeight,
   enableScrollIndexTracking,
+  enableKeyboardEvent,
   children,
   className,
   ...rest
@@ -103,7 +105,12 @@ export default function EmblaCarousel({
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
+
+  const callbackRef = (node: HTMLDivElement | null) => {
+    if (node) {
+      node.focus();
+    }
+  };
 
   const onSelect = useCallback((api: EmblaCarouselType) => {
     if (!api) {
@@ -113,11 +120,13 @@ export default function EmblaCarousel({
     setCanScrollPrev(api.canScrollPrev());
     setCanScrollNext(api.canScrollNext());
     setCurrentIndex(api.selectedScrollSnap());
+
+    if (api.selectedScrollSnap() !== currentIndex) {
+      setCurrentIndex(api.selectedScrollSnap());
+    }
   }, []);
 
   const onScroll = useCallback((api: EmblaCarouselType) => {
-    if (!isDragging) return;
-
     const scrollProgress = api.scrollProgress();
 
     const snapList = api.scrollSnapList();
@@ -134,7 +143,7 @@ export default function EmblaCarousel({
       const lowRange = snapList[i] - snapTerm / 2;
       const highRange = snapList[i] + snapTerm / 2;
 
-      if (lowRange < scrollProgress && scrollProgress <= highRange) {
+      if (lowRange < Math.ceil(scrollProgress) && scrollProgress <= highRange) {
         closestIndex = i;
         break;
       }
@@ -144,21 +153,31 @@ export default function EmblaCarousel({
   }, []);
 
   const onPrev = useCallback(() => {
-    emblaApi?.scrollPrev();
+    if (!emblaApi) return;
+
+    if (emblaApi.canScrollPrev()) {
+      emblaApi?.scrollPrev();
+      setCurrentIndex(emblaApi.selectedScrollSnap());
+    }
   }, [emblaApi]);
 
   const onNext = useCallback(() => {
-    emblaApi?.scrollNext();
+    if (!emblaApi) return;
+
+    if (emblaApi.canScrollNext()) {
+      emblaApi?.scrollNext();
+      setCurrentIndex(emblaApi.selectedScrollSnap());
+    }
   }, [emblaApi]);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'ArrowLeft') {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
         event.preventDefault();
         onPrev();
       }
 
-      if (event.key === 'ArrowRight') {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
         event.preventDefault();
         onNext();
       }
@@ -204,10 +223,17 @@ export default function EmblaCarousel({
         setCurrentIndex,
         direction,
         scrollTo,
-        setIsDragging,
       }}
     >
-      <div onKeyDownCapture={handleKeyDown} className={cn('relative', className)} {...rest}>
+      <div
+        {...(enableKeyboardEvent && {
+          ref: callbackRef,
+          onKeyDown: handleKeyDown,
+          tabIndex: 0,
+        })}
+        className={cn('relative overflow-hidden outline-none', className)}
+        {...rest}
+      >
         {children}
       </div>
     </EmblaContext.Provider>
@@ -229,7 +255,7 @@ const Content = ({
     <div
       ref={emblaRef}
       className={cn('w-full cursor-default select-none overflow-hidden', {
-        'cursor-grab active:cursor-grabbing': cursorGrab,
+        'cursor-grab active:cursor-grabbing lg:cursor-pointer': cursorGrab,
       })}
     >
       <div
