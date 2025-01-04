@@ -1,10 +1,8 @@
 import type { Axios, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import { overlay } from 'overlay-kit';
 import qs from 'qs';
 
 import { getCookie, logoutAction, setCookie } from '@/actions/cookie';
-import { Toast } from '@/components/Overlay';
 import { TOKEN_KEYS } from '@/constants';
 
 import { authApi } from '../auth';
@@ -67,12 +65,6 @@ instance.interceptors.response.use(
 
           return instance.request(originalRequest);
         } catch (error) {
-          overlay.open(({ isOpen, close }) => (
-            <Toast isOpen={isOpen} onClose={close} type="warning">
-              세션이 만료되었습니다.
-            </Toast>
-          ));
-
           await logoutAction();
         }
       }
@@ -89,19 +81,19 @@ instance.defaults.paramsSerializer = (params) => {
 };
 
 const http = {
-  get: <T = unknown,>(...args: Parameters<Axios['get']>) =>
+  get: <T = unknown>(...args: Parameters<Axios['get']>) =>
     instance.get<CommonResponse<T>>(...args).then(getResponseFromBody),
 
-  post: <T = unknown,>(...args: Parameters<Axios['post']>) =>
+  post: <T = unknown>(...args: Parameters<Axios['post']>) =>
     instance.post<CommonResponse<T>>(...args).then(getResponseFromBody),
 
-  patch: <T = unknown,>(...args: Parameters<Axios['patch']>) =>
+  patch: <T = unknown>(...args: Parameters<Axios['patch']>) =>
     instance.patch<CommonResponse<T>>(...args).then(getResponseFromBody),
 
-  put: <T = unknown,>(...args: Parameters<Axios['put']>) =>
+  put: <T = unknown>(...args: Parameters<Axios['put']>) =>
     instance.put<CommonResponse<T>>(...args).then(getResponseFromBody),
 
-  delete: <T = unknown,>(...args: Parameters<Axios['delete']>) =>
+  delete: <T = unknown>(...args: Parameters<Axios['delete']>) =>
     instance.delete<CommonResponse<T>>(...args).then(getResponseFromBody),
 };
 
