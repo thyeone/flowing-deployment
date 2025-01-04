@@ -1,4 +1,4 @@
-import 'swiper/css';
+'use client';
 
 import { ValueResponse } from '@/apis/profile';
 import { JobColor, LifeColor, LoveColor } from '@/assets/MyValue';
