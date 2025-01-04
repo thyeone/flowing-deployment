@@ -1,8 +1,8 @@
 import 'swiper/css';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { ValueResponse } from '@/apis/profile';
 import { JobColor, LifeColor, LoveColor } from '@/assets/MyValue';
+import EmblaCarousel from '@/components/EmblaCarousel';
 import Spacing from '@/components/layout/Spacing';
 
 import { convertTypeToLabel } from '../../utils';
@@ -28,10 +28,13 @@ export default function ValueQnASection({ valueResponses }: ValueQnASectionProps
       </div>
       <Spacing size={16} />
       <div className="h-[219px] w-full">
-        <Swiper className="size-full overflow-x-auto !px-5" spaceBetween={8}>
-          {valueResponses.map(({ id, type, question, response }) => (
-            <SwiperSlide key={id} className="size-full">
-              <div className="size-full rounded-xl bg-gray-50 px-4 py-5 dark:bg-[rgba(66,66,69,0.5)]">
+        <EmblaCarousel>
+          <EmblaCarousel.Content className="mx-5 gap-2">
+            {valueResponses.map(({ id, type, question, response }) => (
+              <EmblaCarousel.Item
+                key={id}
+                className="min-h-[219px] w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-5 dark:bg-[rgba(66,66,69,0.5)]"
+              >
                 <div className="flex items-center gap-x-[6px]">
                   {ICON[type]}
                   <span>{convertTypeToLabel(type)}</span>
@@ -46,10 +49,10 @@ export default function ValueQnASection({ valueResponses }: ValueQnASectionProps
                   <span>A.</span>
                   <span>{response}</span>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </EmblaCarousel.Item>
+            ))}
+          </EmblaCarousel.Content>
+        </EmblaCarousel>
       </div>
       <Spacing size={32} />
     </>

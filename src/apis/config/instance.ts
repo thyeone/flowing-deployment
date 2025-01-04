@@ -41,7 +41,7 @@ instance.interceptors.response.use(
 
     const { code } = data;
 
-    if (status === 401) {
+    if (status === 401 && code === 'UNAUTHORIZED') {
       const __accessToken = await getCookie(TOKEN_KEYS.accessToken);
       const __refreshToken = await getCookie(TOKEN_KEYS.refreshToken);
 
