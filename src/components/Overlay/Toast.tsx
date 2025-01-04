@@ -2,6 +2,7 @@
 
 import WarningIcon from '@public/svg/warning.svg';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 import { fadeInOut } from '@/constants';
 import { cn } from '@/utils';
@@ -10,14 +11,24 @@ import { AnimatePortal } from '.';
 
 type ToastProps = {
   isOpen: boolean;
+  onClose?: VoidFunction;
   type?: 'warning' | 'default';
 };
 
 export default function Toast({
   children,
   isOpen,
+  onClose,
   type = 'default',
 }: PropsWithStrictChildren<ToastProps>) {
+  useEffect(() => {
+    if (isOpen && onClose) {
+      setTimeout(() => {
+        onClose?.();
+      }, 1500);
+    }
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePortal isOpen={isOpen}>
       <motion.div
