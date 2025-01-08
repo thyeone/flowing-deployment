@@ -23,4 +23,4 @@ export const KEYWORD_LIST = [
   '장난끼 많음',
   '센스',
   '무쌍',
-] as const;
+];
