@@ -7,10 +7,12 @@ import PlusIcon from '@public/svg/plus-24.svg';
 import { useState } from 'react';
 import { type UseFormReturn, useWatch } from 'react-hook-form';
 import 'swiper/css';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Button, ButtonWrapper } from '@/components/Button';
+import Button from '@/components/Button/Button';
+import ButtonWrapper from '@/components/Button/ButtonWrapper';
+import EmblaCarousel from '@/components/EmblaCarousel';
 import { Header } from '@/components/Header';
+import ItemList from '@/components/ItemList';
 import { PopupContainer } from '@/components/Overlay';
 import Spacing from '@/components/layout/Spacing';
 import { KEYWORD_LIST } from '@/constants';
@@ -72,8 +74,10 @@ export default function KeywordPopup({ isOpen, onClose, useForm }: KeywordPopupP
       </h1>
       <p className="mt-2 text-xs text-gray-500">5개까지 선택 가능</p>
       <Spacing size={20} />
-      <ul className="mb-[60px] flex flex-wrap gap-2">
-        {KEYWORD_LIST.map((tag, index) => (
+      <ItemList
+        direction="row"
+        data={KEYWORD_LIST}
+        renderItem={(tag, index) => (
           <li
             key={index}
             onClick={() => handleTagClick(String(tag))}
@@ -87,22 +91,30 @@ export default function KeywordPopup({ isOpen, onClose, useForm }: KeywordPopupP
             {tag}
             {tempKeywords.includes(tag) ? <CheckIcon /> : <PlusIcon />}
           </li>
-        ))}
-      </ul>
-      <section className="max-width fixed inset-x-0 bottom-[112px] mx-auto flex h-20 w-full items-center overflow-x-scroll border-t border-t-gray-100 bg-gray-50">
-        <Swiper slidesPerView="auto" spaceBetween={8} className="w-full !px-5">
-          {tempKeywords.map((keyword, index) => (
-            <SwiperSlide key={index} style={{ width: 'auto' }}>
-              <div className="flex h-10 w-fit items-center justify-center gap-x-1 whitespace-nowrap rounded-[48px] border border-gray-100 bg-white pl-4 pr-3 text-sm text-gray-900">
+        )}
+        className="flex h-[calc(100dvh-320px)] flex-wrap content-start gap-2 overflow-y-auto pb-[46px]"
+      />
+      {tempKeywords.length > 0 && (
+        <EmblaCarousel
+          options={{
+            dragFree: true,
+          }}
+          className="max-width fixed inset-x-0 bottom-[92px] mx-auto h-[72px] w-full border-t border-t-gray-100 bg-gray-50"
+        >
+          <EmblaCarousel.Content className="mx-5 h-[72px] items-center gap-2">
+            {tempKeywords.map((keyword, index) => (
+              <EmblaCarousel.Item
+                key={index}
+                className="flex h-10 w-fit cursor-pointer items-center justify-center gap-x-1 whitespace-nowrap rounded-[48px] border border-gray-100 bg-white pl-4 pr-3 text-sm text-gray-900"
+                onClick={() => handleTagClick(keyword)}
+              >
                 {keyword}
-                <button onClick={() => handleTagClick(keyword)}>
-                  <DeleteIcon />
-                </button>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </section>
+                <DeleteIcon />
+              </EmblaCarousel.Item>
+            ))}
+          </EmblaCarousel.Content>
+        </EmblaCarousel>
+      )}
       <ButtonWrapper>
         <Button disabled={!tempKeywords.length} onClick={handleEditButton}>
           수정
