@@ -56,7 +56,7 @@ export default function MbtiBottomSheet({ useForm, onClose, isOpen }: MbtiBottom
 
   const { ref } = useBottomSheet(() => {
     onClose();
-    if (mbtiValue.length !== 4) {
+    if (mbtiValue.filter(Boolean).length !== 4) {
       setValue('mbti', []);
     }
   });
@@ -75,7 +75,7 @@ export default function MbtiBottomSheet({ useForm, onClose, isOpen }: MbtiBottom
       <Spacing size={48} />
       <BottomSheet.Footer>
         <Button
-          disabled={!!(mbti.length !== 4)}
+          disabled={!!(mbti.filter(Boolean).length !== 4)}
           onClick={() => {
             setValue('mbti', mbti, {
               shouldDirty: true,
