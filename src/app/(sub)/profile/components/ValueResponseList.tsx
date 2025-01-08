@@ -30,7 +30,7 @@ export default function ValueResponseList({ valueResponses, label }: ValueRespon
   });
 
   return (
-    <>
+    <div className="px-5">
       <div className="flex justify-between">
         <div className="flex items-center gap-x-1">
           <label className="font-bold">{label}</label>
@@ -84,6 +84,6 @@ export default function ValueResponseList({ valueResponses, label }: ValueRespon
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

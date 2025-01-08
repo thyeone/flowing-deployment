@@ -73,7 +73,7 @@ export default function ValueResponseEditPopup({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex gap-x-1">
           <span className="text-xl font-bold text-primary-400">Q.</span>
-          <span className="flex pr-[88px] text-xl font-bold text-gray-900">{question}</span>
+          <span className="flex text-xl font-bold text-gray-900">{question}</span>
         </div>
         <div className="mt-4 flex size-full min-h-[127px] items-start gap-x-1 border-t border-gray-50 py-4">
           <span className="relative text-xl font-bold text-gray-400">A.</span>
@@ -99,9 +99,7 @@ export default function ValueResponseEditPopup({
           />
         </div>
         <ButtonWrapper>
-          <Button type="submit" disabled={!isValid}>
-            수정
-          </Button>
+          <Button type="submit">수정</Button>
         </ButtonWrapper>
       </form>
       <Spacing size={100} />

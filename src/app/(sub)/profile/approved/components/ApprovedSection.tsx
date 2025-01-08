@@ -42,7 +42,7 @@ export default function ApprovedSection({ id }: { id: string }) {
       </div>
       <Spacing size={72} />
       <Link href="/home">
-        <ButtonWrapper>
+        <ButtonWrapper className="bg-transparent">
           <Button>플로잉 시작하기</Button>
         </ButtonWrapper>
       </Link>
