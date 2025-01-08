@@ -36,10 +36,10 @@ function SelfIntroField({ label, value }: SelfIntroFieldProps) {
   return (
     <div className="flex h-[52px] w-full items-center justify-between rounded-xl border border-gray-200 px-4">
       <div className="flex items-center gap-x-1">
-        <label className="font-bold">{label}</label>
+        <label className="text-[14px] font-bold leading-[14px]">{label}</label>
         <CheckIcon />
       </div>
-      <span className="text-sm">{value as string}</span>
+      <span className="text-[14px] leading-[14px]">{value as string}</span>
     </div>
   );
 }

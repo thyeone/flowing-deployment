@@ -53,11 +53,6 @@ export default function ProfileForm() {
     const { keywords, introduction, valueResponses } = data;
     const fileIds = fields.map(({ uuid }) => uuid);
 
-    if (JSON.stringify(fileIds) === JSON.stringify(member.profile.images.map(({ id }) => id))) {
-      openToast({ type: 'warning', message: '사진을 수정해주세요' });
-      return;
-    }
-
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -130,29 +125,27 @@ export default function ProfileForm() {
       </div>
       <Divider thickness="thick" />
       <Spacing size={32} />
-      <div className="px-5">
-        <ValueResponseList
-          valueResponses={
-            member.profile.valueResponses.filter(({ type }) => type === '인생') as ValueResponse[]
-          }
-          label="라이프 가치관"
-        />
-        <Spacing size={16} />
-        <ValueResponseList
-          valueResponses={
-            member.profile.valueResponses.filter(({ type }) => type === '사랑') as ValueResponse[]
-          }
-          label="연애관"
-        />
-        <Spacing size={16} />
-        <ValueResponseList
-          valueResponses={
-            member.profile.valueResponses.filter(({ type }) => type === '일') as ValueResponse[]
-          }
-          label="직업 가치관"
-        />
-        <Spacing size={32} />
-      </div>
+      <ValueResponseList
+        valueResponses={
+          member.profile.valueResponses.filter(({ type }) => type === '인생') as ValueResponse[]
+        }
+        label="라이프 가치관"
+      />
+      <Divider thickness="thin" className="my-8" />
+      <ValueResponseList
+        valueResponses={
+          member.profile.valueResponses.filter(({ type }) => type === '사랑') as ValueResponse[]
+        }
+        label="연애관"
+      />
+      <Divider thickness="thin" className="my-8" />
+      <ValueResponseList
+        valueResponses={
+          member.profile.valueResponses.filter(({ type }) => type === '일') as ValueResponse[]
+        }
+        label="직업 가치관"
+      />
+      <Spacing size={32} />
       <ButtonWrapper>
         <Button
           type="submit"
