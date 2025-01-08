@@ -1,14 +1,14 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import RightArrowIcon from '@/assets/RightArrow';
+import Video from '@/components/Video';
 
 type Channel = {
   id: number;
   name: string;
   title: string;
   subTitle: string;
-  image: string;
+  video: string;
 };
 
 type ChannelProps = {
@@ -18,10 +18,10 @@ type ChannelProps = {
 export default function Channel({ channelData }: ChannelProps) {
   return (
     <div className="relative h-[400px] w-full overflow-hidden rounded-xl">
-      <Image src={channelData.image} alt={channelData.name} fill />
-      <div className="absolute z-10 flex size-full flex-col justify-between">
+      <Video src={channelData.video} className="absolute" />
+      <div className="absolute flex size-full flex-col justify-between">
         <div className="flex flex-col gap-3 px-6 pt-6">
-          <p className="text-xs text-white">{channelData.name}</p>
+          <p className="z-10 text-xs text-white">{channelData.name}</p>
           <h2 className="whitespace-pre-wrap text-xl font-bold text-white">{channelData.title}</h2>
           <p className="text-xs text-gray-300">{channelData.subTitle}</p>
         </div>
