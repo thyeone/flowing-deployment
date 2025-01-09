@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useReducer } from 'react';
 
+import { MemberResponse } from '@/apis/member';
 import useCustomSearchParams from '@/hooks/useCustomSearchParams';
 import { ageToDateString, birthToAge } from '@/utils';
 
@@ -40,51 +41,60 @@ type FeedFilterContextValue = {
   setChannelId: (channelId: number | null) => void;
   feedsParams: FeedParams;
   setFeedsParams: () => void;
-};
-
-const initialState: FilterState = {
-  selectedTab: 'gender',
-  gender: { MALE: true, FEMALE: true },
-  address: [],
-  age: { min: 1, max: 100 },
-};
-
-const initialFeedParams = {
-  gender: Object.keys(initialState.gender)
-    .filter((key) => initialState.gender[key as GenderType])
-    .join(','),
-  address: initialState.address.join(','),
-  maxAge: ageToDateString({ age: initialState.age.min }),
-  minAge: ageToDateString({ age: initialState.age.max, firstDay: true }),
-};
-
-const reducer = (state: FilterState, action: Action) => {
-  switch (action.type) {
-    case 'SET_TAB':
-      return { ...state, selectedTab: action.payload };
-    case 'SET_GENDER':
-      return { ...state, gender: action.payload };
-    case 'SET_ADDRESS':
-      return { ...state, address: action.payload };
-    case 'SET_AGE':
-      return { ...state, age: action.payload };
-    case 'RESET':
-      return { ...initialState, selectedTab: state.selectedTab };
-    default:
-      return state;
-  }
+  myProfile: MemberResponse['profile'];
 };
 
 const FeedFilterContext = createContext<FeedFilterContextValue | null>(null);
 
-export default function FeedFilterProvider({ children }: { children: React.ReactNode }) {
+export default function FeedFilterProvider({
+  children,
+  myProfile,
+}: {
+  children: React.ReactNode;
+  myProfile: MemberResponse['profile'];
+}) {
+  const myGender = myProfile?.selfIntro.gender;
+
+  const initialState: FilterState = {
+    selectedTab: 'gender',
+    gender: { MALE: myGender === 'FEMALE', FEMALE: myGender === 'MALE' },
+    address: [],
+    age: { min: 1, max: 100 },
+  };
+
+  const initialFeedParams = {
+    gender: Object.keys(initialState.gender)
+      .filter((key) => initialState.gender[key as GenderType])
+      .join(','),
+    address: initialState.address.join(','),
+    maxAge: ageToDateString({ age: initialState.age.min }),
+    minAge: ageToDateString({ age: initialState.age.max, firstDay: true }),
+  };
+
+  const reducer = (state: FilterState, action: Action) => {
+    switch (action.type) {
+      case 'SET_TAB':
+        return { ...state, selectedTab: action.payload };
+      case 'SET_GENDER':
+        return { ...state, gender: action.payload };
+      case 'SET_ADDRESS':
+        return { ...state, address: action.payload };
+      case 'SET_AGE':
+        return { ...state, age: action.payload };
+      case 'RESET':
+        return { ...initialState, selectedTab: state.selectedTab };
+      default:
+        return state;
+    }
+  };
+
   const { searchParams, setSearchParams } = useCustomSearchParams();
 
   const iniitialFilterState = {
     selectedTab: 'gender' as Tab,
     gender: {
-      MALE: searchParams.gender?.split(',').includes('MALE') ?? true,
-      FEMALE: searchParams.gender?.split(',').includes('FEMALE') ?? true,
+      MALE: searchParams.gender?.split(',').includes('MALE') ?? initialState.gender.MALE,
+      FEMALE: searchParams.gender?.split(',').includes('FEMALE') ?? initialState.gender.FEMALE,
     },
     address: searchParams.address?.split(',') ?? [],
     age: {
@@ -92,6 +102,7 @@ export default function FeedFilterProvider({ children }: { children: React.React
       max: birthToAge({ birth: searchParams.minAge }) || 100,
     },
   };
+
   const [filterState, dispatch] = useReducer(reducer, iniitialFilterState);
 
   const feedsParams = {
@@ -154,6 +165,7 @@ export default function FeedFilterProvider({ children }: { children: React.React
         setChannelId,
         feedsParams,
         setFeedsParams,
+        myProfile,
       }}
     >
       {children}
