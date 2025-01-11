@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { memberApi } from '.';
 import { queryKeys } from './keys';
@@ -14,3 +14,14 @@ export const useGetMember = (memberId: string) => {
     },
   });
 };
+
+export const useGetMemberProfile = (memberId: string) =>
+  useQuery({
+    queryKey: queryKeys.getMember(memberId),
+    queryFn: () => memberApi.getMember(memberId),
+    select: (data) => {
+      const { profile } = data;
+
+      return profile;
+    },
+  });
