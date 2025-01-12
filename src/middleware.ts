@@ -1,10 +1,10 @@
 import { jwtDecode } from 'jwt-decode';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { logoutAction } from './actions/cookie';
 import commonFetch from './apis/config/fetch';
 import type { MemberResponse } from './apis/member';
 import { TOKEN_KEYS } from './constants';
-import { getEmptyProfile } from './utils/getEmptyProfile';
 
 const JOIN_PAGES = /^\/(join|profile|auth)/;
 
@@ -27,26 +27,13 @@ export async function middleware(req: NextRequest) {
 
   const { pathname } = req.nextUrl;
 
-  // 로그인 페이지가 아닌데 리프레시토큰이 없을 경우
-  if (!refreshToken) {
-    if (pathname !== '/' && !pathname.includes('auth')) {
+  if (pathname !== '/' && !pathname.includes('auth')) {
+    if (!accessToken || !refreshToken) {
       return NextResponse.redirect(new URL('/', req.url));
     }
   }
 
   // 프로필 페이지에 접근했을 때 아직 가입절차인 유저일 경우 접근금지
-  // 승인 대기중인 유저는 접근을 허용한다.
-  if (pathname === '/profile') {
-    try {
-      const res = await getMember(accessToken as string, memberId as string);
-      if (res.data.status === 'IN_SING_UP' && getEmptyProfile(res.data.profile) !== '6') {
-        return NextResponse.redirect(new URL('/join', req.url));
-      }
-    } catch (error) {
-      return NextResponse.redirect(new URL('/', req.url));
-    }
-  }
-
   // 가입 완료한 유저가 join에 접속했을 때
   if (pathname === '/join') {
     try {
@@ -71,6 +58,47 @@ export async function middleware(req: NextRequest) {
     } catch (error) {
       return NextResponse.redirect(new URL('/', req.url));
     }
+  }
+
+  try {
+    const tokenPayload = getPayload();
+    if (tokenPayload && tokenPayload.exp * 1000 < Date.now()) {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/refresh`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          accessToken,
+          refreshToken,
+        }),
+      });
+
+      if (!response.ok) {
+        await logoutAction();
+        return NextResponse.redirect(new URL('/', req.url));
+      }
+
+      const { accessToken: newAccessToken, refreshToken: newRefreshToken } = await response.json();
+      const nextResponse = NextResponse.next();
+
+      nextResponse.cookies.set(TOKEN_KEYS.accessToken, newAccessToken, {
+        secure: true,
+        sameSite: 'lax',
+        path: '/',
+      });
+
+      nextResponse.cookies.set(TOKEN_KEYS.refreshToken, newRefreshToken, {
+        secure: true,
+        sameSite: 'lax',
+        path: '/',
+      });
+
+      return nextResponse;
+    }
+  } catch (error) {
+    return NextResponse.redirect(new URL('/', req.url));
   }
 
   return NextResponse.next();
