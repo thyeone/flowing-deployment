@@ -11,3 +11,8 @@ export const usePostReport = () =>
   useMutation({
     mutationFn: memberApi.postReport,
   });
+
+export const useDeleteMember = () =>
+  useMutation({
+    mutationFn: memberApi.deleteMember,
+  });

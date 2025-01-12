@@ -24,10 +24,11 @@ export default function AlertDialog({
           <Dialog.Title>{title}</Dialog.Title>
           {description && <Dialog.Description>{description}</Dialog.Description>}
           <Dialog.Footer>
-            <Button variant="outline" className="font-normal" onClick={onClose}>
+            <Button variant="outline" className="h-11 font-normal" onClick={onClose}>
               취소
             </Button>
             <Button
+              className="h-11"
               onClick={() => {
                 onConfirm();
                 onClose();
