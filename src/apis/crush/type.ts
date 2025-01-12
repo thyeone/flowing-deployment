@@ -15,6 +15,7 @@ export type CrushResponse = {
   address: AddressResponse;
   ddayTime: string;
   new: boolean;
+  isMatch: boolean;
 };
 
 export type CrushScore = '1' | '2' | '3' | '4' | '5';

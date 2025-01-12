@@ -1,10 +1,14 @@
 'use client';
 
 import { logoutAction } from '@/actions/cookie';
+import { useDeleteMember } from '@/apis/member/mutations';
 import RightArrow from '@/assets/RightArrow';
 import ItemList from '@/components/ItemList';
+import AlertDialog from '@/components/Overlay/AlertDialog';
 import Flex from '@/components/layout/Flex';
 import Spacing from '@/components/layout/Spacing';
+import { useOverlay, useToast } from '@/hooks';
+import { useUser } from '@/providers/user.provider';
 
 const TERMS = [
   {
@@ -22,12 +26,39 @@ const TERMS = [
 ];
 
 export default function InquirySection() {
+  const { open } = useOverlay();
+
+  const { mutate: deleteMember } = useDeleteMember();
+
+  const user = useUser();
+  const { openToast } = useToast();
+
   const actions = async (title: (typeof TERMS)[number]['title']) => {
     switch (title) {
       case '로그아웃':
         await logoutAction();
         break;
       case '회원탈퇴':
+        open(({ isOpen, close }) => (
+          <AlertDialog
+            isOpen={isOpen}
+            onClose={close}
+            title="회원 탈퇴 하시겠습니까?"
+            description={`회원탈퇴를 진행하시면 아래와 같은 정보가 삭제됩니다\n프로필 정보 및 매칭 기록\n채팅 내역 및 기타 활동 데이터\n탈퇴 후에는 복구가 불가능합니다.\n정말 탈퇴하시겠습니까?`}
+            onConfirm={() => {
+              deleteMember(user.memberId, {
+                onSuccess: () => {
+                  openToast({
+                    type: 'default',
+                    message: '회원탈퇴가 완료되었습니다.',
+                  });
+                  close();
+                },
+              });
+            }}
+            confirmText="확인"
+          />
+        ));
         break;
       case '문의하기':
         break;
