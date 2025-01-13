@@ -7,5 +7,8 @@ export const memberApi = {
   postBlock: (id: string) => http.post(`/members/${id}/block`),
   postReport: (id: string) => http.post(`/members/${id}/report`),
 
-  deleteMember: (memberId: string) => http.delete(`/members/${memberId}`),
+  deleteMember: (memberId: string) => {
+    console.log(memberId, 'memberId');
+    return http.delete(`/members/${memberId}`);
+  },
 };

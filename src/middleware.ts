@@ -26,14 +26,13 @@ export async function middleware(req: NextRequest) {
 
   const { pathname } = req.nextUrl;
 
-  if (pathname === '/') {
+  // 예외 경로들에 대해서는 바로 next() 처리
+  if (pathname === '/' || pathname.includes('auth')) {
     return NextResponse.next();
   }
 
-  if (!pathname.includes('auth')) {
-    if (!accessToken || !refreshToken) {
-      return NextResponse.redirect(new URL('/', req.url));
-    }
+  if (!accessToken || !refreshToken) {
+    return NextResponse.redirect(new URL('/', req.url));
   }
 
   // 프로필 페이지에 접근했을 때 아직 가입절차인 유저일 경우 접근금지
@@ -79,14 +78,11 @@ export async function middleware(req: NextRequest) {
       });
 
       if (!response.ok) {
-        // logoutAction() 대신 직접 쿠키 삭제
         const logoutResponse = NextResponse.redirect(new URL('/', req.url));
         logoutResponse.cookies.delete(TOKEN_KEYS.accessToken);
         logoutResponse.cookies.delete(TOKEN_KEYS.refreshToken);
         return logoutResponse;
       }
-
-      // ... 나머지 코드는 동일 ...
     }
   } catch (error) {
     console.error(error);
