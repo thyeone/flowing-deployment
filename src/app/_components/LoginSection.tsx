@@ -4,15 +4,13 @@ import GoogleIcon from '@public/svg/google.svg';
 import KakaoIcon from '@public/svg/kakao.svg';
 import { useMotionValue } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Slider from '@/components/Slider';
 import Video from '@/components/Video';
 import Spacing from '@/components/layout/Spacing';
 import { BASE_DOMAIN } from '@/constants';
 import { cn } from '@/utils';
-
-import SplashScreen from './SplashScreen';
 
 const CAROUSEL_LIST = [
   {
@@ -39,7 +37,6 @@ const CAROUSEL_LIST = [
 export default function LoginSection() {
   const [slideIndex, setSlideIndex] = useState(0);
   const x = useMotionValue(0);
-  const [isLoading, setIsLoading] = useState(false);
 
   const onDragEnd = () => {
     if (x.get() < -20) {
@@ -51,15 +48,8 @@ export default function LoginSection() {
     }
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(true), 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
-      <SplashScreen isLoading={isLoading} />
       <main className="main-layout">
         <Slider
           className="h-2/3 items-center"

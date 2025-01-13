@@ -45,15 +45,17 @@ export default function ProfileCard({ profileData }: ProfileCardProps) {
               <Image src={profileData.images[0].path} alt="avatar" fill objectFit="cover" />
             </div>
           )}
-          <div className="flex h-20 flex-col items-center justify-center gap-2">
-            <span className="font-bold">
+          <div className="mb-4 mt-2 flex flex-col items-center justify-center gap-2">
+            <span className="text-[16px] font-bold leading-4">
               {profileData.selfIntro.nickname}. {calculateAge(profileData.selfIntro.birth)}
             </span>
             <div className="flex items-center gap-x-1 text-xs">
-              <span className="text-gray-800">
+              <span className="text-[12px] leading-3 text-gray-800">
                 {`${profileData.address.sido} ${profileData.address.sigungu} · `}
               </span>
-              <span className="text-primary-500">{distance ? `${distance}km` : '???km'}</span>
+              <span className="text-[12px] leading-3 text-primary-500">
+                {distance ? `${distance}km` : '???km'}
+              </span>
             </div>
           </div>
         </div>
