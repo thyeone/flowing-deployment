@@ -29,7 +29,7 @@
   }
 
   .body-layout {
-    @apply flex h-[var(--layout-min-h)] w-screen justify-center bg-slate-50;
+    @apply flex h-[var(--layout-min-h)] w-screen justify-center bg-slate-100;
   }
 
   .main-layout {
