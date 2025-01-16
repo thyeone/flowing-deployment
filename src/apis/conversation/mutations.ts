@@ -37,7 +37,7 @@ export const usePostConversationType = () => {
   });
 };
 
-export const usePostConversationMessage = (nickname: string) => {
+export const usePostConversationMessage = () => {
   const { openToast } = useToast();
   const queryClient = useQueryClient();
 
@@ -45,7 +45,6 @@ export const usePostConversationMessage = (nickname: string) => {
     mutationFn: conversationApi.postConversationMessage,
 
     onSuccess: () => {
-      openToast({ message: `${nickname}님께 메세지를 보냈어요!` });
       queryClient.invalidateQueries({
         queryKey: queryKeys.getRequestConversation(),
       });

@@ -48,11 +48,17 @@ export default function ConversationRequestCard(props: ConversationResponse) {
         </p>
         <Spacing size={24} />
         <Button
-          onClick={() =>
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
             open(({ isOpen, close }) => (
-              <SendChatRequestPopup isOpen={isOpen} onClose={close} {...props} />
-            ))
-          }
+              <SendChatRequestPopup
+                isOpen={isOpen}
+                onClose={close}
+                conversationId={conversationId}
+              />
+            ));
+          }}
         >
           메시지 보내기
         </Button>
