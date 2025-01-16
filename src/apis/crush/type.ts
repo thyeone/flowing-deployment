@@ -16,6 +16,7 @@ export type CrushResponse = {
   ddayTime: string;
   new: boolean;
   isMatch: boolean;
+  memberId: string;
 };
 
 export type CrushScore = '1' | '2' | '3' | '4' | '5';
