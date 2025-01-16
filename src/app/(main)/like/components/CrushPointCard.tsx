@@ -15,11 +15,12 @@ export default function CrushPointCard(props: CrushResponse) {
     selfIntro,
     address,
     isMatch,
+    memberId,
   } = props;
   return (
     <>
       <Link
-        href={`/profile/${profileId}`}
+        href={`/profile/${memberId}`}
         className="relative flex aspect-[3/4] flex-1 items-end overflow-hidden rounded-xl bg-gray-200 p-4"
       >
         <Image
