@@ -5,6 +5,7 @@ import AutoHeight from 'embla-carousel-auto-height';
 import AutoScroll, { type AutoScrollOptionsType } from 'embla-carousel-auto-scroll';
 import Autoplay, { type AutoplayOptionsType } from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
+import { MotionProps, motion } from 'framer-motion';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 import { cn } from '@/utils/cn';
@@ -202,10 +203,7 @@ export default function EmblaCarousel({
       emblaApi.on('scroll', onScroll);
     }
 
-    emblaApi.on('select', onSelect);
-
     return () => {
-      emblaApi.off('select', onSelect);
       emblaApi.off('scroll', onScroll);
     };
   }, [emblaApi, onScroll, onSelect]);
@@ -242,11 +240,13 @@ export default function EmblaCarousel({
 
 type ContentProps = {
   cursorGrab?: boolean;
+  containerClassName?: string;
 };
 
 const Content = ({
   className,
   cursorGrab = true,
+  containerClassName,
   ...rest
 }: React.ComponentProps<'div'> & ContentProps) => {
   const { emblaRef, direction } = useEmbla();
@@ -254,9 +254,13 @@ const Content = ({
   return (
     <div
       ref={emblaRef}
-      className={cn('w-full cursor-default select-none overflow-hidden', {
-        'cursor-grab active:cursor-grabbing lg:cursor-pointer': cursorGrab,
-      })}
+      className={cn(
+        'h-full w-full flex-1 cursor-default select-none overflow-hidden',
+        containerClassName,
+        {
+          'cursor-grab active:cursor-grabbing lg:cursor-pointer': cursorGrab,
+        },
+      )}
     >
       <div
         className={cn(
@@ -276,11 +280,13 @@ const Item = ({
   children,
   className,
   ...rest
-}: PropsWithStrictChildren<React.ComponentProps<'div'>>) => {
+}: PropsWithStrictChildren<
+  MotionProps & React.ComponentPropsWithoutRef<'div'> & { className?: string }
+>) => {
   return (
-    <div className={cn('min-w-0 shrink-0 grow-0', className)} {...rest}>
+    <motion.div className={cn('min-w-0 shrink-0 grow-0', className)} {...rest}>
       {children}
-    </div>
+    </motion.div>
   );
 };
 

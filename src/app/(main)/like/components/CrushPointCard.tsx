@@ -1,15 +1,25 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import type { CrushResponse } from '@/apis/crush/type';
 import { S3_BASE_URL } from '@/constants';
 import { calculateAge, cn } from '@/utils';
 
 export default function CrushPointCard(props: CrushResponse) {
-  const { crushId, profileImagePaths, new: isNew, crushScore, selfIntro, address, isMatch } = props;
+  const {
+    crushId,
+    profileId,
+    profileImagePaths,
+    new: isNew,
+    crushScore,
+    selfIntro,
+    address,
+    isMatch,
+  } = props;
   return (
     <>
-      <li
-        key={crushId}
+      <Link
+        href={`/profile/${profileId}`}
         className="relative flex aspect-[3/4] flex-1 items-end overflow-hidden rounded-xl bg-gray-200 p-4"
       >
         <Image
@@ -33,7 +43,7 @@ export default function CrushPointCard(props: CrushResponse) {
           </p>
           <p className="text-[12px] leading-3">{address.sido + ' ' + address.sigungu}</p>
         </div>
-      </li>
+      </Link>
     </>
   );
 }
