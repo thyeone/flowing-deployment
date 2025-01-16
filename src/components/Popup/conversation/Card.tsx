@@ -15,9 +15,10 @@ import { calculateAge, cn } from '@/utils';
 type CardProps = {
   conversation: ConversationResponse;
   index: number;
-  setIsVisibleSendButton: React.Dispatch<React.SetStateAction<boolean>>;
-  onMessage: (value: string) => void;
+  setIsVisibleSendButton?: React.Dispatch<React.SetStateAction<boolean>>;
+  onMessage?: (value: string) => void;
   onConversationId: (id: number) => void;
+  originalConversationId: number;
 };
 
 export default function Card({
@@ -26,13 +27,14 @@ export default function Card({
   setIsVisibleSendButton,
   onMessage,
   onConversationId,
+  originalConversationId,
 }: CardProps) {
   const { profileImagePaths, selfIntro, address, ddayTime, conversationId, memberId, message } =
     conversation;
 
   const [isFlipped, setIsFlipeed] = useState(false);
 
-  const { currentIndex } = useEmbla();
+  const { currentIndex, scrollTo, setCurrentIndex } = useEmbla();
 
   const distance = useGetDistanceFromAddress(address.bname);
 
@@ -41,8 +43,14 @@ export default function Card({
       onConversationId(conversation.conversationId);
     }
 
-    setIsVisibleSendButton(false);
+    setIsVisibleSendButton?.(false);
   }, [currentIndex]);
+
+  useEffect(() => {
+    if (originalConversationId === conversationId) {
+      scrollTo(index);
+    }
+  }, [scrollTo]);
 
   return (
     <>
@@ -60,7 +68,7 @@ export default function Card({
           )}
           style={{ backfaceVisibility: 'hidden' }}
           onClick={() => {
-            setIsVisibleSendButton(false);
+            setIsVisibleSendButton?.(false);
             setIsFlipeed(false);
           }}
         >
@@ -70,7 +78,7 @@ export default function Card({
             readOnly={!!message}
             value={message}
             onChange={(e) => {
-              onMessage(e.target.value);
+              onMessage?.(e.target.value);
             }}
             onClick={(e) => e.stopPropagation()}
             placeholder="상대방에게 메세지를 보내보세요!"
@@ -85,7 +93,7 @@ export default function Card({
           transition={{ duration: 0.6 }}
           onClick={() => {
             if (!message?.length) {
-              setIsVisibleSendButton(true);
+              setIsVisibleSendButton?.(true);
             }
 
             setIsFlipeed(true);
