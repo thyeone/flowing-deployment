@@ -10,7 +10,6 @@ type CrushPointSectionProps = {
 };
 
 export default function CrushPointSection({ crushData, title }: CrushPointSectionProps) {
-  console.log(crushData);
   return (
     <>
       <div className="px-5">

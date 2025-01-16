@@ -4,13 +4,15 @@ import EmblaCarousel from '@/components/EmblaCarousel';
 import Card from './Card';
 
 type CardListProps = {
+  originalConversationId: number;
   conversations: ConversationResponse[];
-  setIsVisibleSendButton: React.Dispatch<React.SetStateAction<boolean>>;
-  onMessage: (value: string) => void;
+  setIsVisibleSendButton?: React.Dispatch<React.SetStateAction<boolean>>;
+  onMessage?: (value: string) => void;
   onConversationId: (id: number) => void;
 };
 
 export default function CardList({
+  originalConversationId,
   conversations,
   setIsVisibleSendButton,
   onMessage,
@@ -36,6 +38,7 @@ export default function CardList({
             setIsVisibleSendButton={setIsVisibleSendButton}
             onMessage={onMessage}
             onConversationId={onConversationId}
+            originalConversationId={originalConversationId}
           />
         ))}
       </EmblaCarousel.Content>

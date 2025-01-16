@@ -85,6 +85,7 @@ export default function SendChatRequestPopup({
           <div className={cn('relative mt-6 flex flex-1 flex-col items-center justify-center')}>
             <>
               <CardList
+                originalConversationId={conversationId}
                 conversations={requestConversationData}
                 setIsVisibleSendButton={setIsVisibleSendButton}
                 onMessage={(value) => setMessageState(value)}
