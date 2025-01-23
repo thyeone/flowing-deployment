@@ -17,7 +17,7 @@ export default function JoinFunnel() {
 
   return (
     <>
-      {!(currentStep === '1' || currentStep === '3' || currentStep === '6') && (
+      {!(currentStep === '1' || currentStep === '6') && (
         <WaitingHeader isDark={currentStep === '2'} currentStep={currentStep} />
       )}
       <Funnel>

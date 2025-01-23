@@ -120,22 +120,21 @@ export default function QuestionList({
           <motion.li
             key={id}
             className={cn(
-              'relative flex min-h-[57px] w-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white',
+              'relative flex min-h-[57px] w-full cursor-pointer flex-col overflow-hidden rounded-xl border border-gray-200 bg-white',
               {
                 'border-primary-300': isIncludeQuestion(id, type),
               },
             )}
           >
-            <div className="flex w-full items-center justify-between px-5 py-[15px]">
+            <div
+              className="flex w-full items-center justify-between px-5 py-[15px]"
+              onClick={() => handleHeartButton(id, type)}
+            >
               <div className="relative flex items-center gap-x-1 pr-[53px] text-[16px] leading-[22.4px]">
                 <span className="absolute top-0 font-bold text-primary-400">Q.</span>
                 <span className="ml-[23px] text-gray-800">{question}</span>
               </div>
-              <button
-                type="button"
-                className="absolute right-4 top-[10px]"
-                onClick={() => handleHeartButton(id, type)}
-              >
+              <button type="button" className="absolute right-4 top-[10px]">
                 {isIncludeQuestion(id, type) ? <ActiveHeartIcon /> : <InActiveHeartIcon />}
               </button>
             </div>
