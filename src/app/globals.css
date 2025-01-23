@@ -1,27 +1,74 @@
+/* 
+최상단에 고정해야 CDN으로 폰트가 가져와집니다.
+*/
+@import url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/static/woff2/SUIT.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --layout-max-w: 430px;
+    --layout-min-h: 100dvh;
+    --primary-stroke: white;
+    --primary-path: #f6f6f6;
+    --primary-fill: #fbe3ee;
+    --secondary-stroke: #eb2482;
+  }
+
+  .dark {
+    --primary-stroke: #292929;
+    --primary-path: #292929;
+    --primary-fill: #850055;
+    --secondary-stroke: #f6b8d4;
+  }
+
+  .max-width {
+    max-width: 430px;
+  }
+
+  .body-layout {
+    @apply flex h-[var(--layout-min-h)] w-screen justify-center bg-slate-100;
+  }
+
+  .main-layout {
+    @apply relative h-full w-full max-w-[var(--layout-max-w)] overflow-y-auto overflow-x-hidden bg-white tracking-[-0.2%] text-gray-900;
+  }
+
+  .dark-mode {
+    @apply dark:bg-gray-900 dark:text-white;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+* {
+  font-family:
+    'SUIT',
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+html {
+  font-size: 16px;
+  @apply text-gray-900;
+}
+
+/*
+ * svg를 button으로 감쌌을 때 button 요소를 인식하지 못하여 z-index: 1 설정
+*/
+button {
+  z-index: 1;
 }
