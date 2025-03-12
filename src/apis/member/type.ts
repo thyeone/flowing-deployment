@@ -17,3 +17,5 @@ export type MemberResponse = {
     images: ImageResponse[];
   };
 };
+
+export type User = MemberResponse;

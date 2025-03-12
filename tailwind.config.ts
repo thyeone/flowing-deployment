@@ -15,6 +15,9 @@ const config: Config = {
       zIndex,
       borderRadius,
       backgroundImage,
+      fontFamily: {
+        alkatra: ['Alkatra', 'system-ui'],
+      },
     },
   },
   plugins: [],
