@@ -1,7 +1,5 @@
-/* 
-최상단에 고정해야 CDN으로 폰트가 가져와집니다.
-*/
 @import url('https://cdn.jsdelivr.net/gh/sun-typeface/SUIT/fonts/static/woff2/SUIT.css');
+@import url('https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -44,6 +42,8 @@
 * {
   font-family:
     'SUIT',
+    'Alkatra',
+    'JetBrains Mono',
     -apple-system,
     BlinkMacSystemFont,
     system-ui,

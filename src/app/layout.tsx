@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 
 import Providers from '@/providers/Providers';
 
+import MetaPixcel from './_components/MetaPixcel';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -31,7 +32,10 @@ export default function RootLayout({ children }: PropsWithStrictChildren) {
 function Layout({ children }: PropsWithStrictChildren) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body className="body-layout">{children}</body>
+      <body className="body-layout">
+        {children}
+        <MetaPixcel />
+      </body>
     </html>
   );
 }

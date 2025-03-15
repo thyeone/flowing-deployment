@@ -3,8 +3,10 @@ import axios from 'axios';
 import { getCookie as clientCookie } from 'cookies-next';
 import qs from 'qs';
 
+import { logoutAction, setCookie } from '@/actions/cookie';
 import { TOKEN_KEYS } from '@/constants';
 
+import { authApi } from '../auth';
 import { getResponseFromBody } from './common';
 import type { ErrorResponse } from './type';
 
@@ -33,6 +35,27 @@ instance.interceptors.response.use(
   async (error: AxiosError<ErrorResponse, InternalAxiosRequestConfig>) => {
     if (!error.response || !error.config) return Promise.reject(error);
 
+    if (error.response.status === 401 && error.response.data.code === 'UNAUTHORIZED') {
+      console.log('UNAUTHORIZED');
+      const accessToken = clientCookie(TOKEN_KEYS.accessToken);
+      const refreshToken = clientCookie(TOKEN_KEYS.refreshToken);
+
+      if (accessToken && refreshToken) {
+        console.log('accessToken && refreshToken');
+        const response = await authApi.postRefresh(accessToken, refreshToken);
+        setCookie(TOKEN_KEYS.accessToken, response.accessToken);
+        setCookie(TOKEN_KEYS.refreshToken, response.refreshToken);
+        if (response) {
+          instance.defaults.headers.common.Authorization = `Bearer ${response.accessToken}`;
+
+          error.config.headers.Authorization = `Bearer ${response.accessToken}`;
+
+          return instance.request(error.config);
+        }
+      } else {
+        logoutAction();
+      }
+    }
     return Promise.reject(error);
   },
 );

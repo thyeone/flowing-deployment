@@ -1,6 +1,8 @@
 import type { QueryFunction, QueryKey, UseQueryOptions } from '@tanstack/react-query';
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-import { Suspense, cache } from 'react';
+import { cache } from 'react';
+
+import { SSRSafeSuspense } from '@/components/Async';
 
 type HydrationProviderProps = {
   queries?: UseQueryOptions[];
@@ -25,7 +27,7 @@ export default async function HydrationProvider({
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <Suspense>{children}</Suspense>
+      <SSRSafeSuspense>{children}</SSRSafeSuspense>
     </HydrationBoundary>
   );
 }
