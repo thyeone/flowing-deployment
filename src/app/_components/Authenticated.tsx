@@ -12,20 +12,26 @@ type WithAuthProps = {
 
 export function withAuth<P extends WithAuthProps>(Component: React.ComponentType<P>) {
   return async function AuthenticatedComponent(props: Omit<P, keyof WithAuthProps>) {
-    const token = await getCookie(TOKEN_KEYS.accessToken);
+    let user: MemberResponse | undefined = undefined;
 
-    const decoded: {
-      id: string;
-    } = jwtDecode(token as string);
+    try {
+      const token = await getCookie(TOKEN_KEYS.accessToken);
 
-    const user = await memberApi.getMember(decoded.id);
+      const decoded: {
+        id: string;
+      } = jwtDecode(token as string);
 
-    if (user.status === 'IN_SING_UP') {
-      redirect('/join');
-    }
+      const user = await memberApi.getMember(decoded.id);
 
-    if (user.status !== 'ACTIVE') {
-      redirect('/home');
+      if (user.status === 'IN_SING_UP') {
+        redirect('/join');
+      }
+
+      if (user.status !== 'ACTIVE') {
+        redirect('/home');
+      }
+    } catch (error) {
+      console.error(error);
     }
 
     return <Component {...(props as P)} user={user} />;

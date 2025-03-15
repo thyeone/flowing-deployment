@@ -1,5 +1,6 @@
+import { withAuth } from './_components/Authenticated';
 import LoginSection from './_components/LoginSection';
 
-export default function LoginPage() {
+export default withAuth(function LoginPage() {
   return <LoginSection />;
-}
+});
