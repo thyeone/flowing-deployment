@@ -13,10 +13,10 @@ export default function Step6() {
   return (
     <div className="flex size-full flex-col items-center bg-gradient-to-br from-[#FFF0FC] to-[#FFE6DE]">
       <Spacing size={66} />
-      <p className="font-alkatra mb-[14px] text-center text-[48px] font-bold leading-[48px] text-primary-400">
+      <p className="mb-[14px] text-center font-alkatra text-[48px] font-bold leading-[48px] text-primary-400">
         Flowing open
       </p>
-      <p className="font-alkatra mb-[26px] text-center text-[32px] font-semibold leading-[32px] text-gray-900">
+      <p className="mb-[26px] text-center font-alkatra text-[32px] font-semibold leading-[32px] text-gray-900">
         D -{' '}
         {dayjs().diff(dayjs('2025-03-23'), 'day') > 0
           ? dayjs().diff(dayjs('2025-03-23'), 'day')
@@ -26,8 +26,8 @@ export default function Step6() {
         플로잉에서 함께 매력적인 이성을 찾아보세요
       </p>
       <div></div>
-      <div className="relative my-auto min-h-[340px] w-full grow">
-        <Image src="/image/open-day.png" fill alt="" className="object-cover" />
+      <div className="relative my-auto min-h-[340px] w-full">
+        <Image src="/image/open-day.png" fill alt="" className="object-contain" />
       </div>
       <Image src="/image/open-day2.png" fill alt="" className="object-contain" />
       <ButtonWrapper className="bg-transparent">
