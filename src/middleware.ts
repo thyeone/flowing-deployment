@@ -16,6 +16,27 @@ export async function middleware(req: NextRequest) {
   };
 
   const { pathname } = req.nextUrl;
+  const tokenPayload = getPayload();
+
+  if (pathname.includes('admin')) {
+    if (pathname === '/admin/login') {
+      if (tokenPayload && tokenPayload.authority === 'ADMIN') {
+        return NextResponse.redirect(new URL('/admin/dashboard', req.url));
+      }
+      return NextResponse.next();
+    }
+    if (!tokenPayload) {
+      return NextResponse.redirect(new URL('/admin/login', req.url));
+    }
+    if (tokenPayload && tokenPayload.authority !== 'ADMIN') {
+      const logoutResponse = NextResponse.redirect(new URL('/admin/login', req.url));
+      logoutResponse.cookies.delete(TOKEN_KEYS.accessToken);
+      logoutResponse.cookies.delete(TOKEN_KEYS.refreshToken);
+      return logoutResponse;
+    }
+
+    return NextResponse.next();
+  }
 
   if (pathname === '/' || pathname.includes('auth')) {
     return NextResponse.next();
@@ -26,7 +47,6 @@ export async function middleware(req: NextRequest) {
   }
 
   try {
-    const tokenPayload = getPayload();
     if (tokenPayload && tokenPayload.exp * 1000 < Date.now()) {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/refresh`, {
         method: 'POST',

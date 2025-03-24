@@ -4,6 +4,9 @@ import http from '../config/instance';
 import type { LoginResponse } from './type';
 
 export const authApi = {
+  getAdminLogin: async (email: string, password: string) =>
+    await http.get<LoginResponse>(`/auth/admin?custom_id=${email}&password=${password}`),
+
   getKakaoLogin: async (code: string, redirectUri: string) =>
     await http.get<LoginResponse>(`/auth/kakao?code=${code}&redirect_uri=${redirectUri}`),
 

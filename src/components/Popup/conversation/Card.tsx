@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { ConversationResponse } from '@/apis/conversation';
-import Dday from '@/app/(main)/like/components/Dday';
+import Dday from '@/app/(user)/(main)/like/components/Dday';
 import EmblaCarousel, { useEmbla } from '@/components/EmblaCarousel';
 import TextField from '@/components/TextField';
 import Col from '@/components/layout/Col';

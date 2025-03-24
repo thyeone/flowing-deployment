@@ -8,12 +8,12 @@ import FloatingConversationButton from '@/components/FloatingConversationButton'
 import useSetCoords from '@/hooks/useSetCoords';
 import { calculateAge, decodeAccessToken } from '@/utils';
 
-import DefaultInformationSection from '../components/DefaultInformationSection';
-import InterestSection from '../components/InterestSection';
-import ProfileDetailHeader from '../components/ProfileDetailHeader';
-import ProfileImageSlider from '../components/ProfileImageSlider';
-import ValueQnASection from '../components/ValueQnASection';
+import DefaultInformationSection from './DefaultInformationSection';
+import InterestSection from './InterestSection';
 import LikeAbillitySeciton from './LikeAbillitySection';
+import ProfileDetailHeader from './ProfileDetailHeader';
+import ProfileImageSlider from './ProfileImageSlider';
+import ValueQnASection from './ValueQnASection';
 
 export default function ProfileDetail({ id }: { id: string }) {
   const { data: profileDetailData } = useGetMember(id);

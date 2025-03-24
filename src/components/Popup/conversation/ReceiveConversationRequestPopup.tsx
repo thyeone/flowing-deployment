@@ -12,8 +12,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import type { ConversationResponse, ConversationType } from '@/apis/conversation';
-import AcceptRejectButton from '@/app/(main)/like/components/AcceptRejectButton';
-import Dday from '@/app/(main)/like/components/Dday';
+import AcceptRejectButton from '@/app/(user)/(main)/like/components/AcceptRejectButton';
+import Dday from '@/app/(user)/(main)/like/components/Dday';
 import { Button, ButtonWrapper } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { PopupContainer } from '@/components/Overlay';

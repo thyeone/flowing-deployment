@@ -1,8 +1,8 @@
 'use client';
 
-import F개인정보처리방침팝업 from '@/app/(sub)/join/components/F개인정보처리방침팝업';
-import F마케팅수집팝업 from '@/app/(sub)/join/components/F마케팅수집팝업';
-import F이용약관팝업 from '@/app/(sub)/join/components/F이용약관팝업';
+import F개인정보처리방침팝업 from '@/app/(user)/(sub)/join/components/F개인정보처리방침팝업';
+import F마케팅수집팝업 from '@/app/(user)/(sub)/join/components/F마케팅수집팝업';
+import F이용약관팝업 from '@/app/(user)/(sub)/join/components/F이용약관팝업';
 import RightArrowIcon from '@/assets/RightArrow';
 import ItemList from '@/components/ItemList';
 import Flex from '@/components/layout/Flex';
